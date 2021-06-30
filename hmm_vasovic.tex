@@ -1,0 +1,80 @@
+% Format teze zasnovan je na paketu memoir. Prilikom
+% zadavanja klase memoir, navedenim opcijama se podešava
+% veličina slova (12pt) i jednostrano štampanje (oneside).
+\documentclass[12pt,oneside]{memoir}
+
+% Paket koji definiše sve specifičnosti mastera Matematičkog fakulteta.
+\usepackage{matfmaster}
+
+% Paket koji obezbeđuje ispravni prikaz ćiriličkih italik slova.
+\usepackage{cmsrb}
+
+% Ostali paketi koji se koriste u dokumentu.
+\usepackage{listings} % listing programskog koda
+
+% Datoteka sa literaturom u BibTex tj. BibLaTeX/Biber formatu
+\bib{hmm_vasovic}
+
+% Ime kandidata na srpskom jeziku (u odabranom pismu)
+\autor{Лазар М. Васовић}
+% Naslov teze na srpskom jeziku (u odabranom pismu)
+\naslov{Скривени Марковљеви модели у биоинформатици}
+% Godina u kojoj je teza predana komisiji
+\godina{2021}
+% Ime i afilijacija mentora (u odabranom pismu)
+\mentor{др Јована \textsc{Ковачевић}, доцент\\ Универзитет у Београду, Математички факултет}
+% Ime i afilijacija prvog člana komisije (u odabranom pismu)
+\komisijaA{... ... \textsc{...}, ...\\ ..., ...}
+% Ime i afilijacija drugog člana komisije (u odabranom pismu)
+\komisijaB{... ... \textsc{...}, ...\\ ..., ...}
+% Datum odbrane (obrisati ili iskomentarisati ako nije poznat)
+\datumodbrane{септембар 2021.}
+
+% Apstrakt na srpskom jeziku (u odabranom pismu)
+\apstr{%
+...
+}
+
+% Ključne reči na srpskom jeziku (u odabranom pismu)
+\kljucnereci{биоинформатика, скривени Марковљеви модели}
+
+\begin{document}
+% ====================================================================
+% Uvodni deo teze
+\frontmatter
+% ====================================================================
+% Naslovna strana
+\naslovna
+% Strana sa podacima o mentoru i članovima komisije
+\komisija
+% Strana sa podacima o disertaciji na srpskom jeziku
+\apstrakt
+% Sadržaj teze
+\tableofcontents*
+
+% ====================================================================
+% Glavni deo teze
+\mainmatter
+% ====================================================================
+
+% ------------------------------------------------------------------------------
+\chapter{Увод}
+% ------------------------------------------------------------------------------
+...
+
+% ------------------------------------------------------------------------------
+\chapter{Разрада}
+% ------------------------------------------------------------------------------
+...\cite{compeau2015}
+
+% ------------------------------------------------------------------------------
+\chapter{Закључак}
+% ------------------------------------------------------------------------------
+...
+
+% ------------------------------------------------------------------------------
+% Literatura
+% ------------------------------------------------------------------------------
+\literatura
+
+\end{document}
