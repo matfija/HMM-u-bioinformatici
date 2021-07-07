@@ -15,6 +15,9 @@
 \usepackage{CJKutf8} % japanski jezik
 \usepackage[ruled]{algorithm2e} % algoritmi
 
+% Učitavanje slika iz posebnog direktorijuma
+\graphicspath{{../slike}}
+
 % Komanda za ispis (npr. caption) u dva reda
 \newcommand{\dvareda}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
 
@@ -30,7 +33,7 @@
 \end{figure}}
 
 % Datoteka sa literaturom u BibTex tj. BibLaTeX/Biber formatu
-\bib{hmm_vasovic}
+\bib{HMM-u-bioinformatici}
 
 % Ime kandidata na srpskom jeziku (u odabranom pismu)
 \autor{Лазар М. Васовић}
@@ -235,13 +238,13 @@
   \item преласци $a = \left(\begin{matrix}\dfrac{9}{10} & \dfrac{1}{10}\\[8pt] \dfrac{1}{10} & \dfrac{9}{10}\end{matrix}\right)$ -- нпр. $a_{12} = P\{x_1 \mapsto x_2\} = P\{F \mapsto B\} = \dfrac{1}{10}$,
   \item емисије $b = \left(\begin{matrix}\dfrac{1}{2} & \dfrac{1}{2}\\[8pt] \dfrac{3}{4} & \dfrac{1}{4}\end{matrix}\right)$ -- нпр. $b_{21} = P\{y_1 | x_2\} = P\{H | B\} = \dfrac{3}{4}$.
 \end{itemize}
-Одговарајући дијаграм приказан је на слици \ref{fig:crook} и пружа исте информације. Служи се истим стилом као претходно описани граф, с тим што додатно испрекидано приказује замишљено полазно стање, што је новина на слици.
+Одговарајући дијаграм приказан је на слици \ref{fig:kock} и пружа исте информације. Служи се истим стилом као претходно описани граф, с тим што додатно испрекидано приказује замишљено полазно стање, што је новина на слици.
 
 \begin{figure}[!ht]
   \centering
-  \includegraphics[width=.5\textwidth]{crook.png}
+  \includegraphics[width=.5\textwidth]{kockarnica.png}
   \caption{Скривени Марковљев модел бацања новчића}
-  \label{fig:crook}
+  \label{fig:kock}
 \end{figure}
 
 % Hidden Markov Models (2)
