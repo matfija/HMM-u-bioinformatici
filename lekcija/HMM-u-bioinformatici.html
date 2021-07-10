@@ -13721,7 +13721,7 @@ V3 петља: CMRPGTTTRRRIHIGPGRAFYATGNI-GNIRKAHC
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Пример DNA секвенце са Певзнерове презентације</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Пример DNA секвенце са презентације</span>
 <span class="n">dna</span> <span class="o">=</span> <span class="s1">&#39;ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT&#39;</span>
 
 <span class="c1"># Ознаке где је CG острво (+), а где није (-)</span>
@@ -13834,7 +13834,7 @@ CTAATTTCTT вероватно није CG острво
         <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">i</span>    <span class="o">*</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">i</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">((</span><span class="n">i</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">i</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">((</span><span class="n">i</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
         
         <span class="c1"># Израчунавање да ли је прозор CG острво</span>
         <span class="n">ostrvo</span> <span class="o">=</span> <span class="n">cg_ostrvo</span><span class="p">(</span><span class="n">prozor</span><span class="p">)</span>
@@ -13873,8 +13873,11 @@ CTAATTTCTT вероватно није CG острво
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Дохватање резултата мотивационог примера</span>
-<span class="n">rezultat</span> <span class="o">=</span> <span class="n">cg_prozor</span><span class="p">(</span><span class="n">dna</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Одабир величине прозора (како?)</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># Дохватање резултата мотивационог примера</span>
+<span class="n">rezultat</span> <span class="o">=</span> <span class="n">cg_prozor</span><span class="p">(</span><span class="n">dna</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14023,6 +14026,26 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Мапа вероватноћа код фер новчића</span>
+<span class="n">F</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">}</span>
+
+<span class="c1"># Мапа вероватноћа код пристрасног новчића</span>
+<span class="n">B</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">}</span>
+
+<span class="c1"># Заједничка мапа условних вероватноћа</span>
+<span class="n">P</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;F&#39;</span><span class="p">:</span> <span class="n">F</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="n">B</span><span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -14030,6 +14053,60 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Функција за рачунање вероватноће исхода код било каквог новчића</span>
+<span class="k">def</span> <span class="nf">p_ishoda</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">]</span> <span class="o">**</span> <span class="n">k</span> <span class="o">*</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">]</span> <span class="o">**</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Неки прости примери са рачунањем вероватноћа исхода код било каквог новчића</span>
+<span class="c1"># (по жељи, могуће је баратати директно разломцима, помоћу подула fractions)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа да једном падне глава у једном бацању праведног новчића:&#39;</span><span class="p">,</span> <span class="n">p_ishoda</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;(1/2)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа да ниједном не падне глава у три бацања праведног новчића:&#39;</span><span class="p">,</span> <span class="n">p_ishoda</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;(1/8)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа да једном падне глава у једном бацању отежаног новчића:&#39;</span><span class="p">,</span> <span class="n">p_ishoda</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;(3/4)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа да ниједном не падне глава у три бацања отежаног новчића:&#39;</span><span class="p">,</span> <span class="n">p_ishoda</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;(1/64)&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа да једном падне глава у једном бацању праведног новчића: 0.5 (1/2)
+Вероватноћа да ниједном не падне глава у три бацања праведног новчића: 0.125 (1/8)
+Вероватноћа да једном падне глава у једном бацању отежаног новчића: 0.75 (3/4)
+Вероватноћа да ниједном не падне глава у три бацања отежаног новчића: 0.015625 (1/64)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -14039,6 +14116,55 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Функција за рачунање вероватноће исхода код праведнод новчића</span>
+<span class="k">def</span> <span class="nf">p_pravedan</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="o">**</span><span class="n">n</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Неки прости примери са вероватноћама исхода код праведнод новчића</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа да једном падне глава у једном бацању праведног новчића:&#39;</span><span class="p">,</span> <span class="n">p_pravedan</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;(1/2)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа да ниједном не падне глава у три бацања праведног новчића:&#39;</span><span class="p">,</span> <span class="n">p_pravedan</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="s1">&#39;(1/8)&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа да једном падне глава у једном бацању праведног новчића: 0.5 (1/2)
+Вероватноћа да ниједном не падне глава у три бацања праведног новчића: 0.125 (1/8)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -14047,21 +14173,434 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Функција за рачунање вероватноће исхода код отежаног новчића</span>
+<span class="k">def</span> <span class="nf">p_otezan</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">3</span><span class="o">**</span><span class="n">k</span> <span class="o">/</span> <span class="mi">4</span><span class="o">**</span><span class="n">n</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Неки прости примери са вероватноћама исхода код отежаног новчића</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа да једном падне глава у једном бацању отежаног новчића:&#39;</span><span class="p">,</span> <span class="n">p_otezan</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;(3/4)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа да ниједном не падне глава у три бацања отежаног новчића:&#39;</span><span class="p">,</span> <span class="n">p_otezan</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;(1/64)&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа да једном падне глава у једном бацању отежаног новчића: 0.75 (3/4)
+Вероватноћа да ниједном не падне глава у три бацања отежаног новчића: 0.015625 (1/64)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Уколико је $P\{x | F\} &gt; P\{x | B\}$, онда је вероватније да је крупије бацао праведни новчић, док је у случају $P\{x | F\} &lt; P\{x | B\}$ бацао отежани. Занимљиво је напоменути да ипак није лако израчунати бројеве $1/2^n$ и $3^k/4^n$ за велико $n$. Они су тада изразито мали, па је питање да ли су добро представљени у рачунару, те да ли њихово поређење даје тачан резултат. Стога се израчунава логаритамски однос вероватноћа, који у конкретном случају износи: $$\log_2\left(\frac{P\{x | F\}}{P\{x | B\}}\right) = \log_2\left(\frac{2^n}{3^k}\right) = n - k\log_23.$$</p>
+<p>Уколико је $P\{x | F\} &gt; P\{x | B\}$, онда је вероватније да је крупије бацао праведни новчић, док је у случају $P\{x | F\} &lt; P\{x | B\}$ бацао отежани.</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Овај број се већ без проблема израчунава за разне вредности $n$ и $k$. Конкретно, нека је $n = 100$ (сто бацања), а $k = 63$ (нешто већи удео глава). Тада је логаритамски однос приближно једнак 0,15. Позитивна вредност $\log(x/y)$ значи да је $x/y &gt; 1$, односно $x &gt; y$ у случају ненегативних вероватноћа. Ово значи да је већа вероватноћа да је крупије бацао праведни новчић, иако је $k = 63$ интуитивно и по апсолутној вредности ближе $3/4 \cdot 100 = 75$ него $1/2 \cdot 100 = 50$. Негативан логаритамски однос довео би до супротног закључка. Алтернативно, како је неопходно одредити само знак израза $n - k \log_23$, то се може учинити поређењем $n$ и $k\log_23$, односно $k/n =$ 0,63 и $1/\log_23 \approx$ 0,6309 након дељења <em>k</em> са обе стране. Лева страна је мања, па је однос позитиван.</p>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Функција за предвиђање праведности новчића</span>
+<span class="k">def</span> <span class="nf">pravednost</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="c1"># Вероватноћа исхода ако је бацан праведни</span>
+    <span class="n">pf</span> <span class="o">=</span> <span class="n">p_pravedan</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    
+    <span class="c1"># Вероватноћа исхода ако је бацан отежани</span>
+    <span class="n">pb</span> <span class="o">=</span> <span class="n">p_otezan</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+    
+    <span class="c1"># Коначно поређење добијених вероватноћа</span>
+    <span class="k">return</span> <span class="n">pf</span> <span class="o">&gt;</span> <span class="n">pb</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Неколико малих примера могућих исхода</span>
+<span class="n">primeri</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
+
+<span class="c1"># Закључивање о новчићу на основу примера</span>
+<span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">primeri</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ако је бацања&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\b</span><span class="s1">, од чега глава&#39;</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\b</span><span class="s1">, новчић вероватно&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;није&#39;</span> <span class="k">if</span> <span class="n">pravednost</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;јесте&#39;</span><span class="p">,</span> <span class="s1">&#39;отежан.&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Ако је бацања 1 , од чега глава 1 , новчић вероватно јесте отежан.
+Ако је бацања 2 , од чега глава 1 , новчић вероватно није отежан.
+Ако је бацања 2 , од чега глава 2 , новчић вероватно јесте отежан.
+</pre>
+</div>
+</div>
 
 </div>
 </div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Занимљиво је напоменути да ипак није лако израчунати бројеве $1/2^n$ и $3^k/4^n$ за велико $n$. Они су тада изразито мали, па је питање да ли су добро представљени у рачунару, те да ли њихово поређење даје тачан резултат.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Покушај рада са нешто већим бројем бацања</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа да само писма падају у десет хиљада бацања праведног новчића:&#39;</span><span class="p">,</span> <span class="n">p_pravedan</span><span class="p">(</span><span class="mf">1e4</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа да само писма падају у десет хиљада бацања бацања отежаног новчића:&#39;</span><span class="p">,</span> <span class="n">p_otezan</span><span class="p">(</span><span class="mf">1e4</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="c1"># Обавештавање позиваоца о неуспеху у рачуну</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Испаљен је изузетак:&#39;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Испаљен је изузетак: (34, &#39;Result too large&#39;)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Стога се израчунава логаритамски однос вероватноћа, који у конкретном случају износи: $$\log_2\left(\frac{P\{x | F\}}{P\{x | B\}}\right) = \log_2\left(\frac{2^n}{3^k}\right) = n - k\log_23.$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Библиотека за рад са логаритмима</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">log2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Рачунање логаритамског односа новчића</span>
+<span class="k">def</span> <span class="nf">log_odnos</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="o">-</span> <span class="n">k</span> <span class="o">*</span> <span class="n">log2</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Овај број се већ без проблема израчунава за разне вредности $n$ и $k$. Конкретно, нека је $n = 100$ (сто бацања), а $k = 63$ (нешто већи удео глава).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Предложени број бацања</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="c1"># Предложени број глава</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">63</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Тада је логаритамски однос приближно једнак 0,15.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Израчунавање логаритамског односа примера</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Логаритамски однос за n =&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="s1">&#39;и k =&#39;</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\b</span><span class="s1">:&#39;</span><span class="p">,</span> <span class="n">log_odnos</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">63</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Логаритамски однос за n = 100 и k = 63: 0.14736245456717256
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Позитивна вредност $\log(x/y)$ значи да је $x/y &gt; 1$, односно $x &gt; y$ у случају ненегативних вероватноћа.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Друга функција за предвиђање праведности новчића</span>
+<span class="k">def</span> <span class="nf">log_pravednost</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="n">k</span> <span class="o">*</span> <span class="n">log2</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ово значи да је већа вероватноћа да је крупије бацао праведни новчић, иако је $k = 63$ интуитивно и по апсолутној вредности ближе $3/4 \cdot 100 = 75$ него $1/2 \cdot 100 = 50$. Негативан логаритамски однос довео би до супротног закључка.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ако је бацања&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\b</span><span class="s1">, од чега глава&#39;</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\b</span><span class="s1">, новчић вероватно&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;није&#39;</span> <span class="k">if</span> <span class="n">log_pravednost</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;јесте&#39;</span><span class="p">,</span> <span class="s1">&#39;отежан.&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Ако је бацања 100 , од чега глава 63 , новчић вероватно није отежан.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Алтернативно, како је неопходно одредити само знак израза $n - k \log_23$, то се може учинити поређењем $n$ и $k\log_23$, односно $k/n =$ 0,63 и $1/\log_23 \approx$ 0,6309 након дељења <em>k</em> са обе стране. Лева страна је мања, па је однос позитиван.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Трећа функција за предвиђање праведности новчића</span>
+<span class="k">def</span> <span class="nf">div_log_pravednost</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">k</span><span class="o">/</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="o">/</span><span class="n">log2</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ако је бацања&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\b</span><span class="s1">, од чега глава&#39;</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\b</span><span class="s1">, новчић вероватно&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;није&#39;</span> <span class="k">if</span> <span class="n">div_log_pravednost</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;јесте&#39;</span><span class="p">,</span> <span class="s1">&#39;отежан.&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Ако је бацања 100 , од чега глава 63 , новчић вероватно није отежан.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Сада се без икаквих проблема може вратити великим примерима који претходно нису били израчунљиви.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">velicine</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mf">10e4</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="mf">10e6</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="mf">10e9</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="mf">10e12</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">velicine</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ако само једно писмо падне у&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="s1">&#39;бацања, новчић вероватно&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;није&#39;</span> <span class="k">if</span> <span class="n">div_log_pravednost</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;јесте&#39;</span><span class="p">,</span> <span class="s1">&#39;отежан.&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Ако само једно писмо падне у 100000 бацања, новчић вероватно јесте отежан.
+Ако само једно писмо падне у 10000000 бацања, новчић вероватно јесте отежан.
+Ако само једно писмо падне у 10000000000 бацања, новчић вероватно јесте отежан.
+Ако само једно писмо падне у 10000000000000 бацања, новчић вероватно јесте отежан.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -14079,6 +14618,109 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Одређивање да ли је прозор праведан</span>
+<span class="k">def</span> <span class="nf">pravedan_prozor</span><span class="p">(</span><span class="n">prozor</span><span class="p">):</span>
+    <span class="c1"># Број бацања је величина прозора</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">prozor</span><span class="p">)</span>
+    
+    <span class="c1"># Број глава је број исхода H</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">prozor</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Коначно одређивање праведности</span>
+    <span class="k">return</span> <span class="n">div_log_pravednost</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Анотација свих прозора дужине k</span>
+<span class="k">def</span> <span class="nf">kockarnica_prozor</span><span class="p">(</span><span class="n">ishodi</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="c1"># Приказ улазне секвенце исхода</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">ishodi</span><span class="p">)</span>
+    
+    <span class="c1"># Одређивање дужине секвенце</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ishodi</span><span class="p">)</span>
+    
+    <span class="c1"># Пролазак кроз све прозоре</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># Одређивање текућег прозора</span>
+        <span class="n">prozor</span> <span class="o">=</span> <span class="n">ishodi</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">k</span><span class="p">]</span>
+        
+        <span class="c1"># Испис довољног броја празнина за поравнање</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">i</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        
+        <span class="c1"># Израчунавање да ли је прозор праведан</span>
+        <span class="n">pravedan</span> <span class="o">=</span> <span class="n">pravedan_prozor</span><span class="p">(</span><span class="n">prozor</span><span class="p">)</span>
+        
+        <span class="c1"># Извештавање о резултату знаком новчића</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="p">(</span><span class="s1">&#39;F&#39;</span> <span class="k">if</span> <span class="n">pravedan</span> <span class="k">else</span> <span class="s1">&#39;B&#39;</span><span class="p">))</span>
+    
+    <span class="c1"># Приказ улазне секвенце исхода</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">ishodi</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Одабир величине прозора (како?)</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># Пример низа исхода са презентације</span>
+<span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;HHHTHTHHHT&#39;</span>
+
+<span class="c1"># Одређивање праведности свих поднизова</span>
+<span class="n">kockarnica_prozor</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>HHHTHTHHHT
+BBBBB
+ FFFFF
+  FFFFF
+   FFFFF
+    BBBBB
+     FFFFF
+HHHTHTHHHT
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -14086,6 +14728,51 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Величина прозора из претходног примера</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># Низ исхода из претходног примера из књиге</span>
+<span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;HHHHHTTHHHTTTTT&#39;</span>
+
+<span class="c1"># Одређивање праведности свих поднизова</span>
+<span class="n">kockarnica_prozor</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>HHHHHTTHHHTTTTT
+BBBBBBBBBB
+ BBBBBBBBBB
+  FFFFFFFFFF
+   FFFFFFFFFF
+    FFFFFFFFFF
+     FFFFFFFFFF
+HHHHHTTHHHTTTTT
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
