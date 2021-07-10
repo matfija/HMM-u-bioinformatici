@@ -14429,7 +14429,7 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Логаритамски однос за n = 100 и k = 63: 0.14736245456717256
+<pre>Логаритамски однос за n = 100 и k = 63 : 0.14736245456717256
 </pre>
 </div>
 </div>
@@ -14854,7 +14854,304 @@ HHHHHTTHHHTTTTT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>...</p>
+<p>Како би се лакше дошло до општег модела свих досадашњих проблема, а посебно бацања новчића, крупије се, уместо као особа, може схватити као примитивна машина – аутомат. Структура аутомата за почетак није важна, али његово деловање јесте. Аутомат је секвенцијалне природе, те оперише кроз низ корака. У сваком кораку је у неком приватном стању, које означава који новчић је заправо бачен (конкретно <em>F</em> и <em>B</em>), при чему јавно приказује исход бацања тог новчића (конкретно <em>H</em> и <em>T</em>). Стање је, дакле, непознато, па се другачије назива скривеним стањем. И стања и опажања згодно је апстраховати симболима, нпр. баш карактерима, како је и учињено.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>У сваком кораку, аутомат доноси две одлуке: у које скривено стање прећи (да ли га променити) и који симбол емитовати у том новом стању. Испоставља се да се обе одлуке могу донети у потпуности стохастички, што би значило да је добијен жељени статистички потковани модел проблема. Заиста, прва одлука може се донети тако што се случајно одабере <em>F</em> или <em>B</em> као почетно стање (нпр. баш равномерно, са једнаким вероватноћама 1/2), а надаље се у сваком кораку стање мења са неком малом вероватноћом (нпр. 1/10), док се са знатно већом преосталом (нпр. 9/10) остаје у истом стању. Друга одлука доноси се на основу прве и већ познатих вероватносних особина коцкице – нпр. вероватноћа емитовања <em>H</em> једнака је 1/2 у стању <em>F</em>, а 3/4 у стању <em>B</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Претходно изложени аутомат заправо одговара дуго најављиваном појму скривених Марковљевих модела. <em>HMM</em> се традиционално представља као статистички модел који се састоји из следећих основних елемената:</p>
+<ul>
+<li>скривених стања $x_i$ – свако стање из скупа $x$ има индекс $i$,</li>
+<li>опажања, опсервација, емисија, приказа, исхода, симбола $y_i$,</li>
+<li>полазних вероватноћа $\pi_i$ – колико је често $x_i$ почетно стање,</li>
+<li>вероватноћа прелаза $a_{ij}$ – колико се често из $x_i$ прелази у $x_j$,</li>
+<li>излазних вероватноћа $b_{ij}$ – колико се често у стању $x_i$ емитује $y_j$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Пример који одговара оваквој дефиницији дат је на слици <a href="#fig:hmm">1.2</a>. Наравно, подразумева се да су познати број стања $n$ (тако заправо $x = \{x_1, ..., x_n\}$, $\pi = \{\pi_1, ..., \pi_n\}$ и $a = \{a_{ij}\}_{1 \leq i, j \leq n}$) и број могућих опсервација $m$ (тако заправо $y = \{y_1, ..., y_m\}$ и $b = \{b_{ij}\}_{1 \leq i \leq n, 1 \leq j \leq m}$) као помоћни елементи сваког <em>HMM</em>. Како су сви скупови коначни, прецизније се говори о дискретним (мултиномијалним) <em>HMM</em>, мада је иначе могуће моделовати разне <a href="https://people.eecs.berkeley.edu/~jordan/courses/281A-fall04/lectures/lec-10-26.pdf">непрекидне</a> расподеле.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Класа која представља скривени Марковљев модел</span>
+<span class="k">class</span> <span class="nc">HMM</span><span class="p">:</span>
+    <span class="c1"># Конструкција HMM на основу петорке</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="c1"># Памћење низа скривених стања</span>
+        <span class="n">hmm</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        
+        <span class="c1"># Одређивање броја скривених стања</span>
+        <span class="n">hmm</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+         
+        <span class="c1"># Памћење низа могућих опажања</span>
+        <span class="n">hmm</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+        
+        <span class="c1"># Одређивање броја различитих опажања</span>
+        <span class="n">hmm</span><span class="o">.</span><span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        
+        <span class="c1"># Памћење низа полазних вероватноћа</span>
+        <span class="n">hmm</span><span class="o">.</span><span class="n">pi</span> <span class="o">=</span> <span class="n">pi</span>
+        
+        <span class="c1"># Памћење матрице вероватноћа прелаза</span>
+        <span class="n">hmm</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span>
+        
+        <span class="c1"># Памћење матрице излазних вероватноћа</span>
+        <span class="n">hmm</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Како би овакав модел био у потпуности статистички заснован и смислен, обично се захтева да се све појединачне вероватноће сабирају у јединицу: $$\sum_{i=1}^n \pi_i = 1, (\forall i \in \{1, ..., n\}) \sum_{j=1}^m a_{ij} = 1, (\forall i \in \{1, ..., n\}) \sum_{j=1}^m b_{ij} = 1.$$ Постоје, међутим, изузеци који су детаљније обрађени у наставку, када се говори о важним надградњама појма скривених Марковљевих модела.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Рад са рачунским грешкама</span>
+<span class="k">def</span> <span class="nf">blisko</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="c1"># Мала апсолутна разлика</span>
+    <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-3</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Неки примери релативно сличних бројева</span>
+<span class="n">primeri</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">3</span><span class="o">*</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)]</span>
+
+<span class="c1"># Извештавање о блискости бројева из примера</span>
+<span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">primeri</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Бројеви&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="s1">&#39;и&#39;</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;јесу&#39;</span> <span class="k">if</span> <span class="n">blisko</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;нису&#39;</span><span class="p">,</span> <span class="s1">&#39;блиски.&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Бројеви 0.30000000000000004 и 0.3 јесу блиски.
+Бројеви 0.5 и 0.5 јесу блиски.
+Бројеви 1 и 1.1 нису блиски.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Провера испуњава ли HMM вероватносне услове</span>
+<span class="k">def</span> <span class="nf">proveri</span><span class="p">(</span><span class="n">hmm</span><span class="p">):</span>
+    <span class="c1"># Сумирање полазних вероватноћа</span>
+    <span class="n">polazne</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+    
+    <span class="c1"># Провера полазних вероватноћа</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">blisko</span><span class="p">(</span><span class="n">polazne</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="c1"># Пролазак кроз свако скривено стање</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">hmm</span><span class="o">.</span><span class="n">n</span><span class="p">):</span>
+        <span class="c1"># Сумирање вероватноћа прелаза</span>
+        <span class="n">prelazi</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">hmm</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        
+        <span class="c1"># Провера вероватноћа прелаза</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">blisko</span><span class="p">(</span><span class="n">prelazi</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        
+        <span class="c1"># Сумирање излазних вероватноћа</span>
+        <span class="n">emisije</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">hmm</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        
+        <span class="c1"># Провера излазних вероватноћа</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">blisko</span><span class="p">(</span><span class="n">emisije</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="c1"># Све провере су прошле</span>
+    <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>У овом тренутку је такође значајно нагласити да аутори Компо и Певзнер у уџбенику <em>Bioinformatics Algorithms</em> користе нешто другачију нотацију, верну енглеском језику. Наиме, они скуп $x$ означавају као $States$, скуп $y$ као $\Sigma$, матрицу $a_{ij}$ као $transition_{l, k}$, а матрицу $b_{ij}$ као $emission_l(b)$. Такође, потребу за скупом полазних вероватноћа – који је заправо опционалан, о чему ће бити речи касније – уводе тек касније, па је <em>HMM</em> код њих у основи уређена четворка уместо петорка. Овде је ипак одлучено да се користи познатија нотација, како би читаоцима била лакша употреба повезане литературе. Штавише, <em>HMM</em> се у литератури често дефинише још простије, као уређена тројка $\{a, b, \pi\}$, односно $\{A, B, \pi\}$ ако се користе велика слова. Стварно, скупови $x$ и $y$ просто се могу заменити индексима, познатим из наведене тројке.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>На основу већ разматране слике <a href="#fig:hmm">1.2</a>, познато је да се <em>HMM</em> може илустровати <em>HMM</em> дијаграмом. У питању је граф чији су чворови стања и опсервације, а гране вероватноће преласка и емисије. Стил је у суштини произвољан, мада се на слици примећује разлика у значењу графичких елемената. Стања су приказана кружним, а емисије квадратним чворовима. Вероватноће преласка исписане су изнад грана, а излазне вероватноће на самим гранама. Прелази и емисије нулте вероватноће (нпр. прелаз са $x_1$ на $x_3$ или на самог себе) нису ни приказани. Други стилови могу приказати све гране, а емисије и вероватноће емисија означити испрекиданим линијама. Независно од стила, <em>HMM</em> једнозначно одређује структуру свога дијаграма, а важи и обрнуто.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Сада је могуће искористити <em>HMM</em> за прецизно моделовање мотивационог проблема бацања коцкице у непоштеној коцкарници. У конкретном случају, изложеном на почетку поднаслова, уређена петорка изгледа овако:</p>
+<ul>
+<li>скривена стања $x = \{F, B\}$ – нпр. $x_1 = F$ и $x_2 = B$,</li>
+<li>опсервације $y = \{H, T\}$ – нпр. $y_1 = H$ и $y_2 = T$,</li>
+<li>полазне вероватноће $\pi = \left\{\dfrac{1}{2}, \dfrac{1}{2}\right\}$ – нпр. $\pi_1 = P\{x_1\} = P\{F\} = \dfrac{1}{2}$,</li>
+<li>преласци $a = \left(\begin{matrix}\dfrac{9}{10} &amp; \dfrac{1}{10}\\ \dfrac{1}{10} &amp; \dfrac{9}{10}\end{matrix}\right)$ – нпр. $a_{12} = P\{x_1 \mapsto x_2\} = P\{F \mapsto B\} = \dfrac{1}{10}$,</li>
+<li>емисије $b = \left(\begin{matrix}\dfrac{1}{2} &amp; \dfrac{1}{2}\\ \dfrac{3}{4} &amp; \dfrac{1}{4}\end{matrix}\right)$ – нпр. $b_{21} = P\{y_1 | x_2\} = P\{H | B\} = \dfrac{3}{4}$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Скривена стања непоштене коцкарнице</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">]</span>
+
+<span class="c1"># Могућа опажања непоштене коцкарнице</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">]</span>
+
+<span class="c1"># Низ полазних вероватноћа непоштене коцкарнице</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="c1"># Матрица прелаза непоштене коцкарнице</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">9</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="o">/</span><span class="mi">10</span><span class="p">]]</span>
+
+<span class="c1"># Матрица емисија непоштене коцкарнице</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># HMM непоштене коцкарнице</span>
+<span class="n">kockarnica</span> <span class="o">=</span> <span class="n">HMM</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Провера модела непоштене коцкарнице</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Модел&#39;</span><span class="p">,</span> <span class="s1">&#39;јесте&#39;</span> <span class="k">if</span> <span class="n">proveri</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;није&#39;</span><span class="p">,</span> <span class="s1">&#39;коректан.&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Модел јесте коректан.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Одговарајући дијаграм приказан је на слици <a href="#fig:kock">3.1</a> и пружа исте информације. Служи се истим стилом као претходно описани граф, с тим што додатно испрекидано приказује замишљено полазно стање, што је новина на слици.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="../slike/kockarnica.png" width="35%" id="fig:kock" alt="Скривени Марковљев модел бацања новчића" /></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Историјски гледано, појам <em>HMM</em> увели су Ленард Баум и сарадници кроз низ статистичких радова објављених у другој половини шездесетих година двадесетог века. У питању је надградња појма Марковљевих ланаца (енгл. <em>Markov Chain, MC</em>), који су у суштини <em>HMM</em> без емисија. Ради се, дакле, о уобичајеном стохастичком аутомату, који се састоји из стања и вероватноћа прелаза. <em>MC</em> је почетком века <a href="http://sciences.amisbnf.org/fr/livre/rasprostranenie-zakona-bolshih-chisel-na-velichiny-zavisyashchie-drug-ot-druga">формулисао</a> руски статистичар Андреј Марков, по коме су и названи, како би моделовао Марковљеве процесе – стохастичке промене стања такве да тренутно стање зависи искључиво од претходног. Прва практична примена <em>HMM</em> била је препознавање говора, док је биолошка примена почела 1986, Бишоповим и Томпсоновим <a href="https://pubmed.ncbi.nlm.nih.gov/3641921/">поравнањем <em>DNA</em></a>.</p>
 
 </div>
 </div>
@@ -14869,10 +15166,500 @@ HHHHHTTHHHTTTTT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>...</p>
+<p>Могуће је дефинисати појам скривеног пута $p = p_1...p_k$ као низ $k$ стања кроз која <em>HMM</em> пролази, а да притом емитује секвенцу опсервација $o = o_1...o_k$. Примера ради, може бити да је низ видљивих исхода $o = THTHHHTHTTH$, а позадински низ скривених стања $p = FFFBBBBBFFF$. Главна идеја је анализирати у ком су односу $p$ и $o$, те са којом се вероватноћом реализују.</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Пример скривеног пута из уџбеника</span>
+<span class="n">p_knjiga</span> <span class="o">=</span> <span class="s1">&#39;FFFBBBBBFFF&#39;</span>
+
+<span class="c1"># Пример секвенце опсервација из уџбеника</span>
+<span class="n">o_knjiga</span> <span class="o">=</span> <span class="s1">&#39;THTHHHTHTTH&#39;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Уз излагање <em>HMM</em> за бацање новчића у непоштеној коцкарници, дати су примери значења чланова петорке, који донекле наговештавају могућности скривених Марковљевих модела. Прво, напоменуто је да полазне вероватноће заправо представљају вероватноћу да се у првом кораку ушло у неко стање. Другим речима, то су заправо вероватноће $P\{p\}$ свих могућих једночланих низова скривених стања. Друго, имплицирано је да матрица емисија складишти маргиналну расподелу емисија при познатом стању. У питању су условне вероватноће $P\{o | p\}$ исхода при једночланом низу скривених стања.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Могуће је, дакле, директно из дефиниције <em>HMM</em> израчунати вероватноће  $P\{p\}$ и $P\{o | p\}$ за $k = 1$, и то као $P\{x_i\} = \pi_i$, односно $P\{y_j | x_i\} = b_{ij}$. Према познатој формули условне вероватноће, важи $P\{p, o\} = P\{p\} P\{o | p\}$, па је и та вероватноћа тривијално позната за путеве јединичне дужине, као $P\{x_i, y_j\} = \pi_i b_{ij}$. У питању је заједничка вероватноћа да <em>HMM</em> пролази кроз низ стања $p$, а да притом емитује управо секвенцу опсервација $o$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Према уобичајеним принципима, могуће је приметити следеће: $\sum_p \sum_o P\{p, o\} = 1$. Наиме, када се саберу вероватноће свих могућих комбинација низа опажања и скривених путева одређене дужине $k$, добија се јединица, што значи да је покривен цео простор догађаја у <em>HMM</em>. Из ове дводимензионалне (заједничке) расподеле путева и емисија могу се без проблема извести маргиналне (појединачне) расподеле путева $P\{p\} = \sum_o P\{p, o\}$ и симбола $P\{o\} = \sum_p P\{p, o\}$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Подсећања ради, оригинални циљ код непоштене коцкарнице био је пронаћи највероватнији низ стања (бачених новчића) за познати низ опсервација (исхода), што је управо максимална вредност $P\{p, o\}$ по свим $p$ за познато $o$. Претходно опште постављен задатак проналаска највероватнијег низа бацања на основу анализе исхода постаје сасвим конкретан статистички проблем – на основу емитоване ниске симбола $o$ одредити највероватнију секвенцу скривених стања $p$. У наставку је показано како је то заправо могуће урадити.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>За почетак, добро је формално дефинисати проблем. Већ је закључено да формулација попут <a href="#prob:kock">1</a> није добра нити смислена. Зато је и уведен појам <em>HMM</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote id="prob:kock">
+
+<b>Проблем 1</b> Непоштена коцкарница<br>
+<i>На основу низа исхода бацања новчића, одредити када крупије у непоштеној коцкарници користи који од два могућа новчића.</i><br>
+<b>Улаз</b> низ $o = o_1...o_k$ исхода ($H$ и $T$) бацања два новчића ($F$ и $B$).<br>
+<b>Излаз</b> низ $p = p_1...p_k$ новчића такав да је $o_i$ резултат бацања $p_i$.
+
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Добра формулација преко појма <em>HMM</em> дата је кроз проблем <a href="#prob:dekod">2</a>. Управо је она детаљно обрађена у наставку овог поглавља, као његов централни део.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote id="prob:dekod">
+
+<b>Проблем 2</b> Декодирање приказа<br>
+<i>Пронаћи оптимални пут кроз HMM ако је емитована ниска $o$.</i><br>
+<b>Улаз</b> ниска $o = o_1...o_k$ и <i>HMM</i>$\{a, b, \pi\}$ који ју је емитовао.<br>
+<b>Излаз</b> скривени пут $p$ који максимизује вероватноћу $P\{p, o\}$ над свим могућим путевима, дакле $\operatorname*{argmax}_p P\{p, o\}$ за улазно $o$.
+
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Прва идеја јесте исцрпна претрага простора догађаја над маргиналном расподелом $P\{p, o\}$ за познато $o$. Како је $P\{p, o\} = P\{p\} P\{o | p\}$, тако је најзгодније независно израчунати $P\{p\}$ и $P\{o | p\}$ за сваки од $n^k$ скривених путева. Број путева дужине $k$ у <em>HMM</em> са $n$ могућих стања је експоненцијалан, јер се одабир своди на варијације – уређене изборе са понављањем.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Први потпроблем је израчунавање вероватноће пута, што се може формализовати проблемом <a href="#prob:put">3</a>. Он је у наставку решен у виду једне формуле.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote id="prob:put">
+
+<b>Проблем 3</b> <a href="http://rosalind.info/problems/ba10a/">Вероватноћа скривеног пута</a><br>
+<i>Израчунати вероватноћу скривеног пута $p$ кроз HMM.</i><br>
+<b>Улаз</b> скривени пут $p = p_1...p_k$ кроз <i>HMM</i>$\{a, b, \pi\}$.<br>
+<b>Излаз</b> вероватноћа улазног пута $P\{p\}$.
+
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Први елемент $P\{p\}$, дакле, представља вероватноћу скривеног пута $p$, односно вероватноћу да <em>HMM</em> прође кроз низ стања $p$. Већ је показано да за једночлане путеве важи $P\{x_i\} = \pi_i$. Вишечлани путеви заправо почињу једночланим, а онда се проширују користећи стохастичке прелазе. Стога је $P\{p_1p_2...p_{k-1}p_k\} = P\{p_1\}P\{p_1 \mapsto p_2\}...P\{p_{k-1} \mapsto p_k\}$. Објашњено је већ и да је $P\{x_i \mapsto x_j\} = a_{ij}$, па се свеукупно вероватноћа пута може израчунати као: $$P\{p\} = P\{p_1\} \prod_{i=2}^k P\{p_{i-1} \mapsto p_i\} = \pi_{ind(p_1)} \prod_{i=2}^k a_{ind(p_{i-1}), ind(p_i)}.$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Одређивање индекса стања на путу</span>
+<span class="k">def</span> <span class="nf">ind</span><span class="p">(</span><span class="n">x_y</span><span class="p">,</span> <span class="n">p_o</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x_y</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">p_o</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа скривеног пута</span>
+<span class="k">def</span> <span class="nf">p_puta</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="c1"># Почетна јединична вероватноћа</span>
+    <span class="n">vrv</span> <span class="o">=</span> <span class="mi">1</span>
+    
+    <span class="c1"># Одређивање дужине пута</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    
+    <span class="c1"># Празан пут је почетне вероватноће</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="p">:</span> <span class="k">return</span> <span class="n">vrv</span>
+    
+    <span class="c1"># Мапирање свих стања у индексе</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="n">ind</span><span class="p">(</span><span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span>
+    
+    <span class="c1"># Множење са почетном вероватноћом</span>
+    <span class="n">vrv</span> <span class="o">*=</span> <span class="n">hmm</span><span class="o">.</span><span class="n">pi</span><span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+    
+    <span class="c1"># Множење вероватноћама прелаза</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="n">vrv</span> <span class="o">*=</span> <span class="n">hmm</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]][</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+    
+    <span class="c1"># Враћање резултата</span>
+    <span class="k">return</span> <span class="n">vrv</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа пута из уџбеника</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа пута&#39;</span><span class="p">,</span> <span class="n">p_knjiga</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\b</span><span class="s1">:&#39;</span><span class="p">,</span> <span class="n">p_puta</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">p_knjiga</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа пута FFFBBBBBFFF : 0.002152336050000001
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Основни пример параметара са ROSALIND</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">]</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.194</span><span class="p">,</span> <span class="mf">0.806</span><span class="p">],</span>
+     <span class="p">[</span><span class="mf">0.273</span><span class="p">,</span> <span class="mf">0.727</span><span class="p">]]</span>
+
+<span class="c1"># Основни пример пута са ROSALIND</span>
+<span class="n">p</span> <span class="o">=</span> <span class="s1">&#39;AABBBAABABAAAABBBBAABBABABBBAABBAAAABABAABBABABBAB&#39;</span>
+
+<span class="c1"># Модел према изложеном примеру</span>
+<span class="n">rosalind</span> <span class="o">=</span> <span class="n">HMM</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[],</span> <span class="n">pi</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="p">[])</span>
+
+<span class="c1"># Вероватноћа пута из примера</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа пута&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\b</span><span class="s1">:&#39;</span><span class="p">,</span> <span class="n">p_puta</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа пута AABBBAABABAAAABBBBAABBABABBBAABBAAAABABAABBABABBAB : 5.017328653175628e-19
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Додатни пример параметара са ROSALIND</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">]</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.863</span><span class="p">,</span> <span class="mf">0.137</span><span class="p">],</span>
+     <span class="p">[</span><span class="mf">0.511</span><span class="p">,</span> <span class="mf">0.489</span><span class="p">]]</span>
+
+<span class="c1"># Додатни пример пута са ROSALIND</span>
+<span class="n">p</span> <span class="o">=</span> <span class="s1">&#39;BBABBBABBAABABABBBAABBBBAAABABABAAAABBBBBAABBABABB&#39;</span>
+
+<span class="c1"># Модел према изложеном примеру</span>
+<span class="n">rosalind</span> <span class="o">=</span> <span class="n">HMM</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[],</span> <span class="n">pi</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="p">[])</span>
+
+<span class="c1"># Вероватноћа пута из примера</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа пута&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\b</span><span class="s1">:&#39;</span><span class="p">,</span> <span class="n">p_puta</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа пута BBABBBABBAABABABBBAABBBBAAABABABAAAABBBBBAABBABABB : 3.2623333190410896e-21
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Други потпроблем је израчунавање вероватноће исхода при познатом путу, што се може формализовати као <a href="#prob:ishod">4</a>. И то се решава само једном формулом.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote id="prob:ishod">
+
+<b>Проблем 4</b>: <a href="http://rosalind.info/problems/ba10b/">Вероватноћа исхода на путу</a><br>
+<i>Израчунати вероватноћу приказа $o$ на путу $p$ кроз HMM.</i><br>
+<b>Улаз</b> скривени пут $p = p_1...p_k$ кроз <i>HMM</i>$\{a, b, \pi\}$ и ниска $o = o_1...o_k$ која је тим проласком емитована.<br>
+<b>Излаз</b> условна вероватноћа приказа на путу $P\{o | p\}$.
+
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Други елемент $P\{o | p\}$, дакле, представља вероватноћу да <em>HMM</em> емитује ниску $o$ при проласку кроз низ стања $p$. Већ је показано да за једночлане путеве важи $P\{y_j | x_i\} = b_{ij}$. Код вишечланих нема разлике, пошто је пут фиксиран и само се прате опсервације. Стога је $P\{o_1...o_k | p_1...p_k\} = P\{o_1 | p_1\}...P\{o_k | p_k\}$. Свеукупно се вероватноћа пута може израчунати као: $$P\{o | p\} = \prod_{i=1}^k P\{o_i | p_i\} = \prod_{i=1}^k b_{ind(p_i), ind(o_i)}.$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа исхода на путу</span>
+<span class="k">def</span> <span class="nf">p_ishoda_na_putu</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+    <span class="c1"># Почетна јединична вероватноћа</span>
+    <span class="n">vrv</span> <span class="o">=</span> <span class="mi">1</span>
+    
+    <span class="c1"># Одређивање дужине пута</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    
+    <span class="c1"># Мапирање свих стања у индексе</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="n">ind</span><span class="p">(</span><span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span>
+    <span class="n">o</span> <span class="o">=</span> <span class="p">[</span><span class="n">ind</span><span class="p">(</span><span class="n">hmm</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">o</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span>
+    
+    <span class="c1"># Множење излазним вероватноћама</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+        <span class="n">vrv</span> <span class="o">*=</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="n">o</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+    
+    <span class="c1"># Враћање резултата</span>
+    <span class="k">return</span> <span class="n">vrv</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа исхода на путу</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа исхода&#39;</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">,</span> <span class="s1">&#39;на путу&#39;</span><span class="p">,</span> <span class="n">p_knjiga</span><span class="p">,</span>
+      <span class="s1">&#39;</span><span class="se">\b</span><span class="s1">:&#39;</span><span class="p">,</span> <span class="n">p_ishoda_na_putu</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">p_knjiga</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа исхода THTHHHTHTTH на путу FFFBBBBBFFF : 0.0012359619140625
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Основни пример параметара са ROSALIND</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">]</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.612</span><span class="p">,</span> <span class="mf">0.314</span><span class="p">,</span> <span class="mf">0.074</span><span class="p">],</span>
+     <span class="p">[</span><span class="mf">0.346</span><span class="p">,</span> <span class="mf">0.317</span><span class="p">,</span> <span class="mf">0.336</span><span class="p">]]</span>
+
+<span class="c1"># Основни пример пута и исхода са ROSALIND</span>
+<span class="n">p</span> <span class="o">=</span> <span class="s1">&#39;BBBAAABABABBBBBBAAAAAABAAAABABABBBBBABAABABABABBBB&#39;</span>
+<span class="n">o</span> <span class="o">=</span> <span class="s1">&#39;xxyzyxzzxzxyxyyzxxzzxxyyxxyxyzzxxyzyzxzxxyxyyzxxzx&#39;</span>
+
+<span class="c1"># Модел према изложеном примеру</span>
+<span class="n">rosalind</span> <span class="o">=</span> <span class="n">HMM</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="p">[],</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="c1"># Вероватноћа исхода на путу из примера</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа исхода&#39;</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="s1">&#39;на путу</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span>
+      <span class="s1">&#39;</span><span class="se">\b</span><span class="s1">:&#39;</span><span class="p">,</span> <span class="n">p_ishoda_na_putu</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа исхода xxyzyxzzxzxyxyyzxxzzxxyyxxyxyzzxxyzyzxzxxyxyyzxxzx на путу
+ BBBAAABABABBBBBBAAAAAABAAAABABABBBBBABAABABABABBBB : 1.9315707089321372e-28
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Додатни пример параметара са ROSALIND</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">]</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.093</span><span class="p">,</span> <span class="mf">0.581</span><span class="p">,</span> <span class="mf">0.325</span><span class="p">],</span>
+     <span class="p">[</span><span class="mf">0.77</span><span class="p">,</span> <span class="mf">0.21</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">]]</span>
+
+<span class="c1"># Додатни пример пута и исхода са ROSALIND</span>
+<span class="n">p</span> <span class="o">=</span> <span class="s1">&#39;BAABBAABAABAAABAABBABBAAABBBABBAAAABAAAABBAAABABAA&#39;</span>
+<span class="n">o</span> <span class="o">=</span> <span class="s1">&#39;zyyyxzxzyyzxyxxyyzyzzxyxyxxxxzxzxzxxzyzzzzyyxzxxxy&#39;</span>
+
+<span class="c1"># Модел према изложеном примеру</span>
+<span class="n">rosalind</span> <span class="o">=</span> <span class="n">HMM</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="p">[],</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="c1"># Вероватноћа исхода на путу из примера</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа исхода&#39;</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="s1">&#39;на путу</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span>
+      <span class="s1">&#39;</span><span class="se">\b</span><span class="s1">:&#39;</span><span class="p">,</span> <span class="n">p_ishoda_na_putu</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа исхода zyyyxzxzyyzxyxxyyzyzzxyxyxxxxzxzxzxxzyzzzzyyxzxxxy на путу
+ BAABBAABAABAAABAABBABBAAABBBABBAAAABAAAABBAAABABAA : 3.4231648217695625e-35
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
