@@ -14093,7 +14093,7 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Функција за рачунање вероватноће исхода код било каквог новчића</span>
-<span class="k">def</span> <span class="nf">p_ishoda</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">p_ops</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">]</span> <span class="o">**</span> <span class="n">k</span> <span class="o">*</span> <span class="n">P</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">]</span> <span class="o">**</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="p">)</span>
 </pre></div>
 
@@ -14109,10 +14109,10 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Неки прости примери са рачунањем вероватноћа исхода код било каквог новчића</span>
 <span class="c1"># (по жељи, могуће је баратати директно разломцима, помоћу подула fractions)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа да једном падне глава у једном бацању праведног новчића:&#39;</span><span class="p">,</span> <span class="n">p_ishoda</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;(1/2)&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа да ниједном не падне глава у три бацања праведног новчића:&#39;</span><span class="p">,</span> <span class="n">p_ishoda</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;(1/8)&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа да једном падне глава у једном бацању отежаног новчића:&#39;</span><span class="p">,</span> <span class="n">p_ishoda</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;(3/4)&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа да ниједном не падне глава у три бацања отежаног новчића:&#39;</span><span class="p">,</span> <span class="n">p_ishoda</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;(1/64)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа да једном падне глава у једном бацању праведног новчића:&#39;</span><span class="p">,</span> <span class="n">p_ops</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;(1/2)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа да ниједном не падне глава у три бацања праведног новчића:&#39;</span><span class="p">,</span> <span class="n">p_ops</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;(1/8)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа да једном падне глава у једном бацању отежаног новчића:&#39;</span><span class="p">,</span> <span class="n">p_ops</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;(3/4)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа да ниједном не падне глава у три бацања отежаног новчића:&#39;</span><span class="p">,</span> <span class="n">p_ops</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;(1/64)&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -15610,7 +15610,7 @@ HHHHHTTHHHTTTTT
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа исхода на путу</span>
-<span class="k">def</span> <span class="nf">p_ishoda_na_putu</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">p_ops_na_putu</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
     <span class="c1"># Почетна јединична вероватноћа</span>
     <span class="n">vrv</span> <span class="o">=</span> <span class="mi">1</span>
     
@@ -15641,7 +15641,7 @@ HHHHHTTHHHTTTTT
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа исхода на путу</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Вероватноћа исхода </span><span class="si">{</span><span class="n">o_knjiga</span><span class="si">}</span><span class="s1"> на путу </span><span class="si">{</span><span class="n">p_knjiga</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span>
-      <span class="n">p_ishoda_na_putu</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">p_knjiga</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">))</span>
+      <span class="n">p_ops_na_putu</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">p_knjiga</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -15688,7 +15688,7 @@ HHHHHTTHHHTTTTT
 
 <span class="c1"># Вероватноћа исхода на путу из примера</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Вероватноћа исхода </span><span class="si">{</span><span class="n">o</span><span class="si">}</span><span class="s1"> на путу</span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span>
-      <span class="n">p_ishoda_na_putu</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
+      <span class="n">p_ops_na_putu</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -15736,7 +15736,7 @@ HHHHHTTHHHTTTTT
 
 <span class="c1"># Вероватноћа исхода на путу из примера</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Вероватноћа исхода </span><span class="si">{</span><span class="n">o</span><span class="si">}</span><span class="s1"> на путу</span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span>
-      <span class="n">p_ishoda_na_putu</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
+      <span class="n">p_ops_na_putu</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -15922,7 +15922,7 @@ HHHHHTTHHHTTTTT
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа исхода на путу</span>
-<span class="k">def</span> <span class="nf">p_ishoda_na_putu</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">p_ops_na_putu</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
     <span class="c1"># Почетна јединична вероватноћа</span>
     <span class="n">vrv</span> <span class="o">=</span> <span class="mi">1</span>
     
@@ -15949,7 +15949,7 @@ HHHHHTTHHHTTTTT
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа исхода на путу</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Вероватноћа исхода </span><span class="si">{</span><span class="n">o_knjiga</span><span class="si">}</span><span class="s1"> на путу </span><span class="si">{</span><span class="n">p_knjiga</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span>
-      <span class="n">p_ishoda_na_putu</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">p_knjiga</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">))</span>
+      <span class="n">p_ops_na_putu</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">p_knjiga</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -15989,7 +15989,7 @@ HHHHHTTHHHTTTTT
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Заједничка вероватноћа пута и исхода</span>
-<span class="k">def</span> <span class="nf">p_puta_i_ishoda</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">p_puta_i_ops</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
     <span class="c1"># Почетна јединична вероватноћа</span>
     <span class="n">vrv</span> <span class="o">=</span> <span class="mi">1</span>
     
@@ -16019,11 +16019,11 @@ HHHHHTTHHHTTTTT
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Заједничка вероватноћа пута и исхода</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Заједничка вероватноћа пута </span><span class="si">{</span><span class="n">p_knjiga</span><span class="si">}</span><span class="s1"> и исхода </span><span class="si">{</span><span class="n">o_knjiga</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span>
-      <span class="n">p_puta_i_ishoda</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">p_knjiga</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">))</span>
+      <span class="n">p_puta_i_ops</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">p_knjiga</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">))</span>
 
 <span class="c1"># Провера обичним множењем</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Једнак резултат добија се и обичним множењем два потпроблема:&#39;</span><span class="p">,</span>
-      <span class="n">p_puta</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">p_knjiga</span><span class="p">)</span> <span class="o">*</span> <span class="n">p_ishoda_na_putu</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">p_knjiga</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">))</span>
+      <span class="n">p_puta</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">p_knjiga</span><span class="p">)</span> <span class="o">*</span> <span class="n">p_ops_na_putu</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">p_knjiga</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -16153,7 +16153,7 @@ HHHHHTTHHHTTTTT
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Лог-вероватноћа исхода на путу</span>
-<span class="k">def</span> <span class="nf">log_p_ishoda_na_putu</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">log_p_ops_na_putu</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
     <span class="c1"># Сабирање излазних вероватноћа</span>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">hmm</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="n">o</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)))</span>
 </pre></div>
@@ -16169,11 +16169,11 @@ HHHHHTTHHHTTTTT
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Лог-вероватноћа исхода на путу</span>
-<span class="n">p_log_ishoda</span> <span class="o">=</span> <span class="n">log_p_ishoda_na_putu</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">p_knjiga</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">)</span>
+<span class="n">p_log_ops</span> <span class="o">=</span> <span class="n">log_p_ops_na_putu</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">p_knjiga</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">)</span>
 
 <span class="c1"># Вероватноћа исхода на путу</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Вероватноћа исхода </span><span class="si">{</span><span class="n">o_knjiga</span><span class="si">}</span><span class="s1"> на путу </span><span class="si">{</span><span class="n">p_knjiga</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span>
-      <span class="sa">f</span><span class="s1">&#39;e^</span><span class="si">{</span><span class="n">p_log_ishoda</span><span class="si">}</span><span class="s1"> =&#39;</span><span class="p">,</span> <span class="n">exp</span><span class="p">(</span><span class="n">p_log_ishoda</span><span class="p">))</span>
+      <span class="sa">f</span><span class="s1">&#39;e^</span><span class="si">{</span><span class="n">p_log_ops</span><span class="si">}</span><span class="s1"> =&#39;</span><span class="p">,</span> <span class="n">exp</span><span class="p">(</span><span class="n">p_log_ops</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -16205,7 +16205,7 @@ HHHHHTTHHHTTTTT
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Заједничка лог-вероватноћа пута и исхода</span>
-<span class="k">def</span> <span class="nf">log_p_puta_i_ishoda</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">log_p_puta_i_ops</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
     <span class="c1"># Додавање почетног стања</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="s1">&#39;π&#39;</span>
     
@@ -16224,15 +16224,15 @@ HHHHHTTHHHTTTTT
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Заједничка лог-вероватноћа исхода на путу</span>
-<span class="n">p_log_puta_i_ishoda</span> <span class="o">=</span> <span class="n">log_p_puta_i_ishoda</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">p_knjiga</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">)</span>
+<span class="n">p_log_puta_i_ops</span> <span class="o">=</span> <span class="n">log_p_puta_i_ops</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">p_knjiga</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">)</span>
 
 <span class="c1"># Заједничка вероватноћа пута и исхода</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Заједничка вероватноћа пута </span><span class="si">{</span><span class="n">p_knjiga</span><span class="si">}</span><span class="s1"> и исхода </span><span class="si">{</span><span class="n">o_knjiga</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span>
-      <span class="sa">f</span><span class="s1">&#39;e^</span><span class="si">{</span><span class="n">p_log_puta_i_ishoda</span><span class="si">}</span><span class="s1"> =&#39;</span><span class="p">,</span> <span class="n">exp</span><span class="p">(</span><span class="n">p_log_puta_i_ishoda</span><span class="p">))</span>
+      <span class="sa">f</span><span class="s1">&#39;e^</span><span class="si">{</span><span class="n">p_log_puta_i_ops</span><span class="si">}</span><span class="s1"> =&#39;</span><span class="p">,</span> <span class="n">exp</span><span class="p">(</span><span class="n">p_log_puta_i_ops</span><span class="p">))</span>
 
 <span class="c1"># Провера обичним множењем</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Једнак резултат добија се и обичним сабирањем два потпроблема:&#39;</span><span class="p">,</span>
-      <span class="sa">f</span><span class="s1">&#39;e^</span><span class="si">{</span><span class="n">p_log_puta</span> <span class="o">+</span> <span class="n">p_log_ishoda</span><span class="si">}</span><span class="s1"> =&#39;</span><span class="p">,</span> <span class="n">exp</span><span class="p">(</span><span class="n">p_log_puta</span> <span class="o">+</span> <span class="n">p_log_ishoda</span><span class="p">))</span>
+      <span class="sa">f</span><span class="s1">&#39;e^</span><span class="si">{</span><span class="n">p_log_puta</span> <span class="o">+</span> <span class="n">p_log_ops</span><span class="si">}</span><span class="s1"> =&#39;</span><span class="p">,</span> <span class="n">exp</span><span class="p">(</span><span class="n">p_log_puta</span> <span class="o">+</span> <span class="n">p_log_ops</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -16292,7 +16292,7 @@ HHHHHTTHHHTTTTT
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Лог-вероватноћа исхода на путу</span>
-<span class="k">def</span> <span class="nf">log_p_ishoda_na_putu</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">log_p_ops_na_putu</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
     <span class="c1"># Сабирање излазних вероватноћа</span>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">hmm</span><span class="o">.</span><span class="n">b_log</span><span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="n">o</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)))</span>
 </pre></div>
@@ -16308,7 +16308,7 @@ HHHHHTTHHHTTTTT
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Заједничка лог-вероватноћа пута и исхода</span>
-<span class="k">def</span> <span class="nf">log_p_puta_i_ishoda</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">log_p_puta_i_ops</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
     <span class="c1"># Додавање почетног стања</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="s1">&#39;π&#39;</span>
     
@@ -16506,11 +16506,11 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Лог-вероватноћа исхода на путу</span>
-<span class="n">p_log_ishoda</span> <span class="o">=</span> <span class="n">log_p_ishoda_na_putu</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">p_knjiga</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">)</span>
+<span class="n">p_log_ops</span> <span class="o">=</span> <span class="n">log_p_ops_na_putu</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">p_knjiga</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">)</span>
 
 <span class="c1"># Вероватноћа исхода на путу</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Вероватноћа исхода </span><span class="si">{</span><span class="n">o_knjiga</span><span class="si">}</span><span class="s1"> на путу </span><span class="si">{</span><span class="n">p_knjiga</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span>
-      <span class="sa">f</span><span class="s1">&#39;e^</span><span class="si">{</span><span class="n">p_log_ishoda</span><span class="si">}</span><span class="s1"> =&#39;</span><span class="p">,</span> <span class="n">exp</span><span class="p">(</span><span class="n">p_log_ishoda</span><span class="p">))</span>
+      <span class="sa">f</span><span class="s1">&#39;e^</span><span class="si">{</span><span class="n">p_log_ops</span><span class="si">}</span><span class="s1"> =&#39;</span><span class="p">,</span> <span class="n">exp</span><span class="p">(</span><span class="n">p_log_ops</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -16542,15 +16542,15 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Заједничка лог-вероватноћа исхода на путу</span>
-<span class="n">p_log_puta_i_ishoda</span> <span class="o">=</span> <span class="n">log_p_puta_i_ishoda</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">p_knjiga</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">)</span>
+<span class="n">p_log_puta_i_ops</span> <span class="o">=</span> <span class="n">log_p_puta_i_ops</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">p_knjiga</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">)</span>
 
 <span class="c1"># Заједничка вероватноћа пута и исхода</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Заједничка вероватноћа пута </span><span class="si">{</span><span class="n">p_knjiga</span><span class="si">}</span><span class="s1"> и исхода </span><span class="si">{</span><span class="n">o_knjiga</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span>
-      <span class="sa">f</span><span class="s1">&#39;e^</span><span class="si">{</span><span class="n">p_log_puta_i_ishoda</span><span class="si">}</span><span class="s1"> =&#39;</span><span class="p">,</span> <span class="n">exp</span><span class="p">(</span><span class="n">p_log_puta_i_ishoda</span><span class="p">))</span>
+      <span class="sa">f</span><span class="s1">&#39;e^</span><span class="si">{</span><span class="n">p_log_puta_i_ops</span><span class="si">}</span><span class="s1"> =&#39;</span><span class="p">,</span> <span class="n">exp</span><span class="p">(</span><span class="n">p_log_puta_i_ops</span><span class="p">))</span>
 
 <span class="c1"># Провера обичним множењем</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Једнак резултат добија се и обичним сабирањем два потпроблема:&#39;</span><span class="p">,</span>
-      <span class="sa">f</span><span class="s1">&#39;e^</span><span class="si">{</span><span class="n">p_log_puta</span> <span class="o">+</span> <span class="n">p_log_ishoda</span><span class="si">}</span><span class="s1"> =&#39;</span><span class="p">,</span> <span class="n">exp</span><span class="p">(</span><span class="n">p_log_puta</span> <span class="o">+</span> <span class="n">p_log_ishoda</span><span class="p">))</span>
+      <span class="sa">f</span><span class="s1">&#39;e^</span><span class="si">{</span><span class="n">p_log_puta</span> <span class="o">+</span> <span class="n">p_log_ops</span><span class="si">}</span><span class="s1"> =&#39;</span><span class="p">,</span> <span class="n">exp</span><span class="p">(</span><span class="n">p_log_puta</span> <span class="o">+</span> <span class="n">p_log_ops</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -16668,8 +16668,8 @@ y       = [&#39;H&#39;, &#39;T&#39;]
     
     <span class="c1"># Рачунање вероватноће сваког пута</span>
     <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">svi_putevi</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-        <span class="n">p_pi</span> <span class="o">=</span> <span class="n">log_p_puta_i_ishoda</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span> <span class="k">if</span>\
-         <span class="n">logg</span> <span class="k">else</span> <span class="n">p_puta_i_ishoda</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
+        <span class="n">p_pi</span> <span class="o">=</span> <span class="n">log_p_puta_i_ops</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span> <span class="k">if</span>\
+         <span class="n">logg</span> <span class="k">else</span> <span class="n">p_puta_i_ops</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
         
         <span class="c1"># Ажурирање оптималног ако треба</span>
         <span class="k">if</span> <span class="n">p_pi</span> <span class="o">&gt;</span> <span class="n">p_p_opt</span><span class="p">:</span>
@@ -17806,7 +17806,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Претходно изложени систем рада са <em>HMM</em> заснован на Витербијевог графу и динамичком програмирању назива се <a href="http://rosalind.info/problems/ba10c/">Витербијев алгоритам</a>, посебно када се примењује на декодирање – проблем <a href="#prob:dekod">2</a>. Изведеним рекурентним формулама једино треба додати систем путоказа, што је урађено у коду, како би поред вероватноће оптималног пута могао бити добијен (реконструисан) и сам највероватнији пут.</p>
+<p>Претходно изложени систем рада са <em>HMM</em>, заснован на Витербијевог графу и динамичком програмирању назива се <a href="http://rosalind.info/problems/ba10c/">Витербијев алгоритам</a>, посебно када се примењује на декодирање – проблем <a href="#prob:dekod">2</a>. Изведеним рекурентним формулама једино треба додати систем путоказа, што је урађено у коду, како би поред вероватноће оптималног пута могао бити добијен (реконструисан) и сам највероватнији пут.</p>
 
 </div>
 </div>
@@ -17874,13 +17874,106 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[107]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Библиотека за сумирање логаритама;</span>
+<span class="c1"># објашњење је у наставку поднаслова</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">logsumexp</span> <span class="k">as</span> <span class="n">lse</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[108]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа опажања грубом силом</span>
+<span class="k">def</span> <span class="nf">naivni_p_ops</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="n">logg</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="c1"># Иницијализација вероватноће</span>
+    <span class="n">p_ops</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;-inf&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">logg</span> <span class="k">else</span> <span class="mi">0</span>
+    
+    <span class="c1"># Одређивање дужине пута</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+    
+    <span class="c1"># Додавање вероватноће сваког пута</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">svi_putevi</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="n">p_ops</span> <span class="o">=</span> <span class="n">lse</span><span class="p">([</span><span class="n">p_ops</span><span class="p">,</span> <span class="n">log_p_puta_i_ops</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">)])</span> <span class="k">if</span>\
+          <span class="n">logg</span> <span class="k">else</span> <span class="n">p_ops</span> <span class="o">+</span> <span class="n">p_puta_i_ops</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
+    
+    <span class="c1"># Враћање коначног збира</span>
+    <span class="k">return</span> <span class="n">p_ops</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[109]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа опсервација из уџбеника</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Вероватноћа исхода </span><span class="si">{</span><span class="n">o_knjiga</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span> <span class="n">naivni_p_ops</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа исхода THTHHHTHTTH: 0.00034577010353654546
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[110]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Лог-вероватноћа опсервација из уџбеника</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Лог-вероватноћа исхода </span><span class="si">{</span><span class="n">o_knjiga</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span> <span class="n">naivni_p_ops</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Лог-вероватноћа исхода THTHHHTHTTH: -7.9697364443909
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -17896,20 +17989,162 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Све у свему, сасвим је оправдано увести нову мапу $f$ (од енгл. <em>forward</em> – напред), надахнуту претходном $s$ (од енгл. <em>score</em> – скор), такву да елемент $f_{x_i, t}$ складишти вероватноћу префикса опажања дужине $t$ (подниз $o_1...o_t$), насталог на скривеном путу који завршава стањем $x_i$. Одатле су формуле: $$f_{x_i, 1} = \pi_{x_i} \cdot b_{x_i, o_1} = a_{\pi, x_i} \cdot b_{x_i, o_1},$$ $$f_{x_i, t} = \sum_j s_{x_j, t-1} \cdot a_{x_j, x_i} \cdot b_{x_i, o_t},$$ $$P\{p_{opt}, o\} = \sum_j s_{x_j, k}.$$</p>
+<p>Све у свему, сасвим је оправдано увести нову мапу $f$ (од енгл. <em>forward</em> – напред), надахнуту претходном $s$ (од енгл. <em>score</em> – скор), такву да елемент $f_{x_i, t}$ складишти вероватноћу префикса опажања дужине $t$ (подниз $o_1...o_t$), насталог на скривеном путу који завршава стањем $x_i$. Одатле су формуле: $$f_{x_i, 1} = \pi_{x_i} \cdot b_{x_i, o_1} = a_{\pi, x_i} \cdot b_{x_i, o_1},$$ $$f_{x_i, t} = \sum_j s_{x_j, t-1} \cdot a_{x_j, x_i} \cdot b_{x_i, o_t},$$ $$P\{o\} = \sum_j s_{x_j, k}.$$</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[111]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Највероватнији пут Витербијем</span>
+<span class="k">def</span> <span class="nf">viterbi_ops_p</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+    <span class="c1"># Иницијализација (π)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span> <span class="o">*</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
+    
+    <span class="c1"># Одређивање дужине пута</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+    
+    <span class="c1"># Итерација (суме)</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">:</span>
+            <span class="n">s</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">hmm</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">xi</span><span class="p">]</span> <span class="o">*</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="n">t</span><span class="p">]]</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">))</span>
+    
+    <span class="c1"># Терминација (сума)</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[112]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа опсервација из уџбеника</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Вероватноћа исхода </span><span class="si">{</span><span class="n">o_knjiga</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span> <span class="n">viterbi_ops_p</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа исхода THTHHHTHTTH: 0.0003457701035365463
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[113]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Основни пример параметара са ROSALIND</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">0.303</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">0.697</span><span class="p">},</span>
+     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">0.831</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">0.169</span><span class="p">}}</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">0.533</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">0.065</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">0.402</span><span class="p">},</span>
+     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">0.342</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">0.334</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">0.324</span><span class="p">}}</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">}</span>
+
+<span class="c1"># Основни пример опажања са ROSALIND</span>
+<span class="n">o</span> <span class="o">=</span> <span class="s1">&#39;xzyyzzyzyy&#39;</span>
+
+<span class="c1"># Модел према изложеном примеру</span>
+<span class="n">rosalind</span> <span class="o">=</span> <span class="n">HMM</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
+
+<span class="c1"># Вероватноћа опсервација из примера</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Вероватноћа исхода </span><span class="si">{</span><span class="n">o</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span> <span class="n">viterbi_ops_p</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
+
+<span class="c1"># Проба и наивног алгоритма</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Вероватноћа исхода </span><span class="si">{</span><span class="n">o</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span> <span class="n">naivni_p_ops</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа исхода xzyyzzyzyy: 1.1005510319694851e-06
+Вероватноћа исхода xzyyzzyzyy: 1.1005510319694877e-06
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[114]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Додатни пример параметара са ROSALIND</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">0.994</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">0.006</span><span class="p">},</span>
+     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">0.563</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">0.437</span><span class="p">}}</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">0.55</span><span class="p">,</span>  <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">0.276</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">0.174</span><span class="p">},</span>
+     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">0.311</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">0.368</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">0.321</span><span class="p">}}</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">}</span>
+
+<span class="c1"># Додатни пример опажања са ROSALIND</span>
+<span class="n">o</span> <span class="o">=</span> <span class="s1">&#39;zxxxzyyxyzyxyyxzzxzyyxzzxyxxzyzzyzyzzyxxyzxxzyxxzxxyzzzzzzzxyzyxzzyxzzyzxyyyyyxzzzyzxxyyyzxyyxyzyyxz&#39;</span>
+
+<span class="c1"># Модел према изложеном примеру</span>
+<span class="n">rosalind</span> <span class="o">=</span> <span class="n">HMM</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
+
+<span class="c1"># Вероватноћа опсервација из примера</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа исхода&#39;</span><span class="p">,</span> <span class="n">o</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">o</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+      <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">o</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">o</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">:]</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span> <span class="n">viterbi_ops_p</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа исхода zxxxzyyxyzyxyyxzzxzyyxzzxyxxzyzzyzyzzyxxyzxxzyxxzx 
+ xyzzzzzzzxyzyxzzyxzzyzxyyyyyxzzzyzxxyyyzxyyxyzyyxz: 4.0821070838067285e-55
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -17924,13 +18159,59 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[115]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Највероватнији пут Витербијем</span>
+<span class="k">def</span> <span class="nf">log_viterbi_ops_p</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+    <span class="c1"># Иницијализација (π)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi_log</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span> <span class="o">+</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b_log</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
+    
+    <span class="c1"># Одређивање дужине пута</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+    
+    <span class="c1"># Итерација (суме)</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">:</span>
+            <span class="n">s</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lse</span><span class="p">([</span><span class="n">s</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">hmm</span><span class="o">.</span><span class="n">a_log</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">xi</span><span class="p">]</span> <span class="o">+</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b_log</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="n">t</span><span class="p">]]</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">]))</span>
+    
+    <span class="c1"># Терминација (сума)</span>
+    <span class="k">return</span> <span class="n">lse</span><span class="p">([</span><span class="n">s</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">])</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[116]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Лог-вероватноћа опсервација из уџбеника</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Лог-вероватноћа исхода </span><span class="si">{</span><span class="n">o_knjiga</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span> <span class="n">log_viterbi_ops_p</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Лог-вероватноћа исхода THTHHHTHTTH: -7.969736444390883
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -17956,6 +18237,45 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -17963,6 +18283,32 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
