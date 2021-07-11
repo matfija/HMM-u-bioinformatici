@@ -16594,7 +16594,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Одређивањем формуле $P\{p, o\}$ за путеве произвољне дужине, могуће је приступити проблему максимизације. Како је већ предложено, наивна идеја исцрпне претраге састоји се од генерисања сваког од $n^k$ скривених путева $p$, израчуавања $P\{p, o\}$ за познати низ приказа $o$, и на крају одабира пута који представља $\operatorname*{argmax}_p P\{p, o\}$.</p>
+<p>Одређивањем формуле $P\{p, o\}$ за путеве произвољне дужине, могуће је приступити проблему максимизације. Како је већ предложено, наивна идеја исцрпне претраге састоји се од генерисања сваког од $n^k$ скривених путева $p$, израчуавања $P\{p, o\}$ за познати низ приказа $o$, и на крају одабира пута који представља $\operatorname*{argmax}_p P\{p, o\} = \operatorname*{argmax}_p P\{p | o\}$. Овиме се добро моделује условна расподела скривених путева при познатим опажањима.</p>
 
 </div>
 </div>
@@ -16675,13 +16675,13 @@ y       = [&#39;H&#39;, &#39;T&#39;]
     
     <span class="c1"># Рачунање вероватноће сваког пута</span>
     <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">svi_putevi</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-        <span class="n">p_pi</span> <span class="o">=</span> <span class="n">log_p_puta_i_ops</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span> <span class="k">if</span>\
+        <span class="n">p_po</span> <span class="o">=</span> <span class="n">log_p_puta_i_ops</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span> <span class="k">if</span>\
          <span class="n">logg</span> <span class="k">else</span> <span class="n">p_puta_i_ops</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
         
         <span class="c1"># Ажурирање оптималног ако треба</span>
-        <span class="k">if</span> <span class="n">p_pi</span> <span class="o">&gt;</span> <span class="n">p_p_opt</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">p_po</span> <span class="o">&gt;</span> <span class="n">p_p_opt</span><span class="p">:</span>
             <span class="n">p_opt</span> <span class="o">=</span> <span class="n">p</span>
-            <span class="n">p_p_opt</span> <span class="o">=</span> <span class="n">p_pi</span>
+            <span class="n">p_p_opt</span> <span class="o">=</span> <span class="n">p_po</span>
     
     <span class="c1"># Враћање оптималног пута</span>
     <span class="k">return</span> <span class="n">p_p_opt</span><span class="p">,</span> <span class="n">p_opt</span>
@@ -16728,7 +16728,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Логаритам је монотона трансформација, тако да се задатак не мења ни када се посматрају стабилније вредности $P_{\log}\{p, o\}$, односно важи $\operatorname*{argmax}_p P_{\log}\{p, o\} = \operatorname*{argmax}_p P\{p, o\}$. Из изведене формуле је очигледно да је за свако израчунавање заједничке вероватноће потребно $O(k)$ корака, па је укупна временска сложеност наивног приступа $O(n^k k)$, што је релативно прихватљиво за кратке скривене путеве и мали број стања.</p>
+<p>Логаритам је монотона трансформација, тако да се задатак максимизације не мења ни када се посматрају стабилније вредности $P_{\log}\{p, o\}$.</p>
 
 </div>
 </div>
@@ -16765,6 +16765,14 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Из изведене формуле је очигледно да је за свако израчунавање заједничке вероватноће потребно $O(k)$ корака, па је укупна временска сложеност наивног приступа $O(n^k k)$, што је релативно прихватљиво за кратке скривене путеве и мали број стања.</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -16838,7 +16846,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <b>Проблем 5</b>: Највероватнији скривени пут<br>
 <i>Израчунати највероватнији скривени пут $p$ кроз HMM.</i><br>
 <b>Улаз</b>: дужина $k$ скривеног пута кроз <i>HMM</i>$\{a, b, \pi\}$.<br>
-<b>Излаз</b>: највероватнији скривени пут $p = p_1...p_k$.
+<b>Излаз</b>: највероватнији скривени пут $p_{opt} = p_1...p_k$.
 
 </blockquote>
 </div>
@@ -16865,13 +16873,13 @@ y       = [&#39;H&#39;, &#39;T&#39;]
     
     <span class="c1"># Рачунање вероватноће сваког пута</span>
     <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">svi_putevi</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-        <span class="n">p_pi</span> <span class="o">=</span> <span class="n">log_p_puta</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="k">if</span>\
+        <span class="n">p_po</span> <span class="o">=</span> <span class="n">log_p_puta</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="k">if</span>\
          <span class="n">logg</span> <span class="k">else</span> <span class="n">p_puta</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
         
         <span class="c1"># Ажурирање оптималног ако треба</span>
-        <span class="k">if</span> <span class="n">p_pi</span> <span class="o">&gt;</span> <span class="n">p_p_opt</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">p_po</span> <span class="o">&gt;</span> <span class="n">p_p_opt</span><span class="p">:</span>
             <span class="n">p_opt</span> <span class="o">=</span> <span class="n">p</span>
-            <span class="n">p_p_opt</span> <span class="o">=</span> <span class="n">p_pi</span>
+            <span class="n">p_p_opt</span> <span class="o">=</span> <span class="n">p_po</span>
     
     <span class="c1"># Враћање оптималног пута</span>
     <span class="k">return</span> <span class="n">p_p_opt</span><span class="p">,</span> <span class="n">p_opt</span>
@@ -17011,7 +17019,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
     <span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi</span><span class="p">[</span><span class="n">xi</span><span class="p">]]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
     
     <span class="c1"># Иницијализација путоказа</span>
-    <span class="n">put</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">xi</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
+    <span class="n">put</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">xi</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
     
     <span class="c1"># Пролаз кроз време</span>
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
@@ -17720,7 +17728,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <b>Проблем 6</b>: Највероватније опсервације на путу<br>
 <i>Израчунати највероватнији низ емисија на путу $p$ кроз HMM.</i><br>
 <b>Улаз</b>: скривени пут $p = p_1...p_k$ кроз <i>HMM</i>$\{a, b, \pi\}$.<br>
-<b>Излаз</b>: највероватнија опажања $o = o_1...o_k$ на путу $p$.
+<b>Излаз</b>: највероватнија опажања $o_{opt} = o_1...o_k$ на путу $p$.
 
 </blockquote>
 </div>
@@ -17821,7 +17829,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Важна предност Витербијевог алгоритма је његова сложеност. Основна мрежа графа има $nk$ чворова и $n^2 (k-1)$ грана (из свих $n$ стања ка свим $n$ стањима у $k-1$ временском прелазу), чему се додају још два додатна чвора и $2n$ грана повезаних са тим чворовима. Израчунавање иде по чворовима, користећи гране, тако да је укупна временска и просторна сложеност $O(n^2 k)$ уколико би се користио експлицитни граф. Ово је временски знатно боље од наивних $O(n^k k)$, али је просторно захтевније, јер наивни приступ захтева само $O(k)$ помоћног простора. У многим случајевима је, међутим, граф довољно само замислити, а у раду користити искључиво мапу $s$ и путоказе, не и тежине $\tau$, што за собом повлачи нешто бољу просторну сложеност $O(nk)$.</p>
+<p>Важна предност Витербијевог алгоритма је његова сложеност. Основна мрежа графа има $nk$ чворова и $n^2 (k-1)$ грана (из свих $n$ стања ка свим $n$ стањима у $k-1$ временском прелазу), чему се додају још два додатна чвора и $2n$ грана повезаних са тим чворовима. Израчунавање иде по чворовима, користећи гране, тако да је укупна временска и просторна сложеност $O(n^2 k)$ уколико би се користио експлицитни граф. Ово је временски знатно боље од наивних $O(n^k k)$, али је просторно захтевније, јер наивни приступ захтева само $O(k)$ помоћног простора. У питању је уобичајени компромис између времена и простора, када алгоритам за бржи рад захтева више меморије.</p>
 
 </div>
 </div>
@@ -17829,7 +17837,82 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>У стварности је могуће добити још бољу сложеност. Наиме, многи <em>HMM</em> имају забрањене прелазе између неких стања. Таква ситуација веома је честа, а приказана је још на уводној слици <a href="#fig:hmm">1.2</a>. Могуће је без проблема уклонити гране Витербијевог графа које одговарају таквим прелазима, што знатно смањује време извршавања алгоритма. Посебно занимљиви могу бити недозвољени прелази који укључују извор и понор. На тај начин се може онемогућити да неко стање буде полазно или завршно, што често има биолошки смисао.</p>
+<p>У многим случајевима је, међутим, граф довољно само замислити, а у раду користити искључиво мапу $s$ и путоказе, а не и тежине $\tau$, што за собом повлачи нешто бољу просторну сложеност $O(nk)$. Ово важи код декодирања, јер су тежине (гране) већ похрањене у мапапа $a$ и $b$. Други начин побољшања је ако се $\tau$ представи као функција уместо мапа, што је такође могуће код проблема декодирања, јер тежине не зависе од временског тренутка. Додатно, уколико је довољно добити само максималну вероватноћу, а не и сам пут, не треба чувати путоказе, а мапу $s$ могуће је свести на два низа који се наизменично попуњавају, чиме се просторна сложеност своди на $O(n)$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[107]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Највероватнији пут Витербијем</span>
+<span class="k">def</span> <span class="nf">viterbi_put_lite</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="c1"># Иницијализација (π)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi</span><span class="p">[</span><span class="n">xi</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
+    
+    <span class="c1"># Итерација (максимуми)</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">:</span>
+            <span class="n">s</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">hmm</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">xi</span><span class="p">]</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+        
+        <span class="c1"># Преписовање низа</span>
+        <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">:</span>
+            <span class="n">s</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="c1"># Терминација (максимум)</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[108]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Највероватнији пут са k бацања</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">bacanja</span><span class="p">:</span>
+    <span class="n">p_viterbi</span> <span class="o">=</span> <span class="n">viterbi_put_lite</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+    
+    <span class="c1"># Извештавање о резултату</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Ако је бацања </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">, највероватнији пут је:&#39;</span><span class="p">,</span>
+          <span class="n">p_viterbi</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="mi">200</span><span class="o">*</span><span class="n">p_viterbi</span><span class="p">)</span><span class="si">}</span><span class="s1">/200)&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Ако је бацања 1, највероватнији пут је: 0.5 (100/200)
+Ако је бацања 3, највероватнији пут је: 0.405 (81/200)
+Ако је бацања 5, највероватнији пут је: 0.32805000000000006 (65/200)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>У стварности је могуће добити још бољу сложеност. Наиме, многи <em>HMM</em> имају забрањене прелазе између неких стања. Таква ситуација веома је честа, а приказана је још на уводној слици <a href="#fig:hmm">1.2</a>. Могуће је без проблема уклонити гране Витербијевог графа које одговарају таквим прелазима, што знатно смањује време извршавања алгоритма. Посебно занимљиви могу бити недозвољени прелази који укључују извор и понор. На тај начин се може онемогућити да неко стање буде полазно или завршно, што често има биолошки смисао, о чему ће бити речи на познатом примеру профилних модела протеина.</p>
 
 </div>
 </div>
@@ -17852,7 +17935,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Досад је било речи о појединачној расподели $P\{p\}$, условној $P\{o | p\}$ и заједничкој $P\{p, o\}$. Могуће је моделовати и појединачну расподелу $P\{o\}$, а затим и условну $P\{p | o\}$, на основу познате формуле $P\{p, o\} = P\{o\} P\{p | o\}$. Основни задатак из овог домена модела дат је кроз проблем <a href="#prob:ops">7</a>. Потребно је израчунати вероватноћу да <em>HMM</em> емитује неки низ симбола дужине $k$.</p>
+<p>Досад је било речи о појединачној расподели $P\{p\}$, условној $P\{o | p\}$ и заједничкој $P\{p, o\}$. Како је код последњег подразумевано да је познат пут $o$, тиме је заправо моделована и условна расподела $P\{p | o\}$. Могуће је моделовати и појединачну расподелу $P\{o\}$, која је једина преостала како би модел био комплетиран. Основни задатак из овог домена дат је кроз проблем <a href="#prob:ops">7</a>. Потребно је израчунати вероватноћу да <em>HMM</em> емитује неку ниску дужине $k$.</p>
 
 </div>
 </div>
@@ -17881,7 +17964,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[107]:</div>
+<div class="prompt input_prompt">In&nbsp;[109]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Библиотека за сумирање логаритама;</span>
@@ -17896,7 +17979,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[108]:</div>
+<div class="prompt input_prompt">In&nbsp;[110]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа опажања грубом силом</span>
@@ -17923,7 +18006,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[109]:</div>
+<div class="prompt input_prompt">In&nbsp;[111]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа опсервација из уџбеника</span>
@@ -17955,7 +18038,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[110]:</div>
+<div class="prompt input_prompt">In&nbsp;[112]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Лог-вероватноћа опсервација из уџбеника</span>
@@ -18003,10 +18086,10 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[111]:</div>
+<div class="prompt input_prompt">In&nbsp;[113]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Највероватнији пут Витербијем</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа опсервација Витербијем</span>
 <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
     <span class="c1"># Иницијализација (π)</span>
     <span class="n">f</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span> <span class="o">*</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
@@ -18030,7 +18113,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[112]:</div>
+<div class="prompt input_prompt">In&nbsp;[114]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа опсервација из уџбеника</span>
@@ -18062,7 +18145,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[113]:</div>
+<div class="prompt input_prompt">In&nbsp;[115]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Основни пример параметара са ROSALIND</span>
@@ -18111,7 +18194,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[114]:</div>
+<div class="prompt input_prompt">In&nbsp;[116]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Додатни пример параметара са ROSALIND</span>
@@ -18166,10 +18249,10 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[115]:</div>
+<div class="prompt input_prompt">In&nbsp;[117]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Највероватнији пут Витербијем</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Лог-вероватноћа опсервација Витербијем</span>
 <span class="k">def</span> <span class="nf">log_forward</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
     <span class="c1"># Иницијализација (π)</span>
     <span class="n">f</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi_log</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span> <span class="o">+</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b_log</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
@@ -18193,7 +18276,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[116]:</div>
+<div class="prompt input_prompt">In&nbsp;[118]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Лог-вероватноћа опсервација из уџбеника</span>
@@ -18226,14 +18309,14 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>За крај, ваља поменути и сродан проблем одређивања највероватнијег исхода, односно $\operatorname{argmax}_o P\{o\}$. И овде је наивно решење сувише неефикасно.</p>
+<p>За крај, ваља поменути и сродан проблем одређивања највероватнијег исхода, односно $o_{opt} = \operatorname{argmax}_o P\{o\}$. И овде је наивно решење сувише неефикасно. Штавише, лошије је сложености од досадашњих $O(n^k k)$, јер сада потребно генерисати и сваки могући низ опсервација. Сложеност исцрпне претраге стога је $O(n^k m^k k)$.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[117]:</div>
+<div class="prompt input_prompt">In&nbsp;[119]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Сва опажања одређене дужине</span>
@@ -18261,7 +18344,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[118]:</div>
+<div class="prompt input_prompt">In&nbsp;[120]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Сва двочлана опажања у коцкарници</span>
@@ -18293,7 +18376,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[119]:</div>
+<div class="prompt input_prompt">In&nbsp;[121]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Оптимално опажање грубом силом</span>
@@ -18323,12 +18406,12 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[120]:</div>
+<div class="prompt input_prompt">In&nbsp;[122]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Оптимално опажање са k бацања</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">bacanja</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Ако је бацања </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">, највероватнији пут је:&#39;</span><span class="p">,</span> <span class="n">naivna_opt_ops</span><span class="p">(</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Ако је бацања </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">, највероватнија опажања су:&#39;</span><span class="p">,</span> <span class="n">naivna_opt_ops</span><span class="p">(</span>
           <span class="n">kockarnica</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="s1">&#39;тј. log =&#39;</span><span class="p">,</span> <span class="n">naivna_opt_ops</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="kc">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 
@@ -18346,9 +18429,9 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Ако је бацања 1, највероватнији пут је: (0.625, &#39;H&#39;) тј. log = -0.4700036292457356
-Ако је бацања 3, највероватнији пут је: (0.26601562500000003, &#39;HHH&#39;) тј. log = -1.3242002313240955
-Ако је бацања 5, највероватнији пут је: (0.12081665039062502, &#39;HHHHH&#39;) тј. log = -2.1134811686202255
+<pre>Ако је бацања 1, највероватнија опажања су: (0.625, &#39;H&#39;) тј. log = -0.4700036292457356
+Ако је бацања 3, највероватнија опажања су: (0.26601562500000003, &#39;HHH&#39;) тј. log = -1.3242002313240955
+Ако је бацања 5, највероватнија опажања су: (0.12081665039062502, &#39;HHHHH&#39;) тј. log = -2.1134811686202255
 </pre>
 </div>
 </div>
@@ -18360,14 +18443,22 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Напредније се имплементира помоћу тродимензионог Витербијевог графа, који применом оба оператора успешно максимизује суму $\max_o \sum_p P\{p, o\}$. Сложеност је у том случају $O(n^2 m k)$, а формуле (логаритамске су аналогне): $$f_{x_i, 1} = \max_k \{\pi_{x_i} \cdot b_{x_i, y_k}\} = \max_k \{a_{\pi, x_i} \cdot b_{x_i, y_k}\},$$ $$f_{x_i, t} = \sum_j \max_k \{f_{x_j, t-1} \cdot a_{x_j, x_i} \cdot b_{x_i, y_k}\},$$ $$P\{o_{opt}\} = \max_o P\{o\} = \sum_j f_{x_j, k}.$$</p>
+<p>Напредно решење може се конструисати помоћу тродимензионог Витербијевог графа (предлог аутора Певзнера), који применом оба оператора успешно максимизује суму $\max_o \sum_p P\{p, o\} = P\{o_{opt}\}$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Алтернативни поглед на ствари и можда бољи, јер подразумева остајање у дводимензионом простору, јесте да сада из сваког од $n$ стања (такође и почетног $\pi$) ка свим $n$ стањима у $k-1$ временском прелазу иде по $m$ грана, по једна за сваку могућу опсервацију. Тиме гране Витербијевог графа више не моделују само прелазе из једног стања у друго, већ успут и емисије. Тежине се одабирају тако да осликавају вероватноћу промене стања, а затим емитовања симбола представљеног граном. Сваки пут од извора до понора сада није само скривени пут $p$, већ пут $p$ (чворови) са придруженим опажањима $o$ (гране). Максимални збир добија се сумирањем максимума између два чвора. Сложеност је у том случају $O(n^2 m k)$, а формуле (логаритамске су аналогне): $$f_{x_i, 1} = \max_k \{\pi_{x_i} \cdot b_{x_i, y_k}\} = \max_k \{a_{\pi, x_i} \cdot b_{x_i, y_k}\},$$ $$f_{x_i, t} = \sum_j \max_k \{f_{x_j, t-1} \cdot a_{x_j, x_i} \cdot b_{x_i, y_k}\},$$ $$P\{o_{opt}\} = \max_o P\{o\} = \sum_j f_{x_j, k}.$$</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[121]:</div>
+<div class="prompt input_prompt">In&nbsp;[123]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Оптимално опажање Витербијем; једноставна</span>
@@ -18392,12 +18483,12 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[122]:</div>
+<div class="prompt input_prompt">In&nbsp;[124]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Оптимално опажање са k бацања</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">bacanja</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Ако је бацања </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">, највероватнији пут је:&#39;</span><span class="p">,</span> <span class="n">forward_opt</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">k</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Ако је бацања </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">, највероватнија опажања су:&#39;</span><span class="p">,</span> <span class="n">forward_opt</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">k</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -18414,9 +18505,9 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Ако је бацања 1, највероватнији пут је: 0.625
-Ако је бацања 3, највероватнији пут је: 0.26601562500000003
-Ако је бацања 5, највероватнији пут је: 0.12081665039062502
+<pre>Ако је бацања 1, највероватнија опажања су: 0.625
+Ако је бацања 3, највероватнија опажања су: 0.26601562500000003
+Ако је бацања 5, највероватнија опажања су: 0.12081665039062502
 </pre>
 </div>
 </div>
@@ -18424,6 +18515,184 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Заменом суме по $j$ максимумом у претходним формулама, добија се највероватнији пар скривеног пута дужине $k$ и на њему емитоване ниске симбола, односно $\max P\{p, o\}$, што је исплативије од $n^k m^k$ наивних покушаја.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[125]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Оптимални пар пута и опажања грубом силом</span>
+<span class="k">def</span> <span class="nf">naivni_opt_po</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">logg</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="c1"># Иницијализација оптимални параметара</span>
+    <span class="n">p_opt</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">o_opt</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">p_po</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;-inf&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">logg</span> <span class="k">else</span> <span class="mi">0</span>
+    
+    <span class="c1"># Рачунање вероватноће сваког пара</span>
+    <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">sve_ops</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="n">p_pio</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">log_viterbi_dekodiranje</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span> \
+           <span class="k">if</span> <span class="n">logg</span> <span class="k">else</span> <span class="n">viterbi_dekodiranje</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span><span class="n">o</span><span class="p">)</span>
+        
+        <span class="c1"># Ажурирање оптималног ако треба</span>
+        <span class="k">if</span> <span class="n">p_pio</span> <span class="o">&gt;</span> <span class="n">p_po</span><span class="p">:</span>
+            <span class="n">p_po</span> <span class="o">=</span> <span class="n">p_pio</span>
+            <span class="n">p_opt</span> <span class="o">=</span> <span class="n">p</span>
+            <span class="n">o_opt</span> <span class="o">=</span> <span class="n">o</span>
+    
+    <span class="c1"># Враћање оптималног пута</span>
+    <span class="k">return</span> <span class="n">p_po</span><span class="p">,</span> <span class="n">p_opt</span><span class="p">,</span> <span class="n">o_opt</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[126]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Оптимални пар пута и опажања са k бацања</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">bacanja</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Ако је бацања </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">, највероватнији догађај је:&#39;</span><span class="p">,</span> <span class="n">naivni_opt_po</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">k</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Ако је бацања 1, највероватнији догађај је: (0.375, &#39;B&#39;, &#39;H&#39;)
+Ако је бацања 3, највероватнији догађај је: (0.17085937500000004, &#39;BBB&#39;, &#39;HHH&#39;)
+Ако је бацања 5, највероватнији догађај је: (0.07784780273437501, &#39;BBBBB&#39;, &#39;HHHHH&#39;)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[127]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Оптимални пар пута и опажања са k бацања</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">bacanja</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Ако је бацања </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">, највероватнији догађај је:&#39;</span><span class="p">,</span> <span class="n">naivni_opt_po</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Ако је бацања 1, највероватнији догађај је: (-0.9808292530117262, &#39;B&#39;, &#39;H&#39;)
+Ако је бацања 3, највероватнији догађај је: (-1.7669144292309404, &#39;BBB&#39;, &#39;HHH&#39;)
+Ако је бацања 5, највероватнији догађај је: (-2.5529996054501547, &#39;BBBBB&#39;, &#39;HHHHH&#39;)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[128]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Оптимално пар пута и опажања Витербијем;</span>
+<span class="c1"># верзија без путоказа ради демонстрације</span>
+<span class="k">def</span> <span class="nf">forward_po</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="c1"># Иницијализација (π)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span> <span class="o">*</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">yk</span><span class="p">]</span> <span class="k">for</span> <span class="n">yk</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">y</span><span class="p">)]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
+    
+    <span class="c1"># Итерација (макс-суме)</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">:</span>
+            <span class="n">f</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">hmm</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">xi</span><span class="p">]</span> <span class="o">*</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">yk</span><span class="p">]</span> <span class="k">for</span> <span class="n">yk</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">))</span>
+    
+    <span class="c1"># Терминација (сума)</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[129]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Оптимални пар пута и опажања са k бацања</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">bacanja</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Ако је бацања </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">, највероватнији догађај је:&#39;</span><span class="p">,</span> <span class="n">forward_po</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">k</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Ако је бацања 1, највероватнији догађај је: 0.375
+Ако је бацања 3, највероватнији догађај је: 0.17085937500000004
+Ако је бацања 5, највероватнији догађај је: 0.07784780273437501
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Сада је познато како Витербијевим графом моделовати и максимизовати сваку од критичних вероватноћа $P\{p\}$, $P\{o\}$, $P\{p, o\}$, $P\{p | o\}$ и $P\{o | p\}$, чиме је модел комплетиран, барем што се тиче његове описне стране (остаје учење).</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
