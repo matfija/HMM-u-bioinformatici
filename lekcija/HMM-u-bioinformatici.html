@@ -13109,7 +13109,40 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0-1-%E2%80%93-%D0%A3%D0%B2%D0%BE%D0%B4">&#1043;&#1083;&#1072;&#1074;&#1072; 1 &#8211; &#1059;&#1074;&#1086;&#1076;<a class="anchor-link" href="#%D0%93%D0%BB%D0%B0%D0%B2%D0%B0-1-%E2%80%93-%D0%A3%D0%B2%D0%BE%D0%B4">&#182;</a></h1>
+<h1 id="%D0%A1%D0%B0%D0%B4%D1%80%D0%B6%D0%B0%D1%98">&#1057;&#1072;&#1076;&#1088;&#1078;&#1072;&#1112;<a class="anchor-link" href="#%D0%A1%D0%B0%D0%B4%D1%80%D0%B6%D0%B0%D1%98">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li><a href="#par:uvod">Увод</a></li>
+<li><a href="#par:mot">Мотивација</a><br>
+2.1. <a href="#par:fen">Погађање фенотипа</a><br>
+2.2. <a href="#par:gen1">Потрага за генима</a><br>
+2.3. <a href="#par:jak">Коцкање са јакузама</a><br>
+2.4. <a href="#par:dod">Додатни проблеми</a></li>
+<li><a href="#par:mod">Моделовање</a><br>
+3.1 <a href="#par:def">Дефиниција модела</a><br>
+3.2 <a href="#par:mog">Могућности модела</a><br>
+3.3 <a href="#par:nad">Надградња дефиниције</a><br>
+3.4 <a href="#par:vit">Витербијев алгоритам</a><br>
+3.5 <a href="#par:nap">Алгоритам „напред”</a></li>
+<li><a href="#par:bio">Биолошки значај</a><br>
+4.1 <a href="#par:gen2">Потрага за генима</a><br>
+4.2 <a href="#par:prof">Профилни модели</a></li>
+<li><a href="#par:uch">Учење модела</a></li>
+<li><a href="#par:zak">Закључак</a></li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0-1-%E2%80%93-%D0%A3%D0%B2%D0%BE%D0%B4">&#1043;&#1083;&#1072;&#1074;&#1072; 1 &#8211; &#1059;&#1074;&#1086;&#1076;<a id="par:uvod" /><a class="anchor-link" href="#%D0%93%D0%BB%D0%B0%D0%B2%D0%B0-1-%E2%80%93-%D0%A3%D0%B2%D0%BE%D0%B4">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -13166,7 +13199,7 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a href="http://www.cs.sjsu.edu/~stamp/RUA/HMM.pdf">Скривени Марковљев модел</a> (у наставку углавном скраћено <em>HMM</em>, према
-енгл. <em>Hidden Markov Model</em>), укратко, представља статистички модел који се састоји из следећих елемената: скривених стања ($x_i$), опсервација ($y_i$), вероватноћа прелаза ($a_{ij}$), полазних ($\pi_i$) и излазних вероватноћа ($b_{ij}$), по <a href="https://commons.wikimedia.org/wiki/File:HiddenMarkovModel.png">примеру</a> са слике <a href="#fig:hmm">1.2</a>. <em>HMM</em> се тако може схватити као коначни аутомат, при чему стања задржавају уобичајено значење, док вероватноће прелаза описују колико се често неки прелаз реализује. Полазне вероватноће одређују почетно стање. Овакав аутомат допуњује се идејом да свако стање са одређеном излазном вероватноћом емитује (приказује) неку опсервацију. Штавише, најчешће су само опажања и позната у раду са <em>HMM</em>, док се позадински низ стања погађа ("предвиђа"), па се управо зато стања и модели називају скривеним.</p>
+енгл. <em>Hidden Markov Model</em>), укратко, представља статистички модел који се састоји из следећих елемената: скривених стања ($x_i$), опсервација ($y_i$), вероватноћа прелаза ($a_{ij}$), полазних ($\pi_i$) и излазних вероватноћа ($b_{ij}$), по <a href="https://commons.wikimedia.org/wiki/File:HiddenMarkovModel.png">примеру</a> са слике <a href="#fig:hmm">1.2</a>. <em>HMM</em> се тако може схватити као коначни аутомат, при чему стања задржавају уобичајено значење, док вероватноће прелаза описују колико се често неки прелаз реализује. Полазне вероватноће одређују почетно стање. Овакав аутомат допуњује се идејом да свако стање са одређеном излазном вероватноћом емитује (приказује) неку опсервацију. Штавише, најчешће су само опажања и позната у раду са <em>HMM</em>, док се позадински низ стања погађа („предвиђа”), па се управо зато стања и модели називају скривеним.</p>
 
 </div>
 </div>
@@ -13190,7 +13223,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0-2-%E2%80%93-%D0%9C%D0%BE%D1%82%D0%B8%D0%B2%D0%B0%D1%86%D0%B8%D1%98%D0%B0">&#1043;&#1083;&#1072;&#1074;&#1072; 2 &#8211; &#1052;&#1086;&#1090;&#1080;&#1074;&#1072;&#1094;&#1080;&#1112;&#1072;<a class="anchor-link" href="#%D0%93%D0%BB%D0%B0%D0%B2%D0%B0-2-%E2%80%93-%D0%9C%D0%BE%D1%82%D0%B8%D0%B2%D0%B0%D1%86%D0%B8%D1%98%D0%B0">&#182;</a></h1>
+<h1 id="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0-2-%E2%80%93-%D0%9C%D0%BE%D1%82%D0%B8%D0%B2%D0%B0%D1%86%D0%B8%D1%98%D0%B0">&#1043;&#1083;&#1072;&#1074;&#1072; 2 &#8211; &#1052;&#1086;&#1090;&#1080;&#1074;&#1072;&#1094;&#1080;&#1112;&#1072;<a id="par:mot" /><a class="anchor-link" href="#%D0%93%D0%BB%D0%B0%D0%B2%D0%B0-2-%E2%80%93-%D0%9C%D0%BE%D1%82%D0%B8%D0%B2%D0%B0%D1%86%D0%B8%D1%98%D0%B0">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -13205,14 +13238,14 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="2.1-%D0%9F%D0%BE%D0%B3%D0%B0%D1%92%D0%B0%D1%9A%D0%B5-%D1%84%D0%B5%D0%BD%D0%BE%D1%82%D0%B8%D0%BF%D0%B0">2.1 &#1055;&#1086;&#1075;&#1072;&#1106;&#1072;&#1114;&#1077; &#1092;&#1077;&#1085;&#1086;&#1090;&#1080;&#1087;&#1072;<a class="anchor-link" href="#2.1-%D0%9F%D0%BE%D0%B3%D0%B0%D1%92%D0%B0%D1%9A%D0%B5-%D1%84%D0%B5%D0%BD%D0%BE%D1%82%D0%B8%D0%BF%D0%B0">&#182;</a></h2>
+<h2 id="2.1-%D0%9F%D0%BE%D0%B3%D0%B0%D1%92%D0%B0%D1%9A%D0%B5-%D1%84%D0%B5%D0%BD%D0%BE%D1%82%D0%B8%D0%BF%D0%B0">2.1 &#1055;&#1086;&#1075;&#1072;&#1106;&#1072;&#1114;&#1077; &#1092;&#1077;&#1085;&#1086;&#1090;&#1080;&#1087;&#1072;<a id="par:fen" /><a class="anchor-link" href="#2.1-%D0%9F%D0%BE%D0%B3%D0%B0%D1%92%D0%B0%D1%9A%D0%B5-%D1%84%D0%B5%D0%BD%D0%BE%D1%82%D0%B8%D0%BF%D0%B0">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><em>HIV</em> је вирус хумане имунодефицијенције, један од најпознатијих вируса, који заражава људе широм света. Својим дугорочним деловањем доводи до смртоносног синдрома стечене имунодефицијенције, познатијег као сида или ејдс. Мада поједини аутори распрострањеност <em>HIV</em>-а називају пандемијом, Светска здравствена организација означава је као <a href="https://www.who.int/teams/global-hiv-hepatitis-and-stis-programmes/hiv/strategic-information/hiv-data-and-statistics">"глобалну епидемију"</a>.</p>
+<p><em>HIV</em> је вирус хумане имунодефицијенције, један од најпознатијих вируса, који заражава људе широм света. Својим дугорочним деловањем доводи до смртоносног синдрома стечене имунодефицијенције, познатијег као сида или ејдс. Мада поједини аутори распрострањеност <em>HIV</em>-а називају пандемијом, Светска здравствена организација означава је као <a href="https://www.who.int/teams/global-hiv-hepatitis-and-stis-programmes/hiv/strategic-information/hiv-data-and-statistics">„глобалну епидемију”</a>.</p>
 
 </div>
 </div>
@@ -13220,7 +13253,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Постојање <em>HIV</em>-а званично је потврђено почетком осамдесетих година двадесетог века, мада се претпоставља да је са примата на људе прешао знатно раније. Недуго по овом открићу, тачније 1984, из америчког Министарства здравља и услуга становништву најављено је да ће вакцина бити доступна кроз наредне две године. Иако до тога није дошло, председник Бил Клинтон је 1997. потврдио да "није питање <em>да ли</em> можемо да произведемо вакцину против сиде, већ је просто питање <em>када</em> ће до тога доћи". Вакцина, међутим, ни данас није доступна, а многи покушаји су отказани након што се испоставило да кандидати чак повећавају ризик од инфекције код појединих испитаника.</p>
+<p>Постојање <em>HIV</em>-а званично је потврђено почетком осамдесетих година двадесетог века, мада се претпоставља да је са примата на људе прешао знатно раније. Недуго по овом открићу, тачније 1984, из америчког Министарства здравља и услуга становништву најављено је да ће вакцина бити доступна кроз наредне две године. Иако до тога није дошло, председник Бил Клинтон је 1997. потврдио да „није питање <em>да ли</em> можемо да произведемо вакцину против сиде, већ је просто питање <em>када</em> ће до тога доћи”. Вакцина, међутим, ни данас није доступна, а многи покушаји су отказани након што се испоставило да кандидати чак повећавају ризик од инфекције код појединих испитаника.</p>
 
 </div>
 </div>
@@ -13489,7 +13522,7 @@ V3 петља: CMRPGTTTRRRIHIGPGRAFYATGNI-GNIRKAHC
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="2.2-%D0%9F%D0%BE%D1%82%D1%80%D0%B0%D0%B3%D0%B0-%D0%B7%D0%B0-%D0%B3%D0%B5%D0%BD%D0%B8%D0%BC%D0%B0">2.2 &#1055;&#1086;&#1090;&#1088;&#1072;&#1075;&#1072; &#1079;&#1072; &#1075;&#1077;&#1085;&#1080;&#1084;&#1072;<a class="anchor-link" href="#2.2-%D0%9F%D0%BE%D1%82%D1%80%D0%B0%D0%B3%D0%B0-%D0%B7%D0%B0-%D0%B3%D0%B5%D0%BD%D0%B8%D0%BC%D0%B0">&#182;</a></h2>
+<h2 id="2.2-%D0%9F%D0%BE%D1%82%D1%80%D0%B0%D0%B3%D0%B0-%D0%B7%D0%B0-%D0%B3%D0%B5%D0%BD%D0%B8%D0%BC%D0%B0">2.2 &#1055;&#1086;&#1090;&#1088;&#1072;&#1075;&#1072; &#1079;&#1072; &#1075;&#1077;&#1085;&#1080;&#1084;&#1072;<a id="par:gen1" /><a class="anchor-link" href="#2.2-%D0%9F%D0%BE%D1%82%D1%80%D0%B0%D0%B3%D0%B0-%D0%B7%D0%B0-%D0%B3%D0%B5%D0%BD%D0%B8%D0%BC%D0%B0">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -13616,10 +13649,10 @@ V3 петља: CMRPGTTTRRRIHIGPGRAFYATGNI-GNIRKAHC
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Мапа вероватноћа у CpG местима према претходној табели</span>
-<span class="n">cg_vrv</span>    <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;AA&#39;</span><span class="p">:</span> <span class="mf">0.053</span><span class="p">,</span> <span class="s1">&#39;AC&#39;</span><span class="p">:</span> <span class="mf">0.079</span><span class="p">,</span> <span class="s1">&#39;AG&#39;</span><span class="p">:</span> <span class="mf">0.127</span><span class="p">,</span> <span class="s1">&#39;AT&#39;</span><span class="p">:</span> <span class="mf">0.036</span><span class="p">,</span>
-             <span class="s1">&#39;CA&#39;</span><span class="p">:</span> <span class="mf">0.037</span><span class="p">,</span> <span class="s1">&#39;CC&#39;</span><span class="p">:</span> <span class="mf">0.058</span><span class="p">,</span> <span class="s1">&#39;CG&#39;</span><span class="p">:</span> <span class="mf">0.058</span><span class="p">,</span> <span class="s1">&#39;CT&#39;</span><span class="p">:</span> <span class="mf">0.041</span><span class="p">,</span>
-             <span class="s1">&#39;GA&#39;</span><span class="p">:</span> <span class="mf">0.035</span><span class="p">,</span> <span class="s1">&#39;GC&#39;</span><span class="p">:</span> <span class="mf">0.075</span><span class="p">,</span> <span class="s1">&#39;GG&#39;</span><span class="p">:</span> <span class="mf">0.081</span><span class="p">,</span> <span class="s1">&#39;GT&#39;</span><span class="p">:</span> <span class="mf">0.026</span><span class="p">,</span>
-             <span class="s1">&#39;TA&#39;</span><span class="p">:</span> <span class="mf">0.024</span><span class="p">,</span> <span class="s1">&#39;TC&#39;</span><span class="p">:</span> <span class="mf">0.105</span><span class="p">,</span> <span class="s1">&#39;TG&#39;</span><span class="p">:</span> <span class="mf">0.115</span><span class="p">,</span> <span class="s1">&#39;TT&#39;</span><span class="p">:</span> <span class="mf">0.050</span><span class="p">}</span>
+<span class="n">p_cg</span>    <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;AA&#39;</span><span class="p">:</span> <span class="mf">0.053</span><span class="p">,</span> <span class="s1">&#39;AC&#39;</span><span class="p">:</span> <span class="mf">0.079</span><span class="p">,</span> <span class="s1">&#39;AG&#39;</span><span class="p">:</span> <span class="mf">0.127</span><span class="p">,</span> <span class="s1">&#39;AT&#39;</span><span class="p">:</span> <span class="mf">0.036</span><span class="p">,</span>
+           <span class="s1">&#39;CA&#39;</span><span class="p">:</span> <span class="mf">0.037</span><span class="p">,</span> <span class="s1">&#39;CC&#39;</span><span class="p">:</span> <span class="mf">0.058</span><span class="p">,</span> <span class="s1">&#39;CG&#39;</span><span class="p">:</span> <span class="mf">0.058</span><span class="p">,</span> <span class="s1">&#39;CT&#39;</span><span class="p">:</span> <span class="mf">0.041</span><span class="p">,</span>
+           <span class="s1">&#39;GA&#39;</span><span class="p">:</span> <span class="mf">0.035</span><span class="p">,</span> <span class="s1">&#39;GC&#39;</span><span class="p">:</span> <span class="mf">0.075</span><span class="p">,</span> <span class="s1">&#39;GG&#39;</span><span class="p">:</span> <span class="mf">0.081</span><span class="p">,</span> <span class="s1">&#39;GT&#39;</span><span class="p">:</span> <span class="mf">0.026</span><span class="p">,</span>
+           <span class="s1">&#39;TA&#39;</span><span class="p">:</span> <span class="mf">0.024</span><span class="p">,</span> <span class="s1">&#39;TC&#39;</span><span class="p">:</span> <span class="mf">0.105</span><span class="p">,</span> <span class="s1">&#39;TG&#39;</span><span class="p">:</span> <span class="mf">0.115</span><span class="p">,</span> <span class="s1">&#39;TT&#39;</span><span class="p">:</span> <span class="mf">0.050</span><span class="p">}</span>
 </pre></div>
 
     </div>
@@ -13633,7 +13666,7 @@ V3 петља: CMRPGTTTRRRIHIGPGRAFYATGNI-GNIRKAHC
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Провера да ли је покривен цео простор догађаја јединичном вероватноћом</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Укупна вероватноћа код CG места:&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">cg_vrv</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Укупна вероватноћа код CG места:&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p_cg</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
 </pre></div>
 
     </div>
@@ -13665,10 +13698,10 @@ V3 петља: CMRPGTTTRRRIHIGPGRAFYATGNI-GNIRKAHC
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Мапа вероватноћа у ван CpG места према претходној табели</span>
-<span class="n">nekod_vrv</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;AA&#39;</span><span class="p">:</span> <span class="mf">0.087</span><span class="p">,</span> <span class="s1">&#39;AC&#39;</span><span class="p">:</span> <span class="mf">0.058</span><span class="p">,</span> <span class="s1">&#39;AG&#39;</span><span class="p">:</span> <span class="mf">0.084</span><span class="p">,</span> <span class="s1">&#39;AT&#39;</span><span class="p">:</span> <span class="mf">0.061</span><span class="p">,</span>
-             <span class="s1">&#39;CA&#39;</span><span class="p">:</span> <span class="mf">0.067</span><span class="p">,</span> <span class="s1">&#39;CC&#39;</span><span class="p">:</span> <span class="mf">0.063</span><span class="p">,</span> <span class="s1">&#39;CG&#39;</span><span class="p">:</span> <span class="mf">0.017</span><span class="p">,</span> <span class="s1">&#39;CT&#39;</span><span class="p">:</span> <span class="mf">0.063</span><span class="p">,</span>
-             <span class="s1">&#39;GA&#39;</span><span class="p">:</span> <span class="mf">0.053</span><span class="p">,</span> <span class="s1">&#39;GC&#39;</span><span class="p">:</span> <span class="mf">0.053</span><span class="p">,</span> <span class="s1">&#39;GG&#39;</span><span class="p">:</span> <span class="mf">0.063</span><span class="p">,</span> <span class="s1">&#39;GT&#39;</span><span class="p">:</span> <span class="mf">0.042</span><span class="p">,</span>
-             <span class="s1">&#39;TA&#39;</span><span class="p">:</span> <span class="mf">0.051</span><span class="p">,</span> <span class="s1">&#39;TC&#39;</span><span class="p">:</span> <span class="mf">0.070</span><span class="p">,</span> <span class="s1">&#39;TG&#39;</span><span class="p">:</span> <span class="mf">0.084</span><span class="p">,</span> <span class="s1">&#39;TT&#39;</span><span class="p">:</span> <span class="mf">0.084</span><span class="p">}</span>
+<span class="n">p_nekod</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;AA&#39;</span><span class="p">:</span> <span class="mf">0.087</span><span class="p">,</span> <span class="s1">&#39;AC&#39;</span><span class="p">:</span> <span class="mf">0.058</span><span class="p">,</span> <span class="s1">&#39;AG&#39;</span><span class="p">:</span> <span class="mf">0.084</span><span class="p">,</span> <span class="s1">&#39;AT&#39;</span><span class="p">:</span> <span class="mf">0.061</span><span class="p">,</span>
+           <span class="s1">&#39;CA&#39;</span><span class="p">:</span> <span class="mf">0.067</span><span class="p">,</span> <span class="s1">&#39;CC&#39;</span><span class="p">:</span> <span class="mf">0.063</span><span class="p">,</span> <span class="s1">&#39;CG&#39;</span><span class="p">:</span> <span class="mf">0.017</span><span class="p">,</span> <span class="s1">&#39;CT&#39;</span><span class="p">:</span> <span class="mf">0.063</span><span class="p">,</span>
+           <span class="s1">&#39;GA&#39;</span><span class="p">:</span> <span class="mf">0.053</span><span class="p">,</span> <span class="s1">&#39;GC&#39;</span><span class="p">:</span> <span class="mf">0.053</span><span class="p">,</span> <span class="s1">&#39;GG&#39;</span><span class="p">:</span> <span class="mf">0.063</span><span class="p">,</span> <span class="s1">&#39;GT&#39;</span><span class="p">:</span> <span class="mf">0.042</span><span class="p">,</span>
+           <span class="s1">&#39;TA&#39;</span><span class="p">:</span> <span class="mf">0.051</span><span class="p">,</span> <span class="s1">&#39;TC&#39;</span><span class="p">:</span> <span class="mf">0.070</span><span class="p">,</span> <span class="s1">&#39;TG&#39;</span><span class="p">:</span> <span class="mf">0.084</span><span class="p">,</span> <span class="s1">&#39;TT&#39;</span><span class="p">:</span> <span class="mf">0.084</span><span class="p">}</span>
 </pre></div>
 
     </div>
@@ -13682,7 +13715,7 @@ V3 петља: CMRPGTTTRRRIHIGPGRAFYATGNI-GNIRKAHC
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Провера да ли је покривен цео простор догађаја јединичном вероватноћом</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Укупна вероватноћа код осталих места:&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nekod_vrv</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Укупна вероватноћа код осталих места:&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p_nekod</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
 </pre></div>
 
     </div>
@@ -13753,8 +13786,8 @@ V3 петља: CMRPGTTTRRRIHIGPGRAFYATGNI-GNIRKAHC
         <span class="n">p</span> <span class="o">=</span> <span class="n">prozor</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span>
         
         <span class="c1"># Ажурирање вероватноћа множењем</span>
-        <span class="n">cg</span>    <span class="o">*=</span> <span class="n">cg_vrv</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
-        <span class="n">nekod</span> <span class="o">*=</span> <span class="n">nekod_vrv</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+        <span class="n">cg</span>    <span class="o">*=</span> <span class="n">p_cg</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+        <span class="n">nekod</span> <span class="o">*=</span> <span class="n">p_nekod</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
     
     <span class="c1"># Одређивање веће вероватноће</span>
     <span class="k">return</span> <span class="n">cg</span> <span class="o">&gt;</span> <span class="n">nekod</span>
@@ -13990,14 +14023,14 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="2.3-%D0%9A%D0%BE%D1%86%D0%BA%D0%B0%D1%9A%D0%B5-%D1%81%D0%B0-%D1%98%D0%B0%D0%BA%D1%83%D0%B7%D0%B0%D0%BC%D0%B0">2.3 &#1050;&#1086;&#1094;&#1082;&#1072;&#1114;&#1077; &#1089;&#1072; &#1112;&#1072;&#1082;&#1091;&#1079;&#1072;&#1084;&#1072;<a class="anchor-link" href="#2.3-%D0%9A%D0%BE%D1%86%D0%BA%D0%B0%D1%9A%D0%B5-%D1%81%D0%B0-%D1%98%D0%B0%D0%BA%D1%83%D0%B7%D0%B0%D0%BC%D0%B0">&#182;</a></h2>
+<h2 id="2.3-%D0%9A%D0%BE%D1%86%D0%BA%D0%B0%D1%9A%D0%B5-%D1%81%D0%B0-%D1%98%D0%B0%D0%BA%D1%83%D0%B7%D0%B0%D0%BC%D0%B0">2.3 &#1050;&#1086;&#1094;&#1082;&#1072;&#1114;&#1077; &#1089;&#1072; &#1112;&#1072;&#1082;&#1091;&#1079;&#1072;&#1084;&#1072;<a id="par:jak" /><a class="anchor-link" href="#2.3-%D0%9A%D0%BE%D1%86%D0%BA%D0%B0%D1%9A%D0%B5-%D1%81%D0%B0-%D1%98%D0%B0%D0%BA%D1%83%D0%B7%D0%B0%D0%BC%D0%B0">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Јакузе су припадници истоимене криминалне организације, традиционалног синдиката организованог криминала. Савремене јакузе потичу од јапанских <a href="https://www.polygon.com/2017/3/10/14848222/learning-japanese-board-game-culture-from-yakuza-0">путујућих коцкара</a>, који су били распрострањени у осамнаестом веку. Једна од најпознатијих игара коју су путујући коцкари организовали у својим импровизованим коцкарницама био је чо-хан (јап. 丁半, <em>chō-han</em>), у дословном преводу "пар-непар". Игра је сасвим једноставна – претеча јакуза (крупије) баца две коцкице, док се играчи кладе да ли ће збир бити паран или непаран. Игра је такође поштена – једнако се остварују оба исхода парности.</p>
+<p>Јакузе су припадници истоимене криминалне организације, традиционалног синдиката организованог криминала. Савремене јакузе потичу од јапанских <a href="https://www.polygon.com/2017/3/10/14848222/learning-japanese-board-game-culture-from-yakuza-0">путујућих коцкара</a>, који су били распрострањени у осамнаестом веку. Једна од најпознатијих игара коју су путујући коцкари организовали у својим импровизованим коцкарницама био је чо-хан (јап. 丁半, <em>chō-han</em>), у дословном преводу „пар-непар”. Игра је сасвим једноставна – претеча јакуза (крупије) баца две коцкице, док се играчи кладе да ли ће збир бити паран или непаран. Игра је такође поштена – једнако се остварују оба исхода парности.</p>
 
 </div>
 </div>
@@ -14785,7 +14818,7 @@ HHHHHTTHHHTTTTT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="2.4-%D0%94%D0%BE%D0%B4%D0%B0%D1%82%D0%BD%D0%B8-%D0%BF%D1%80%D0%BE%D0%B1%D0%BB%D0%B5%D0%BC%D0%B8">2.4 &#1044;&#1086;&#1076;&#1072;&#1090;&#1085;&#1080; &#1087;&#1088;&#1086;&#1073;&#1083;&#1077;&#1084;&#1080;<a class="anchor-link" href="#2.4-%D0%94%D0%BE%D0%B4%D0%B0%D1%82%D0%BD%D0%B8-%D0%BF%D1%80%D0%BE%D0%B1%D0%BB%D0%B5%D0%BC%D0%B8">&#182;</a></h2>
+<h2 id="2.4-%D0%94%D0%BE%D0%B4%D0%B0%D1%82%D0%BD%D0%B8-%D0%BF%D1%80%D0%BE%D0%B1%D0%BB%D0%B5%D0%BC%D0%B8">2.4 &#1044;&#1086;&#1076;&#1072;&#1090;&#1085;&#1080; &#1087;&#1088;&#1086;&#1073;&#1083;&#1077;&#1084;&#1080;<a id="par:dod" /><a class="anchor-link" href="#2.4-%D0%94%D0%BE%D0%B4%D0%B0%D1%82%D0%BD%D0%B8-%D0%BF%D1%80%D0%BE%D0%B1%D0%BB%D0%B5%D0%BC%D0%B8">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -14832,7 +14865,7 @@ HHHHHTTHHHTTTTT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0-3-%E2%80%93-%D0%9C%D0%BE%D0%B4%D0%B5%D0%BB%D0%BE%D0%B2%D0%B0%D1%9A%D0%B5">&#1043;&#1083;&#1072;&#1074;&#1072; 3 &#8211; &#1052;&#1086;&#1076;&#1077;&#1083;&#1086;&#1074;&#1072;&#1114;&#1077;<a class="anchor-link" href="#%D0%93%D0%BB%D0%B0%D0%B2%D0%B0-3-%E2%80%93-%D0%9C%D0%BE%D0%B4%D0%B5%D0%BB%D0%BE%D0%B2%D0%B0%D1%9A%D0%B5">&#182;</a></h1>
+<h1 id="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0-3-%E2%80%93-%D0%9C%D0%BE%D0%B4%D0%B5%D0%BB%D0%BE%D0%B2%D0%B0%D1%9A%D0%B5">&#1043;&#1083;&#1072;&#1074;&#1072; 3 &#8211; &#1052;&#1086;&#1076;&#1077;&#1083;&#1086;&#1074;&#1072;&#1114;&#1077;<a id="par:mod" /><a class="anchor-link" href="#%D0%93%D0%BB%D0%B0%D0%B2%D0%B0-3-%E2%80%93-%D0%9C%D0%BE%D0%B4%D0%B5%D0%BB%D0%BE%D0%B2%D0%B0%D1%9A%D0%B5">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -14847,7 +14880,7 @@ HHHHHTTHHHTTTTT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="3.1-%D0%94%D0%B5%D1%84%D0%B8%D0%BD%D0%B8%D1%86%D0%B8%D1%98%D0%B0-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B0">3.1 &#1044;&#1077;&#1092;&#1080;&#1085;&#1080;&#1094;&#1080;&#1112;&#1072; &#1084;&#1086;&#1076;&#1077;&#1083;&#1072;<a class="anchor-link" href="#3.1-%D0%94%D0%B5%D1%84%D0%B8%D0%BD%D0%B8%D1%86%D0%B8%D1%98%D0%B0-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B0">&#182;</a></h2>
+<h2 id="3.1-%D0%94%D0%B5%D1%84%D0%B8%D0%BD%D0%B8%D1%86%D0%B8%D1%98%D0%B0-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B0">3.1 &#1044;&#1077;&#1092;&#1080;&#1085;&#1080;&#1094;&#1080;&#1112;&#1072; &#1084;&#1086;&#1076;&#1077;&#1083;&#1072;<a id="par:def" /><a class="anchor-link" href="#3.1-%D0%94%D0%B5%D1%84%D0%B8%D0%BD%D0%B8%D1%86%D0%B8%D1%98%D0%B0-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B0">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -15159,7 +15192,7 @@ HHHHHTTHHHTTTTT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="3.2-%D0%9C%D0%BE%D0%B3%D1%83%D1%9B%D0%BD%D0%BE%D1%81%D1%82%D0%B8-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B0">3.2 &#1052;&#1086;&#1075;&#1091;&#1115;&#1085;&#1086;&#1089;&#1090;&#1080; &#1084;&#1086;&#1076;&#1077;&#1083;&#1072;<a class="anchor-link" href="#3.2-%D0%9C%D0%BE%D0%B3%D1%83%D1%9B%D0%BD%D0%BE%D1%81%D1%82%D0%B8-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B0">&#182;</a></h2>
+<h2 id="3.2-%D0%9C%D0%BE%D0%B3%D1%83%D1%9B%D0%BD%D0%BE%D1%81%D1%82%D0%B8-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B0">3.2 &#1052;&#1086;&#1075;&#1091;&#1115;&#1085;&#1086;&#1089;&#1090;&#1080; &#1084;&#1086;&#1076;&#1077;&#1083;&#1072;<a id="par:mog" /><a class="anchor-link" href="#3.2-%D0%9C%D0%BE%D0%B3%D1%83%D1%9B%D0%BD%D0%BE%D1%81%D1%82%D0%B8-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B0">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -15375,7 +15408,7 @@ HHHHHTTHHHTTTTT
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Вероватноћа пута FFFBBBBBFFF : 0.002152336050000001
+<pre>Вероватноћа пута FFFBBBBBFFF: 0.002152336050000001
 </pre>
 </div>
 </div>
@@ -15664,7 +15697,7 @@ HHHHHTTHHHTTTTT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="3.3-%D0%9D%D0%B0%D0%B4%D0%B3%D1%80%D0%B0%D0%B4%D1%9A%D0%B0-%D0%B4%D0%B5%D1%84%D0%B8%D0%BD%D0%B8%D1%86%D0%B8%D1%98%D0%B5">3.3 &#1053;&#1072;&#1076;&#1075;&#1088;&#1072;&#1076;&#1114;&#1072; &#1076;&#1077;&#1092;&#1080;&#1085;&#1080;&#1094;&#1080;&#1112;&#1077;<a class="anchor-link" href="#3.3-%D0%9D%D0%B0%D0%B4%D0%B3%D1%80%D0%B0%D0%B4%D1%9A%D0%B0-%D0%B4%D0%B5%D1%84%D0%B8%D0%BD%D0%B8%D1%86%D0%B8%D1%98%D0%B5">&#182;</a></h2>
+<h2 id="3.3-%D0%9D%D0%B0%D0%B4%D0%B3%D1%80%D0%B0%D0%B4%D1%9A%D0%B0-%D0%B4%D0%B5%D1%84%D0%B8%D0%BD%D0%B8%D1%86%D0%B8%D1%98%D0%B5">3.3 &#1053;&#1072;&#1076;&#1075;&#1088;&#1072;&#1076;&#1114;&#1072; &#1076;&#1077;&#1092;&#1080;&#1085;&#1080;&#1094;&#1080;&#1112;&#1077;<a id="par:nad" /><a class="anchor-link" href="#3.3-%D0%9D%D0%B0%D0%B4%D0%B3%D1%80%D0%B0%D0%B4%D1%9A%D0%B0-%D0%B4%D0%B5%D1%84%D0%B8%D0%BD%D0%B8%D1%86%D0%B8%D1%98%D0%B5">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -15867,7 +15900,7 @@ HHHHHTTHHHTTTTT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="3.4-%D0%92%D0%B8%D1%82%D0%B5%D1%80%D0%B1%D0%B8%D1%98%D0%B5%D0%B2-%D0%B0%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%B0%D0%BC">3.4 &#1042;&#1080;&#1090;&#1077;&#1088;&#1073;&#1080;&#1112;&#1077;&#1074; &#1072;&#1083;&#1075;&#1086;&#1088;&#1080;&#1090;&#1072;&#1084;<a class="anchor-link" href="#3.4-%D0%92%D0%B8%D1%82%D0%B5%D1%80%D0%B1%D0%B8%D1%98%D0%B5%D0%B2-%D0%B0%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%B0%D0%BC">&#182;</a></h2>
+<h2 id="3.4-%D0%92%D0%B8%D1%82%D0%B5%D1%80%D0%B1%D0%B8%D1%98%D0%B5%D0%B2-%D0%B0%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%B0%D0%BC">3.4 &#1042;&#1080;&#1090;&#1077;&#1088;&#1073;&#1080;&#1112;&#1077;&#1074; &#1072;&#1083;&#1075;&#1086;&#1088;&#1080;&#1090;&#1072;&#1084;<a id="par:vit" /><a class="anchor-link" href="#3.4-%D0%92%D0%B8%D1%82%D0%B5%D1%80%D0%B1%D0%B8%D1%98%D0%B5%D0%B2-%D0%B0%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%B0%D0%BC">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -15940,7 +15973,7 @@ HHHHHTTHHHTTTTT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Прецизније, $X$ је Марковљев процес са неопсервабилним ("скривеним") стањима ($x$ из дефиниције), а циљ модела је да се нешто о том процесу сазна на основу опажања ($y$ из дефиниције) процеса $Y$, чије је понашање видљиво. Притом условна расподела $Y$ (на слици конкретна вредност $y(t)$, а у низу опсервација приказ $o_t$) у неком временском тренутку $t$ (индекс низа) зависи искључиво од стања $X$ у том истом тренутку (на слици конкретна вредност $x(t)$, а на скривеном путу стање $p_t$). Приметно је да је ова дефиниција у суштини једнака претходно изложеним, с тим што је математички напреднија (захтевнија) – углавном је теже разумети торку апстрактних статистичких процеса него једноставних структура попут скупова, низова, матрица и мапа. На конкретном примеру непоштене коцкарнице, $X$ је процес одабира (замене) новчића, а $Y$ процес бацања новчића, односно добијања исхода тог бацања.</p>
+<p>Прецизније, $X$ је Марковљев процес са неопсервабилним („скривеним”) стањима ($x$ из дефиниције), а циљ модела је да се нешто о том процесу сазна на основу опажања ($y$ из дефиниције) процеса $Y$, чије је понашање видљиво. Притом условна расподела $Y$ (на слици конкретна вредност $y(t)$, а у низу опсервација приказ $o_t$) у неком временском тренутку $t$ (индекс низа) зависи искључиво од стања $X$ у том истом тренутку (на слици конкретна вредност $x(t)$, а на скривеном путу стање $p_t$). Приметно је да је ова дефиниција у суштини једнака претходно изложеним, с тим што је математички напреднија (захтевнија) – углавном је теже разумети торку апстрактних статистичких процеса него једноставних структура попут скупова, низова, матрица и мапа. На конкретном примеру непоштене коцкарнице, $X$ је процес одабира (замене) новчића, а $Y$ процес бацања новчића, односно добијања исхода тог бацања.</p>
 
 </div>
 </div>
@@ -16224,7 +16257,7 @@ HHHHHTTHHHTTTTT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="3.5-%D0%90%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%B0%D0%BC-%22%D0%BD%D0%B0%D0%BF%D1%80%D0%B5%D0%B4%22">3.5 &#1040;&#1083;&#1075;&#1086;&#1088;&#1080;&#1090;&#1072;&#1084; "&#1085;&#1072;&#1087;&#1088;&#1077;&#1076;"<a class="anchor-link" href="#3.5-%D0%90%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%B0%D0%BC-%22%D0%BD%D0%B0%D0%BF%D1%80%D0%B5%D0%B4%22">&#182;</a></h2>
+<h2 id="3.5-%D0%90%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%B0%D0%BC-%E2%80%9E%D0%BD%D0%B0%D0%BF%D1%80%D0%B5%D0%B4%E2%80%9D">3.5 &#1040;&#1083;&#1075;&#1086;&#1088;&#1080;&#1090;&#1072;&#1084; &#8222;&#1085;&#1072;&#1087;&#1088;&#1077;&#1076;&#8221;<a id="par:nap" /><a class="anchor-link" href="#3.5-%D0%90%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%B0%D0%BC-%E2%80%9E%D0%BD%D0%B0%D0%BF%D1%80%D0%B5%D0%B4%E2%80%9D">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -16361,7 +16394,7 @@ HHHHHTTHHHTTTTT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0-4-%E2%80%93-%D0%91%D0%B8%D0%BE%D0%BB%D0%BE%D1%88%D0%BA%D0%B8-%D0%B7%D0%BD%D0%B0%D1%87%D0%B0%D1%98">&#1043;&#1083;&#1072;&#1074;&#1072; 4 &#8211; &#1041;&#1080;&#1086;&#1083;&#1086;&#1096;&#1082;&#1080; &#1079;&#1085;&#1072;&#1095;&#1072;&#1112;<a class="anchor-link" href="#%D0%93%D0%BB%D0%B0%D0%B2%D0%B0-4-%E2%80%93-%D0%91%D0%B8%D0%BE%D0%BB%D0%BE%D1%88%D0%BA%D0%B8-%D0%B7%D0%BD%D0%B0%D1%87%D0%B0%D1%98">&#182;</a></h1>
+<h1 id="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0-4-%E2%80%93-%D0%91%D0%B8%D0%BE%D0%BB%D0%BE%D1%88%D0%BA%D0%B8-%D0%B7%D0%BD%D0%B0%D1%87%D0%B0%D1%98">&#1043;&#1083;&#1072;&#1074;&#1072; 4 &#8211; &#1041;&#1080;&#1086;&#1083;&#1086;&#1096;&#1082;&#1080; &#1079;&#1085;&#1072;&#1095;&#1072;&#1112;<a id="par:bio" /><a class="anchor-link" href="#%D0%93%D0%BB%D0%B0%D0%B2%D0%B0-4-%E2%80%93-%D0%91%D0%B8%D0%BE%D0%BB%D0%BE%D1%88%D0%BA%D0%B8-%D0%B7%D0%BD%D0%B0%D1%87%D0%B0%D1%98">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -16376,7 +16409,7 @@ HHHHHTTHHHTTTTT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="4.1-%D0%9F%D0%BE%D1%82%D1%80%D0%B0%D0%B3%D0%B0-%D0%B7%D0%B0-%D0%B3%D0%B5%D0%BD%D0%B8%D0%BC%D0%B0">4.1 &#1055;&#1086;&#1090;&#1088;&#1072;&#1075;&#1072; &#1079;&#1072; &#1075;&#1077;&#1085;&#1080;&#1084;&#1072;<a class="anchor-link" href="#4.1-%D0%9F%D0%BE%D1%82%D1%80%D0%B0%D0%B3%D0%B0-%D0%B7%D0%B0-%D0%B3%D0%B5%D0%BD%D0%B8%D0%BC%D0%B0">&#182;</a></h2>
+<h2 id="4.1-%D0%9F%D0%BE%D1%82%D1%80%D0%B0%D0%B3%D0%B0-%D0%B7%D0%B0-%D0%B3%D0%B5%D0%BD%D0%B8%D0%BC%D0%B0">4.1 &#1055;&#1086;&#1090;&#1088;&#1072;&#1075;&#1072; &#1079;&#1072; &#1075;&#1077;&#1085;&#1080;&#1084;&#1072;<a id="par:gen2" /><a class="anchor-link" href="#4.1-%D0%9F%D0%BE%D1%82%D1%80%D0%B0%D0%B3%D0%B0-%D0%B7%D0%B0-%D0%B3%D0%B5%D0%BD%D0%B8%D0%BC%D0%B0">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -16391,7 +16424,7 @@ HHHHHTTHHHTTTTT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="4.2-%D0%9F%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D0%BD%D0%B8-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8">4.2 &#1055;&#1088;&#1086;&#1092;&#1080;&#1083;&#1085;&#1080; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080;<a class="anchor-link" href="#4.2-%D0%9F%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D0%BD%D0%B8-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8">&#182;</a></h2>
+<h2 id="4.2-%D0%9F%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D0%BD%D0%B8-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8">4.2 &#1055;&#1088;&#1086;&#1092;&#1080;&#1083;&#1085;&#1080; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080;<a id="par:prof" /><a class="anchor-link" href="#4.2-%D0%9F%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D0%BD%D0%B8-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -16406,7 +16439,7 @@ HHHHHTTHHHTTTTT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0-5-%E2%80%93-%D0%A3%D1%87%D0%B5%D1%9A%D0%B5-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B0">&#1043;&#1083;&#1072;&#1074;&#1072; 5 &#8211; &#1059;&#1095;&#1077;&#1114;&#1077; &#1084;&#1086;&#1076;&#1077;&#1083;&#1072;<a class="anchor-link" href="#%D0%93%D0%BB%D0%B0%D0%B2%D0%B0-5-%E2%80%93-%D0%A3%D1%87%D0%B5%D1%9A%D0%B5-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B0">&#182;</a></h1>
+<h1 id="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0-5-%E2%80%93-%D0%A3%D1%87%D0%B5%D1%9A%D0%B5-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B0">&#1043;&#1083;&#1072;&#1074;&#1072; 5 &#8211; &#1059;&#1095;&#1077;&#1114;&#1077; &#1084;&#1086;&#1076;&#1077;&#1083;&#1072;<a id="par:uch" /><a class="anchor-link" href="#%D0%93%D0%BB%D0%B0%D0%B2%D0%B0-5-%E2%80%93-%D0%A3%D1%87%D0%B5%D1%9A%D0%B5-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B0">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -16421,7 +16454,7 @@ HHHHHTTHHHTTTTT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0-6-%E2%80%93-%D0%97%D0%B0%D0%BA%D1%99%D1%83%D1%87%D0%B0%D0%BA">&#1043;&#1083;&#1072;&#1074;&#1072; 6 &#8211; &#1047;&#1072;&#1082;&#1113;&#1091;&#1095;&#1072;&#1082;<a class="anchor-link" href="#%D0%93%D0%BB%D0%B0%D0%B2%D0%B0-6-%E2%80%93-%D0%97%D0%B0%D0%BA%D1%99%D1%83%D1%87%D0%B0%D0%BA">&#182;</a></h1>
+<h1 id="%D0%93%D0%BB%D0%B0%D0%B2%D0%B0-6-%E2%80%93-%D0%97%D0%B0%D0%BA%D1%99%D1%83%D1%87%D0%B0%D0%BA">&#1043;&#1083;&#1072;&#1074;&#1072; 6 &#8211; &#1047;&#1072;&#1082;&#1113;&#1091;&#1095;&#1072;&#1082;<a id="par:zak" /><a class="anchor-link" href="#%D0%93%D0%BB%D0%B0%D0%B2%D0%B0-6-%E2%80%93-%D0%97%D0%B0%D0%BA%D1%99%D1%83%D1%87%D0%B0%D0%BA">&#182;</a></h1>
 </div>
 </div>
 </div>
