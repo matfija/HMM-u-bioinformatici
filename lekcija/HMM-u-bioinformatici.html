@@ -14054,7 +14054,7 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Конкретно, нека је упитни новчић бачен одређени број пута, при чему је добијен низ исхода. Вероватноће исхода ($H$ од енгл. <em>heads</em> – глава и $T$ од енгл. <em>tails</em> – писмо) код праведног ($F$ од енгл. <em>fair</em> – фер) и отежаног ($B$ од енгл. <em>biased</em> – пристрасан) новчића могу се исказати следећим формулама: $$P\{H | F\} = P\{T | F\} = \frac{1}{2}, P\{H | B\} = \frac{3}{4}, P\{T | B\} = \frac{1}{4}.$$</p>
+<p>Конкретно, нека је упитни новчић бачен одређени број пута, при чему је добијен низ исхода. Вероватноће исхода ($H$ од енгл. <em>heads</em> – глава и $T$ од енгл. <em>tails</em> – писмо) код праведног ($F$ од енгл. <em>fair</em> – фер) и отежаног ($B$ од енгл. <em>biased</em> – пристрасан) новчића могу се исказати следећим формулама: $$P\{H | F\} = P\{T | F\} = \frac{1}{2},$$ $$P\{H | B\} = \frac{3}{4}, P\{T | B\} = \frac{1}{4}.$$</p>
 
 </div>
 </div>
@@ -15000,7 +15000,7 @@ HHHHHTTHHHTTTTT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Како би овакав модел био у потпуности статистички заснован и смислен, обично се захтева да се све појединачне вероватноће сабирају у јединицу: $$\sum_{i=1}^n \pi_i = 1, (\forall i \in \{1, ..., n\}) \sum_{j=1}^m a_{ij} = 1, (\forall i \in \{1, ..., n\}) \sum_{j=1}^m b_{ij} = 1.$$ Постоје, међутим, изузеци који су детаљније обрађени у наставку, када се говори о важним надградњама појма скривених Марковљевих модела.</p>
+<p>Како би овакав модел био у потпуности статистички заснован и смислен, обично се захтева да се све појединачне вероватноће сабирају у јединицу: $$\sum_{i=1}^n \pi_i = 1,$$ $$(\forall i \in \{1, ..., n\}) \sum_{j=1}^m a_{ij} = 1,$$ $$(\forall i \in \{1, ..., n\}) \sum_{j=1}^m b_{ij} = 1.$$ Постоје, међутим, изузеци који су детаљније обрађени у наставку, када се говори о важним надградњама појма скривених Марковљевих модела.</p>
 
 </div>
 </div>
@@ -15847,7 +15847,7 @@ HHHHHTTHHHTTTTT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Оваква дорада свој пун потенцијал показује у напреднијим применама, мада је и њен почетни допринос незанемарљив. Формуле сада постају: $$P\{p\} = \pi_{p_1} \prod_{i=2}^k a_{p_{i-1}, p_i} = \prod_{i=1}^k a_{p_{i-1}, p_i}, P\{o | p\} = \prod_{i=1}^k b_{p_i, o_i}.$$</p>
+<p>Оваква дорада свој пун потенцијал показује у напреднијим применама, мада је и њен почетни допринос незанемарљив. Формуле сада постају: $$P\{p\} = \pi_{p_1} \prod_{i=2}^k a_{p_{i-1}, p_i} = \prod_{i=1}^k a_{p_{i-1}, p_i},$$</p>
 
 </div>
 </div>
@@ -15915,6 +15915,13 @@ HHHHHTTHHHTTTTT
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$P\{o | p\} = \prod_{i=1}^k b_{p_i, o_i}.$$
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -17291,7 +17298,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Општи облик ове рекурентне релације заправо је заснован на тежинама грана $\tau$, где мапа облика $\tau_{x_i, x_j, t}$ означава тежину гране из чвора $x_i$ ка $x_j$ у тренитку $t$, укључујући експлицитни почетни извор $\pi$ и завршни понор $\omega$. Оне су у конкретном случају биле логаритми вероватноћа преласка или саме вероватноће, као на слици, у ком случају се множи уместо сабира: $$s_{x_i, 1} = \tau_{\pi, x_i}, s_{x_i, t} = \max_j \{s_{x_j, t-1} + \tau_{x_j, x_i, t}\},$$ $$P\{p_{opt}\} = \max_p P\{p\} = \max_j \{s_{x_j, k} + \tau_{x_j, \omega}\}.$$</p>
+<p>Општи облик ове рекурентне релације заправо је заснован на тежинама грана $\tau$, где мапа облика $\tau_{x_i, x_j, t}$ означава тежину гране из чвора $x_i$ ка $x_j$ у тренитку $t$, укључујући експлицитни почетни извор $\pi$ и завршни понор $\omega$. Оне су у конкретном случају биле логаритми вероватноћа преласка или саме вероватноће, као на слици, у ком случају се множи уместо сабира: $$s_{x_i, 1} = \tau_{\pi, x_i},$$ $$s_{x_i, t} = \max_j \{s_{x_j, t-1} + \tau_{x_j, x_i, t}\},$$ $$P_{\max} = \max_j \{s_{x_j, k} + \tau_{x_j, \omega}\}.$$</p>
 
 </div>
 </div>
