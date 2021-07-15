@@ -15330,7 +15330,7 @@ HHHHHTTHHHTTTTT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Прва идеја јесте исцрпна претрага простора догађаја над маргиналном расподелом $P\{p, o\}$ за познато $o$. Како је $P\{p, o\} = P\{p\} P\{o | p\}$, тако је најзгодније независно израчунати $P\{p\}$ и $P\{o | p\}$ за сваки од $n^k$ скривених путева. Број путева дужине $k$ у <em>HMM</em> са $n$ могућих стања је експоненцијалан, јер се одабир своди на варијације – уређене изборе са понављањем.</p>
+<p>Прва идеја јесте исцрпна претрага простора догађаја над маргиналном расподелом $P\{p, o\}$ за познато $o$. Стога се формулише нови проблем <a href="#prob:putishod">2</a>.</p>
 
 </div>
 </div>
@@ -15338,7 +15338,29 @@ HHHHHTTHHHTTTTT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Први потпроблем је израчунавање вероватноће пута, што се може формализовати проблемом <a href="#prob:put">2</a>. Он је у наставку решен у виду једне формуле.</p>
+<blockquote id="prob:putishod">
+
+<b>Проблем 2</b>: Вероватноћа пута и исхода<br>
+<i>Израчунати вероватноћу путa и опажања у HMM.</i><br>
+<b>Улаз</b>: скривени пут $p = p_1...p_k$ кроз <i>HMM</i>$\{a, b, \pi\}$ и ниска $o = o_1...o_k$ која је тим проласком емитована.<br>
+<b>Излаз</b>: заједничка вероватноћа пута и исхода $P\{p, o\}$.
+
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Како је $P\{p, o\} = P\{p\} P\{o | p\}$, тако је најзгодније независно израчунати $P\{p\}$ и $P\{o | p\}$ за сваки од $n^k$ скривених путева. Број путева (такође и ниски симбола) дужине $k$ у <em>HMM</em> са $n$ могућих стања иначе је експоненцијалан зато што се одабир сваког своди на варијације – уређене изборе са понављањем.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Први потпроблем је израчунавање вероватноће пута, што се може формализовати проблемом <a href="#prob:put">3</a>. Он је у наставку решен у виду једне формуле.</p>
 
 </div>
 </div>
@@ -15348,7 +15370,7 @@ HHHHHTTHHHTTTTT
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote id="prob:put">
 
-<b>Проблем 2</b>: <a href="http://rosalind.info/problems/ba10a/">Вероватноћа скривеног пута</a><br>
+<b>Проблем 3</b>: <a href="http://rosalind.info/problems/ba10a/">Вероватноћа скривеног пута</a><br>
 <i>Израчунати вероватноћу скривеног пута $p$ кроз HMM.</i><br>
 <b>Улаз</b>: скривени пут $p = p_1...p_k$ кроз <i>HMM</i>$\{a, b, \pi\}$.<br>
 <b>Излаз</b>: вероватноћа улазног пута $P\{p\}$.
@@ -15569,7 +15591,7 @@ HHHHHTTHHHTTTTT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Други потпроблем је израчунавање вероватноће исхода при познатом путу, што се може формализовати као <a href="#prob:ishod">3</a>. И то се решава само једном формулом.</p>
+<p>Други потпроблем је израчунавање вероватноће исхода при познатом путу, што се може формализовати као <a href="#prob:ishod">4</a>. И то се решава само једном формулом.</p>
 
 </div>
 </div>
@@ -15579,7 +15601,7 @@ HHHHHTTHHHTTTTT
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote id="prob:ishod">
 
-<b>Проблем 3</b>: <a href="http://rosalind.info/problems/ba10b/">Вероватноћа исхода на путу</a><br>
+<b>Проблем 4</b>: <a href="http://rosalind.info/problems/ba10b/">Вероватноћа исхода на путу</a><br>
 <i>Израчунати вероватноћу приказа $o$ на путу $p$ кроз HMM.</i><br>
 <b>Улаз</b>: скривени пут $p = p_1...p_k$ кроз <i>HMM</i>$\{a, b, \pi\}$ и ниска $o = o_1...o_k$ која је тим проласком емитована.<br>
 <b>Излаз</b>: условна вероватноћа приказа на путу $P\{o | p\}$.
@@ -16825,7 +16847,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>За хватање интуиције у вези са моћи Витербијевог графа, није лоше увести проблем <a href="#prob:maxput">4</a>. Задатак је пронаћи највероватнији скривени пут дужине $k$.</p>
+<p>За хватање интуиције у вези са моћи Витербијевог графа, није лоше увести проблем <a href="#prob:maxput">5</a>. Задатак је пронаћи највероватнији скривени пут дужине $k$.</p>
 
 </div>
 </div>
@@ -16835,7 +16857,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote id="prob:maxput">
 
-<b>Проблем 4</b>: Највероватнији скривени пут<br>
+<b>Проблем 5</b>: Највероватнији скривени пут<br>
 <i>Израчунати највероватнији скривени пут $p$ кроз HMM.</i><br>
 <b>Улаз</b>: дужина $k$ скривеног пута кроз <i>HMM</i>$\{a, b, \pi\}$.<br>
 <b>Излаз</b>: највероватнији скривени пут $p_{opt} = p_1...p_k$.
@@ -17707,7 +17729,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Када је у питању проблем максимизације, могуће је моделовати и $P\{o | p\}$, с тим што за то није неопходан Витербијев граф. Поставка <a href="#prob:maxpops">5</a> је у наставку.</p>
+<p>Када је у питању проблем максимизације, могуће је моделовати и $P\{o | p\}$, с тим што за то није неопходан Витербијев граф. Поставка <a href="#prob:maxpops">6</a> је у наставку.</p>
 
 </div>
 </div>
@@ -17717,7 +17739,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote id="prob:maxpops">
 
-<b>Проблем 5</b>: Највероватније опсервације на путу<br>
+<b>Проблем 6</b>: Највероватније опсервације на путу<br>
 <i>Израчунати највероватнији низ емисија на путу $p$ кроз HMM.</i><br>
 <b>Улаз</b>: скривени пут $p = p_1...p_k$ кроз <i>HMM</i>$\{a, b, \pi\}$.<br>
 <b>Излаз</b>: највероватнија опажања $o_{opt} = o_1...o_k$ на путу $p$.
@@ -17927,7 +17949,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Досад је било речи о појединачној расподели $P\{p\}$, условној $P\{o | p\}$ и заједничкој $P\{p, o\}$. Како је код последњег подразумевано да је позната ниска $o$, тиме је заправо моделована и условна расподела $P\{p | o\}$. Могуће је моделовати и појединачну расподелу $P\{o\}$, која је једина преостала како би модел био комплетиран. Основни задатак из овог домена дат је кроз проблем <a href="#prob:ops">6</a>. Потребно је израчунати вероватноћу да <em>HMM</em> емитује неку ниску дужине $k$.</p>
+<p>Досад је било речи о појединачној расподели $P\{p\}$, условној $P\{o | p\}$ и заједничкој $P\{p, o\}$. Како је код последњег подразумевано да је позната ниска $o$, тиме је заправо моделована и условна расподела $P\{p | o\}$. Могуће је моделовати и појединачну расподелу $P\{o\}$, која је једина преостала како би модел био комплетиран. Основни задатак из овог домена дат је кроз проблем <a href="#prob:ops">7</a>. Потребно је израчунати вероватноћу да <em>HMM</em> емитује неку ниску дужине $k$.</p>
 
 </div>
 </div>
@@ -17937,7 +17959,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote id="prob:ops">
 
-<b>Проблем 6</b>: <a href="http://rosalind.info/problems/ba10d/">Вероватноћа опсервација</a><br>
+<b>Проблем 7</b>: <a href="http://rosalind.info/problems/ba10d/">Вероватноћа опсервација</a><br>
 <i>Израчунати вероватноћу приказа $o$ у HMM.</i><br>
 <b>Улаз</b>: низ опажања $o = o_1...o_k$ у <i>HMM</i>$\{a, b, \pi\}$.<br>
 <b>Излаз</b>: вероватноћа улазног низа опажања $P\{o\}$.
@@ -18301,7 +18323,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>За крај, ваља поменути и сродан проблем одређивања највероватнијег исхода, односно $o_{opt} = \operatorname{argmax}_o P\{o\}$. Формулација је дата проблемом <a href="#prob:maxops">7</a>.</p>
+<p>У наставку, ваља поменути и сродан проблем одређивања највероватнијег исхода, односно $o_{opt} = \operatorname{argmax}_o P\{o\}$. Формулација је дата проблемом <a href="#prob:maxops">8</a>.</p>
 
 </div>
 </div>
@@ -18311,7 +18333,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote id="prob:maxops">
 
-<b>Проблем 7</b>: Највероватније опсервације<br>
+<b>Проблем 8</b>: Највероватније опсервације<br>
 <i>Израчунати највероватнији низ емисија у HMM.</i><br>
 <b>Улаз</b>: дужина $k$ пута кроз <i>HMM</i>$\{a, b, \pi\}$.<br>
 <b>Излаз</b>: највероватнија опажања $o_{opt} = o_1...o_k$.
@@ -18533,7 +18555,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Заменом суме максимумом у претходним формулама, добија се највероватнији пар скривеног пута дужине $k$ и на њему емитоване ниске симбола. У питању је решење проблема <a href="#prob:maxpo">8</a>, сличног досад разматранима.</p>
+<p>Заменом суме максимумом у претходним формулама, добија се највероватнији пар скривеног пута дужине $k$ и на њему емитоване ниске симбола. У питању је решење проблема <a href="#prob:maxpo">9</a>, сличног досад разматранима.</p>
 
 </div>
 </div>
@@ -18543,7 +18565,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote id="prob:maxpo">
 
-<b>Проблем 8</b>: Највероватнији скривени пут и опсервације<br>
+<b>Проблем 9</b>: Највероватнији скривени пут и опсервације<br>
 <i>Израчунати највероватнији пут и опажања у HMM.</i><br>
 <b>Улаз</b>: дужина $k$ пута кроз <i>HMM</i>$\{a, b, \pi\}$.<br>
 <b>Излаз</b>: највероватнија комбинација пута $p$ и опажања $o$.
