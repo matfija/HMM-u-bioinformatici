@@ -18755,8 +18755,280 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Сада је познато како Витербијевим графом моделовати и максимизовати сваку од критичних вероватноћа $P\{p\}$, $P\{o\}$, $P\{p, o\}$, $P\{p | o\}$ и $P\{o | p\}$, чиме је модел комплетиран, барем што се тиче његове описне стране (остаје учење).</p>
+<p>Комплетности ради, могу се формално представити и проблеми <a href="#prob:putpri">10</a> и <a href="#prob:maxputpri">11</a>, којима се експлицитно израчунава $P\{p | o\}$ и $\max_p P\{p | o\}$ за познато $o$.</p>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote id="prob:putpri">
+
+<b>Проблем 10</b>: Вероватноћа пута при исходу<br>
+<i>Израчунати вероватноћу пута $p$ кроз HMM ако је опажено $o$.</i><br>
+<b>Улаз</b>: ниска $o = o_1...o_k$ коју је емитовао <i>HMM</i>$\{a, b, \pi\}$ и скривени пут $p = p_1...p_k$ кроз који је прошао.<br>
+<b>Излаз</b>: условна вероватноћа пута при приказу $P\{p | o\}$.
+
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Сама вероватноћа пута ако је опажена нека секвенца емисија може се израчунати преко формуле условне вероватноће. Решење је, дакле: $$P\{p | o\} = \frac{P\{p, o\}}{P\{o\}}.$$ Главнина оваквог приступа је израчунавање вероватноће исхода, тако да је сложеност $O(n^2 k)$. Наивни приступ би, као и досад, узео $O(n^k k)$ времена.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[130]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа пута при опажању</span>
+<span class="k">def</span> <span class="nf">p_puta_pri_ops</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+    <span class="c1"># Заједничка вероватноћа пута и опажања</span>
+    <span class="n">p_po</span> <span class="o">=</span> <span class="n">p_puta_i_ops</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
+    
+    <span class="c1"># Вероватноћа опажања кроз сваки пут</span>
+    <span class="n">p_o</span> <span class="o">=</span> <span class="n">forward</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
+    
+    <span class="c1"># Условна вероватноћа као резултат дељења</span>
+    <span class="k">return</span> <span class="n">p_po</span> <span class="o">/</span> <span class="n">p_o</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[131]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа пута при опсервацији из уџбеника</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Вероватноћа пута </span><span class="si">{</span><span class="n">p_knjiga</span><span class="si">}</span><span class="s1"> при исходу </span><span class="si">{</span><span class="n">o_knjiga</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span>
+      <span class="n">p_puta_pri_ops</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">p_knjiga</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа пута FFFBBBBBFFF при исходу THTHHHTHTTH: 0.007693566785719953
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote id="prob:maxputpri">
+
+<b>Проблем 11</b>: Највероватнији пут при исходу<br>
+<i>Израчунати највероватнији пут $p$ кроз HMM ако је опажено $o$.</i><br>
+<b>Улаз</b>: ниска $o = o_1...o_k$ коју је емитовао <i>HMM</i>$\{a, b, \pi\}$.<br>
+<b>Излаз</b>: највероватнију пут $p_{opt} = p_1...p_k$ ако је опажено $o$.
+
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Максимизација је још једноставнија, када се примети раније поменуто $\operatorname*{argmax}_p P\{p, o\} = \operatorname*{argmax}_p P\{p | o\}$ за познато $o$. Ово значи да је довољно искористити решење проблема <a href="#prob:dekod">1</a>, уз прикладно скалирање вероватноће.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[132]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Највероватнији пут при опажању</span>
+<span class="k">def</span> <span class="nf">opt_put_pri_ops</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+    <span class="c1"># Заједничка вероватноћа пута и опажања</span>
+    <span class="n">p_po</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">viterbi_dekodiranje</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
+    
+    <span class="c1"># Вероватноћа опажања кроз сваки пут</span>
+    <span class="n">p_o</span> <span class="o">=</span> <span class="n">forward</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
+    
+    <span class="c1"># Условна вероватноћа као резултат дељења</span>
+    <span class="k">return</span> <span class="n">p_po</span> <span class="o">/</span> <span class="n">p_o</span><span class="p">,</span> <span class="n">p</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[133]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Највероватнији пут примера из уџбеника</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Исход&#39;</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">,</span> <span class="s1">&#39;највероватније је настао на путу:&#39;</span><span class="p">,</span>
+      <span class="n">opt_put_pri_ops</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Исход THTHHHTHTTH највероватније је настао на путу: (0.24619413714303848, &#39;FFFFFFFFFFF&#39;)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Сада је познато како Витербијевим графом моделовати и максимизовати сваку од критичних вероватноћа $P\{p\}$, $P\{o\}$, $P\{p, o\}$, $P\{p | o\}$ и $P\{o | p\}$, чиме је модел комплетиран, барем што се тиче његове описне стране (остаје учење). Досадашња постигнућа модела сумирана су табелом <a href="#tab:hmm">3.1</a>, која следи.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table id="tab:hmm">
+<tbody>
+<tr class="odd">
+<td style="text-align: center;" colspan="4">Проблем – алгоритам</td>
+<td style="text-align: center;" colspan="2">Сложеност</td>
+</tr>
+<tr class="even">
+<td style="width: 10%; text-align: center;">Број</td>
+<td style="width: 10%; text-align: center;">Улаз</td>
+<td style="width: 20%; text-align: center;">Циљ</td>
+<td style="width: 10%; text-align: center;">Вредност</td>
+<td style="width: 10%; text-align: center;">Наивни</td>
+<td style="width: 10%; text-align: center;">Напредни</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><a href="#prob:dekod" data-reference-type="ref" data-reference="prob:dekod">[1]</a></td>
+<td style="text-align: center;">\(o_k\)</td>
+<td style="text-align: center;">\(\operatorname*{argmax}_p\)</td>
+<td style="text-align: center;">\(P\{p, o\}\)</td>
+<td style="text-align: center;">\(O(n^k k)\)</td>
+<td style="text-align: center;">\(O(n^2 k)\)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><a href="#prob:putishod" data-reference-type="ref" data-reference="prob:putishod">[2]</a></td>
+<td style="text-align: center;">\(p_k\), \(o_k\)</td>
+<td style="text-align: center;">–</td>
+<td style="text-align: center;">\(P\{p, o\}\)</td>
+<td style="text-align: center;">\(O(k)\)</td>
+<td style="text-align: center;">–</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><a href="#prob:put" data-reference-type="ref" data-reference="prob:put">[3]</a></td>
+<td style="text-align: center;">\(p_k\)</td>
+<td style="text-align: center;">–</td>
+<td style="text-align: center;">\(P\{p\}\)</td>
+<td style="text-align: center;">\(O(k)\)</td>
+<td style="text-align: center;">–</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><a href="#prob:ishod" data-reference-type="ref" data-reference="prob:ishod">[4]</a></td>
+<td style="text-align: center;">\(p_k\), \(o_k\)</td>
+<td style="text-align: center;">–</td>
+<td style="text-align: center;">\(P\{o | p\}\)</td>
+<td style="text-align: center;">\(O(k)\)</td>
+<td style="text-align: center;">–</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><a href="#prob:maxput" data-reference-type="ref" data-reference="prob:maxput">[5]</a></td>
+<td style="text-align: center;">\(k\)</td>
+<td style="text-align: center;">\(\operatorname*{argmax}_p\)</td>
+<td style="text-align: center;">\(P\{p\}\)</td>
+<td style="text-align: center;">\(O(n^k k)\)</td>
+<td style="text-align: center;">\(O(n^2 k)\)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><a href="#prob:maxpops" data-reference-type="ref" data-reference="prob:maxpops">[6]</a></td>
+<td style="text-align: center;">\(p_k\)</td>
+<td style="text-align: center;">\(\operatorname*{argmax}_o\)</td>
+<td style="text-align: center;">\(P\{o | p\}\)</td>
+<td style="text-align: center;">\(O(m^k k)\)</td>
+<td style="text-align: center;">\(O(k)\)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><a href="#prob:ops" data-reference-type="ref" data-reference="prob:ops">[7]</a></td>
+<td style="text-align: center;">\(o_k\)</td>
+<td style="text-align: center;">–</td>
+<td style="text-align: center;">\(P\{o\}\)</td>
+<td style="text-align: center;">\(O(n^k k)\)</td>
+<td style="text-align: center;">\(O(n^2 k)\)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><a href="#prob:maxops" data-reference-type="ref" data-reference="prob:maxops">[8]</a></td>
+<td style="text-align: center;">\(k\)</td>
+<td style="text-align: center;">\(\operatorname*{argmax}_o\)</td>
+<td style="text-align: center;">\(P\{o\}\)</td>
+<td style="text-align: center;">\(O(n^2 m^k k)\)</td>
+<td style="text-align: center;">\(O(n^2 m k)\)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><a href="#prob:maxpo" data-reference-type="ref" data-reference="prob:maxpo">[9]</a></td>
+<td style="text-align: center;">\(k\)</td>
+<td style="text-align: center;">\(\operatorname*{argmax}_{p, o}\)</td>
+<td style="text-align: center;">\(P\{p, o\}\)</td>
+<td style="text-align: center;">\(O(n^k m^k k)\) <br> \(O(n^2 m^k k)\)</td>
+<td style="text-align: center;">\(O(n^2 m k)\)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><a href="#prob:putpri" data-reference-type="ref" data-reference="prob:putpri">[10]</a></td>
+<td style="text-align: center;">\(p_k\), \(o_k\)</td>
+<td style="text-align: center;">–</td>
+<td style="text-align: center;">\(P\{p | o\}\)</td>
+<td style="text-align: center;">\(O(n^k k)\)</td>
+<td style="text-align: center;">\(O(n^2 k)\)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><a href="#prob:maxputpri" data-reference-type="ref" data-reference="prob:maxputpri">[11]</a></td>
+<td style="text-align: center;">\(o_k\)</td>
+<td style="text-align: center;">\(\operatorname*{argmax}_p\)</td>
+<td style="text-align: center;">\(P\{p | o\}\)</td>
+<td style="text-align: center;">\(O(n^{2k} k)\) <br> \(O(n^k k)\)</td>
+<td style="text-align: center;">\(O(n^2 k)\)</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
