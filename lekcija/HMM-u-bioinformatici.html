@@ -16910,7 +16910,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Неколико примера броја бацања</span>
-<span class="n">bacanja</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">bacanja</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 
 <span class="c1"># Највероватнији пут са k бацања</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">bacanja</span><span class="p">:</span>
@@ -16932,7 +16932,8 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Ако је бацања 1, највероватнији пут је: (0.5, &#39;F&#39;) тј. log = -0.6931471805599453
+<pre>Ако је бацања 0, највероватнији пут је: (1, &#39;&#39;) тј. log = 0
+Ако је бацања 1, највероватнији пут је: (0.5, &#39;F&#39;) тј. log = -0.6931471805599453
 Ако је бацања 3, највероватнији пут је: (0.405, &#39;FFF&#39;) тј. log = -0.9038682118755978
 Ако је бацања 5, највероватнији пут је: (0.32805000000000006, &#39;FFFFF&#39;) тј. log = -1.1145892431912505
 </pre>
@@ -16966,6 +16967,9 @@ y       = [&#39;H&#39;, &#39;T&#39;]
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Највероватнији пут Витербијем</span>
 <span class="k">def</span> <span class="nf">viterbi_put_p</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="c1"># Специјалан празан пут</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="p">:</span> <span class="k">return</span> <span class="mi">1</span>
+    
     <span class="c1"># Иницијализација (π)</span>
     <span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi</span><span class="p">[</span><span class="n">xi</span><span class="p">]]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
     
@@ -17011,7 +17015,8 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Ако је бацања 1, највероватнији пут је: 0.5 (100/200)
+<pre>Ако је бацања 0, највероватнији пут је: 1 (200/200)
+Ако је бацања 1, највероватнији пут је: 0.5 (100/200)
 Ако је бацања 3, највероватнији пут је: 0.405 (81/200)
 Ако је бацања 5, највероватнији пут је: 0.32805000000000006 (65/200)
 </pre>
@@ -17029,6 +17034,9 @@ y       = [&#39;H&#39;, &#39;T&#39;]
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Највероватнији пут Витербијем са путоказима</span>
 <span class="k">def</span> <span class="nf">viterbi_put</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="c1"># Специјалан празан пут</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="p">:</span> <span class="k">return</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;&#39;</span>
+    
     <span class="c1"># Иницијализација скорова</span>
     <span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi</span><span class="p">[</span><span class="n">xi</span><span class="p">]]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
     
@@ -17131,7 +17139,8 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Ако је бацања 1, највероватнији пут је: F (0.5, 100/200)
+<pre>Ако је бацања 0, највероватнији пут је:  (1, 200/200)
+Ако је бацања 1, највероватнији пут је: F (0.5, 100/200)
 Ако је бацања 3, највероватнији пут је: FFF (0.405, 81/200)
 Ако је бацања 5, највероватнији пут је: FFFFF (0.32805000000000006, 65/200)
 </pre>
@@ -17157,6 +17166,9 @@ y       = [&#39;H&#39;, &#39;T&#39;]
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Највероватнији пут Витербијем</span>
 <span class="k">def</span> <span class="nf">log_viterbi_put_p</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="c1"># Специјалан празан пут</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+    
     <span class="c1"># Иницијализација (π)</span>
     <span class="n">s_log</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi_log</span><span class="p">[</span><span class="n">xi</span><span class="p">]]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
     
@@ -17202,7 +17214,8 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Ако је бацања 1, највероватнији пут је: e^-0.6931471805599453 = 0.5
+<pre>Ако је бацања 0, највероватнији пут је: e^0 = 1.0
+Ако је бацања 1, највероватнији пут је: e^-0.6931471805599453 = 0.5
 Ако је бацања 3, највероватнији пут је: e^-0.9038682118755978 = 0.405
 Ако је бацања 5, највероватнији пут је: e^-1.1145892431912505 = 0.32805
 </pre>
@@ -17220,6 +17233,9 @@ y       = [&#39;H&#39;, &#39;T&#39;]
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Највероватнији пут Витербијем са путоказима</span>
 <span class="k">def</span> <span class="nf">log_viterbi_put</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="c1"># Специјалан празан пут</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;&#39;</span>
+    
     <span class="c1"># Иницијализација скорова</span>
     <span class="n">s_log</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi_log</span><span class="p">[</span><span class="n">xi</span><span class="p">]]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
     
@@ -17306,7 +17322,8 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Ако је бацања 1, највероватнији пут је: F (-0.6931471805599453)
+<pre>Ако је бацања 0, највероватнији пут је:  (0)
+Ако је бацања 1, највероватнији пут је: F (-0.6931471805599453)
 Ако је бацања 3, највероватнији пут је: FFF (-0.9038682118755978)
 Ако је бацања 5, највероватнији пут је: FFFFF (-1.1145892431912505)
 </pre>
@@ -17333,7 +17350,10 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Максимизација вредности у понору Витербијевог графа;</span>
 <span class="c1"># једноставна верзија без путоказа ради демонстрације</span>
 <span class="k">def</span> <span class="nf">viterbi_graf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-   <span class="c1"># Иницијализација (π)</span>
+    <span class="c1"># Специјалан празан пут</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+    
+    <span class="c1"># Иницијализација (π)</span>
     <span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">tau</span><span class="p">(</span><span class="s1">&#39;π&#39;</span><span class="p">,</span> <span class="n">xi</span><span class="p">)]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
     
     <span class="c1"># Итерација (максимуми)</span>
@@ -17397,7 +17417,8 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Ако је бацања 1, највероватнији пут је: -0.6931471805599453
+<pre>Ако је бацања 0, највероватнији пут је: 0
+Ако је бацања 1, највероватнији пут је: -0.6931471805599453
 Ако је бацања 3, највероватнији пут је: -0.9038682118755978
 Ако је бацања 5, највероватнији пут је: -1.1145892431912505
 </pre>
@@ -17424,14 +17445,17 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Декодирање Витербијем; одмах је</span>
 <span class="c1"># имплементирана пуна верзија</span>
 <span class="k">def</span> <span class="nf">viterbi_dekodiranje</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+    <span class="c1"># Одређивање дужине пута</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+    
+    <span class="c1"># Специјалан празан пут</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="p">:</span> <span class="k">return</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;&#39;</span>
+    
     <span class="c1"># Иницијализација скорова</span>
     <span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span> <span class="o">*</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
     
     <span class="c1"># Иницијализација путоказа</span>
     <span class="n">p</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">xi</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
-    
-    <span class="c1"># Одређивање дужине пута</span>
-    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
     
     <span class="c1"># Пролаз кроз време</span>
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
@@ -17534,14 +17558,17 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Декодирање Витербијем; одмах је</span>
 <span class="c1"># имплементирана пуна верзија</span>
 <span class="k">def</span> <span class="nf">log_viterbi_dekodiranje</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+    <span class="c1"># Одређивање дужине пута</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+    
+    <span class="c1"># Специјалан празан пут</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;&#39;</span>
+    
     <span class="c1"># Иницијализација скорова</span>
     <span class="n">s_log</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi_log</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span> <span class="o">+</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b_log</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
     
     <span class="c1"># Иницијализација путоказа</span>
     <span class="n">p</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">xi</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
-    
-    <span class="c1"># Одређивање дужине пута</span>
-    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
     
     <span class="c1"># Пролаз кроз време</span>
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
@@ -17863,6 +17890,9 @@ y       = [&#39;H&#39;, &#39;T&#39;]
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Највероватнији пут Витербијем</span>
 <span class="k">def</span> <span class="nf">viterbi_put_lite</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="c1"># Специјалан празан пут</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="p">:</span> <span class="k">return</span> <span class="mi">1</span>
+    
     <span class="c1"># Иницијализација (π)</span>
     <span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi</span><span class="p">[</span><span class="n">xi</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
     
@@ -17912,7 +17942,8 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Ако је бацања 1, највероватнији пут је: 0.5 (100/200)
+<pre>Ако је бацања 0, највероватнији пут је: 1 (200/200)
+Ако је бацања 1, највероватнији пут је: 0.5 (100/200)
 Ако је бацања 3, највероватнији пут је: 0.405 (81/200)
 Ако је бацања 5, највероватнији пут је: 0.32805000000000006 (65/200)
 </pre>
@@ -18105,11 +18136,14 @@ y       = [&#39;H&#39;, &#39;T&#39;]
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа опсервација Витербијем</span>
 <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
-    <span class="c1"># Иницијализација (π)</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span> <span class="o">*</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
-    
     <span class="c1"># Одређивање дужине пута</span>
     <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+    
+    <span class="c1"># Специјалан празан пут</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="p">:</span> <span class="k">return</span> <span class="mi">1</span>
+    
+    <span class="c1"># Иницијализација (π)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span> <span class="o">*</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
     
     <span class="c1"># Итерација (суме)</span>
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
@@ -18268,11 +18302,14 @@ y       = [&#39;H&#39;, &#39;T&#39;]
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Лог-вероватноћа опсервација Витербијем</span>
 <span class="k">def</span> <span class="nf">log_forward</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
-    <span class="c1"># Иницијализација (π)</span>
-    <span class="n">f_log</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi_log</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span> <span class="o">+</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b_log</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
-    
     <span class="c1"># Одређивање дужине пута</span>
     <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+    
+    <span class="c1"># Специјалан празан пут</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+    
+    <span class="c1"># Иницијализација (π)</span>
+    <span class="n">f_log</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi_log</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span> <span class="o">+</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b_log</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
     
     <span class="c1"># Итерација (суме)</span>
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
@@ -18465,7 +18502,8 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Ако је бацања 1, највероватнија опажања су: (0.625, &#39;H&#39;) тј. log = -0.4700036292457356
+<pre>Ако је бацања 0, највероватнија опажања су: (1, &#39;&#39;) тј. log = 0
+Ако је бацања 1, највероватнија опажања су: (0.625, &#39;H&#39;) тј. log = -0.4700036292457356
 Ако је бацања 3, највероватнија опажања су: (0.26601562500000003, &#39;HHH&#39;) тј. log = -1.3242002313240955
 Ако је бацања 5, највероватнија опажања су: (0.12081665039062502, &#39;HHHHH&#39;) тј. log = -2.1134811686202255
 </pre>
@@ -18500,6 +18538,9 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Оптимално опажање Витербијем; једноставна</span>
 <span class="c1"># верзија без путоказа ради демонстрације</span>
 <span class="k">def</span> <span class="nf">forward_opt</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="c1"># Специјалан празан пут</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="p">:</span> <span class="k">return</span> <span class="mi">1</span>
+    
     <span class="c1"># Иницијализација (π)</span>
     <span class="n">f</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span> <span class="o">*</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">yk</span><span class="p">]</span> <span class="k">for</span> <span class="n">yk</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">y</span><span class="p">)]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
     
@@ -18541,7 +18582,8 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Ако је бацања 1, највероватнија опажања су: 0.625
+<pre>Ако је бацања 0, највероватнија опажања су: 1
+Ако је бацања 1, највероватнија опажања су: 0.625
 Ако је бацања 3, највероватнија опажања су: 0.26601562500000003
 Ако је бацања 5, највероватнија опажања су: 0.12081665039062502
 </pre>
@@ -18638,7 +18680,8 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Ако је бацања 1, највероватнији догађај је: (0.375, &#39;B&#39;, &#39;H&#39;)
+<pre>Ако је бацања 0, највероватнији догађај је: (1, &#39;&#39;, &#39;&#39;)
+Ако је бацања 1, највероватнији догађај је: (0.375, &#39;B&#39;, &#39;H&#39;)
 Ако је бацања 3, највероватнији догађај је: (0.17085937500000004, &#39;BBB&#39;, &#39;HHH&#39;)
 Ако је бацања 5, највероватнији догађај је: (0.07784780273437501, &#39;BBBBB&#39;, &#39;HHHHH&#39;)
 </pre>
@@ -18673,7 +18716,8 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Ако је бацања 1, највероватнији догађај је: (-0.9808292530117262, &#39;B&#39;, &#39;H&#39;)
+<pre>Ако је бацања 0, највероватнији догађај је: (0, &#39;&#39;, &#39;&#39;)
+Ако је бацања 1, највероватнији догађај је: (-0.9808292530117262, &#39;B&#39;, &#39;H&#39;)
 Ако је бацања 3, највероватнији догађај је: (-1.7669144292309404, &#39;BBB&#39;, &#39;HHH&#39;)
 Ако је бацања 5, највероватнији догађај је: (-2.5529996054501547, &#39;BBBBB&#39;, &#39;HHHHH&#39;)
 </pre>
@@ -18700,6 +18744,9 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Оптимални пар пута и опажања Витербијем;</span>
 <span class="c1"># верзија без путоказа ради демонстрације</span>
 <span class="k">def</span> <span class="nf">forward_po</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="c1"># Специјалан празан пут</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="p">:</span> <span class="k">return</span> <span class="mi">1</span>
+    
     <span class="c1"># Иницијализација (π)</span>
     <span class="n">f</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span> <span class="o">*</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">yk</span><span class="p">]</span> <span class="k">for</span> <span class="n">yk</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">y</span><span class="p">)]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
     
@@ -18741,7 +18788,8 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Ако је бацања 1, највероватнији догађај је: 0.375
+<pre>Ако је бацања 0, највероватнији догађај је: 1
+Ако је бацања 1, највероватнији догађај је: 0.375
 Ако је бацања 3, највероватнији догађај је: 0.17085937500000004
 Ако је бацања 5, највероватнији догађај је: 0.07784780273437501
 </pre>
