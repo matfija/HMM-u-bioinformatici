@@ -13773,7 +13773,7 @@ V3 петља: CMRPGTTTRRRIHIGPGRAFYATGNI-GNIRKAHC
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Да ли је вероватније да је прозор CG острво или не</span>
-<span class="k">def</span> <span class="nf">cg_ostrvo</span><span class="p">(</span><span class="n">prozor</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">udeo_ostrvo</span><span class="p">(</span><span class="n">prozor</span><span class="p">):</span>
     <span class="c1"># Почетне јединичне вероватноће</span>
     <span class="n">cg</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">nekod</span> <span class="o">=</span> <span class="mi">1</span>
@@ -13811,7 +13811,7 @@ V3 петља: CMRPGTTTRRRIHIGPGRAFYATGNI-GNIRKAHC
 
 <span class="c1"># Предвиђање да ли је CG острво</span>
 <span class="k">for</span> <span class="n">prozor</span> <span class="ow">in</span> <span class="n">prozori</span><span class="p">:</span>
-    <span class="n">ostrvo</span> <span class="o">=</span> <span class="n">cg_ostrvo</span><span class="p">(</span><span class="n">prozor</span><span class="p">)</span>
+    <span class="n">ostrvo</span> <span class="o">=</span> <span class="n">udeo_ostrvo</span><span class="p">(</span><span class="n">prozor</span><span class="p">)</span>
     
     <span class="c1"># Закључивање о прозору на основу резултата</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">prozor</span><span class="p">,</span> <span class="s1">&#39;вероватно&#39;</span><span class="p">,</span> <span class="s1">&#39;јесте&#39;</span> <span class="k">if</span>
@@ -13849,7 +13849,7 @@ CTAATTTCTT вероватно није CG острво
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Анотација свих прозора дужине k</span>
-<span class="k">def</span> <span class="nf">cg_prozor</span><span class="p">(</span><span class="n">dna</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">cg_prozor</span><span class="p">(</span><span class="n">dna</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">cg_ostrvo</span><span class="p">):</span>
     <span class="c1"># Приказ улазне DNA секвенце</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span>
     
@@ -13911,7 +13911,7 @@ CTAATTTCTT вероватно није CG острво
 <span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
 
 <span class="c1"># Дохватање резултата мотивационог примера</span>
-<span class="n">proz1</span> <span class="o">=</span> <span class="n">cg_prozor</span><span class="p">(</span><span class="n">dna</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+<span class="n">proz1</span> <span class="o">=</span> <span class="n">cg_prozor</span><span class="p">(</span><span class="n">dna</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">udeo_ostrvo</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14384,7 +14384,7 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Библиотека за рад са логаритмима</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">log2</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">log2</span>
 </pre></div>
 
     </div>
@@ -16107,7 +16107,7 @@ $$P\{o | p\} = \prod_{i=1}^k b_{p_i, o_i}.$$
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Библиотека за рад са логаритмима</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">log</span><span class="p">,</span> <span class="n">exp</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">log</span><span class="p">,</span> <span class="n">exp</span>
 </pre></div>
 
     </div>
@@ -19314,6 +19314,9 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <span class="k">def</span> <span class="nf">cg_dekod</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">dna</span><span class="p">):</span>
     <span class="n">rez</span> <span class="o">=</span> <span class="n">log_viterbi_dekodiranje</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">dna</span><span class="p">)</span>
     
+    <span class="c1"># Филтрирање ознака острва</span>
+    <span class="n">rez</span> <span class="o">=</span> <span class="n">rez</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">x</span><span class="p">,</span> <span class="n">rez</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    
     <span class="c1"># Извештавање о резултату</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Највероватнији скривени пут за&#39;</span><span class="p">,</span> <span class="n">dna</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
           <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dna</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;је:&#39;</span><span class="p">,</span> <span class="n">rez</span><span class="p">)</span>
@@ -20338,52 +20341,6 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[183]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Поређење познатог и добијених острва</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ниска:  &#39;</span><span class="p">,</span> <span class="n">dna</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Познато:&#39;</span><span class="p">,</span> <span class="n">cg</span>         <span class="p">,</span> <span class="s1">&#39;(познате ознаке CG острва)&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Прозор: &#39;</span><span class="p">,</span> <span class="n">proz1</span>      <span class="p">,</span> <span class="s1">&#39;(прозор оптималне величине пет)&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;HMM 1:  &#39;</span><span class="p">,</span> <span class="n">rez_hmm1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;(мали прелази, емпиријске емисије)&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;HMM 2:  &#39;</span><span class="p">,</span> <span class="n">rez_hmm2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;(средњи прелази, поправљене емисије)&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;HMM 3:  &#39;</span><span class="p">,</span> <span class="n">rez_hmm3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;(велики прелази, поправљене емисије)&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;HMM 4:  &#39;</span><span class="p">,</span> <span class="n">rez_hmm4</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;(средњи прелази, динуклеотидне емисије)&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ниска:  &#39;</span><span class="p">,</span> <span class="n">dna</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Ниска:   ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
-Познато: -------++++++++++------------------------ (познате ознаке CG острва)
-Прозор:  --------++++++++++----------------------- (прозор оптималне величине пет)
-HMM 1:   ----------------------------------------- (мали прелази, емпиријске емисије)
-HMM 2:   ----------------------------------------- (средњи прелази, поправљене емисије)
-HMM 3:   ----+--+-++-++-+++------+--++------+----- (велики прелази, поправљене емисије)
-HMM 4:   -------+++++++++++----------------------- (средњи прелази, динуклеотидне емисије)
-Ниска:   ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -20502,7 +20459,7 @@ HMM 4:   -------+++++++++++----------------------- (средњи прелази,
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[184]:</div>
+<div class="prompt input_prompt">In&nbsp;[183]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Мапа прелаза у CpG местима према претходној табели</span>
@@ -20519,7 +20476,7 @@ HMM 4:   -------+++++++++++----------------------- (средњи прелази,
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[185]:</div>
+<div class="prompt input_prompt">In&nbsp;[184]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Провера да ли је покривен цео простор догађаја јединичном вероватноћом</span>
@@ -20554,7 +20511,7 @@ HMM 4:   -------+++++++++++----------------------- (средњи прелази,
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[186]:</div>
+<div class="prompt input_prompt">In&nbsp;[185]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Мапа прелаза ван CpG места према претходној табели</span>
@@ -20571,7 +20528,7 @@ HMM 4:   -------+++++++++++----------------------- (средњи прелази,
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[187]:</div>
+<div class="prompt input_prompt">In&nbsp;[186]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Провера да ли је покривен цео простор догађаја јединичном вероватноћом</span>
@@ -20614,7 +20571,7 @@ HMM 4:   -------+++++++++++----------------------- (средњи прелази,
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[188]:</div>
+<div class="prompt input_prompt">In&nbsp;[187]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Класа која представља Марковљев ланац</span>
@@ -20639,7 +20596,7 @@ HMM 4:   -------+++++++++++----------------------- (средњи прелази,
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[189]:</div>
+<div class="prompt input_prompt">In&nbsp;[188]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Марковљев ланац кодирајућих региона</span>
@@ -20653,7 +20610,7 @@ HMM 4:   -------+++++++++++----------------------- (средњи прелази,
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[190]:</div>
+<div class="prompt input_prompt">In&nbsp;[189]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Марковљев ланац некодирајућих региона</span>
@@ -20667,11 +20624,11 @@ HMM 4:   -------+++++++++++----------------------- (средњи прелази,
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[191]:</div>
+<div class="prompt input_prompt">In&nbsp;[190]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Да ли је вероватније да је прозор CG острво или не</span>
-<span class="k">def</span> <span class="nf">cg_ostrvo</span><span class="p">(</span><span class="n">prozor</span><span class="p">):</span>    
+<span class="k">def</span> <span class="nf">mc_ostrvo</span><span class="p">(</span><span class="n">prozor</span><span class="p">):</span>    
     <span class="c1"># Одређивање веће вероватноће</span>
     <span class="k">return</span> <span class="n">p_puta</span><span class="p">(</span><span class="n">mc_cg</span><span class="p">,</span> <span class="n">prozor</span><span class="p">)</span> <span class="o">&gt;</span> \
            <span class="n">p_puta</span><span class="p">(</span><span class="n">mc_nekod</span><span class="p">,</span> <span class="n">prozor</span><span class="p">)</span>
@@ -20684,7 +20641,7 @@ HMM 4:   -------+++++++++++----------------------- (средњи прелази,
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[192]:</div>
+<div class="prompt input_prompt">In&nbsp;[191]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Пример прозора дужине k=10</span>
@@ -20694,7 +20651,7 @@ HMM 4:   -------+++++++++++----------------------- (средњи прелази,
 
 <span class="c1"># Предвиђање да ли је CG острво</span>
 <span class="k">for</span> <span class="n">prozor</span> <span class="ow">in</span> <span class="n">prozori</span><span class="p">:</span>
-    <span class="n">ostrvo</span> <span class="o">=</span> <span class="n">cg_ostrvo</span><span class="p">(</span><span class="n">prozor</span><span class="p">)</span>
+    <span class="n">ostrvo</span> <span class="o">=</span> <span class="n">mc_ostrvo</span><span class="p">(</span><span class="n">prozor</span><span class="p">)</span>
     
     <span class="c1"># Закључивање о прозору на основу резултата</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">prozor</span><span class="p">,</span> <span class="s1">&#39;вероватно&#39;</span><span class="p">,</span> <span class="s1">&#39;јесте&#39;</span> <span class="k">if</span>
@@ -20728,14 +20685,14 @@ CTAATTTCTT вероватно није CG острво
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[193]:</div>
+<div class="prompt input_prompt">In&nbsp;[192]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Одабир величине прозора (како?)</span>
 <span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
 
 <span class="c1"># Дохватање резултата мотивационог примера</span>
-<span class="n">proz2</span> <span class="o">=</span> <span class="n">cg_prozor</span><span class="p">(</span><span class="n">dna</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+<span class="n">proz2</span> <span class="o">=</span> <span class="n">cg_prozor</span><span class="p">(</span><span class="n">dna</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">mc_ostrvo</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -20800,44 +20757,6 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[194]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Поређење познатог и добијених острва</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Секвенца:&#39;</span><span class="p">,</span> <span class="n">dna</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Познато: &#39;</span><span class="p">,</span> <span class="n">cg</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Прозор 1:&#39;</span><span class="p">,</span> <span class="n">proz1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Прозор 2:&#39;</span><span class="p">,</span> <span class="n">proz2</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Секвенца: ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
-Познато:  -------++++++++++------------------------
-Прозор 1: --------++++++++++-----------------------
-Прозор 2: --------++++++++++-----------------------
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -20864,10 +20783,11 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[193]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Нови скуп скривених стања</span>
+<span class="n">x5</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="nb">map</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">,</span> <span class="n">product</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">))]</span>
 </pre></div>
 
     </div>
@@ -20981,13 +20901,87 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[194]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа останка унутар острва</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">.7</span> <span class="c1"># најбоља одраније</span>
+
+<span class="c1"># Вероватноћа останка ван острва</span>
+<span class="n">q</span> <span class="o">=</span> <span class="mf">.65</span> <span class="c1"># најбоља одраније</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[195]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Празна мапа преласка новог модела</span>
+<span class="n">a5</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># Пролазак кроз све нуклеотиде</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">y</span><span class="p">:</span>
+    <span class="c1"># Прелази унутар острва</span>
+    <span class="n">a5</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">+&#39;</span><span class="p">]</span>      <span class="o">=</span> <span class="p">{</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s1">+&#39;</span><span class="p">:</span>    <span class="n">a_cg</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">m</span><span class="p">]</span><span class="o">*</span><span class="n">p</span>     <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">y</span><span class="p">}</span>
+    
+    <span class="c1"># Изласци из острва</span>
+    <span class="n">a5</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">+&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s1">-&#39;</span><span class="p">:</span>    <span class="n">a_cg</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">m</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">y</span><span class="p">})</span>
+    
+    <span class="c1"># Прелази ван острва</span>
+    <span class="n">a5</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">-&#39;</span><span class="p">]</span>      <span class="o">=</span> <span class="p">{</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s1">-&#39;</span><span class="p">:</span> <span class="n">a_nekod</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">m</span><span class="p">]</span><span class="o">*</span><span class="n">q</span>     <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">y</span><span class="p">}</span>
+    
+    <span class="c1"># Уласци у острва</span>
+    <span class="n">a5</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">-&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s1">+&#39;</span><span class="p">:</span> <span class="n">a_nekod</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">m</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">q</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">y</span><span class="p">})</span>
+
+<span class="c1"># Заоктруживање резултата за крај</span>
+<span class="n">a5</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="p">{</span><span class="n">y</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">a5</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">a5</span><span class="p">[</span><span class="n">x</span><span class="p">]}</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a5</span><span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[196]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Провера да ли је покривен цео простор догађаја јединичном вероватноћом</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">x5</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа из&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="s1">&#39;је&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a5</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа из A+ је 1.0
+Вероватноћа из A- је 0.9999000000000001
+Вероватноћа из C+ је 1.0
+Вероватноћа из C- је 1.0
+Вероватноћа из G+ је 1.0000000000000002
+Вероватноћа из G- је 1.0
+Вероватноћа из T+ је 1.0
+Вероватноћа из T- је 0.9997999999999998
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -21098,13 +21092,70 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[197]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Празна мапа преласка новог модела</span>
+<span class="n">a6</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># Пролазак кроз све нуклеотиде</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">y</span><span class="p">:</span>
+    <span class="c1"># Прелази унутар острва</span>
+    <span class="n">a6</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">+&#39;</span><span class="p">]</span>      <span class="o">=</span> <span class="p">{</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s1">+&#39;</span><span class="p">:</span>    <span class="n">a_cg</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">m</span><span class="p">]</span><span class="o">*</span><span class="n">p</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">y</span><span class="p">}</span>
+    
+    <span class="c1"># Изласци из острва</span>
+    <span class="n">a6</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">+&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s1">-&#39;</span><span class="p">:</span>      <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span>    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">y</span><span class="p">})</span>
+    
+    <span class="c1"># Прелази ван острва</span>
+    <span class="n">a6</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">-&#39;</span><span class="p">]</span>      <span class="o">=</span> <span class="p">{</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s1">-&#39;</span><span class="p">:</span> <span class="n">a_nekod</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">m</span><span class="p">]</span><span class="o">*</span><span class="n">q</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">y</span><span class="p">}</span>
+    
+    <span class="c1"># Уласци у острва</span>
+    <span class="n">a6</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">-&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s1">+&#39;</span><span class="p">:</span>     <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">q</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span>     <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">y</span><span class="p">})</span>
+
+<span class="c1"># Заоктруживање резултата за крај</span>
+<span class="n">a6</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="p">{</span><span class="n">y</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">a6</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">a6</span><span class="p">[</span><span class="n">x</span><span class="p">]}</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a6</span><span class="p">}</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[198]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Провера да ли је покривен цео простор догађаја јединичном вероватноћом</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">x5</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа из&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="s1">&#39;је&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a6</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа из A+ је 0.9999999999999998
+Вероватноћа из A- је 1.0000000000000002
+Вероватноћа из C+ је 0.9999999999999998
+Вероватноћа из C- је 1.0
+Вероватноћа из G+ је 0.9999999999999999
+Вероватноћа из G- је 1.0
+Вероватноћа из T+ је 0.9999999999999998
+Вероватноћа из T- је 0.9999
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -21127,10 +21178,11 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[199]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Мапа емисија новог модела</span>
+<span class="n">b5</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="p">{</span><span class="n">m</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span> <span class="o">==</span> <span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">y</span><span class="p">}</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">x5</span><span class="p">}</span>
 </pre></div>
 
     </div>
@@ -21164,13 +21216,39 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[200]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Емпиријске почетне вероватноће новог модела</span>
+<span class="n">pi5</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A+&#39;</span><span class="p">:</span> <span class="mf">0.0725</span><span class="p">,</span> <span class="s1">&#39;C+&#39;</span><span class="p">:</span> <span class="mf">0.1638</span><span class="p">,</span> <span class="s1">&#39;G+&#39;</span><span class="p">:</span> <span class="mf">0.1788</span><span class="p">,</span> <span class="s1">&#39;T+&#39;</span><span class="p">:</span> <span class="mf">0.0755</span><span class="p">,</span>
+       <span class="s1">&#39;A-&#39;</span><span class="p">:</span> <span class="mf">0.1322</span><span class="p">,</span> <span class="s1">&#39;C-&#39;</span><span class="p">:</span> <span class="mf">0.1267</span><span class="p">,</span> <span class="s1">&#39;G-&#39;</span><span class="p">:</span> <span class="mf">0.1226</span><span class="p">,</span> <span class="s1">&#39;T-&#39;</span><span class="p">:</span> <span class="mf">0.1279</span><span class="p">}</span>
+
+<span class="c1"># Провера да ли је покривен цео простор догађаја јединичном вероватноћом</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Укупна вероватнћа емпиријских почетака:&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">pi5</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+
+<span class="c1"># Равномерне почетне вероватноће новог модела</span>
+<span class="n">pi6</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">8</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">x5</span><span class="p">}</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Укупна вероватнћа емпиријских почетака: 1.0
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -21192,13 +21270,149 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[201]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Библиотека за математичке грешке</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">seterr</span>
+
+<span class="c1"># Искључивање небитне грешке</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">seterr</span><span class="p">(</span><span class="n">divide</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[202]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Прављење првог модела за CG острва</span>
+<span class="n">cg_hmm5</span> <span class="o">=</span> <span class="n">HMM</span><span class="p">(</span><span class="n">a5</span><span class="p">,</span> <span class="n">b5</span><span class="p">,</span> <span class="n">pi5</span><span class="p">)</span>
+
+<span class="c1"># Декодирање улазне DNA секвенце</span>
+<span class="n">rez_hmm5</span> <span class="o">=</span> <span class="n">cg_dekod</span><span class="p">(</span><span class="n">cg_hmm5</span><span class="p">,</span> <span class="n">dna</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Највероватнији скривени пут за ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT 
+ је: (-74.49514263430756, &#39;------+++++++++++------------------------&#39;)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[203]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Прављење другог модела за CG острва</span>
+<span class="n">cg_hmm6</span> <span class="o">=</span> <span class="n">HMM</span><span class="p">(</span><span class="n">a6</span><span class="p">,</span> <span class="n">b5</span><span class="p">,</span> <span class="n">pi6</span><span class="p">)</span>
+
+<span class="c1"># Декодирање улазне DNA секвенце</span>
+<span class="n">rez_hmm6</span> <span class="o">=</span> <span class="n">cg_dekod</span><span class="p">(</span><span class="n">cg_hmm6</span><span class="p">,</span> <span class="n">dna</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Највероватнији скривени пут за ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT 
+ је: (-74.6864609456598, &#39;------+++++++++++++----------------------&#39;)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>И овакав модел даје врло добре резултате.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[204]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Поређење познатог и добијених острва</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ниска:  &#39;</span><span class="p">,</span> <span class="n">dna</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Познато:&#39;</span><span class="p">,</span> <span class="n">cg</span>         <span class="p">,</span> <span class="s1">&#39;(познате ознаке CG острва)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Прозор: &#39;</span><span class="p">,</span> <span class="n">proz1</span>      <span class="p">,</span> <span class="s1">&#39;(прозор оптималне величине пет)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;HMM 1:  &#39;</span><span class="p">,</span> <span class="n">rez_hmm1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;(мали прелази, емпиријске емисије)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;HMM 2:  &#39;</span><span class="p">,</span> <span class="n">rez_hmm2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;(средњи прелази, поправљене емисије)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;HMM 3:  &#39;</span><span class="p">,</span> <span class="n">rez_hmm3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;(велики прелази, поправљене емисије)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;HMM 4:  &#39;</span><span class="p">,</span> <span class="n">rez_hmm4</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;(средњи прелази, динуклеотидне емисије)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;MC:     &#39;</span><span class="p">,</span> <span class="n">proz2</span>      <span class="p">,</span> <span class="s1">&#39;(прозорски приступ преко ланца)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;HMM 5:  &#39;</span><span class="p">,</span> <span class="n">rez_hmm5</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;(емпиријски прелази, више стања)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;HMM 6:  &#39;</span><span class="p">,</span> <span class="n">rez_hmm6</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;(равномерни прелази, више стања)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ниска:  &#39;</span><span class="p">,</span> <span class="n">dna</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Ниска:   ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
+Познато: -------++++++++++------------------------ (познате ознаке CG острва)
+Прозор:  --------++++++++++----------------------- (прозор оптималне величине пет)
+HMM 1:   ----------------------------------------- (мали прелази, емпиријске емисије)
+HMM 2:   ----------------------------------------- (средњи прелази, поправљене емисије)
+HMM 3:   ----+--+-++-++-+++------+--++------+----- (велики прелази, поправљене емисије)
+HMM 4:   -------+++++++++++----------------------- (средњи прелази, динуклеотидне емисије)
+MC:      --------++++++++++----------------------- (прозорски приступ преко ланца)
+HMM 5:   ------+++++++++++------------------------ (емпиријски прелази, више стања)
+HMM 6:   ------+++++++++++++---------------------- (равномерни прелази, више стања)
+Ниска:   ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
