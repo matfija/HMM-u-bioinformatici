@@ -13130,8 +13130,9 @@ div#notebook {
 3.4 <a href="#par:vit">Витербијев алгоритам</a><br>
 3.5 <a href="#par:nap">Алгоритам „напред”</a></li>
 <li><a href="#par:bio">Биолошки значај</a><br>
-4.1 <a href="#par:gen2">Потрага за генима</a><br>
-4.2 <a href="#par:prof">Профилни модели</a></li>
+4.1 <a href="#par:gen2">Гени – два стања</a><br>
+4.2 <a href="#par:gen3">Гени – више стања</a><br>
+4.3 <a href="#par:prof">Профилни модели</a></li>
 <li><a href="#par:uch">Учење модела</a></li>
 <li><a href="#par:zak">Закључак</a></li>
 </ol>
@@ -13366,10 +13367,10 @@ div#notebook {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Предвиђање фенотипа сваког члана поравнања</span>
 <span class="k">for</span> <span class="n">hiv</span> <span class="ow">in</span> <span class="n">hiv_profil</span><span class="p">:</span>
     <span class="c1"># Извлачење резултата из дефинисане функције</span>
-    <span class="n">rezultat</span> <span class="o">=</span> <span class="n">hiv_sincicijum</span><span class="p">(</span><span class="n">hiv</span><span class="p">)</span>
+    <span class="n">sincicijum</span> <span class="o">=</span> <span class="n">hiv_sincicijum</span><span class="p">(</span><span class="n">hiv</span><span class="p">)</span>
     
     <span class="c1"># Закључивање о изолату на основу резултата</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Закључак: вероватно&#39;</span><span class="p">,</span> <span class="s1">&#39;јесте&#39;</span> <span class="k">if</span> <span class="n">rezultat</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Закључак: вероватно&#39;</span><span class="p">,</span> <span class="s1">&#39;јесте&#39;</span> <span class="k">if</span> <span class="n">sincicijum</span>
           <span class="k">else</span> <span class="s1">&#39;није&#39;</span><span class="p">,</span> <span class="s1">&#39;агресиван фенотип&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 
@@ -13649,10 +13650,10 @@ V3 петља: CMRPGTTTRRRIHIGPGRAFYATGNI-GNIRKAHC
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Мапа вероватноћа у CpG местима према претходној табели</span>
-<span class="n">p_cg</span>    <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;AA&#39;</span><span class="p">:</span> <span class="mf">0.053</span><span class="p">,</span> <span class="s1">&#39;AC&#39;</span><span class="p">:</span> <span class="mf">0.079</span><span class="p">,</span> <span class="s1">&#39;AG&#39;</span><span class="p">:</span> <span class="mf">0.127</span><span class="p">,</span> <span class="s1">&#39;AT&#39;</span><span class="p">:</span> <span class="mf">0.036</span><span class="p">,</span>
-           <span class="s1">&#39;CA&#39;</span><span class="p">:</span> <span class="mf">0.037</span><span class="p">,</span> <span class="s1">&#39;CC&#39;</span><span class="p">:</span> <span class="mf">0.058</span><span class="p">,</span> <span class="s1">&#39;CG&#39;</span><span class="p">:</span> <span class="mf">0.058</span><span class="p">,</span> <span class="s1">&#39;CT&#39;</span><span class="p">:</span> <span class="mf">0.041</span><span class="p">,</span>
-           <span class="s1">&#39;GA&#39;</span><span class="p">:</span> <span class="mf">0.035</span><span class="p">,</span> <span class="s1">&#39;GC&#39;</span><span class="p">:</span> <span class="mf">0.075</span><span class="p">,</span> <span class="s1">&#39;GG&#39;</span><span class="p">:</span> <span class="mf">0.081</span><span class="p">,</span> <span class="s1">&#39;GT&#39;</span><span class="p">:</span> <span class="mf">0.026</span><span class="p">,</span>
-           <span class="s1">&#39;TA&#39;</span><span class="p">:</span> <span class="mf">0.024</span><span class="p">,</span> <span class="s1">&#39;TC&#39;</span><span class="p">:</span> <span class="mf">0.105</span><span class="p">,</span> <span class="s1">&#39;TG&#39;</span><span class="p">:</span> <span class="mf">0.115</span><span class="p">,</span> <span class="s1">&#39;TT&#39;</span><span class="p">:</span> <span class="mf">0.050</span><span class="p">}</span>
+<span class="n">p_cg</span>    <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;AA&#39;</span><span class="p">:</span> <span class="mf">.053</span><span class="p">,</span> <span class="s1">&#39;AC&#39;</span><span class="p">:</span> <span class="mf">.079</span><span class="p">,</span> <span class="s1">&#39;AG&#39;</span><span class="p">:</span> <span class="mf">.127</span><span class="p">,</span> <span class="s1">&#39;AT&#39;</span><span class="p">:</span> <span class="mf">.036</span><span class="p">,</span>
+           <span class="s1">&#39;CA&#39;</span><span class="p">:</span> <span class="mf">.037</span><span class="p">,</span> <span class="s1">&#39;CC&#39;</span><span class="p">:</span> <span class="mf">.058</span><span class="p">,</span> <span class="s1">&#39;CG&#39;</span><span class="p">:</span> <span class="mf">.058</span><span class="p">,</span> <span class="s1">&#39;CT&#39;</span><span class="p">:</span> <span class="mf">.041</span><span class="p">,</span>
+           <span class="s1">&#39;GA&#39;</span><span class="p">:</span> <span class="mf">.035</span><span class="p">,</span> <span class="s1">&#39;GC&#39;</span><span class="p">:</span> <span class="mf">.075</span><span class="p">,</span> <span class="s1">&#39;GG&#39;</span><span class="p">:</span> <span class="mf">.081</span><span class="p">,</span> <span class="s1">&#39;GT&#39;</span><span class="p">:</span> <span class="mf">.026</span><span class="p">,</span>
+           <span class="s1">&#39;TA&#39;</span><span class="p">:</span> <span class="mf">.024</span><span class="p">,</span> <span class="s1">&#39;TC&#39;</span><span class="p">:</span> <span class="mf">.105</span><span class="p">,</span> <span class="s1">&#39;TG&#39;</span><span class="p">:</span> <span class="mf">.115</span><span class="p">,</span> <span class="s1">&#39;TT&#39;</span><span class="p">:</span> <span class="mf">.050</span><span class="p">}</span>
 </pre></div>
 
     </div>
@@ -13698,10 +13699,10 @@ V3 петља: CMRPGTTTRRRIHIGPGRAFYATGNI-GNIRKAHC
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Мапа вероватноћа ван CpG места према претходној табели</span>
-<span class="n">p_nekod</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;AA&#39;</span><span class="p">:</span> <span class="mf">0.087</span><span class="p">,</span> <span class="s1">&#39;AC&#39;</span><span class="p">:</span> <span class="mf">0.058</span><span class="p">,</span> <span class="s1">&#39;AG&#39;</span><span class="p">:</span> <span class="mf">0.084</span><span class="p">,</span> <span class="s1">&#39;AT&#39;</span><span class="p">:</span> <span class="mf">0.061</span><span class="p">,</span>
-           <span class="s1">&#39;CA&#39;</span><span class="p">:</span> <span class="mf">0.067</span><span class="p">,</span> <span class="s1">&#39;CC&#39;</span><span class="p">:</span> <span class="mf">0.063</span><span class="p">,</span> <span class="s1">&#39;CG&#39;</span><span class="p">:</span> <span class="mf">0.017</span><span class="p">,</span> <span class="s1">&#39;CT&#39;</span><span class="p">:</span> <span class="mf">0.063</span><span class="p">,</span>
-           <span class="s1">&#39;GA&#39;</span><span class="p">:</span> <span class="mf">0.053</span><span class="p">,</span> <span class="s1">&#39;GC&#39;</span><span class="p">:</span> <span class="mf">0.053</span><span class="p">,</span> <span class="s1">&#39;GG&#39;</span><span class="p">:</span> <span class="mf">0.063</span><span class="p">,</span> <span class="s1">&#39;GT&#39;</span><span class="p">:</span> <span class="mf">0.042</span><span class="p">,</span>
-           <span class="s1">&#39;TA&#39;</span><span class="p">:</span> <span class="mf">0.051</span><span class="p">,</span> <span class="s1">&#39;TC&#39;</span><span class="p">:</span> <span class="mf">0.070</span><span class="p">,</span> <span class="s1">&#39;TG&#39;</span><span class="p">:</span> <span class="mf">0.084</span><span class="p">,</span> <span class="s1">&#39;TT&#39;</span><span class="p">:</span> <span class="mf">0.084</span><span class="p">}</span>
+<span class="n">p_nekod</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;AA&#39;</span><span class="p">:</span> <span class="mf">.087</span><span class="p">,</span> <span class="s1">&#39;AC&#39;</span><span class="p">:</span> <span class="mf">.058</span><span class="p">,</span> <span class="s1">&#39;AG&#39;</span><span class="p">:</span> <span class="mf">.084</span><span class="p">,</span> <span class="s1">&#39;AT&#39;</span><span class="p">:</span> <span class="mf">.061</span><span class="p">,</span>
+           <span class="s1">&#39;CA&#39;</span><span class="p">:</span> <span class="mf">.067</span><span class="p">,</span> <span class="s1">&#39;CC&#39;</span><span class="p">:</span> <span class="mf">.063</span><span class="p">,</span> <span class="s1">&#39;CG&#39;</span><span class="p">:</span> <span class="mf">.017</span><span class="p">,</span> <span class="s1">&#39;CT&#39;</span><span class="p">:</span> <span class="mf">.063</span><span class="p">,</span>
+           <span class="s1">&#39;GA&#39;</span><span class="p">:</span> <span class="mf">.053</span><span class="p">,</span> <span class="s1">&#39;GC&#39;</span><span class="p">:</span> <span class="mf">.053</span><span class="p">,</span> <span class="s1">&#39;GG&#39;</span><span class="p">:</span> <span class="mf">.063</span><span class="p">,</span> <span class="s1">&#39;GT&#39;</span><span class="p">:</span> <span class="mf">.042</span><span class="p">,</span>
+           <span class="s1">&#39;TA&#39;</span><span class="p">:</span> <span class="mf">.051</span><span class="p">,</span> <span class="s1">&#39;TC&#39;</span><span class="p">:</span> <span class="mf">.070</span><span class="p">,</span> <span class="s1">&#39;TG&#39;</span><span class="p">:</span> <span class="mf">.084</span><span class="p">,</span> <span class="s1">&#39;TT&#39;</span><span class="p">:</span> <span class="mf">.084</span><span class="p">}</span>
 </pre></div>
 
     </div>
@@ -13856,7 +13857,7 @@ CTAATTTCTT вероватно није CG острво
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span>
     
     <span class="c1"># Иницијализација низа предлога</span>
-    <span class="n">rezultat</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">predlog</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
     
     <span class="c1"># Пролазак кроз све прозоре</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
@@ -13872,28 +13873,28 @@ CTAATTTCTT вероватно није CG острво
         <span class="c1"># Израчунавање да ли је прозор CG острво</span>
         <span class="n">ostrvo</span> <span class="o">=</span> <span class="n">cg_ostrvo</span><span class="p">(</span><span class="n">prozor</span><span class="p">)</span>
         
-        <span class="c1"># Један од начина за ажурирање резултата</span>
-        <span class="n">rezultat</span> <span class="o">=</span> <span class="n">rezultat</span> <span class="o">+</span> <span class="p">(</span><span class="s1">&#39;+&#39;</span> <span class="k">if</span> <span class="n">ostrvo</span> <span class="k">else</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+        <span class="c1"># Један од начина за ажурирање предлога</span>
+        <span class="n">predlog</span> <span class="o">=</span> <span class="n">predlog</span> <span class="o">+</span> <span class="p">(</span><span class="s1">&#39;+&#39;</span> <span class="k">if</span> <span class="n">ostrvo</span> <span class="k">else</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
         
-        <span class="c1"># Извештавање о резултату знаком + или -</span>
+        <span class="c1"># Извештавање о предлогу знаком + или -</span>
         <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">prozor</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="n">rezultat</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">prozor</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="n">predlog</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="n">rezultat</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">prozor</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="n">predlog</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">prozor</span><span class="p">)</span>
     
-    <span class="c1"># Допуњавање резултата на оба краја</span>
-    <span class="n">rezultat</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span> <span class="o">*</span> <span class="n">rezultat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> \
-               <span class="n">rezultat</span> <span class="o">+</span> \
-               <span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span> <span class="o">*</span> <span class="n">rezultat</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1"># Допуњавање предлога на оба краја</span>
+    <span class="n">predlog</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span> <span class="o">*</span> <span class="n">predlog</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> \
+              <span class="n">predlog</span> <span class="o">+</span> \
+              <span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span> <span class="o">*</span> <span class="n">predlog</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     
     <span class="c1"># Приказ улазне DNA секвенце</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span>
     
-    <span class="c1"># Приказ коначног резултата ознака</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">rezultat</span><span class="p">)</span>
+    <span class="c1"># Приказ коначног предлога ознака</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">predlog</span><span class="p">)</span>
     
-    <span class="c1"># Враћање резултата позиваоцу</span>
-    <span class="k">return</span> <span class="n">rezultat</span>
+    <span class="c1"># Враћање предлога позиваоцу</span>
+    <span class="k">return</span> <span class="n">predlog</span>
 </pre></div>
 
     </div>
@@ -13910,7 +13911,7 @@ CTAATTTCTT вероватно није CG острво
 <span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
 
 <span class="c1"># Дохватање резултата мотивационог примера</span>
-<span class="n">rezultat</span> <span class="o">=</span> <span class="n">cg_prozor</span><span class="p">(</span><span class="n">dna</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+<span class="n">proz1</span> <span class="o">=</span> <span class="n">cg_prozor</span><span class="p">(</span><span class="n">dna</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13984,7 +13985,7 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 <span class="c1"># врло су слични, што је фино постигнуће</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Секвенца:&#39;</span><span class="p">,</span> <span class="n">dna</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Познато: &#39;</span><span class="p">,</span> <span class="n">cg</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Добијено:&#39;</span><span class="p">,</span> <span class="n">rezultat</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Добијено:&#39;</span><span class="p">,</span> <span class="n">proz1</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -15019,7 +15020,7 @@ HHHHHTTHHHTTTTT
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Неки примери релативно сличних бројева</span>
-<span class="n">primeri</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">3</span><span class="o">*</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)]</span>
+<span class="n">primeri</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">3</span><span class="o">*</span><span class="mf">.1</span><span class="p">,</span> <span class="mf">.3</span><span class="p">),</span> <span class="p">(</span><span class="mf">.5</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)]</span>
 
 <span class="c1"># Извештавање о блискости бројева из примера</span>
 <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">primeri</span><span class="p">:</span>
@@ -15508,8 +15509,8 @@ HHHHHTTHHHTTTTT
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Основни пример параметара са ROSALIND</span>
 <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">]</span>
 <span class="n">pi</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
-<span class="n">a</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.194</span><span class="p">,</span> <span class="mf">0.806</span><span class="p">],</span>
-     <span class="p">[</span><span class="mf">0.273</span><span class="p">,</span> <span class="mf">0.727</span><span class="p">]]</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">.194</span><span class="p">,</span> <span class="mf">.806</span><span class="p">],</span>
+     <span class="p">[</span><span class="mf">.273</span><span class="p">,</span> <span class="mf">.727</span><span class="p">]]</span>
 
 <span class="c1"># Основни пример пута са ROSALIND</span>
 <span class="n">p</span> <span class="o">=</span> <span class="s1">&#39;AABBBAABABAAAABBBBAABBABABBBAABBAAAABABAABBABABBAB&#39;</span>
@@ -15552,8 +15553,8 @@ HHHHHTTHHHTTTTT
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Додатни пример параметара са ROSALIND</span>
 <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">]</span>
 <span class="n">pi</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
-<span class="n">a</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.863</span><span class="p">,</span> <span class="mf">0.137</span><span class="p">],</span>
-     <span class="p">[</span><span class="mf">0.511</span><span class="p">,</span> <span class="mf">0.489</span><span class="p">]]</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">.863</span><span class="p">,</span> <span class="mf">.137</span><span class="p">],</span>
+     <span class="p">[</span><span class="mf">.511</span><span class="p">,</span> <span class="mf">.489</span><span class="p">]]</span>
 
 <span class="c1"># Додатни пример пута са ROSALIND</span>
 <span class="n">p</span> <span class="o">=</span> <span class="s1">&#39;BBABBBABBAABABABBBAABBBBAAABABABAAAABBBBBAABBABABB&#39;</span>
@@ -15690,8 +15691,8 @@ HHHHHTTHHHTTTTT
 <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">]</span>
 <span class="n">pi</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
-<span class="n">b</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.612</span><span class="p">,</span> <span class="mf">0.314</span><span class="p">,</span> <span class="mf">0.074</span><span class="p">],</span>
-     <span class="p">[</span><span class="mf">0.346</span><span class="p">,</span> <span class="mf">0.317</span><span class="p">,</span> <span class="mf">0.336</span><span class="p">]]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">.612</span><span class="p">,</span> <span class="mf">.314</span><span class="p">,</span> <span class="mf">.074</span><span class="p">],</span>
+     <span class="p">[</span><span class="mf">.346</span><span class="p">,</span> <span class="mf">.317</span><span class="p">,</span> <span class="mf">.336</span><span class="p">]]</span>
 
 <span class="c1"># Основни пример пута и исхода са ROSALIND</span>
 <span class="n">p</span> <span class="o">=</span> <span class="s1">&#39;BBBAAABABABBBBBBAAAAAABAAAABABABBBBBABAABABABABBBB&#39;</span>
@@ -15738,8 +15739,8 @@ HHHHHTTHHHTTTTT
 <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">]</span>
 <span class="n">pi</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
-<span class="n">b</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.093</span><span class="p">,</span> <span class="mf">0.581</span><span class="p">,</span> <span class="mf">0.325</span><span class="p">],</span>
-     <span class="p">[</span><span class="mf">0.77</span><span class="p">,</span> <span class="mf">0.21</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">]]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">.093</span><span class="p">,</span> <span class="mf">.581</span><span class="p">,</span> <span class="mf">.325</span><span class="p">],</span>
+     <span class="p">[</span><span class="mf">.77</span> <span class="p">,</span> <span class="mf">.21</span> <span class="p">,</span> <span class="mf">.02</span> <span class="p">]]</span>
 
 <span class="c1"># Додатни пример пута и исхода са ROSALIND</span>
 <span class="n">p</span> <span class="o">=</span> <span class="s1">&#39;BAABBAABAABAAABAABBABBAAABBBABBAAAABAAAABBAAABABAA&#39;</span>
@@ -17661,10 +17662,10 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Основни пример параметара са ROSALIND</span>
-<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">0.641</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">0.359</span><span class="p">},</span>
-     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">0.729</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">0.271</span><span class="p">}}</span>
-<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">0.117</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">0.691</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">0.192</span><span class="p">},</span>
-     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">0.097</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">0.42</span><span class="p">,</span>  <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">0.483</span><span class="p">}}</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.641</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">.359</span><span class="p">},</span>
+     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.729</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">.271</span><span class="p">}}</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">.117</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">.691</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">.192</span><span class="p">},</span>
+     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">.097</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">.42</span> <span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">.483</span><span class="p">}}</span>
 <span class="n">pi</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">}</span>
 
 <span class="c1"># Основни пример опажања са ROSALIND</span>
@@ -17712,10 +17713,10 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Додатни пример параметара са ROSALIND</span>
-<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">0.634</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">0.366</span><span class="p">},</span>
-     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">0.387</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">0.613</span><span class="p">}}</span>
-<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">0.532</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">0.226</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">0.251</span><span class="p">},</span>
-     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">0.457</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">0.192</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">0.351</span><span class="p">}}</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.634</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">.366</span><span class="p">},</span>
+     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.387</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">.613</span><span class="p">}}</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">.532</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">.226</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">.251</span><span class="p">},</span>
+     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">.457</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">.192</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">.351</span><span class="p">}}</span>
 <span class="n">pi</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">}</span>
 
 <span class="c1"># Додатни пример опажања са ROSALIND</span>
@@ -18197,10 +18198,10 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Основни пример параметара са ROSALIND</span>
-<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">0.303</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">0.697</span><span class="p">},</span>
-     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">0.831</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">0.169</span><span class="p">}}</span>
-<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">0.533</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">0.065</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">0.402</span><span class="p">},</span>
-     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">0.342</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">0.334</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">0.324</span><span class="p">}}</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.303</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">.697</span><span class="p">},</span>
+     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.831</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">.169</span><span class="p">}}</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">.533</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">.065</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">.402</span><span class="p">},</span>
+     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">.342</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">.334</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">.324</span><span class="p">}}</span>
 <span class="n">pi</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">}</span>
 
 <span class="c1"># Основни пример опажања са ROSALIND</span>
@@ -18246,10 +18247,10 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Додатни пример параметара са ROSALIND</span>
-<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">0.994</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">0.006</span><span class="p">},</span>
-     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">0.563</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">0.437</span><span class="p">}}</span>
-<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">0.55</span><span class="p">,</span>  <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">0.276</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">0.174</span><span class="p">},</span>
-     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">0.311</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">0.368</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">0.321</span><span class="p">}}</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.994</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">.006</span><span class="p">},</span>
+     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.563</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">.437</span><span class="p">}}</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">.55</span> <span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">.276</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">.174</span><span class="p">},</span>
+     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">.311</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">.368</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">.321</span><span class="p">}}</span>
 <span class="n">pi</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">}</span>
 
 <span class="c1"># Додатни пример опажања са ROSALIND</span>
@@ -19098,7 +19099,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="4.1-%D0%9F%D0%BE%D1%82%D1%80%D0%B0%D0%B3%D0%B0-%D0%B7%D0%B0-%D0%B3%D0%B5%D0%BD%D0%B8%D0%BC%D0%B0-%E2%AE%AD">4.1 &#1055;&#1086;&#1090;&#1088;&#1072;&#1075;&#1072; &#1079;&#1072; &#1075;&#1077;&#1085;&#1080;&#1084;&#1072; <a href="#par:bio">&#11181;</a><a id="par:gen2" /><a class="anchor-link" href="#4.1-%D0%9F%D0%BE%D1%82%D1%80%D0%B0%D0%B3%D0%B0-%D0%B7%D0%B0-%D0%B3%D0%B5%D0%BD%D0%B8%D0%BC%D0%B0-%E2%AE%AD">&#182;</a></h2>
+<h2 id="4.1-%D0%93%D0%B5%D0%BD%D0%B8-%E2%80%93-%D0%B4%D0%B2%D0%B0-%D1%81%D1%82%D0%B0%D1%9A%D0%B0-%E2%AE%AD">4.1 &#1043;&#1077;&#1085;&#1080; &#8211; &#1076;&#1074;&#1072; &#1089;&#1090;&#1072;&#1114;&#1072; <a href="#par:bio">&#11181;</a><a id="par:gen2" /><a class="anchor-link" href="#4.1-%D0%93%D0%B5%D0%BD%D0%B8-%E2%80%93-%D0%B4%D0%B2%D0%B0-%D1%81%D1%82%D0%B0%D1%9A%D0%B0-%E2%AE%AD">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -19142,7 +19143,15 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Скупови скривених стања и могућих опажања се, дакле, лако одређују, па чак и веома личе на разматрани мотивациони проблем непоштене коцкарнице. Наиме, такође су присутна два стања, мада опсервација има нешто више. Све у свему, проблем би се могао апстраховати неком врстом коцкарнице, у којој би крупије мењао две различито отежане четворостране коцкице.</p>
+<p>Скупови скривених стања и могућих опажања се, дакле, лако одређују, па чак и веома личе на разматрани мотивациони проблем непоштене коцкарнице. Наиме, такође су присутна два стања, мада опсервација има нешто више. Све у свему, проблем се може апстраховати неком врстом коцкарнице, у којој крупије мења две различито отежане четворостране коцкице. Уопштени дијаграм (без вероватноћа) оваквог модела приказан је на слици <a href="#fig:cg_graf">4.1</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="../slike/cg_graf.png" width="35%" id="fig:cg_graf" title="Слика 4.1: Скривени модел CG острва са два стања" /></p>
 
 </div>
 </div>
@@ -19172,7 +19181,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Полазне вероватноће код CG острва</span>
-<span class="n">pi</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">}</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="mf">.5</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="mf">.5</span><span class="p">}</span>
 </pre></div>
 
     </div>
@@ -19197,8 +19206,8 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Мапа прелаза код CG острва</span>
-<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="mf">0.98</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">},</span>
-     <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="mf">0.99</span><span class="p">}}</span>
+<span class="n">a1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="mf">.98</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="mf">.02</span><span class="p">},</span>
+      <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="mf">.01</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="mf">.99</span><span class="p">}}</span>
 </pre></div>
 
     </div>
@@ -19269,7 +19278,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <span class="n">b_nekod</span> <span class="o">=</span> <span class="n">p_nuk</span><span class="p">(</span><span class="n">p_nekod</span><span class="p">)</span>
 
 <span class="c1"># Мапа емисија код CG острва</span>
-<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="n">b_cg</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="n">b_nekod</span><span class="p">}</span>
+<span class="n">b1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="n">b_cg</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="n">b_nekod</span><span class="p">}</span>
 </pre></div>
 
     </div>
@@ -19324,7 +19333,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Прављење модела за CG острва</span>
-<span class="n">cg_hmm1</span> <span class="o">=</span> <span class="n">HMM</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
+<span class="n">cg_hmm1</span> <span class="o">=</span> <span class="n">HMM</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
 
 <span class="c1"># Декодирање улазне DNA секвенце</span>
 <span class="n">rez_hmm1</span> <span class="o">=</span> <span class="n">cg_dekod</span><span class="p">(</span><span class="n">cg_hmm1</span><span class="p">,</span> <span class="n">dna</span><span class="p">)</span>
@@ -19380,12 +19389,12 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Нова мапа прелаза код CG острва</span>
-<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">},</span>
-     <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">}}</span>
+<span class="n">a2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="mf">.9</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="mf">.1</span><span class="p">},</span>
+      <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="mf">.1</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="mf">.9</span><span class="p">}}</span>
 
 <span class="c1"># Нова мапа емисија код CG острва</span>
-<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">0.1</span> <span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mf">0.4</span> <span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="mf">0.4</span> <span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="mf">0.1</span> <span class="p">},</span>
-     <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">}}</span>
+<span class="n">b2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.1</span> <span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mf">.4</span> <span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="mf">.4</span> <span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="mf">.1</span> <span class="p">},</span>
+      <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.25</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mf">.25</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="mf">.25</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="mf">.25</span><span class="p">}}</span>
 </pre></div>
 
     </div>
@@ -19399,7 +19408,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Прављење модела за CG острва</span>
-<span class="n">cg_hmm2</span> <span class="o">=</span> <span class="n">HMM</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
+<span class="n">cg_hmm2</span> <span class="o">=</span> <span class="n">HMM</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
 
 <span class="c1"># Декодирање улазне DNA секвенце</span>
 <span class="n">rez_hmm2</span> <span class="o">=</span> <span class="n">cg_dekod</span><span class="p">(</span><span class="n">cg_hmm2</span><span class="p">,</span> <span class="n">dna</span><span class="p">)</span>
@@ -19434,7 +19443,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="prompt input_prompt">In&nbsp;[144]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Примена и алгоритма напред</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Примена и алгоритма „напред”</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа опажања&#39;</span><span class="p">,</span> <span class="n">dna</span><span class="p">,</span> <span class="s1">&#39;је:&#39;</span><span class="p">,</span> <span class="n">log_forward</span><span class="p">(</span><span class="n">cg_hmm2</span><span class="p">,</span> <span class="n">dna</span><span class="p">))</span>
 </pre></div>
 
@@ -19464,7 +19473,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Нажалост, ни овај модел није ништа бољи. Параметри су, иначе, преузети са примера употребе библиотеке <em>pomegranate</em>, па је добар тренутак за кратку дигресију о њој. У питању је модул програмског језика <em>Python</em> који омогућује рад са многим пробабилистичким моделима, што поред скривених Марковљевих модела укључује и Марковљеве ланце, Бајесове и Марковљеве мреже (случајна поља), графове фактора и уопштене мешовите моделе.</p>
+<p>Нажалост, ни овај модел није ништа бољи. Параметри су, иначе, преузети са примера употребе библиотеке <em>pomegranate</em> (<a href="https://pomegranate.readthedocs.io/en/latest/">документација</a> и <a href="https://github.com/jmschrei/pomegranate"><em>GitHub</em></a>), па је добар тренутак за кратку дигресију о њој. У питању је модул програмског језика <em>Python</em> који омогућује рад са многим пробабилистичким моделима, што поред скривених Марковљевих модела укључује и Марковљеве ланце, Бајесове и Марковљеве мреже (случајна поља), графове фактора и уопштене мешовите моделе.</p>
 
 </div>
 </div>
@@ -19511,10 +19520,10 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Расподела емисија у CpG местима</span>
-<span class="n">plus</span>  <span class="o">=</span> <span class="n">DiscreteDistribution</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="s1">&#39;+&#39;</span><span class="p">])</span>
+<span class="n">plus</span>  <span class="o">=</span> <span class="n">DiscreteDistribution</span><span class="p">(</span><span class="n">b2</span><span class="p">[</span><span class="s1">&#39;+&#39;</span><span class="p">])</span>
 
 <span class="c1"># Расподела емисија ван CpG места</span>
-<span class="n">minus</span> <span class="o">=</span> <span class="n">DiscreteDistribution</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">])</span>
+<span class="n">minus</span> <span class="o">=</span> <span class="n">DiscreteDistribution</span><span class="p">(</span><span class="n">b2</span><span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -19574,10 +19583,10 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноће преласка</span>
-<span class="n">cg_pom</span><span class="o">.</span><span class="n">add_transition</span><span class="p">(</span><span class="n">plus</span><span class="p">,</span>  <span class="n">plus</span><span class="p">,</span>  <span class="n">a</span><span class="p">[</span><span class="s1">&#39;+&#39;</span><span class="p">][</span><span class="s1">&#39;+&#39;</span><span class="p">])</span>
-<span class="n">cg_pom</span><span class="o">.</span><span class="n">add_transition</span><span class="p">(</span><span class="n">plus</span><span class="p">,</span>  <span class="n">minus</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;+&#39;</span><span class="p">][</span><span class="s1">&#39;-&#39;</span><span class="p">])</span>
-<span class="n">cg_pom</span><span class="o">.</span><span class="n">add_transition</span><span class="p">(</span><span class="n">minus</span><span class="p">,</span> <span class="n">plus</span><span class="p">,</span>  <span class="n">a</span><span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">][</span><span class="s1">&#39;+&#39;</span><span class="p">])</span>
-<span class="n">cg_pom</span><span class="o">.</span><span class="n">add_transition</span><span class="p">(</span><span class="n">minus</span><span class="p">,</span> <span class="n">minus</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">][</span><span class="s1">&#39;-&#39;</span><span class="p">])</span>
+<span class="n">cg_pom</span><span class="o">.</span><span class="n">add_transition</span><span class="p">(</span><span class="n">plus</span><span class="p">,</span>  <span class="n">plus</span><span class="p">,</span>  <span class="n">a2</span><span class="p">[</span><span class="s1">&#39;+&#39;</span><span class="p">][</span><span class="s1">&#39;+&#39;</span><span class="p">])</span>
+<span class="n">cg_pom</span><span class="o">.</span><span class="n">add_transition</span><span class="p">(</span><span class="n">plus</span><span class="p">,</span>  <span class="n">minus</span><span class="p">,</span> <span class="n">a2</span><span class="p">[</span><span class="s1">&#39;+&#39;</span><span class="p">][</span><span class="s1">&#39;-&#39;</span><span class="p">])</span>
+<span class="n">cg_pom</span><span class="o">.</span><span class="n">add_transition</span><span class="p">(</span><span class="n">minus</span><span class="p">,</span> <span class="n">plus</span><span class="p">,</span>  <span class="n">a2</span><span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">][</span><span class="s1">&#39;+&#39;</span><span class="p">])</span>
+<span class="n">cg_pom</span><span class="o">.</span><span class="n">add_transition</span><span class="p">(</span><span class="n">minus</span><span class="p">,</span> <span class="n">minus</span><span class="p">,</span> <span class="n">a2</span><span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">][</span><span class="s1">&#39;-&#39;</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -19678,7 +19687,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="prompt input_prompt">In&nbsp;[156]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Примена и алгоритма напред; напомена: pomegranate</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Примена и алгоритма „напред”; напомена: pomegranate</span>
 <span class="c1"># не скалира вероватноће према почетном стању,</span>
 <span class="c1"># па је добијена вероватноћа двапут већа</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа опажања&#39;</span><span class="p">,</span> <span class="n">dna</span><span class="p">,</span> <span class="s1">&#39;је:&#39;</span><span class="p">,</span> <span class="n">cg_pom</span><span class="o">.</span><span class="n">log_probability</span><span class="p">(</span><span class="n">dna</span><span class="p">))</span>
@@ -19710,7 +19719,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Још један познати модул језика <em>Python</em> за рад са <em>HMM</em> јесте <em>hmmlearn</em>. Имплементира дискретне (мултиномијалне), Гаусове (расподеле емисија су нормалне) и мешовите (емисије потичу из мешавине нормалних расподела) скривене Марковљеве моделе. Попут претходне, и ова библиотека имплементира само Витербијев и алгоритам „напред”, као решења најважнијих проблема код <em>HMM</em>. Такође подржава учење параметара модела. С друге стране, ради искључиво са матрицама параметара, па тако мултиномијални модел сасвим одговара основној дефиницији <em>HMM</em>, без икаквих надградњи. Чак су стања и емисије у потпуности апстраховани индексима. Стога је једноставна за рад и брзо добијање резултата. И она је у коду електронског уџбеника примењена у потрази за генима, још једном са истим резултатима.</p>
+<p>Још један познати модул језика <em>Python</em> за рад са <em>HMM</em> јесте <em>hmmlearn</em> (<a href="https://hmmlearn.readthedocs.io/en/latest/">документација</a> и <a href="https://github.com/hmmlearn/hmmlearn"><em>GitHub</em></a>). Имплементира дискретне (мултиномијалне), Гаусове (расподеле емисија су нормалне) и мешовите (емисије потичу из мешавине нормалних расподела) скривене Марковљеве моделе. Попут претходне, и ова библиотека имплементира само Витербијев и алгоритам „напред”, као решења најважнијих проблема код <em>HMM</em>. Такође подржава учење параметара модела. С друге стране, ради искључиво са матрицама параметара, па тако мултиномијални модел сасвим одговара основној дефиницији <em>HMM</em>, без икаквих надградњи. Чак су стања и емисије у потпуности апстраховани индексима. Стога је једноставна за рад и брзо добијање резултата. И она је у коду електронског уџбеника примењена у потрази за генима, још једном са истим резултатима.</p>
 
 </div>
 </div>
@@ -19763,7 +19772,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Матрица преласка између стања</span>
-<span class="n">cg_hmml</span><span class="o">.</span><span class="n">transmat_</span> <span class="o">=</span> <span class="p">[[</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+<span class="n">cg_hmml</span><span class="o">.</span><span class="n">transmat_</span> <span class="o">=</span> <span class="p">[[</span><span class="n">a2</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -19777,7 +19786,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Матрица вероватноћа опсервација</span>
-<span class="n">cg_hmml</span><span class="o">.</span><span class="n">emissionprob_</span> <span class="o">=</span> <span class="p">[[</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">yj</span><span class="p">]</span> <span class="k">for</span> <span class="n">yj</span> <span class="ow">in</span> <span class="n">y</span><span class="p">]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+<span class="n">cg_hmml</span><span class="o">.</span><span class="n">emissionprob_</span> <span class="o">=</span> <span class="p">[[</span><span class="n">b2</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">yj</span><span class="p">]</span> <span class="k">for</span> <span class="n">yj</span> <span class="ow">in</span> <span class="n">y</span><span class="p">]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -19857,6 +19866,39 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[165]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Примена и алгоритма „напред”</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа опажања&#39;</span><span class="p">,</span> <span class="n">dna</span><span class="p">,</span> <span class="s1">&#39;је:&#39;</span><span class="p">,</span>
+      <span class="n">cg_hmml</span><span class="o">.</span><span class="n">score</span><span class="p">([[</span><span class="n">ind</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">n</span><span class="p">)]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">dna</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа опажања ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT је: -60.068011128439636
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -19867,7 +19909,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[165]:</div>
+<div class="prompt input_prompt">In&nbsp;[166]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Дужина пута у узорку</span>
@@ -19884,7 +19926,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[166]:</div>
+<div class="prompt input_prompt">In&nbsp;[167]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Библиотека за псеудослучајност</span>
@@ -19898,7 +19940,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[167]:</div>
+<div class="prompt input_prompt">In&nbsp;[168]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Узорковање на основу модела</span>
@@ -19934,7 +19976,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[168]:</div>
+<div class="prompt input_prompt">In&nbsp;[169]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Узорковање на основу модела</span>
@@ -19966,7 +20008,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[169]:</div>
+<div class="prompt input_prompt">In&nbsp;[170]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Библиотека за рад са упозорењима</span>
@@ -19980,7 +20022,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[170]:</div>
+<div class="prompt input_prompt">In&nbsp;[171]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Дохватање пута на основу резултата</span>
@@ -19995,7 +20037,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[171]:</div>
+<div class="prompt input_prompt">In&nbsp;[172]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Узорковање на основу модела</span>
@@ -20028,7 +20070,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[172]:</div>
+<div class="prompt input_prompt">In&nbsp;[173]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Узорковање на основу модела</span>
@@ -20060,7 +20102,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[173]:</div>
+<div class="prompt input_prompt">In&nbsp;[174]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Дохватање исхода на основу резултата</span>
@@ -20075,7 +20117,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[174]:</div>
+<div class="prompt input_prompt">In&nbsp;[175]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Узорковање на основу модела</span>
@@ -20104,7 +20146,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[175]:</div>
+<div class="prompt input_prompt">In&nbsp;[176]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Узорковање на основу модела</span>
@@ -20137,20 +20179,58 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Што се тиче самог модела, остаје проблем што су досадашња оба покушаја била неуспела. Трећа идеја могло би бити додатно повећавање вероватноће промене стања. Мала повећања не би променила резултат, док би већа изврнула смисао <em>CpG</em> места – острвом би се прогласио сваки цитозин и гуанин.</p>
+<p>Што се тиче самог модела, остаје проблем што су досадашња оба покушаја била неуспела. Трећа идеја могло би бити додатно повећавање вероватноће промене стања. Мала повећања не би променила резултат, док би већа изврнула смисао <em>CpG</em> места – острвом би се прогласио сваки цитозин и гуанин. Ово није необично и иде уз чињеницу да ова употреба <em>HMM</em> спада под домен ненадгледаног учења, где модел по самосталној процени групише поднизове улазне секвенце. То значи да се лако могу добити неочекивани или незадовољавајући резултати, попут једноставне поделе према текућем карактеру.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[177]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Нова мапа прелаза код CG острва</span>
+<span class="n">a3</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="mf">.55</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="mf">.45</span><span class="p">},</span>
+      <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="mf">.45</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="mf">.55</span><span class="p">}}</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[178]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Прављење модела за CG острва</span>
+<span class="n">cg_hmm3</span> <span class="o">=</span> <span class="n">HMM</span><span class="p">(</span><span class="n">a3</span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
+
+<span class="c1"># Декодирање улазне DNA секвенце</span>
+<span class="n">rez_hmm3</span> <span class="o">=</span> <span class="n">cg_dekod</span><span class="p">(</span><span class="n">cg_hmm3</span><span class="p">,</span> <span class="n">dna</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Највероватнији скривени пут за ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT 
+ је: (-78.54537996390007, &#39;----+--+-++-++-+++------+--++------+-----&#39;)
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -20168,11 +20248,11 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[176]:</div>
+<div class="prompt input_prompt">In&nbsp;[179]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Нови низ опажања код CG острва</span>
-<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span> <span class="k">for</span> <span class="n">yy</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="p">)]</span>
+<span class="n">y4</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span> <span class="k">for</span> <span class="n">yy</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="p">)]</span>
 </pre></div>
 
     </div>
@@ -20183,17 +20263,17 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Може се дорадити и мапа прелаза мапа прелаза, док се мапа емисија узима према табели <a href="#tab:cg">2.1</a>, која управо непосредно табелира вероватноће динуклеотида. Овај приступ даје веома добре резултате, који се могу видети у наставку.</p>
+<p>Може се дорадити и мапа прелаза, док се мапа емисија узима према табели <a href="#tab:cg">2.1</a>, која управо непосредно табелира вероватноће динуклеотида. Овај приступ даје засад најбоље резултате, који се могу видети у коду лекције.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[177]:</div>
+<div class="prompt input_prompt">In&nbsp;[180]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Библиотека за вржи рад са прозорима</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Библиотека за бржи рад са прозорима</span>
 <span class="kn">from</span> <span class="nn">more_itertools</span> <span class="kn">import</span> <span class="n">windowed</span>
 </pre></div>
 
@@ -20204,15 +20284,15 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[178]:</div>
+<div class="prompt input_prompt">In&nbsp;[181]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Нова мапа прелаза код CG острва</span>
-<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="mf">0.7</span> <span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="mf">0.3</span> <span class="p">},</span>
-     <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="mf">0.35</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="mf">0.65</span><span class="p">}}</span>
+<span class="n">a4</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="mf">.7</span> <span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="mf">.3</span> <span class="p">},</span>
+      <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="mf">.35</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="mf">.65</span><span class="p">}}</span>
 
 <span class="c1"># Нова мапа емисија код CG острва</span>
-<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="n">p_cg</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="n">p_nekod</span><span class="p">}</span>
+<span class="n">b4</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="n">p_cg</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="n">p_nekod</span><span class="p">}</span>
 </pre></div>
 
     </div>
@@ -20222,11 +20302,11 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[179]:</div>
+<div class="prompt input_prompt">In&nbsp;[182]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Прављење модела за CG острва</span>
-<span class="n">cg_hmm4</span> <span class="o">=</span> <span class="n">HMM</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
+<span class="n">cg_hmm4</span> <span class="o">=</span> <span class="n">HMM</span><span class="p">(</span><span class="n">a4</span><span class="p">,</span> <span class="n">b4</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
 
 <span class="c1"># Динуклеотиди као прозори ниске</span>
 <span class="n">proz</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;AA&#39;</span><span class="p">,</span> <span class="o">*</span><span class="nb">map</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">,</span> <span class="n">windowed</span><span class="p">(</span><span class="n">dna</span><span class="p">,</span> <span class="mi">2</span><span class="p">))]</span>
@@ -20260,17 +20340,17 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[180]:</div>
+<div class="prompt input_prompt">In&nbsp;[183]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Поређење познатог и добијених острва</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ниска:  &#39;</span><span class="p">,</span> <span class="n">dna</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Познато:&#39;</span><span class="p">,</span> <span class="n">cg</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Прозор: &#39;</span><span class="p">,</span> <span class="n">rezultat</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;HMM 1:  &#39;</span><span class="p">,</span> <span class="n">rez_hmm1</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;HMM 2:  &#39;</span><span class="p">,</span> <span class="n">rez_hmm2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;HMM 3:  &#39;</span><span class="p">,</span> <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;HMM 4:  &#39;</span><span class="p">,</span> <span class="n">rez_hmm4</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Познато:&#39;</span><span class="p">,</span> <span class="n">cg</span>         <span class="p">,</span> <span class="s1">&#39;(познате ознаке CG острва)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Прозор: &#39;</span><span class="p">,</span> <span class="n">proz1</span>      <span class="p">,</span> <span class="s1">&#39;(прозор оптималне величине пет)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;HMM 1:  &#39;</span><span class="p">,</span> <span class="n">rez_hmm1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;(мали прелази, емпиријске емисије)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;HMM 2:  &#39;</span><span class="p">,</span> <span class="n">rez_hmm2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;(средњи прелази, поправљене емисије)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;HMM 3:  &#39;</span><span class="p">,</span> <span class="n">rez_hmm3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;(велики прелази, поправљене емисије)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;HMM 4:  &#39;</span><span class="p">,</span> <span class="n">rez_hmm4</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;(средњи прелази, динуклеотидне емисије)&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ниска:  &#39;</span><span class="p">,</span> <span class="n">dna</span><span class="p">)</span>
 </pre></div>
 
@@ -20289,12 +20369,12 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Ниска:   ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
-Познато: -------++++++++++------------------------
-Прозор:  --------++++++++++-----------------------
-HMM 1:   -----------------------------------------
-HMM 2:   -----------------------------------------
-HMM 3:  
-HMM 4:   -------+++++++++++-----------------------
+Познато: -------++++++++++------------------------ (познате ознаке CG острва)
+Прозор:  --------++++++++++----------------------- (прозор оптималне величине пет)
+HMM 1:   ----------------------------------------- (мали прелази, емпиријске емисије)
+HMM 2:   ----------------------------------------- (средњи прелази, поправљене емисије)
+HMM 3:   ----+--+-++-++-+++------+--++------+----- (велики прелази, поправљене емисије)
+HMM 4:   -------+++++++++++----------------------- (средњи прелази, динуклеотидне емисије)
 Ниска:   ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 </pre>
 </div>
@@ -20307,7 +20387,834 @@ HMM 4:   -------+++++++++++-----------------------
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="4.2-%D0%9F%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D0%BD%D0%B8-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8-%E2%AE%AD">4.2 &#1055;&#1088;&#1086;&#1092;&#1080;&#1083;&#1085;&#1080; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080; <a href="#par:bio">&#11181;</a><a id="par:prof" /><a class="anchor-link" href="#4.2-%D0%9F%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D0%BD%D0%B8-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8-%E2%AE%AD">&#182;</a></h2>
+<h2 id="4.2-%D0%93%D0%B5%D0%BD%D0%B8-%E2%80%93-%D0%B2%D0%B8%D1%88%D0%B5-%D1%81%D1%82%D0%B0%D1%9A%D0%B0-%E2%AE%AD">4.2 &#1043;&#1077;&#1085;&#1080; &#8211; &#1074;&#1080;&#1096;&#1077; &#1089;&#1090;&#1072;&#1114;&#1072; <a href="#par:bio">&#11181;</a><a id="par:gen3" /><a class="anchor-link" href="#4.2-%D0%93%D0%B5%D0%BD%D0%B8-%E2%80%93-%D0%B2%D0%B8%D1%88%D0%B5-%D1%81%D1%82%D0%B0%D1%9A%D0%B0-%E2%AE%AD">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Како је већ напоменуто, сви досадашњи модели су по структури подсећали на непоштени казино – имали су два стања која се ретко мењају и углавном четири опсервације, мада је најбољи резултат добијен при последњем покушају, са чак шеснаест различитих динуклеотидних емисија. Алтернативна идеја увођењу већег броја исхода јесте увођење већег броја стања, што се најчешће реализује кроз два приступа, који су представљени у наставку.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Први приступ је врло популаран и основни је пример на многим универзитетским курсевима који <a href="https://web.stanford.edu/class/stats366/exs/HMM1.html">обрађују</a> <a href="https://software-ab.informatik.uni-tuebingen.de/download/public/GBi-2020-Script.pdf">скривене</a> <a href="https://bio.libretexts.org/@go/page/40962">Марковљеве</a> <a href="http://www.cs.tau.ac.il/~rshamir/algmb/98/scribe/pdf/lec06.pdf">моделе</a>. Разматран је ранијих година и на вежбама из Увода у биоинформатику, у оквиру којег је овај рад настао. Полазна идеја је да се <em>CG</em> острва и региони ван њих могу моделовати као два одвојена Марковљева ланца (подсећања ради, у питању су <em>HMM</em> без емисија, а скраћено се називају <em>MC</em>). Стања ланаца су јавна (то јест, нису скривена), пошто верно прате <em>DNA</em> секвенцу коју моделују, и одговарају азбуци нуклеотида, па се могу представити сликом <a href="#fig:cg_lanac">4.2</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="../slike/cg_lanac.png" width="30%" id="fig:cg_lanac" title="Слика 4.2: Марковљев ланац за моделовање DNA секвенце" /></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Одговарајуће матрице прелаза могу се одредити емпиријским путем, дакле обрадом секвенци за које је познато јесу ли <em>CG</em> острва или не. Уобичајено се узимају вредности из табеле <a href="#tab:cg_lanac">4.1</a>, које су унапред припремљене (израчунате).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table id="tab:cg_lanac" title="Табела 4.1: Вероватноћа прелаза између нуклеотида једне секвенце – лево у регионима CG острва, а десно ван њих">
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">|</th>
+<th style="text-align: center;">A</th>
+<th style="text-align: center;">C</th>
+<th style="text-align: center;">G</th>
+<th style="text-align: center;">T</th>
+<th style="text-align: center;">|</th>
+<th style="text-align: center;">A</th>
+<th style="text-align: center;">C</th>
+<th style="text-align: center;">G</th>
+<th style="text-align: center;">T</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">0,180</td>
+<td style="text-align: center;">0,274</td>
+<td style="text-align: center;">0,426</td>
+<td style="text-align: center;">0,120</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">0,300</td>
+<td style="text-align: center;">0,205</td>
+<td style="text-align: center;">0,285</td>
+<td style="text-align: center;">0,210</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">0,171</td>
+<td style="text-align: center;">0,367</td>
+<td style="text-align: center;">0,274</td>
+<td style="text-align: center;">0,188</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">0,322</td>
+<td style="text-align: center;">0,298</td>
+<td style="text-align: center;">0,078</td>
+<td style="text-align: center;">0,302</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">G</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">0,161</td>
+<td style="text-align: center;">0,339</td>
+<td style="text-align: center;">0,375</td>
+<td style="text-align: center;">0,125</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">0,248</td>
+<td style="text-align: center;">0,246</td>
+<td style="text-align: center;">0,298</td>
+<td style="text-align: center;">0,208</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">0,079</td>
+<td style="text-align: center;">0,355</td>
+<td style="text-align: center;">0,384</td>
+<td style="text-align: center;">0,182</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">0,177</td>
+<td style="text-align: center;">0,239</td>
+<td style="text-align: center;">0,292</td>
+<td style="text-align: center;">0,292</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[184]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Мапа прелаза у CpG местима према претходној табели</span>
+<span class="n">a_cg</span>    <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.180</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mf">.274</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="mf">.426</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="mf">.120</span><span class="p">},</span>
+           <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.171</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mf">.367</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="mf">.274</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="mf">.188</span><span class="p">},</span>
+           <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.161</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mf">.339</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="mf">.375</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="mf">.125</span><span class="p">},</span>
+           <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.079</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mf">.355</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="mf">.384</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="mf">.182</span><span class="p">}}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[185]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Провера да ли је покривен цео простор догађаја јединичном вероватноћом</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">y</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа из&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="s1">&#39;је&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a_cg</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа из A је 1.0
+Вероватноћа из C је 1.0
+Вероватноћа из G је 1.0
+Вероватноћа из T је 1.0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[186]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Мапа прелаза ван CpG места према претходној табели</span>
+<span class="n">a_nekod</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.300</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mf">.205</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="mf">.285</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="mf">.210</span><span class="p">},</span>
+           <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.322</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mf">.298</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="mf">.078</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="mf">.302</span><span class="p">},</span>
+           <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.248</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mf">.246</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="mf">.298</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="mf">.208</span><span class="p">},</span>
+           <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.177</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mf">.239</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="mf">.292</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="mf">.292</span><span class="p">}}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[187]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Провера да ли је покривен цео простор догађаја јединичном вероватноћом</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">y</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа из&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="s1">&#39;је&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a_nekod</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа из A је 1.0
+Вероватноћа из C је 1.0
+Вероватноћа из G је 1.0
+Вероватноћа из T је 1.0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Аналогно прозорском приступу заснованом на динуклеотидном садржају секвенце и табели <a href="#tab:cg">2.1</a>, могуће је помоћу <em>MC</em> за сваки подниз одредити да ли је већа вероватноћа да јесте <em>CG</em> острво или да није. Бројчана сагласност се за оба <em>MC</em> може израчунати већ имплементираним алгоритмом за одређивање вероватноће пута кроз <em>HMM</em>, као решење проблема <a href="#prob:put">3</a>. Одабир припадности пада на ланац са већом вероватноћом.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[188]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Класа која представља Марковљев ланац</span>
+<span class="k">class</span> <span class="nc">MC</span><span class="p">:</span>
+    <span class="c1"># Конструкција MC на основу мапе прелаза</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">mc</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+        <span class="c1"># Памћење мапе вероватноћа прелаза</span>
+        <span class="n">mc</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span>
+        
+        <span class="c1"># Одређивање листе и броја стања</span>
+        <span class="n">mc</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="n">mc</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+        
+        <span class="c1"># Памћење мапе полазних вероватноћа</span>
+        <span class="n">mc</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="s1">&#39;π&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="n">mc</span><span class="o">.</span><span class="n">n</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">mc</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[189]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Марковљев ланац кодирајућих региона</span>
+<span class="n">mc_cg</span>    <span class="o">=</span> <span class="n">MC</span><span class="p">(</span><span class="n">a_cg</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[190]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Марковљев ланац некодирајућих региона</span>
+<span class="n">mc_nekod</span> <span class="o">=</span> <span class="n">MC</span><span class="p">(</span><span class="n">a_nekod</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[191]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Да ли је вероватније да је прозор CG острво или не</span>
+<span class="k">def</span> <span class="nf">cg_ostrvo</span><span class="p">(</span><span class="n">prozor</span><span class="p">):</span>    
+    <span class="c1"># Одређивање веће вероватноће</span>
+    <span class="k">return</span> <span class="n">p_puta</span><span class="p">(</span><span class="n">mc_cg</span><span class="p">,</span> <span class="n">prozor</span><span class="p">)</span> <span class="o">&gt;</span> \
+           <span class="n">p_puta</span><span class="p">(</span><span class="n">mc_nekod</span><span class="p">,</span> <span class="n">prozor</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[192]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Пример прозора дужине k=10</span>
+<span class="n">prozori</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ATTTCTTCTC&#39;</span><span class="p">,</span> <span class="c1"># познато да није</span>
+           <span class="s1">&#39;CTCGTCGACG&#39;</span><span class="p">,</span> <span class="c1"># познато да јесте</span>
+           <span class="s1">&#39;CTAATTTCTT&#39;</span><span class="p">]</span> <span class="c1"># познато да није</span>
+
+<span class="c1"># Предвиђање да ли је CG острво</span>
+<span class="k">for</span> <span class="n">prozor</span> <span class="ow">in</span> <span class="n">prozori</span><span class="p">:</span>
+    <span class="n">ostrvo</span> <span class="o">=</span> <span class="n">cg_ostrvo</span><span class="p">(</span><span class="n">prozor</span><span class="p">)</span>
+    
+    <span class="c1"># Закључивање о прозору на основу резултата</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">prozor</span><span class="p">,</span> <span class="s1">&#39;вероватно&#39;</span><span class="p">,</span> <span class="s1">&#39;јесте&#39;</span> <span class="k">if</span>
+          <span class="n">ostrvo</span> <span class="k">else</span> <span class="s1">&#39;није&#39;</span><span class="p">,</span> <span class="s1">&#39;CG острво&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ATTTCTTCTC вероватно није CG острво
+CTCGTCGACG вероватно јесте CG острво
+CTAATTTCTT вероватно није CG острво
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[193]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Одабир величине прозора (како?)</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># Дохватање резултата мотивационог примера</span>
+<span class="n">proz2</span> <span class="o">=</span> <span class="n">cg_prozor</span><span class="p">(</span><span class="n">dna</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
+ATTTC (-)
+ TTTCT (-)
+  TTCTT (-)
+   TCTTC (-)
+    CTTCT (-)
+     TTCTC (-)
+      TCTCG (+)
+       CTCGT (+)
+        TCGTC (+)
+         CGTCG (+)
+          GTCGA (+)
+           TCGAC (+)
+            CGACG (+)
+             GACGC (+)
+              ACGCT (+)
+               CGCTA (+)
+                GCTAA (-)
+                 CTAAT (-)
+                  TAATT (-)
+               (-) AATTT
+                (-) ATTTC
+                 (-) TTTCT
+                  (-) TTCTT
+                   (-) TCTTG
+                    (-) CTTGG
+                     (-) TTGGA
+                      (-) TGGAA
+                       (-) GGAAA
+                        (-) GAAAT
+                         (-) AAATA
+                          (-) AATAT
+                           (-) ATATC
+                            (-) TATCA
+                             (-) ATCAT
+                              (-) TCATT
+                               (-) CATTA
+                                (-) ATTAT
+ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
+--------++++++++++-----------------------
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[194]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Поређење познатог и добијених острва</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Секвенца:&#39;</span><span class="p">,</span> <span class="n">dna</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Познато: &#39;</span><span class="p">,</span> <span class="n">cg</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Прозор 1:&#39;</span><span class="p">,</span> <span class="n">proz1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Прозор 2:&#39;</span><span class="p">,</span> <span class="n">proz2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Секвенца: ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
+Познато:  -------++++++++++------------------------
+Прозор 1: --------++++++++++-----------------------
+Прозор 2: --------++++++++++-----------------------
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Резултати су једнаки као у првом покушају, а остају нерешени проблеми прозорског приступа: како одредити добру величину прозора и како разрешити сукобе настале преклапањем прозора.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Као решење, предлаже се спајање ова два ланца у један. Резултујући <em>MC</em> дат је на слици <a href="#fig:cg_lanci">4.3</a>. Он сада има осам стања, за сваки пар нуклеотида и припадности <em>CG</em> острву. Једноставности ради, пошто укупно има $8^2 = 64$ прелаза, приказани су само нови, док се стари (слика <a href="#fig:cg_lanac">4.2</a>) подразумевају.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="../slike/cg_lanci.png" width="40%" id="fig:cg_lanci" title="Слика 4.3: Спојени ланци за моделовање CG острва" /></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Пре свега, неопходно је одредити нову, заједничку матрицу преласка. За то се треба подсетити већ поменутог доменског биолошког знања, према коме је мало вероватан прелазак из кодирајућег у некодирајуће стање (нпр. само 2 %), а још мање вероватно обрнуто (нпр. тек 1 %). Нове вероватноће могу се добити скалирањем старих, нпр. на начин представљен табелом <a href="#tab:cg_hmm1">4.2</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table id="tab:cg_hmm1" title="Табела 4.2: Вероватноћа прелаза унутар CG острва">
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">|</th>
+<th style="text-align: center;">\(A^+\)</th>
+<th style="text-align: center;">\(C^+\)</th>
+<th style="text-align: center;">\(G^+\)</th>
+<th style="text-align: center;">\(T^+\)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">\(A^+\)</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">0,180p</td>
+<td style="text-align: center;">0,274p</td>
+<td style="text-align: center;">0,426p</td>
+<td style="text-align: center;">0,120p</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">\(C^+\)</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">0,171p</td>
+<td style="text-align: center;">0,367p</td>
+<td style="text-align: center;">0,274p</td>
+<td style="text-align: center;">0,188p</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">\(G^+\)</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">0,161p</td>
+<td style="text-align: center;">0,339p</td>
+<td style="text-align: center;">0,375p</td>
+<td style="text-align: center;">0,125p</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">\(T^+\)</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">0,079p</td>
+<td style="text-align: center;">0,355p</td>
+<td style="text-align: center;">0,384p</td>
+<td style="text-align: center;">0,182p</td>
+</tr>
+</tbody>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">|</th>
+<th style="text-align: center;">\(A^-\)</th>
+<th style="text-align: center;">\(C^-\)</th>
+<th style="text-align: center;">\(G^-\)</th>
+<th style="text-align: center;">\(T^-\)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">\(A^+\)</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">0,180(1-p)</td>
+<td style="text-align: center;">0,274(1-p)</td>
+<td style="text-align: center;">0,426(1-p)</td>
+<td style="text-align: center;">0,120(1-p)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">\(C^+\)</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">0,171(1-p)</td>
+<td style="text-align: center;">0,367(1-p)</td>
+<td style="text-align: center;">0,274(1-p)</td>
+<td style="text-align: center;">0,188(1-p)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">\(G^+\)</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">0,161(1-p)</td>
+<td style="text-align: center;">0,339(1-p)</td>
+<td style="text-align: center;">0,375(1-p)</td>
+<td style="text-align: center;">0,125(1-p)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">\(T^+\)</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">0,079(1-p)</td>
+<td style="text-align: center;">0,355(1-p)</td>
+<td style="text-align: center;">0,384(1-p)</td>
+<td style="text-align: center;">0,182(1-p)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Идеја је, дакле, расподелити вероватноће претходних прелаза унутар <em>CG</em> острва типа $P\{N \mapsto M\}$ на две нове типа $P\{N^+ \mapsto M^+\} = p P\{N \mapsto M\}$ и $P\{N^+ \mapsto M^-\} = (1-p) P\{N \mapsto M\}$, где $p$ представља вероватноћу останка унутар острва, нпр. $p = 98 \%$. Аналогно томе, вероватноће претходних прелаза ван <em>CG</em> острва типа $P\{N \mapsto M\}$ могу се расподелити на две нове типа $P\{N^- \mapsto M^-\} = q P\{N \mapsto M\}$ и $P\{N^- \mapsto M^+\} = (1-q) P\{N \mapsto M\}$, где $q$ представља вероватноћу останка ван острва, нпр. $q = 99 \%$. Алтернативна је равномерно расподелити вероватноће промене стања, као у табели <a href="#tab:cg_hmm2">4.3</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table id="tab:cg_hmm2" title="Табела 4.3: Вероватноћа прелаза ван CG острва">
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">|</th>
+<th style="text-align: center;">\(A^-\)</th>
+<th style="text-align: center;">\(C^-\)</th>
+<th style="text-align: center;">\(G^-\)</th>
+<th style="text-align: center;">\(T^-\)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">\(A^-\)</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">0,300q</td>
+<td style="text-align: center;">0,205q</td>
+<td style="text-align: center;">0,285q</td>
+<td style="text-align: center;">0,210q</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">\(C^-\)</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">0,322q</td>
+<td style="text-align: center;">0,298q</td>
+<td style="text-align: center;">0,078q</td>
+<td style="text-align: center;">0,302q</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">\(G^-\)</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">0,248q</td>
+<td style="text-align: center;">0,246q</td>
+<td style="text-align: center;">0,298q</td>
+<td style="text-align: center;">0,208q</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">\(T^-\)</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">0,177q</td>
+<td style="text-align: center;">0,239q</td>
+<td style="text-align: center;">0,292q</td>
+<td style="text-align: center;">0,292q</td>
+</tr>
+</tbody>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">|</th>
+<th style="text-align: center;">\(A^+\)</th>
+<th style="text-align: center;">\(C^+\)</th>
+<th style="text-align: center;">\(G^+\)</th>
+<th style="text-align: center;">\(T^+\)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">\(A^-\)</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">(1-q)/4</td>
+<td style="text-align: center;">(1-q)/4</td>
+<td style="text-align: center;">(1-q)/4</td>
+<td style="text-align: center;">(1-q)/4</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">\(C^-\)</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">(1-q)/4</td>
+<td style="text-align: center;">(1-q)/4</td>
+<td style="text-align: center;">(1-q)/4</td>
+<td style="text-align: center;">(1-q)/4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">\(G^-\)</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">(1-q)/4</td>
+<td style="text-align: center;">(1-q)/4</td>
+<td style="text-align: center;">(1-q)/4</td>
+<td style="text-align: center;">(1-q)/4</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">\(T^-\)</td>
+<td style="text-align: center;">|</td>
+<td style="text-align: center;">(1-q)/4</td>
+<td style="text-align: center;">(1-q)/4</td>
+<td style="text-align: center;">(1-q)/4</td>
+<td style="text-align: center;">(1-q)/4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Сада се спојени Марковљев ланац може и мора надградити у скривени Марковљев модел. Наиме, два одвојена <em>MC</em> имала су смисла без унапређења, јер су имала само четири суштински јавна стања, која одговарају нуклеотидима из опажене секвенце. Нових осам стања је, међутим, по природи скривено, јер опажањем секвенце није познато у ком је модел стању, као у непоштеној коцкарници и другим моделима. Примера ради, већ за једночлани исход $G$ није јасно да ли је настао у стању $G^+$ или $G^-$. Ниска дужине $k$ може настати на $2^k$ различитих непознатих путева, који су стога скривени.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Већ је имплицирано да симбол $N$ може приказати само стање типа $N^+$ и $N^-$. Важи и обрнуто, јер новоуведено стање $N^\sigma$ управо и означава појаву симбола $N$ у старом стању $\sigma$. Ово се може схватити и као својеврсни образац пројектовања (узорак, шаблон) када је у питању рад са <em>MC</em> и <em>HMM</em>. Свеукупна последица је да је мапа емисија врло једноставна (такорећи дегенерисана) – свако стање са јединичном вероватноћом емитује одговарајући симбол.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Слика <a href="#fig:cg_stanja">4.4</a> приказује коначан дијаграм овог модела, са изостављеним многобројним вероватноћама прелаза и наглашеним вероватноћама емисија.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="../slike/cg_stanja.png" width="40%" id="fig:cg_stanja" title="Слика 4.4: Нова структура модела CG острва" /></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Што се тиче почетних вероватноћа, могу се узети емпиријске вредности засноване на узорку или пак равномерне могућности 1/8.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Кад се све сабере:</p>
+<ul>
+<li>опсервације $y = \{A, C, G, T\}$ – азбука <em>DNA</em> нуклеотида,</li>
+<li>скривена стања $x = y \times \{+, -\}$ – Декартов производ симбола,</li>
+<li>полазне вероватноће $\pi = \dfrac{1}{8}$ или емпиријске, према узорку,</li>
+<li>прелази $a =$ припремљене вредности према табели <a href="#tab:cg_hmm1">4.2</a> или <a href="#tab:cg_hmm2">4.3</a>,</li>
+<li>емисије $b = 1$ ако стање одговара, иначе $0$, према слици <a href="#fig:cg_stanja">4.4</a>.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Други приступ који укључује већи број стања...</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="4.3-%D0%9F%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D0%BD%D0%B8-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8-%E2%AE%AD">4.3 &#1055;&#1088;&#1086;&#1092;&#1080;&#1083;&#1085;&#1080; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080; <a href="#par:bio">&#11181;</a><a id="par:prof" /><a class="anchor-link" href="#4.3-%D0%9F%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D0%BD%D0%B8-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8-%E2%AE%AD">&#182;</a></h2>
 </div>
 </div>
 </div>
