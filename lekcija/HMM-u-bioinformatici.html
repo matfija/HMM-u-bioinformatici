@@ -21523,7 +21523,219 @@ HMM 6:   ------+++++++++++++---------------------- (равномерни пре�
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Подсећања ради, вишеструко поравнање је матрица карактера (низ ниски), чији редови представљају ниске које се поравнавају, а колоне карактере тих ниски на позицији одређеној том колоном. Како су при поравнању дозвољене инсерције (убацивање) и делеције (брисање слова), у нискама се налази и специјални карактер „–”, који означава празнину. Није необично да постоје ретке колоне, у којима је велики удео празнина. Биолошки гледано, та аминокиселина вероватно није битна карактеристика породице која се моделује, па се занемарује. Прецизније, уклањају се све колоне у којима је удео празнина већи од унапред одређене границе $\theta$. Резултат је пречишћено поравнање.</p>
+<p>Подсећања ради, вишеструко поравнање је матрица карактера (низ ниски), чији редови представљају ниске које се поравнавају, а колоне карактере тих ниски на позицији одређеној том колоном. Како су при поравнању дозвољене инсерције (убацивање) и делеције (брисање слова), у нискама се налази и специјални карактер „–”, који означава празнину.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[205]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Поравнање из књиге</span>
+<span class="n">P</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ACDEFACADF&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;AFDA---CCF&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;A--EFD-FDC&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;ACAEF--A-C&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;ADDEFAAADF&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Није необично да постоје ретке колоне, у којима је велики удео празнина. Биолошки гледано, та аминокиселина вероватно није битна карактеристика породице која се моделује, па се занемарује. Прецизније, уклањају се све колоне у којима је удео празнина већи од унапред одређене границе $\theta$. Резултат је пречишћено поравнање.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[206]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Чишћење поравнања</span>
+<span class="k">def</span> <span class="nf">precisti</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+    <span class="c1"># Број колона поравнања</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    
+    <span class="c1"># Број редова поравнања</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+    
+    <span class="c1"># Да ли удео прелази границу</span>
+    <span class="n">udeo</span> <span class="o">=</span> <span class="p">[</span><span class="nb">sum</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;-&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
+            <span class="o">&lt;</span> <span class="n">m</span> <span class="o">*</span> <span class="n">theta</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+    
+    <span class="c1"># Брисање колона које прелазе</span>
+    <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">if</span> <span class="n">udeo</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">)]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[207]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Граница одсецања из књиге</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="mf">0.35</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[208]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Пречишћавање поравнања</span>
+<span class="n">Pp</span> <span class="o">=</span> <span class="n">precisti</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[209]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Приказ пречишћеног поравнања</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">Pp</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ACDEFADF
+AFDA-CCF
+A--EFFDC
+ACAEFA-C
+ADDEFADF
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Напослетку се пречишћено поравнање трансформише у профилну матрицу, чији редови представљају (све) карактере из азбуке поравнатих ниски, док колоне складиште удео сваког карактера на тој позицији, не рачунајући празнине.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[210]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Прављење профила од поравнања</span>
+<span class="k">def</span> <span class="nf">profil</span><span class="p">(</span><span class="n">P</span><span class="p">):</span>
+    <span class="c1"># Број колона поравнања</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    
+    <span class="c1"># Број редова поравнања</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+    
+    <span class="c1"># Одређивање азбуке</span>
+    <span class="n">azbuka</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)))</span>
+    
+    <span class="c1"># Избацивање симбола празнине</span>
+    <span class="k">if</span> <span class="s1">&#39;-&#39;</span> <span class="ow">in</span> <span class="n">azbuka</span><span class="p">:</span>
+        <span class="n">azbuka</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Пребројавање сваког карактера у свакој колони</span>
+    <span class="n">prof</span> <span class="o">=</span> <span class="p">{</span><span class="n">slovo</span><span class="p">:</span> <span class="p">[</span><span class="nb">sum</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">slovo</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span> <span class="k">for</span> <span class="n">slovo</span> <span class="ow">in</span> <span class="n">azbuka</span><span class="p">}</span>
+    
+    <span class="c1"># Нормализација броја карактера по колони</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">slovo</span><span class="p">:</span> <span class="p">[</span><span class="n">prof</span><span class="p">[</span><span class="n">slovo</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">prof</span><span class="p">[</span><span class="n">s</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">azbuka</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span> <span class="k">for</span> <span class="n">slovo</span> <span class="ow">in</span> <span class="n">azbuka</span><span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[211]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Профил према поравнању</span>
+<span class="n">prof</span> <span class="o">=</span> <span class="n">profil</span><span class="p">(</span><span class="n">Pp</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[212]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Приказ профила из примера</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prof</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>{&#39;A&#39;: [1.0, 0.0, 0.25, 0.2, 0.0, 0.6, 0.0, 0.0], &#39;C&#39;: [0.0, 0.5, 0.0, 0.0, 0.0, 0.2, 0.25, 0.4], &#39;D&#39;: [0.0, 0.25, 0.75, 0.0, 0.0, 0.0, 0.75, 0.0], &#39;E&#39;: [0.0, 0.0, 0.0, 0.8, 0.0, 0.0, 0.0, 0.0], &#39;F&#39;: [0.0, 0.25, 0.0, 0.0, 1.0, 0.2, 0.0, 0.6]}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Приметно је да профил, како говори о вероватносној расподели по колони (позицији) карактера из азбуке $y$ величине $m$, веома личи на мапу емисија неког <em>HMM</em>-a. Испоставља се да се стварно може тако посматрати.</p>
 
 </div>
 </div>
@@ -21531,7 +21743,7 @@ HMM 6:   ------+++++++++++++---------------------- (равномерни пре�
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Напослетку се пречишћено поравнање трансформише у профилну матрицу, чији редови представљају (све) карактере из азбуке поравнатих ниски, док колоне складиште удео сваког карактера на тој позицији, не рачунајући празнине. Приметно је да профил, како говори о вероватносној расподели по колони (позицији) карактера из азбуке $y$ величине $m$, веома личи на мапу емисија неког <em>HMM</em>-a. Испоставља се да се стварно може тако посматрати.</p>
+<p>Најједноставнији <em>HMM</em> за моделовање фамилија протеина могао би бити у суштини дегенерисан ланац скривених стања $x$, такав да свако стање представља једну позицију, којих је укупно $n$. Од сваког стања $x_i$ постоји само један прелаз са јединичном вероватноћом на стање $x_{i+1}$, док се вероватноће емисија узимају из профила. Прво стање $x_1$ обавезно је почетно, док је последње $x_n$ обавезно завршно.</p>
 
 </div>
 </div>
@@ -21539,7 +21751,7 @@ HMM 6:   ------+++++++++++++---------------------- (равномерни пре�
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Најједноставнији <em>HMM</em> за моделовање фамилија протеина могао би бити у суштини дегенерисан ланац скривених стања $x$, такав да свако стање представља једну позицију, којих је укупно $n$. Од сваког стања $x_i$ постоји само један прелаз са јединичном вероватноћом на стање $x_{i+1}$, док се вероватноће емисија узимају из профила. Прво стање $x_1$ обавезно је почетно, док је последње $x_n$ обавезно завршно. На слици <a href="#fig:profil">4.6</a> приказан је претходно изнети ток догађаја од вишеструког поравнања до ланчаног <em>HMM</em>-а. Полазно има десет позиција, које се границом одсецања $\theta =$ 0,35 своде на коначних осам.</p>
+<p>На слици <a href="#fig:profil">4.6</a> приказан је претходно изнети ток догађаја од вишеструког поравнања до ланчаног <em>HMM</em>-а. Полазно има десет позиција, које се границом одсецања $\theta =$ 0,35 своде на коначних осам.</p>
 
 </div>
 </div>
@@ -21567,10 +21779,188 @@ HMM 6:   ------+++++++++++++---------------------- (равномерни пре�
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[213]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Ланац као профилни модел</span>
+<span class="k">class</span> <span class="nc">ProfHMM</span><span class="p">(</span><span class="n">HMM</span><span class="p">):</span>
+    <span class="c1"># Конструкција према профилу</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prof</span><span class="p">):</span>
+        <span class="c1"># Читање азбуке емисија из профила</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">prof</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+        
+        <span class="c1"># Читање броја стања (колона) из профила</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">prof</span><span class="p">[</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+        
+        <span class="c1"># Скуп скривених стања {M1, ..., Mn}</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;M</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+        
+        <span class="c1"># Обавезно почетно стање M1</span>
+        <span class="n">pi</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">xi</span> <span class="o">==</span> <span class="s1">&#39;M1&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+        
+        <span class="c1"># Обавезни прелази Mi -&gt; Mi+1</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+        
+        <span class="c1"># Мапа емисија према профилу</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">yi</span><span class="p">:</span> <span class="n">prof</span><span class="p">[</span><span class="n">yi</span><span class="p">][</span><span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">yi</span> <span class="ow">in</span> <span class="n">y</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+        
+        <span class="c1"># Конструкција наткласе</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[214]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Прављење ланчаног HMM-а</span>
+<span class="n">profhmm</span> <span class="o">=</span> <span class="n">ProfHMM</span><span class="p">(</span><span class="n">prof</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Остаје још питање употребне вредности оваквог модела, односно оваквих модела, јер би постојао по један <em>HMM</em> за сваку породицу. Сада би се скор могао добити као вероватноћа емитовања ниске (новог полипептида) $o$ у осмишљеном моделу. И овога пута, протеин би био додељен оној породици са највећим $P\{o\}$. Одређивање те вероватноће већ је разматрано као решење проблема <a href="#prob:ops">7</a>. Ипак, како је модел дегенерисан, нема потребе примењивати сложени алгоритам „напред”, па чак ни рачунати једнаку вероватноћу при обавезном путу $P\{o | M_1...M_n\}$, као решење проблема <a href="#prob:ishod">4</a>. Довољно је само помножити одговарајуће вредности из профилне матрице. Примера ради, вероватноћа да <em>HMM</em> са слике <a href="#fig:profil">4.6</a> емитује $ADDAFFDF$ износи (слика <a href="#fig:prof_ishod">4.7</a>): $$P\{ADDAFFDF\} = 1 \cdot \frac{1}{4} \cdot \frac{3}{4} \cdot \frac{1}{5} \cdot 1 \cdot \frac{1}{5} \cdot \frac{3}{4} \cdot \frac{3}{5} = 0,003375.$$</p>
+<p>Остаје још питање употребне вредности оваквог модела, односно оваквих модела, јер би постојао по један <em>HMM</em> за сваку породицу. Сада би се скор могао добити као вероватноћа емитовања ниске (новог полипептида) $o$ у осмишљеном моделу. И овога пута, протеин би био додељен оној породици са највећим $P\{o\}$. Одређивање те вероватноће већ је разматрано као решење проблема <a href="#prob:ops">7</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[215]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Пример опажања из уџбеника</span>
+<span class="n">o</span> <span class="o">=</span> <span class="s1">&#39;ADDAFFDF&#39;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[216]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Примена алгоритма „напред”</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа опажања&#39;</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="s1">&#39;је:&#39;</span><span class="p">,</span> <span class="n">forward</span><span class="p">(</span><span class="n">profhmm</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа опажања ADDAFFDF је: 0.003375000000000001
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ипак, како је модел дегенерисан, нема потребе примењивати сложени алгоритам „напред”, па чак ни рачунати једнаку вероватноћу при обавезном путу $P\{o | M_1...M_n\}$, као решење проблема <a href="#prob:ishod">4</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[217]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Рачунање вероватноће при путу</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа опажања&#39;</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="s1">&#39;на путу&#39;</span><span class="p">,</span> <span class="n">profhmm</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+      <span class="s1">&#39;је:&#39;</span><span class="p">,</span> <span class="n">p_ops_na_putu</span><span class="p">(</span><span class="n">profhmm</span><span class="p">,</span> <span class="n">profhmm</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа опажања ADDAFFDF на путу [&#39;M1&#39;, &#39;M2&#39;, &#39;M3&#39;, &#39;M4&#39;, &#39;M5&#39;, &#39;M6&#39;, &#39;M7&#39;, &#39;M8&#39;] је: 0.003375000000000001
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[218]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Рачунање вероватноће при путу</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Декодирањем опажања&#39;</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="s1">&#39;добија се:&#39;</span><span class="p">,</span>
+      <span class="n">viterbi_dekodiranje</span><span class="p">(</span><span class="n">profhmm</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Декодирањем опажања ADDAFFDF добија се: (0.003375000000000001, &#39;M1M2M3M4M5M6M7M8&#39;)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Довољно је само помножити одговарајуће вредности из профилне матрице. Примера ради, вероватноћа да <em>HMM</em> са слике <a href="#fig:profil">4.6</a> емитује $ADDAFFDF$ износи (слика <a href="#fig:prof_ishod">4.7</a>): $$P\{ADDAFFDF\} = 1 \cdot \frac{1}{4} \cdot \frac{3}{4} \cdot \frac{1}{5} \cdot 1 \cdot \frac{1}{5} \cdot \frac{3}{4} \cdot \frac{3}{5} = 0,003375.$$</p>
 
 </div>
 </div>
@@ -21582,10 +21972,165 @@ HMM 6:   ------+++++++++++++---------------------- (равномерни пре�
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[219]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа пута према профилу</span>
+<span class="k">def</span> <span class="nf">prof_p_ops</span><span class="p">(</span><span class="n">prof</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+    <span class="c1"># Полазна јединична вероватноћа</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span>
+    
+    <span class="c1"># Множење вероватноће сваког симбола</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">oi</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">o</span><span class="p">):</span>
+        <span class="n">p</span> <span class="o">*=</span> <span class="n">prof</span><span class="p">[</span><span class="n">oi</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+    
+    <span class="c1"># Враћање крајње вероватноће</span>
+    <span class="k">return</span> <span class="n">p</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[220]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Множење профилних вероватноћа</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа опажања&#39;</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="s1">&#39;је:&#39;</span><span class="p">,</span> <span class="n">prof_p_ops</span><span class="p">(</span><span class="n">prof</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа опажања ADDAFFDF је: 0.003375000000000001
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Свеукупно, овакав модел није лош утолико што добро осликава сличност протеина са породицом – што је улазни полипептид сличнији фамилији, то је његов скор (вероватноћа) већи. Такође, различито оцењује сваку појединачну колону, што је циљ постављен у мотивационом уводу. Ипак, он због дегенерисаности баш и није прави <em>HMM</em>. Штавише, није ништа бољи од саме профилне матрице. Иако све лепо ради за опсервације (полипептиде) дужине $k = n$, главно ограничење је што се лоше моделују исходи других дужина. Њихова вероватноћа је подразумевано нулта, тј. сматрају се немогућим. Овај наивни модел, ипак, није толико бескористан, јер се може употребити као основа за прављење напредног, свеобухватног <em>HMM</em>-а за класификацију свакојаких секвенцијалних података, а не само протеина, о чему ће бити речи у наставку.</p>
+<p>Свеукупно, овакав модел није лош утолико што добро осликава сличност протеина са породицом – што је улазни полипептид сличнији фамилији, то је његов скор (вероватноћа) већи. Такође, различито оцењује сваку појединачну колону, што је циљ постављен у мотивационом уводу. Ипак, он због дегенерисаности баш и није прави <em>HMM</em>. Штавише, није ништа бољи од саме профилне матрице. Иако све лепо ради за опсервације (полипептиде) дужине $k = n$, главно ограничење је што се лоше моделују исходи других дужина. Њихова вероватноћа је подразумевано нулта, тј. сматрају се немогућим.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[221]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Дугачко опажање из уџбеника</span>
+<span class="n">o_dugo</span> <span class="o">=</span> <span class="s1">&#39;AFDDAFFDF&#39;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[222]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа опажања дужине 9 = k &gt; n = 8</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа опажања&#39;</span><span class="p">,</span> <span class="n">o_dugo</span><span class="p">,</span> <span class="s1">&#39;је:&#39;</span><span class="p">,</span> <span class="n">forward</span><span class="p">(</span><span class="n">profhmm</span><span class="p">,</span> <span class="n">o_dugo</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа опажања AFDDAFFDF је: 0.0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[223]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Кратко опажање из уџбеника</span>
+<span class="n">o_kratko</span> <span class="o">=</span> <span class="s1">&#39;AAFFDF&#39;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[224]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа опажања дужине 6 = k &lt; n = 8</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа опажања&#39;</span><span class="p">,</span> <span class="n">o_kratko</span><span class="p">,</span> <span class="s1">&#39;је:&#39;</span><span class="p">,</span> <span class="n">forward</span><span class="p">(</span><span class="n">profhmm</span><span class="p">,</span> <span class="n">o_kratko</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа опажања AAFFDF је: 0.0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Овај наивни модел, ипак, није толико бескористан, јер се може употребити као основа за прављење напредног, свеобухватног <em>HMM</em>-а за класификацију свакојаких секвенцијалних података, а не само протеина, о чему ће бити речи у наставку.</p>
 
 </div>
 </div>
@@ -21605,6 +22150,19 @@ HMM 6:   ------+++++++++++++---------------------- (равномерни пре�
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -21619,6 +22177,19 @@ HMM 6:   ------+++++++++++++---------------------- (равномерни пре�
 <figure><img src="../slike/delecije1.png" width="65%" id="fig:delecije1" /><figcaption style="text-align: center;"><b>Слика 4.9</b>: Наивна обрада делеција, према књизи</figcaption></figure>
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
