@@ -13132,7 +13132,8 @@ div#notebook {
 <li><a href="#par:bio">Биолошки значај</a><br>
 4.1 <a href="#par:gen2">Гени – два стања</a><br>
 4.2 <a href="#par:gen3">Гени – више стања</a><br>
-4.3 <a href="#par:prof">Профилни модели</a></li>
+4.3 <a href="#par:prof1">Профилни модели</a><br>
+4.4 <a href="#par:prof2">Рад са профилима</a></li>
 <li><a href="#par:uch">Учење модела</a></li>
 <li><a href="#par:zak">Закључак</a></li>
 </ol>
@@ -13158,8 +13159,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="../slike/bioinformatika.png" width="50%" id="fig:venn" title="Слика 1.1: Венов дијаграм интердисциплинарности" /></p>
-
+<figure><img src="../slike/bioinformatika.png" width="50%" id="fig:venn" /><figcaption style="text-align: center;"><b>Слика 1.1</b>: Венов дијаграм интердисциплинарности</figcaption></figure>
 </div>
 </div>
 </div>
@@ -13208,8 +13208,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="../slike/hmm.png" width="50%" id="fig:hmm" title="Слика 1.2: Једноставан пример скривеног Марковљевог модела" /></p>
-
+<figure><img src="../slike/hmm.png" width="50%" id="fig:hmm" /><figcaption style="text-align: center;"><b>Слика 1.2</b>: Једноставан пример скривеног Марковљевог модела</figcaption></figure>
 </div>
 </div>
 </div>
@@ -13507,8 +13506,7 @@ V3 петља: CMRPGTTTRRRIHIGPGRAFYATGNI-GNIRKAHC
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="../slike/motif.png" width="50%" id="fig:motif" title="Слика 2.1: Мотив V3 петље из уџбеника" /></p>
-
+<figure><img src="../slike/motif.png" width="50%" id="fig:motif" /><figcaption style="text-align: center;"><b>Слика 2.1</b>: Мотив <i>V3</i> петље из уџбеника</figcaption></figure>
 </div>
 </div>
 </div>
@@ -13570,7 +13568,9 @@ V3 петља: CMRPGTTTRRRIHIGPGRAFYATGNI-GNIRKAHC
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<table id="tab:cg" title="Табела 2.1: Удео динуклеотида у једном ланцу људског X хромозома – лево у регионима CG острва, а десно ван њих">
+<figure>
+<figcaption style="text-align: center;"><b>Табела 2.1</b>: Удео динуклеотида у једном ланцу људског <i>X</i> хромозома – лево у регионима <i>CG</i> острва, а десно ван њих</figcaption>
+<table id="tab:cg">
 <thead>
 <tr class="header">
 <th style="text-align: center;"></th>
@@ -13641,6 +13641,7 @@ V3 петља: CMRPGTTTRRRIHIGPGRAFYATGNI-GNIRKAHC
 </tr>
 </tbody>
 </table>
+</figure>
 </div>
 </div>
 </div>
@@ -14500,7 +14501,8 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 <div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Ако је бацања </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">, од чега глава </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">, новчић вероватно&#39;</span><span class="p">,</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Израчунавање логаритамског односа примера</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Ако је бацања </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">, од чега глава </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">, новчић вероватно&#39;</span><span class="p">,</span>
       <span class="s1">&#39;није&#39;</span> <span class="k">if</span> <span class="n">log_pravednost</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;јесте&#39;</span><span class="p">,</span> <span class="s1">&#39;отежан.&#39;</span><span class="p">)</span>
 </pre></div>
 
@@ -14555,7 +14557,8 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 <div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Ако је бацања </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">, од чега глава </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">, новчић вероватно&#39;</span><span class="p">,</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Израчунавање логаритамског односа примера</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Ако је бацања </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">, од чега глава </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">, новчић вероватно&#39;</span><span class="p">,</span>
       <span class="s1">&#39;није&#39;</span> <span class="k">if</span> <span class="n">div_log_pravednost</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;јесте&#39;</span><span class="p">,</span> <span class="s1">&#39;отежан.&#39;</span><span class="p">)</span>
 </pre></div>
 
@@ -14595,8 +14598,10 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 <div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">velicine</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mf">10e4</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="mf">10e6</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="mf">10e9</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="mf">10e12</span><span class="p">)]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Нешто веће величине проблема</span>
+<span class="n">velicine</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mf">10e4</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="mf">10e6</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="mf">10e9</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="mf">10e12</span><span class="p">)]</span>
 
+<span class="c1"># Израчунавање логаритамског односа примера</span>
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">velicine</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ако само једно писмо падне у&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="s1">&#39;бацања, новчић вероватно&#39;</span><span class="p">,</span>
           <span class="s1">&#39;није&#39;</span> <span class="k">if</span> <span class="n">div_log_pravednost</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;јесте&#39;</span><span class="p">,</span> <span class="s1">&#39;отежан.&#39;</span><span class="p">)</span>
@@ -14880,8 +14885,7 @@ HHHHHTTHHHTTTTT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="../slike/covid.png" width="55%" id="fig:covid" title="Слика 2.2: Моделовање епидемије COVID-19 у Србији" /></p>
-
+<figure><img src="../slike/covid.png" width="55%" id="fig:covid" /><figcaption style="text-align: center;"><b>Слика 2.2</b>: Моделовање епидемије <i>COVID-19</i> у Србији</figcaption></figure>
 </div>
 </div>
 </div>
@@ -15207,8 +15211,7 @@ HHHHHTTHHHTTTTT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="../slike/kockarnica.png" width="35%" id="fig:kock" title="Слика 3.1: Скривени Марковљев модел бацања новчића" /></p>
-
+<figure><img src="../slike/kockarnica.png" width="35%" id="fig:kock" /><figcaption style="text-align: center;"><b>Слика 3.1</b>: Скривени Марковљев модел бацања новчића</figcaption></figure>
 </div>
 </div>
 </div>
@@ -15408,7 +15411,8 @@ HHHHHTTHHHTTTTT
 <div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;У нисци ABC, карактер B је на </span><span class="si">{</span><span class="n">ind</span><span class="p">(</span><span class="s2">&quot;ABC&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">. позицији.&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Пример одређивања индекса</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;У нисци ABC, карактер B је на </span><span class="si">{</span><span class="n">ind</span><span class="p">(</span><span class="s2">&quot;ABC&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">. позицији.&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -16800,8 +16804,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="../slike/vreme.png" width="55%" id="fig:vreme" title="Слика 3.2: Ток времена код скривених Марковљевих модела" /></p>
-
+<figure><img src="../slike/vreme.png" width="55%" id="fig:vreme" /><figcaption style="text-align: center;"><b>Слика 3.2</b>: Ток времена код скривених Марковљевих модела</figcaption></figure>
 </div>
 </div>
 </div>
@@ -16832,8 +16835,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="../slike/kock_graf.png" width="65%" id="fig:kockvit" title="Слика 3.3: Витербијев граф непоштене коцкарнице" /></p>
-
+<figure><img src="../slike/kock_graf.png" width="65%" id="fig:kockvit" /><figcaption style="text-align: center;"><b>Слика 3.3</b>: Витербијев граф непоштене коцкарнице</figcaption></figure>
 </div>
 </div>
 </div>
@@ -17107,8 +17109,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="../slike/tri_bacanja.png" width="55%" id="fig:tribac" title="Слика 3.4: Максимизација P{p} са три бацања" /></p>
-
+<figure><img src="../slike/tri_bacanja.png" width="55%" id="fig:tribac" /><figcaption style="text-align: center;"><b>Слика 3.4</b>: Максимизација $P\{p\}$ са три бацања</figcaption></figure>
 </div>
 </div>
 </div>
@@ -18974,7 +18975,9 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<table id="tab:hmm" title="Табела 3.1: Могућности скривених Марковљевих модела">
+<figure>
+<figcaption style="text-align: center;"><b>Табела 3.1</b>: Могућности скривених Марковљевих модела</figcaption>
+<table id="tab:hmm">
 <tbody>
 <tr class="odd">
 <td style="text-align: center;" colspan="4">Проблем – алгоритам</td>
@@ -19078,6 +19081,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </tr>
 </tbody>
 </table>
+</figure>
 </div>
 </div>
 </div>
@@ -19151,8 +19155,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="../slike/cg_graf.png" width="35%" id="fig:cg_graf" title="Слика 4.1: Скривени модел CG острва са два стања" /></p>
-
+<figure><img src="../slike/cg_graf.png" width="35%" id="fig:cg_graf" /><figcaption style="text-align: center;"><b>Слика 4.1</b>: Скривени модел <i>CG</i> острва са два стања</figcaption></figure>
 </div>
 </div>
 </div>
@@ -20367,8 +20370,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="../slike/cg_lanac.png" width="30%" id="fig:cg_lanac" title="Слика 4.2: Марковљев ланац за моделовање DNA секвенце" /></p>
-
+<figure><img src="../slike/cg_lanac.png" width="30%" id="fig:cg_lanac" /><figcaption style="text-align: center;"><b>Слика 4.2</b>: Марковљев ланац за моделовање <i>DNA</i> секвенце</figcaption></figure>
 </div>
 </div>
 </div>
@@ -20383,7 +20385,9 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<table id="tab:cg_lanac" title="Табела 4.1: Вероватноћа прелаза између нуклеотида једне секвенце – лево у регионима CG острва, а десно ван њих">
+<figure>
+<figcaption style="text-align: center;"><b>Табела 4.1</b>: Вероватноћа прелаза између нуклеотида једне секвенце – лево у регионима <i>CG</i> острва, а десно ван њих</figcaption>
+<table id="tab:cg_lanac">
 <thead>
 <tr class="header">
 <th style="text-align: center;"></th>
@@ -20454,6 +20458,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 </tr>
 </tbody>
 </table>
+</figure>
 </div>
 </div>
 </div>
@@ -20776,8 +20781,7 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="../slike/cg_lanci.png" width="40%" id="fig:cg_lanci" title="Слика 4.3: Спојени ланци за моделовање CG острва" /></p>
-
+<figure><img src="../slike/cg_lanci.png" width="40%" id="fig:cg_lanci" /><figcaption style="text-align: center;"><b>Слика 4.3</b>: Спојени ланци за моделовање <i>CG</i> острва</figcaption></figure>
 </div>
 </div>
 </div>
@@ -20806,7 +20810,9 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<table id="tab:cg_hmm1" title="Табела 4.2: Вероватноћа прелаза унутар CG острва">
+<figure>
+<figcaption style="text-align: center;"><b>Табела 4.2</b>: Вероватноћа прелаза унутар <i>CG</i> острва</figcaption>
+<table id="tab:cg_hmm1">
 <thead>
 <tr class="header">
 <th style="text-align: center;"></th>
@@ -20896,6 +20902,7 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 </tr>
 </tbody>
 </table>
+</figure>
 </div>
 </div>
 </div>
@@ -20997,7 +21004,9 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<table id="tab:cg_hmm2" title="Табела 4.3: Вероватноћа прелаза ван CG острва">
+<figure>
+<figcaption style="text-align: center;"><b>Табела 4.3</b>: Вероватноћа прелаза ван <i>CG</i> острва</figcaption>
+<table id="tab:cg_hmm2">
 <thead>
 <tr class="header">
 <th style="text-align: center;"></th>
@@ -21087,6 +21096,7 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 </tr>
 </tbody>
 </table>
+</figure>
 </div>
 </div>
 </div>
@@ -21201,8 +21211,7 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="../slike/cg_stanja.png" width="40%" id="fig:cg_stanja" title="Слика 4.4: Нова структура модела CG острва" /></p>
-
+<figure><img src="../slike/cg_stanja.png" width="40%" id="fig:cg_stanja" /><figcaption style="text-align: center;"><b>Слика 4.4</b>: Нова структура модела <i>CG</i> острва</figcaption></figure>
 </div>
 </div>
 </div>
@@ -21220,8 +21229,8 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Емпиријске почетне вероватноће новог модела</span>
-<span class="n">pi5</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A+&#39;</span><span class="p">:</span> <span class="mf">0.0725</span><span class="p">,</span> <span class="s1">&#39;C+&#39;</span><span class="p">:</span> <span class="mf">0.1638</span><span class="p">,</span> <span class="s1">&#39;G+&#39;</span><span class="p">:</span> <span class="mf">0.1788</span><span class="p">,</span> <span class="s1">&#39;T+&#39;</span><span class="p">:</span> <span class="mf">0.0755</span><span class="p">,</span>
-       <span class="s1">&#39;A-&#39;</span><span class="p">:</span> <span class="mf">0.1322</span><span class="p">,</span> <span class="s1">&#39;C-&#39;</span><span class="p">:</span> <span class="mf">0.1267</span><span class="p">,</span> <span class="s1">&#39;G-&#39;</span><span class="p">:</span> <span class="mf">0.1226</span><span class="p">,</span> <span class="s1">&#39;T-&#39;</span><span class="p">:</span> <span class="mf">0.1279</span><span class="p">}</span>
+<span class="n">pi5</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A+&#39;</span><span class="p">:</span> <span class="mf">.0725</span><span class="p">,</span> <span class="s1">&#39;C+&#39;</span><span class="p">:</span> <span class="mf">.1638</span><span class="p">,</span> <span class="s1">&#39;G+&#39;</span><span class="p">:</span> <span class="mf">.1788</span><span class="p">,</span> <span class="s1">&#39;T+&#39;</span><span class="p">:</span> <span class="mf">.0755</span><span class="p">,</span>
+       <span class="s1">&#39;A-&#39;</span><span class="p">:</span> <span class="mf">.1322</span><span class="p">,</span> <span class="s1">&#39;C-&#39;</span><span class="p">:</span> <span class="mf">.1267</span><span class="p">,</span> <span class="s1">&#39;G-&#39;</span><span class="p">:</span> <span class="mf">.1226</span><span class="p">,</span> <span class="s1">&#39;T-&#39;</span><span class="p">:</span> <span class="mf">.1279</span><span class="p">}</span>
 
 <span class="c1"># Провера да ли је покривен цео простор догађаја јединичном вероватноћом</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Укупна вероватнћа емпиријских почетака:&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">pi5</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
@@ -21384,8 +21393,7 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="../slike/eukariote.png" width="65%" id="fig:eukariote" title="Слика 4.5: Структура модела еукариотске DNA" /></p>
-
+<figure><img src="../slike/eukariote.png" width="65%" id="fig:eukariote" /><figcaption style="text-align: center;"><b>Слика 4.5</b>: Структура модела еукариотске <i>DNA</i></figcaption></figure>
 </div>
 </div>
 </div>
@@ -21476,15 +21484,14 @@ HMM 6:   ------+++++++++++++---------------------- (равномерни пре�
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="4.3-%D0%9F%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D0%BD%D0%B8-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8-%E2%AE%AD">4.3 &#1055;&#1088;&#1086;&#1092;&#1080;&#1083;&#1085;&#1080; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080; <a href="#par:bio">&#11181;</a><a id="par:prof" /><a class="anchor-link" href="#4.3-%D0%9F%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D0%BD%D0%B8-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8-%E2%AE%AD">&#182;</a></h2>
+<h2 id="4.3-%D0%9F%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D0%BD%D0%B8-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8-%E2%AE%AD">4.3 &#1055;&#1088;&#1086;&#1092;&#1080;&#1083;&#1085;&#1080; &#1084;&#1086;&#1076;&#1077;&#1083;&#1080; <a href="#par:bio">&#11181;</a><a id="par:prof1" /><a class="anchor-link" href="#4.3-%D0%9F%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D0%BD%D0%B8-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8-%E2%AE%AD">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Крунско и можда најпознатије постигнуће скривених Марковљевих модела управо је њихова употреба у статистички поткованој класификацији секвенцијалних података.</p>
-
+<h2 id="4.4-%D0%A0%D0%B0%D0%B4-%D1%81%D0%B0-%D0%BF%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D0%B8%D0%BC%D0%B0-%E2%AE%AD">4.4 &#1056;&#1072;&#1076; &#1089;&#1072; &#1087;&#1088;&#1086;&#1092;&#1080;&#1083;&#1080;&#1084;&#1072; <a href="#par:bio">&#11181;</a><a id="par:prof2" /><a class="anchor-link" href="#4.4-%D0%A0%D0%B0%D0%B4-%D1%81%D0%B0-%D0%BF%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D0%B8%D0%BC%D0%B0-%E2%AE%AD">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -21513,7 +21520,7 @@ HMM 6:   ------+++++++++++++---------------------- (равномерни пре�
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Досад је изложен појам скривених Марковљевих модела, као и њихов биоинформатички значај. Дата је детаљна мотивација за увођење статистички потованог аутомата, након чега је појам <em>HMM</em> разрађен на мотивационом примеру непоштене коцкарнице (бацање два новчића). Затим је и примењен на решавање важних биолошких проблема, попут проналажења <em>CG</em> острва (места са генима) и напредног бављења генским и протеинским профилима.</p>
+<p>Досад је изложен појам скривених Марковљевих модела, као и њихов биоинформатички значај. Дата је детаљна мотивација за увођење статистички поткованог аутомата, након чега је појам <em>HMM</em> разрађен на мотивационом примеру непоштене коцкарнице (бацање два новчића). Затим је и примењен на решавање важних биолошких проблема, попут проналажења <em>CG</em> острва (места са генима) и напредног бављења генским и протеинским профилима.</p>
 
 </div>
 </div>
