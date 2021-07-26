@@ -21829,6 +21829,394 @@ ADDEFADF
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[215]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Библиотека за леп приказ модела</span>
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[216]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Леп приказ модела</span>
+<span class="k">def</span> <span class="nf">prikazi</span><span class="p">(</span><span class="n">hmm</span><span class="p">):</span>
+    <span class="c1"># Издвајање пролазних вероватноћа</span>
+    <span class="n">pi</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">([[</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">]],</span>
+                   <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;π&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+    
+    <span class="c1"># Приказ полазних вероватноћа</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Полазне вероватноће:&#39;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
+    
+    <span class="c1"># Издвајање вероватноћа прелаза</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">([[</span><span class="n">hmm</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">],</span>
+                  <span class="n">index</span><span class="o">=</span><span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+    
+    <span class="c1"># Приказ вероватноћа прелаза</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноће прелаза:&#39;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    
+    <span class="c1"># Издвајање излазних вероватноћа</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">([[</span><span class="n">hmm</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">y</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">],</span>
+                  <span class="n">index</span><span class="o">=</span><span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">hmm</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+    
+    <span class="c1"># Приказ излазних вероватноћа</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноће емисија:&#39;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[217]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Леп приказ модела</span>
+<span class="n">prikazi</span><span class="p">(</span><span class="n">profhmm</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Полазне вероватноће:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>M1</th>
+      <th>M2</th>
+      <th>M3</th>
+      <th>M4</th>
+      <th>M5</th>
+      <th>M6</th>
+      <th>M7</th>
+      <th>M8</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>π</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноће прелаза:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>M1</th>
+      <th>M2</th>
+      <th>M3</th>
+      <th>M4</th>
+      <th>M5</th>
+      <th>M6</th>
+      <th>M7</th>
+      <th>M8</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>M1</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>M2</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>M3</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>M4</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>M5</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>M6</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>M7</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>M8</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноће емисија:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>C</th>
+      <th>D</th>
+      <th>E</th>
+      <th>F</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>M1</th>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M2</th>
+      <td>0.00</td>
+      <td>0.50</td>
+      <td>0.25</td>
+      <td>0.0</td>
+      <td>0.25</td>
+    </tr>
+    <tr>
+      <th>M3</th>
+      <td>0.25</td>
+      <td>0.00</td>
+      <td>0.75</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M4</th>
+      <td>0.20</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.8</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M5</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>M6</th>
+      <td>0.60</td>
+      <td>0.20</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>M7</th>
+      <td>0.00</td>
+      <td>0.25</td>
+      <td>0.75</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M8</th>
+      <td>0.00</td>
+      <td>0.40</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.60</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -21839,7 +22227,7 @@ ADDEFADF
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[215]:</div>
+<div class="prompt input_prompt">In&nbsp;[218]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Пример опажања из уџбеника</span>
@@ -21853,7 +22241,7 @@ ADDEFADF
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[216]:</div>
+<div class="prompt input_prompt">In&nbsp;[219]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Примена алгоритма „напред”</span>
@@ -21893,7 +22281,7 @@ ADDEFADF
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[217]:</div>
+<div class="prompt input_prompt">In&nbsp;[220]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Рачунање вероватноће при путу</span>
@@ -21926,7 +22314,7 @@ ADDEFADF
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[218]:</div>
+<div class="prompt input_prompt">In&nbsp;[221]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Рачунање вероватноће при путу</span>
@@ -21974,7 +22362,7 @@ ADDEFADF
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[219]:</div>
+<div class="prompt input_prompt">In&nbsp;[222]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа пута према профилу</span>
@@ -21997,7 +22385,7 @@ ADDEFADF
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[220]:</div>
+<div class="prompt input_prompt">In&nbsp;[223]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Множење профилних вероватноћа</span>
@@ -22037,7 +22425,7 @@ ADDEFADF
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[221]:</div>
+<div class="prompt input_prompt">In&nbsp;[224]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Дугачко опажање из уџбеника</span>
@@ -22051,7 +22439,7 @@ ADDEFADF
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[222]:</div>
+<div class="prompt input_prompt">In&nbsp;[225]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа опажања дужине 9 = k &gt; n = 8</span>
@@ -22083,7 +22471,7 @@ ADDEFADF
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[223]:</div>
+<div class="prompt input_prompt">In&nbsp;[226]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Кратко опажање из уџбеника</span>
@@ -22097,7 +22485,7 @@ ADDEFADF
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[224]:</div>
+<div class="prompt input_prompt">In&nbsp;[227]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа опажања дужине 6 = k &lt; n = 8</span>
@@ -22152,13 +22540,813 @@ ADDEFADF
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[228]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Додавање инсерција у профилни модел</span>
+<span class="k">class</span> <span class="nc">ProfHMM</span><span class="p">(</span><span class="n">HMM</span><span class="p">):</span>
+    <span class="c1"># Конструкција према профилу</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prof</span><span class="p">):</span>
+        <span class="c1"># Читање азбуке емисија из профила</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">prof</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+        
+        <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        
+        <span class="c1"># Читање броја стања (колона) из профила</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">prof</span><span class="p">[</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+        
+        <span class="c1"># Скуп скривених стања {I0, M1, I1, ..., Mn, In}</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;I0&#39;</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">X</span><span class="si">}{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">X</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">))]</span>
+        
+        <span class="c1"># Обавезно почетно стање M1 ili I0; већа</span>
+        <span class="c1"># је вероватноћа поклапања него инсерције</span>
+        <span class="n">pi</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="mf">.9</span> <span class="k">if</span> <span class="n">xi</span> <span class="o">==</span> <span class="s1">&#39;M1&#39;</span> <span class="k">else</span> <span class="mf">.1</span> <span class="k">if</span> <span class="n">xi</span> <span class="o">==</span> <span class="s1">&#39;I0&#39;</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+        
+        <span class="c1"># Обавезни прелази Mi -&gt; Mi+1, Ii -&gt; Ii, Ii -&gt; Mi;</span>
+        <span class="c1"># већа је вероватноћа поклапања него инсерције</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="mf">.9</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span>
+                  <span class="k">else</span> <span class="mf">.1</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="ow">and</span> <span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;I&#39;</span>
+                  <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+        
+        <span class="c1"># Нормализација мапе прелаза</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+        
+        <span class="c1"># Мапа емисија према профилу или</span>
+        <span class="c1"># равномерна у стањима инсерције</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">yi</span><span class="p">:</span> <span class="n">prof</span><span class="p">[</span><span class="n">yi</span><span class="p">][</span><span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">xi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span> <span class="k">else</span> <span class="mi">1</span><span class="o">/</span><span class="n">m</span> <span class="k">for</span> <span class="n">yi</span> <span class="ow">in</span> <span class="n">y</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+        
+        <span class="c1"># Конструкција наткласе</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[229]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Прављење HMM-а са инсерцијама</span>
+<span class="n">profhmm</span> <span class="o">=</span> <span class="n">ProfHMM</span><span class="p">(</span><span class="n">prof</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[230]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Леп приказ модела</span>
+<span class="n">prikazi</span><span class="p">(</span><span class="n">profhmm</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Полазне вероватноће:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>I0</th>
+      <th>M1</th>
+      <th>I1</th>
+      <th>M2</th>
+      <th>I2</th>
+      <th>M3</th>
+      <th>I3</th>
+      <th>M4</th>
+      <th>I4</th>
+      <th>M5</th>
+      <th>I5</th>
+      <th>M6</th>
+      <th>I6</th>
+      <th>M7</th>
+      <th>I7</th>
+      <th>M8</th>
+      <th>I8</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>π</th>
+      <td>0.1</td>
+      <td>0.9</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноће прелаза:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>I0</th>
+      <th>M1</th>
+      <th>I1</th>
+      <th>M2</th>
+      <th>I2</th>
+      <th>M3</th>
+      <th>I3</th>
+      <th>M4</th>
+      <th>I4</th>
+      <th>M5</th>
+      <th>I5</th>
+      <th>M6</th>
+      <th>I6</th>
+      <th>M7</th>
+      <th>I7</th>
+      <th>M8</th>
+      <th>I8</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>I0</th>
+      <td>0.1</td>
+      <td>0.9</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.1</td>
+      <td>0.9</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.1</td>
+      <td>0.9</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.1</td>
+      <td>0.9</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.1</td>
+      <td>0.9</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.1</td>
+      <td>0.9</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.1</td>
+      <td>0.9</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.1</td>
+      <td>0.9</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.1</td>
+      <td>0.9</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M5</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.1</td>
+      <td>0.9</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I5</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.1</td>
+      <td>0.9</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M6</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.1</td>
+      <td>0.9</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I6</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.1</td>
+      <td>0.9</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M7</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.1</td>
+      <td>0.9</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I7</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.1</td>
+      <td>0.9</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M8</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>I8</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноће емисија:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>C</th>
+      <th>D</th>
+      <th>E</th>
+      <th>F</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>I0</th>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.2</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>M1</th>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I1</th>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.2</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>M2</th>
+      <td>0.00</td>
+      <td>0.50</td>
+      <td>0.25</td>
+      <td>0.0</td>
+      <td>0.25</td>
+    </tr>
+    <tr>
+      <th>I2</th>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.2</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>M3</th>
+      <td>0.25</td>
+      <td>0.00</td>
+      <td>0.75</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I3</th>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.2</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>M4</th>
+      <td>0.20</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.8</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I4</th>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.2</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>M5</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>I5</th>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.2</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>M6</th>
+      <td>0.60</td>
+      <td>0.20</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>I6</th>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.2</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>M7</th>
+      <td>0.00</td>
+      <td>0.25</td>
+      <td>0.75</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I7</th>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.2</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>M8</th>
+      <td>0.00</td>
+      <td>0.40</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.60</td>
+    </tr>
+    <tr>
+      <th>I8</th>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.2</td>
+      <td>0.20</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[231]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа опажања дужине 9 = k &gt; n = 8</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа опажања&#39;</span><span class="p">,</span> <span class="n">o_dugo</span><span class="p">,</span> <span class="s1">&#39;је:&#39;</span><span class="p">,</span> <span class="n">forward</span><span class="p">(</span><span class="n">profhmm</span><span class="p">,</span> <span class="n">o_dugo</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа опажања AFDDAFFDF је: 9.071731402179203e-05
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[232]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Рачунање вероватноће при путу</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Декодирањем опажања&#39;</span><span class="p">,</span> <span class="n">o_dugo</span><span class="p">,</span> <span class="s1">&#39;добија се:&#39;</span><span class="p">,</span>
+      <span class="n">viterbi_dekodiranje</span><span class="p">(</span><span class="n">profhmm</span><span class="p">,</span> <span class="n">o_dugo</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Декодирањем опажања AFDDAFFDF добија се: (2.9056536675000004e-05, &#39;M1I1M2M3M4M5M6M7M8&#39;)
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -22180,13 +23368,814 @@ ADDEFADF
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[233]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Додавање инсерција у профилни модел</span>
+<span class="k">class</span> <span class="nc">ProfHMM</span><span class="p">(</span><span class="n">HMM</span><span class="p">):</span>
+    <span class="c1"># Конструкција према профилу</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prof</span><span class="p">):</span>
+        <span class="c1"># Читање азбуке емисија из профила</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">prof</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+        
+        <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        
+        <span class="c1"># Читање броја стања (колона) из профила</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">prof</span><span class="p">[</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+        
+        <span class="c1"># Скуп скривених стања {I0, M1, I1, ..., Mn, In}</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;I0&#39;</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">X</span><span class="si">}{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">X</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">))]</span>
+        
+        <span class="c1"># Обавезно почетно стање M1 ili I0; већа</span>
+        <span class="c1"># је вероватноћа поклапања него инсерције</span>
+        <span class="n">pi</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="mf">.9</span> <span class="k">if</span> <span class="n">xi</span> <span class="o">==</span> <span class="s1">&#39;M1&#39;</span> <span class="k">else</span> <span class="mf">.1</span> <span class="k">if</span> <span class="n">xi</span> <span class="o">==</span> <span class="s1">&#39;I0&#39;</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+        
+        <span class="c1"># Могућ велики број прелаза; већа је</span>
+        <span class="c1"># вероватноћа поклапања него инсерције</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="mf">.9</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span>
+                  <span class="k">else</span> <span class="mf">.1</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="ow">and</span> <span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;I&#39;</span>
+                  <span class="k">else</span> <span class="mf">.1</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">&lt;</span> <span class="nb">int</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="ow">and</span>  <span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span>
+                  <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+        
+        <span class="c1"># Нормализација мапе прелаза</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+        
+        <span class="c1"># Мапа емисија према профилу или</span>
+        <span class="c1"># равномерна у стањима инсерције</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">yi</span><span class="p">:</span> <span class="n">prof</span><span class="p">[</span><span class="n">yi</span><span class="p">][</span><span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">xi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span> <span class="k">else</span> <span class="mi">1</span><span class="o">/</span><span class="n">m</span> <span class="k">for</span> <span class="n">yi</span> <span class="ow">in</span> <span class="n">y</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+        
+        <span class="c1"># Конструкција наткласе</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[234]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Прављење HMM-а са инсерцијама</span>
+<span class="n">profhmm</span> <span class="o">=</span> <span class="n">ProfHMM</span><span class="p">(</span><span class="n">prof</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[235]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Леп приказ модела</span>
+<span class="n">prikazi</span><span class="p">(</span><span class="n">profhmm</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Полазне вероватноће:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>I0</th>
+      <th>M1</th>
+      <th>I1</th>
+      <th>M2</th>
+      <th>I2</th>
+      <th>M3</th>
+      <th>I3</th>
+      <th>M4</th>
+      <th>I4</th>
+      <th>M5</th>
+      <th>I5</th>
+      <th>M6</th>
+      <th>I6</th>
+      <th>M7</th>
+      <th>I7</th>
+      <th>M8</th>
+      <th>I8</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>π</th>
+      <td>0.1</td>
+      <td>0.9</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноће прелаза:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>I0</th>
+      <th>M1</th>
+      <th>I1</th>
+      <th>M2</th>
+      <th>I2</th>
+      <th>M3</th>
+      <th>I3</th>
+      <th>M4</th>
+      <th>I4</th>
+      <th>M5</th>
+      <th>I5</th>
+      <th>M6</th>
+      <th>I6</th>
+      <th>M7</th>
+      <th>I7</th>
+      <th>M8</th>
+      <th>I8</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>I0</th>
+      <td>0.06</td>
+      <td>0.53</td>
+      <td>0.00</td>
+      <td>0.06</td>
+      <td>0.00</td>
+      <td>0.06</td>
+      <td>0.00</td>
+      <td>0.06</td>
+      <td>0.00</td>
+      <td>0.06</td>
+      <td>0.00</td>
+      <td>0.06</td>
+      <td>0.00</td>
+      <td>0.06</td>
+      <td>0.0</td>
+      <td>0.06</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M1</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.06</td>
+      <td>0.56</td>
+      <td>0.00</td>
+      <td>0.06</td>
+      <td>0.00</td>
+      <td>0.06</td>
+      <td>0.00</td>
+      <td>0.06</td>
+      <td>0.00</td>
+      <td>0.06</td>
+      <td>0.00</td>
+      <td>0.06</td>
+      <td>0.0</td>
+      <td>0.06</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I1</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.06</td>
+      <td>0.56</td>
+      <td>0.00</td>
+      <td>0.06</td>
+      <td>0.00</td>
+      <td>0.06</td>
+      <td>0.00</td>
+      <td>0.06</td>
+      <td>0.00</td>
+      <td>0.06</td>
+      <td>0.00</td>
+      <td>0.06</td>
+      <td>0.0</td>
+      <td>0.06</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M2</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.07</td>
+      <td>0.60</td>
+      <td>0.00</td>
+      <td>0.07</td>
+      <td>0.00</td>
+      <td>0.07</td>
+      <td>0.00</td>
+      <td>0.07</td>
+      <td>0.00</td>
+      <td>0.07</td>
+      <td>0.0</td>
+      <td>0.07</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I2</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.07</td>
+      <td>0.60</td>
+      <td>0.00</td>
+      <td>0.07</td>
+      <td>0.00</td>
+      <td>0.07</td>
+      <td>0.00</td>
+      <td>0.07</td>
+      <td>0.00</td>
+      <td>0.07</td>
+      <td>0.0</td>
+      <td>0.07</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M3</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.07</td>
+      <td>0.64</td>
+      <td>0.00</td>
+      <td>0.07</td>
+      <td>0.00</td>
+      <td>0.07</td>
+      <td>0.00</td>
+      <td>0.07</td>
+      <td>0.0</td>
+      <td>0.07</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I3</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.07</td>
+      <td>0.64</td>
+      <td>0.00</td>
+      <td>0.07</td>
+      <td>0.00</td>
+      <td>0.07</td>
+      <td>0.00</td>
+      <td>0.07</td>
+      <td>0.0</td>
+      <td>0.07</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M4</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.08</td>
+      <td>0.69</td>
+      <td>0.00</td>
+      <td>0.08</td>
+      <td>0.00</td>
+      <td>0.08</td>
+      <td>0.0</td>
+      <td>0.08</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I4</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.08</td>
+      <td>0.69</td>
+      <td>0.00</td>
+      <td>0.08</td>
+      <td>0.00</td>
+      <td>0.08</td>
+      <td>0.0</td>
+      <td>0.08</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M5</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.08</td>
+      <td>0.75</td>
+      <td>0.00</td>
+      <td>0.08</td>
+      <td>0.0</td>
+      <td>0.08</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I5</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.08</td>
+      <td>0.75</td>
+      <td>0.00</td>
+      <td>0.08</td>
+      <td>0.0</td>
+      <td>0.08</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M6</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.09</td>
+      <td>0.82</td>
+      <td>0.0</td>
+      <td>0.09</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I6</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.09</td>
+      <td>0.82</td>
+      <td>0.0</td>
+      <td>0.09</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M7</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.1</td>
+      <td>0.90</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I7</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.1</td>
+      <td>0.90</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M8</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>I8</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноће емисија:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>C</th>
+      <th>D</th>
+      <th>E</th>
+      <th>F</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>I0</th>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.2</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>M1</th>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I1</th>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.2</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>M2</th>
+      <td>0.00</td>
+      <td>0.50</td>
+      <td>0.25</td>
+      <td>0.0</td>
+      <td>0.25</td>
+    </tr>
+    <tr>
+      <th>I2</th>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.2</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>M3</th>
+      <td>0.25</td>
+      <td>0.00</td>
+      <td>0.75</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I3</th>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.2</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>M4</th>
+      <td>0.20</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.8</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I4</th>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.2</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>M5</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>I5</th>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.2</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>M6</th>
+      <td>0.60</td>
+      <td>0.20</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>I6</th>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.2</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>M7</th>
+      <td>0.00</td>
+      <td>0.25</td>
+      <td>0.75</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I7</th>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.2</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>M8</th>
+      <td>0.00</td>
+      <td>0.40</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.60</td>
+    </tr>
+    <tr>
+      <th>I8</th>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.2</td>
+      <td>0.20</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[236]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа опажања дужине 6 = k &lt; n = 8</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа опажања&#39;</span><span class="p">,</span> <span class="n">o_kratko</span><span class="p">,</span> <span class="s1">&#39;је:&#39;</span><span class="p">,</span> <span class="n">forward</span><span class="p">(</span><span class="n">profhmm</span><span class="p">,</span> <span class="n">o_kratko</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа опажања AAFFDF је: 0.00062163289444224
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[237]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Рачунање вероватноће при путу</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Декодирањем опажања&#39;</span><span class="p">,</span> <span class="n">o_kratko</span><span class="p">,</span> <span class="s1">&#39;добија се:&#39;</span><span class="p">,</span>
+      <span class="n">viterbi_dekodiranje</span><span class="p">(</span><span class="n">profhmm</span><span class="p">,</span> <span class="n">o_kratko</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Декодирањем опажања AAFFDF добија се: (0.00037122138, &#39;M1M4M5M6M7M8&#39;)
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -22213,6 +24202,22 @@ ADDEFADF
 <figure><img src="../slike/delecije2.png" width="65%" id="fig:delecije2" /><figcaption style="text-align: center;"><b>Слика 4.10</b>: Увођење стања делеције, према књизи</figcaption></figure>
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[238]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Одавде већ није могуће лако направити модел, што</span>
+<span class="c1"># због тихих стања, што због непознатих вероватноћа;</span>
+<span class="c1"># детаљна прича о томе и решење дати су у наставку</span>
+<span class="k">class</span> <span class="nc">ProfHMM</span><span class="p">(</span><span class="n">HMM</span><span class="p">):</span> <span class="k">pass</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
