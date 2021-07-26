@@ -21572,7 +21572,7 @@ HMM 6:   ------+++++++++++++---------------------- (равномерни пре�
             <span class="o">&lt;</span> <span class="n">m</span> <span class="o">*</span> <span class="n">theta</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
     
     <span class="c1"># Брисање колона које прелазе</span>
-    <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">if</span> <span class="n">udeo</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">if</span> <span class="n">udeo</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">)],</span> <span class="n">udeo</span>
 </pre></div>
 
     </div>
@@ -21586,7 +21586,7 @@ HMM 6:   ------+++++++++++++---------------------- (равномерни пре�
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Граница одсецања из књиге</span>
-<span class="n">theta</span> <span class="o">=</span> <span class="mf">0.35</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="mf">.35</span>
 </pre></div>
 
     </div>
@@ -21600,7 +21600,7 @@ HMM 6:   ------+++++++++++++---------------------- (равномерни пре�
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Пречишћавање поравнања</span>
-<span class="n">Pp</span> <span class="o">=</span> <span class="n">precisti</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+<span class="n">Pp</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">precisti</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -21835,7 +21835,11 @@ ADDEFADF
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Библиотека за леп приказ модела</span>
-<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">set_option</span><span class="p">,</span> <span class="n">DataFrame</span>
+
+<span class="c1"># Приказивање свих редова и колона</span>
+<span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_rows&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_columns&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -21851,12 +21855,13 @@ ADDEFADF
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Леп приказ модела</span>
 <span class="k">def</span> <span class="nf">prikazi</span><span class="p">(</span><span class="n">hmm</span><span class="p">):</span>
     <span class="c1"># Издвајање пролазних вероватноћа</span>
-    <span class="n">pi</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">([[</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">]],</span>
-                   <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;π&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
-    
-    <span class="c1"># Приказ полазних вероватноћа</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Полазне вероватноће:&#39;</span><span class="p">)</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="s1">&#39;pi&#39;</span><span class="p">):</span>
+        <span class="n">pi</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">([[</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">]],</span>
+                       <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;π&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="c1"># Приказ полазних вероватноћа</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Полазне вероватноће:&#39;</span><span class="p">)</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
     
     <span class="c1"># Издвајање вероватноћа прелаза</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">([[</span><span class="n">hmm</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">],</span>
@@ -22550,9 +22555,10 @@ ADDEFADF
         <span class="c1"># Читање азбуке емисија из профила</span>
         <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">prof</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
         
+        <span class="c1"># Читање величине азбуке</span>
         <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
         
-        <span class="c1"># Читање броја стања (колона) из профила</span>
+        <span class="c1"># Читање броја колона из профила</span>
         <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">prof</span><span class="p">[</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
         
         <span class="c1"># Скуп скривених стања {I0, M1, I1, ..., Mn, In}</span>
@@ -22569,7 +22575,7 @@ ADDEFADF
                   <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
         
         <span class="c1"># Нормализација мапе прелаза</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
         
         <span class="c1"># Мапа емисија према профилу или</span>
         <span class="c1"># равномерна у стањима инсерције</span>
@@ -23371,16 +23377,17 @@ ADDEFADF
 <div class="prompt input_prompt">In&nbsp;[233]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Додавање инсерција у профилни модел</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Наивна обрада делеција у профилном моделу</span>
 <span class="k">class</span> <span class="nc">ProfHMM</span><span class="p">(</span><span class="n">HMM</span><span class="p">):</span>
     <span class="c1"># Конструкција према профилу</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prof</span><span class="p">):</span>
         <span class="c1"># Читање азбуке емисија из профила</span>
         <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">prof</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
         
+        <span class="c1"># Читање величине азбуке</span>
         <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
         
-        <span class="c1"># Читање броја стања (колона) из профила</span>
+        <span class="c1"># Читање броја колона из профила</span>
         <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">prof</span><span class="p">[</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
         
         <span class="c1"># Скуп скривених стања {I0, M1, I1, ..., Mn, In}</span>
@@ -23398,7 +23405,7 @@ ADDEFADF
                   <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
         
         <span class="c1"># Нормализација мапе прелаза</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
         
         <span class="c1"># Мапа емисија према профилу или</span>
         <span class="c1"># равномерна у стањима инсерције</span>
@@ -23582,342 +23589,342 @@ ADDEFADF
   <tbody>
     <tr>
       <th>I0</th>
-      <td>0.06</td>
-      <td>0.53</td>
-      <td>0.00</td>
-      <td>0.06</td>
-      <td>0.00</td>
-      <td>0.06</td>
-      <td>0.00</td>
-      <td>0.06</td>
-      <td>0.00</td>
-      <td>0.06</td>
-      <td>0.00</td>
-      <td>0.06</td>
-      <td>0.00</td>
-      <td>0.06</td>
+      <td>0.059</td>
+      <td>0.529</td>
+      <td>0.000</td>
+      <td>0.059</td>
+      <td>0.000</td>
+      <td>0.059</td>
+      <td>0.000</td>
+      <td>0.059</td>
+      <td>0.000</td>
+      <td>0.059</td>
+      <td>0.000</td>
+      <td>0.059</td>
+      <td>0.000</td>
+      <td>0.059</td>
       <td>0.0</td>
-      <td>0.06</td>
+      <td>0.059</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>M1</th>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.06</td>
-      <td>0.56</td>
-      <td>0.00</td>
-      <td>0.06</td>
-      <td>0.00</td>
-      <td>0.06</td>
-      <td>0.00</td>
-      <td>0.06</td>
-      <td>0.00</td>
-      <td>0.06</td>
-      <td>0.00</td>
-      <td>0.06</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.062</td>
+      <td>0.562</td>
+      <td>0.000</td>
+      <td>0.062</td>
+      <td>0.000</td>
+      <td>0.062</td>
+      <td>0.000</td>
+      <td>0.062</td>
+      <td>0.000</td>
+      <td>0.062</td>
+      <td>0.000</td>
+      <td>0.062</td>
       <td>0.0</td>
-      <td>0.06</td>
+      <td>0.062</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>I1</th>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.06</td>
-      <td>0.56</td>
-      <td>0.00</td>
-      <td>0.06</td>
-      <td>0.00</td>
-      <td>0.06</td>
-      <td>0.00</td>
-      <td>0.06</td>
-      <td>0.00</td>
-      <td>0.06</td>
-      <td>0.00</td>
-      <td>0.06</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.062</td>
+      <td>0.562</td>
+      <td>0.000</td>
+      <td>0.062</td>
+      <td>0.000</td>
+      <td>0.062</td>
+      <td>0.000</td>
+      <td>0.062</td>
+      <td>0.000</td>
+      <td>0.062</td>
+      <td>0.000</td>
+      <td>0.062</td>
       <td>0.0</td>
-      <td>0.06</td>
+      <td>0.062</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>M2</th>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.07</td>
-      <td>0.60</td>
-      <td>0.00</td>
-      <td>0.07</td>
-      <td>0.00</td>
-      <td>0.07</td>
-      <td>0.00</td>
-      <td>0.07</td>
-      <td>0.00</td>
-      <td>0.07</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.067</td>
+      <td>0.600</td>
+      <td>0.000</td>
+      <td>0.067</td>
+      <td>0.000</td>
+      <td>0.067</td>
+      <td>0.000</td>
+      <td>0.067</td>
+      <td>0.000</td>
+      <td>0.067</td>
       <td>0.0</td>
-      <td>0.07</td>
+      <td>0.067</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>I2</th>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.07</td>
-      <td>0.60</td>
-      <td>0.00</td>
-      <td>0.07</td>
-      <td>0.00</td>
-      <td>0.07</td>
-      <td>0.00</td>
-      <td>0.07</td>
-      <td>0.00</td>
-      <td>0.07</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.067</td>
+      <td>0.600</td>
+      <td>0.000</td>
+      <td>0.067</td>
+      <td>0.000</td>
+      <td>0.067</td>
+      <td>0.000</td>
+      <td>0.067</td>
+      <td>0.000</td>
+      <td>0.067</td>
       <td>0.0</td>
-      <td>0.07</td>
+      <td>0.067</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>M3</th>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.07</td>
-      <td>0.64</td>
-      <td>0.00</td>
-      <td>0.07</td>
-      <td>0.00</td>
-      <td>0.07</td>
-      <td>0.00</td>
-      <td>0.07</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.071</td>
+      <td>0.643</td>
+      <td>0.000</td>
+      <td>0.071</td>
+      <td>0.000</td>
+      <td>0.071</td>
+      <td>0.000</td>
+      <td>0.071</td>
       <td>0.0</td>
-      <td>0.07</td>
+      <td>0.071</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>I3</th>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.07</td>
-      <td>0.64</td>
-      <td>0.00</td>
-      <td>0.07</td>
-      <td>0.00</td>
-      <td>0.07</td>
-      <td>0.00</td>
-      <td>0.07</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.071</td>
+      <td>0.643</td>
+      <td>0.000</td>
+      <td>0.071</td>
+      <td>0.000</td>
+      <td>0.071</td>
+      <td>0.000</td>
+      <td>0.071</td>
       <td>0.0</td>
-      <td>0.07</td>
+      <td>0.071</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>M4</th>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.08</td>
-      <td>0.69</td>
-      <td>0.00</td>
-      <td>0.08</td>
-      <td>0.00</td>
-      <td>0.08</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.077</td>
+      <td>0.692</td>
+      <td>0.000</td>
+      <td>0.077</td>
+      <td>0.000</td>
+      <td>0.077</td>
       <td>0.0</td>
-      <td>0.08</td>
+      <td>0.077</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>I4</th>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.08</td>
-      <td>0.69</td>
-      <td>0.00</td>
-      <td>0.08</td>
-      <td>0.00</td>
-      <td>0.08</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.077</td>
+      <td>0.692</td>
+      <td>0.000</td>
+      <td>0.077</td>
+      <td>0.000</td>
+      <td>0.077</td>
       <td>0.0</td>
-      <td>0.08</td>
+      <td>0.077</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>M5</th>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.08</td>
-      <td>0.75</td>
-      <td>0.00</td>
-      <td>0.08</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.083</td>
+      <td>0.750</td>
+      <td>0.000</td>
+      <td>0.083</td>
       <td>0.0</td>
-      <td>0.08</td>
+      <td>0.083</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>I5</th>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.08</td>
-      <td>0.75</td>
-      <td>0.00</td>
-      <td>0.08</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.083</td>
+      <td>0.750</td>
+      <td>0.000</td>
+      <td>0.083</td>
       <td>0.0</td>
-      <td>0.08</td>
+      <td>0.083</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>M6</th>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.09</td>
-      <td>0.82</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.091</td>
+      <td>0.818</td>
       <td>0.0</td>
-      <td>0.09</td>
+      <td>0.091</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>I6</th>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.09</td>
-      <td>0.82</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.091</td>
+      <td>0.818</td>
       <td>0.0</td>
-      <td>0.09</td>
+      <td>0.091</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>M7</th>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
       <td>0.1</td>
-      <td>0.90</td>
+      <td>0.900</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>I7</th>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
       <td>0.1</td>
-      <td>0.90</td>
+      <td>0.900</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>M8</th>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
       <td>0.0</td>
-      <td>0.00</td>
+      <td>0.000</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>I8</th>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
       <td>0.0</td>
-      <td>0.00</td>
+      <td>0.000</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -24138,7 +24145,7 @@ ADDEFADF
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Вероватноћа опажања AAFFDF је: 0.00062163289444224
+<pre>Вероватноћа опажања AAFFDF је: 0.0006437827026840483
 </pre>
 </div>
 </div>
@@ -24171,7 +24178,7 @@ ADDEFADF
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Декодирањем опажања AAFFDF добија се: (0.00037122138, &#39;M1M4M5M6M7M8&#39;)
+<pre>Декодирањем опажања AAFFDF добија се: (0.00038376898632, &#39;M1M4M5M6M7M8&#39;)
 </pre>
 </div>
 </div>
@@ -24309,6 +24316,90 @@ ADDEFADF
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[239]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Одређивање путева према поравнању</span>
+<span class="k">def</span> <span class="nf">putevi</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+    <span class="c1"># Пречишћавање поравнања</span>
+    <span class="n">Pp</span><span class="p">,</span> <span class="n">udeo</span> <span class="o">=</span> <span class="n">precisti</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+    
+    <span class="c1"># Сваки пут креће почетним стањем</span>
+    <span class="n">Ps</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;S&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Pp</span><span class="p">))]</span>
+    
+    <span class="c1"># Бројач непречишћених колона</span>
+    <span class="n">ui</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="c1"># Пролазак кроз сваку колону</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">u</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">udeo</span><span class="p">):</span>
+        <span class="c1"># Повећање бројеча непречишћених</span>
+        <span class="k">if</span> <span class="n">u</span><span class="p">:</span> <span class="n">ui</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="c1"># Пролаз кроз свако опажање</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Pp</span><span class="p">)):</span>
+            <span class="c1"># Ако није пречишћено</span>
+            <span class="k">if</span> <span class="n">u</span><span class="p">:</span>
+                <span class="c1"># Делеција је празнина</span>
+                <span class="k">if</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span>
+                    <span class="n">Ps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;D</span><span class="si">{</span><span class="n">ui</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="c1"># Иначе је поклапање</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">Ps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;M</span><span class="si">{</span><span class="n">ui</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="c1"># Пречишћено је инсерција</span>
+            <span class="k">elif</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span>
+                <span class="n">Ps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;I</span><span class="si">{</span><span class="n">ui</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Додавање завршног стања сваком путу</span>
+    <span class="k">return</span> <span class="p">[[</span><span class="o">*</span><span class="n">Ps</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;E&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Pp</span><span class="p">))]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[240]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Дохватање одговарајућих путева</span>
+<span class="n">puts</span> <span class="o">=</span> <span class="n">putevi</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+
+<span class="c1"># Извештавање о путевима</span>
+<span class="k">for</span> <span class="n">ops</span><span class="p">,</span> <span class="n">put</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">puts</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Опажање&#39;</span><span class="p">,</span> <span class="n">ops</span><span class="p">,</span> <span class="s1">&#39;је на путу:&#39;</span><span class="p">,</span> <span class="n">put</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Опажање ACDEFACADF је на путу: [&#39;S&#39;, &#39;M1&#39;, &#39;M2&#39;, &#39;M3&#39;, &#39;M4&#39;, &#39;M5&#39;, &#39;I5&#39;, &#39;I5&#39;, &#39;M6&#39;, &#39;M7&#39;, &#39;M8&#39;, &#39;E&#39;]
+Опажање AFDA---CCF је на путу: [&#39;S&#39;, &#39;M1&#39;, &#39;M2&#39;, &#39;M3&#39;, &#39;M4&#39;, &#39;D5&#39;, &#39;M6&#39;, &#39;M7&#39;, &#39;M8&#39;, &#39;E&#39;]
+Опажање A--EFD-FDC је на путу: [&#39;S&#39;, &#39;M1&#39;, &#39;D2&#39;, &#39;D3&#39;, &#39;M4&#39;, &#39;M5&#39;, &#39;I5&#39;, &#39;M6&#39;, &#39;M7&#39;, &#39;M8&#39;, &#39;E&#39;]
+Опажање ACAEF--A-C је на путу: [&#39;S&#39;, &#39;M1&#39;, &#39;M2&#39;, &#39;M3&#39;, &#39;M4&#39;, &#39;M5&#39;, &#39;M6&#39;, &#39;D7&#39;, &#39;M8&#39;, &#39;E&#39;]
+Опажање ADDEFAAADF је на путу: [&#39;S&#39;, &#39;M1&#39;, &#39;M2&#39;, &#39;M3&#39;, &#39;M4&#39;, &#39;M5&#39;, &#39;I5&#39;, &#39;I5&#39;, &#39;M6&#39;, &#39;M7&#39;, &#39;M8&#39;, &#39;E&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -24332,6 +24423,82 @@ ADDEFADF
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[241]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Одређивање параметара модела</span>
+<span class="k">def</span> <span class="nf">parametri</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">putevi</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># Читање броја колона</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">putevi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">2</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    
+    <span class="c1"># Читање азбуке емисија из профила</span>
+    <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">profil</span><span class="p">(</span><span class="n">P</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+    
+    <span class="c1"># Читање величине азбуке</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    
+    <span class="c1"># Скуп скривених стања {S, Ii, Mi, Di, E}</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;I0&#39;</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">X</span><span class="si">}{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">X</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">)),</span> <span class="s1">&#39;E&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># Празна мапа прелаза</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+    
+    <span class="c1"># Празна мапа емисија</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">yi</span><span class="p">:</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">yi</span> <span class="ow">in</span> <span class="n">y</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+    
+    <span class="c1"># Анализа сцих путева</span>
+    <span class="k">for</span> <span class="n">put</span><span class="p">,</span> <span class="n">ops</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">putevi</span><span class="p">,</span> <span class="n">P</span><span class="p">):</span>
+        <span class="c1"># Чишћење опажања од празнина</span>
+        <span class="n">ops</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">ops</span> <span class="k">if</span> <span class="n">c</span> <span class="o">!=</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+        
+        <span class="c1"># Бројач опажених симбола</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="c1"># Бројање сваког прелаза</span>
+        <span class="k">for</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span> <span class="ow">in</span> <span class="n">windowed</span><span class="p">(</span><span class="n">put</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="n">a</span><span class="p">[</span><span class="n">p1</span><span class="p">][</span><span class="n">p2</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            
+            <span class="c1"># Бројање сваке емисије</span>
+            <span class="k">if</span> <span class="n">p2</span> <span class="o">!=</span> <span class="s1">&#39;E&#39;</span> <span class="ow">and</span> <span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span>
+                <span class="n">b</span><span class="p">[</span><span class="n">p2</span><span class="p">][</span><span class="n">ops</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+                
+                <span class="c1"># Померање бројача</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+    <span class="c1"># Нормализација мапе прелаза</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">if</span>
+         <span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+    
+    <span class="c1"># Нормализација мапе емисија</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">yj</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">yj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">if</span>
+         <span class="nb">sum</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">yj</span> <span class="ow">in</span> <span class="n">y</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+    
+    <span class="c1"># Враћање одређених параметара</span>
+    <span class="k">return</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[242]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Одређивање параметара модела</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">parametri</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">puts</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -24367,7 +24534,2312 @@ ADDEFADF
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Било како било, треба се вратити на проблем великог удела нула у емпиријски одређеним мапама преласка и емисија. Поменуто је већ да је главни проблем који то изазива лоше оцењивање многих секвенци и путева. Конкретан пример дат је касније. Други проблем је што овакве мапе не покривају цео простор вероватноћа, односно не сумирају се све излазне вероватноће у јединицу. Све ово се, међутим, лако превазилази увођењем псеудовредности $\sigma$, што су мале вероватноће дозвољених, али непознатих прелаза и емисија. Оне се, дакле, постављају у мапе тамо где би биле имплицитне нуле.</p>
+<p>Такође, ваља се осврнути на чињеницу да се сада и званично може решити изложени проблем <a href="#prob:prof">12</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[243]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Коначна верзија модела са доста непознатих вероватноћа</span>
+<span class="k">class</span> <span class="nc">ProfHMM</span><span class="p">:</span>
+    <span class="c1"># Конструкција према поравнању</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># Дохватање одговарајућих путева</span>
+        <span class="n">puts</span> <span class="o">=</span> <span class="n">putevi</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+        
+        <span class="c1"># Одређивање параметара модела</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">parametri</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">puts</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        
+        <span class="c1"># Читање броја колона</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">)</span> <span class="o">//</span> <span class="mi">3</span>
+        
+        <span class="c1"># Скривена стања</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">]</span>
+        
+        <span class="c1"># Читање азбуке</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span>
+        
+        <span class="c1"># Читање величине азбуке</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[244]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Прављење коначног HMM-а</span>
+<span class="n">profhmm</span> <span class="o">=</span> <span class="n">ProfHMM</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[245]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Леп приказ модела</span>
+<span class="n">prikazi</span><span class="p">(</span><span class="n">profhmm</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноће прелаза:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>S</th>
+      <th>I0</th>
+      <th>M1</th>
+      <th>D1</th>
+      <th>I1</th>
+      <th>M2</th>
+      <th>D2</th>
+      <th>I2</th>
+      <th>M3</th>
+      <th>D3</th>
+      <th>I3</th>
+      <th>M4</th>
+      <th>D4</th>
+      <th>I4</th>
+      <th>M5</th>
+      <th>D5</th>
+      <th>I5</th>
+      <th>M6</th>
+      <th>D6</th>
+      <th>I6</th>
+      <th>M7</th>
+      <th>D7</th>
+      <th>I7</th>
+      <th>M8</th>
+      <th>D8</th>
+      <th>I8</th>
+      <th>E</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>S</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.8</td>
+      <td>0.2</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>D1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>D2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>D3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.8</td>
+      <td>0.2</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>D4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M5</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.75</td>
+      <td>0.25</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>D5</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>1.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I5</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.40</td>
+      <td>0.60</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M6</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.8</td>
+      <td>0.2</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>D6</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I6</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M7</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>D7</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I7</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M8</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>D8</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I8</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>E</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноће емисија:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>C</th>
+      <th>D</th>
+      <th>E</th>
+      <th>F</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>S</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I0</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M1</th>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>D1</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I1</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M2</th>
+      <td>0.00</td>
+      <td>0.50</td>
+      <td>0.25</td>
+      <td>0.0</td>
+      <td>0.25</td>
+    </tr>
+    <tr>
+      <th>D2</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I2</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M3</th>
+      <td>0.25</td>
+      <td>0.00</td>
+      <td>0.75</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>D3</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I3</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M4</th>
+      <td>0.20</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.8</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>D4</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I4</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M5</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>D5</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I5</th>
+      <td>0.60</td>
+      <td>0.20</td>
+      <td>0.20</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M6</th>
+      <td>0.60</td>
+      <td>0.20</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>D6</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I6</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M7</th>
+      <td>0.00</td>
+      <td>0.25</td>
+      <td>0.75</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>D7</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I7</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M8</th>
+      <td>0.00</td>
+      <td>0.40</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.60</td>
+    </tr>
+    <tr>
+      <th>D8</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I8</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>E</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[246]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Основни пример параметара са ROSALIND</span>
+<span class="n">theta_r</span> <span class="o">=</span> <span class="mf">.289</span>
+<span class="n">y_r</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">]</span>
+<span class="n">P_r</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;EBA&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;EBD&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;EB-&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;EED&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;EBD&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;EBE&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;E-D&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;EBD&#39;</span><span class="p">]</span>
+
+<span class="c1"># Модел према изложеном примеру</span>
+<span class="n">rosalind</span> <span class="o">=</span> <span class="n">ProfHMM</span><span class="p">(</span><span class="n">P_r</span><span class="p">,</span> <span class="n">theta_r</span><span class="p">,</span> <span class="n">y_r</span><span class="p">)</span>
+
+<span class="c1"># Леп приказ модела</span>
+<span class="n">prikazi</span><span class="p">(</span><span class="n">rosalind</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноће прелаза:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>S</th>
+      <th>I0</th>
+      <th>M1</th>
+      <th>D1</th>
+      <th>I1</th>
+      <th>M2</th>
+      <th>D2</th>
+      <th>I2</th>
+      <th>M3</th>
+      <th>D3</th>
+      <th>I3</th>
+      <th>E</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>S</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.875</td>
+      <td>0.125</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>D1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.857</td>
+      <td>0.143</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>D2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>1.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>D3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>I3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>E</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноће емисија:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+      <th>E</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>S</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I0</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>M1</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>1.000</td>
+    </tr>
+    <tr>
+      <th>D1</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I1</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>M2</th>
+      <td>0.000</td>
+      <td>0.857</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.143</td>
+    </tr>
+    <tr>
+      <th>D2</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I2</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>M3</th>
+      <td>0.143</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.714</td>
+      <td>0.143</td>
+    </tr>
+    <tr>
+      <th>D3</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I3</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>E</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[247]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Додатни пример параметара са ROSALIND</span>
+<span class="n">theta_r</span> <span class="o">=</span> <span class="mf">.252</span>
+<span class="n">y_r</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">]</span>
+<span class="n">P_r</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;DCDABACED&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;DCCA--CA-&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;DCDAB-CA-&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;BCDA---A-&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;BC-ABE-AE&#39;</span><span class="p">]</span>
+
+<span class="c1"># Модел према изложеном примеру</span>
+<span class="n">rosalind</span> <span class="o">=</span> <span class="n">ProfHMM</span><span class="p">(</span><span class="n">P_r</span><span class="p">,</span> <span class="n">theta_r</span><span class="p">,</span> <span class="n">y_r</span><span class="p">)</span>
+
+<span class="c1"># Леп приказ модела</span>
+<span class="n">prikazi</span><span class="p">(</span><span class="n">rosalind</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноће прелаза:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>S</th>
+      <th>I0</th>
+      <th>M1</th>
+      <th>D1</th>
+      <th>I1</th>
+      <th>M2</th>
+      <th>D2</th>
+      <th>I2</th>
+      <th>M3</th>
+      <th>D3</th>
+      <th>I3</th>
+      <th>M4</th>
+      <th>D4</th>
+      <th>I4</th>
+      <th>M5</th>
+      <th>D5</th>
+      <th>I5</th>
+      <th>E</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>S</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>D1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.8</td>
+      <td>0.2</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>D2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>D3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.8</td>
+      <td>0.2</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>D4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.5</td>
+      <td>0.5</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>M5</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.4</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <th>D5</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>I5</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>E</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноће емисија:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+      <th>E</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>S</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I0</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>M1</th>
+      <td>0.000</td>
+      <td>0.400</td>
+      <td>0.000</td>
+      <td>0.60</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>D1</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I1</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>M2</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>1.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>D2</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I2</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>M3</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.250</td>
+      <td>0.75</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>D3</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I3</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>M4</th>
+      <td>1.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>D4</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I4</th>
+      <td>0.125</td>
+      <td>0.375</td>
+      <td>0.375</td>
+      <td>0.00</td>
+      <td>0.125</td>
+    </tr>
+    <tr>
+      <th>M5</th>
+      <td>0.800</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.200</td>
+    </tr>
+    <tr>
+      <th>D5</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I5</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.50</td>
+      <td>0.500</td>
+    </tr>
+    <tr>
+      <th>E</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Било како било, треба се вратити на проблем великог удела нула у емпиријски одређеним мапама преласка и емисија. Поменуто је већ да је главни проблем који то изазива лоше оцењивање многих секвенци и путева. Конкретан пример дат је касније. Други проблем је што овакве мапе не покривају цео простор вероватноћа, односно не сумирају се све излазне вероватноће у јединицу. Све ово се, међутим, лако превазилази увођењем псеудовредности $\sigma$, што су мале вероватноће дозвољених, али често непознатих прелаза и емисија. Оне се, дакле, додају у мапама на сва дозвољена места.</p>
 
 </div>
 </div>
@@ -24375,7 +26847,7 @@ ADDEFADF
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Наравно, приликом додавања псеудовредности не треба заборавити на нормализацију, како би збир вероватноћа стварно био један. Примера ради, за $\sigma = 1/100$, ред $\{.75, .25, 0\}$ не постаје $\{.75, .25, .01\}$, већ $\{.7426, .2475, .0099\}$. Исто тако, сасвим непознати ред $\{0, 0, 0\}$ за свако $\sigma$ постаје $\{1/3, 1/3, 1/3\}$, уместо $\{1/100, 1/100, 1/100\}$ у конкретном случају. Такође, не треба заборавити да се псеудовредности додају искључиво дозвољеним прелазима, док недозвољени остају нулте вероватноће. Одређивање овако дорађеног профилног модела $HMM(P, \theta, \sigma)$ формално се представља кроз проблем <a href="#prob:prof_sigma">13</a>.</p>
+<p>Наравно, приликом додавања псеудовредности не треба заборавити на нормализацију, како би збир вероватноћа стварно био један. Примера ради, за $\sigma = 1/100$, ред $\{.75, .25, 0\}$ не постаје $\{.75, .25, .01\}$, већ $\{.738, .252, .01\}$. Исто тако, сасвим непознати ред $\{0, 0, 0\}$ за свако $\sigma$ постаје $\{1/3, 1/3, 1/3\}$, уместо $\{1/100, 1/100, 1/100\}$ у конкретном случају. Такође, не треба заборавити да се псеудовредности додају искључиво дозвољеним прелазима, док недозвољени остају строго нулте вероватноће. Одређивање овако дорађеног профилног модела $HMM(P, \theta, \sigma)$ формално се представља кроз проблем <a href="#prob:prof_sigma">13</a>.</p>
 
 </div>
 </div>
@@ -24393,6 +26865,2692 @@ ADDEFADF
 </blockquote>
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[248]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Дозвољени прелази</span>
+<span class="k">def</span> <span class="nf">ok</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="c1"># Докле се може са почетног</span>
+    <span class="k">if</span> <span class="n">xi</span> <span class="o">==</span> <span class="s1">&#39;S&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">xj</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;I0&#39;</span><span class="p">,</span> <span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;D1&#39;</span><span class="p">)</span>
+    <span class="c1"># Одакле се може на завршно</span>
+    <span class="k">elif</span> <span class="n">xj</span> <span class="o">==</span> <span class="s1">&#39;E&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">xi</span> <span class="ow">in</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;I</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;M</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;D</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="c1"># Недозвољено почетно или завршно</span>
+    <span class="k">elif</span> <span class="n">xi</span> <span class="o">==</span> <span class="s1">&#39;E&#39;</span> <span class="ow">or</span> <span class="n">xj</span> <span class="o">==</span> <span class="s1">&#39;S&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="c1"># Издвајање индекса прелаза</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    
+    <span class="c1"># Издвајање типа прелаза</span>
+    <span class="n">xi</span> <span class="o">=</span> <span class="n">xi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">xj</span> <span class="o">=</span> <span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="c1"># Петља стања инсерције</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">j</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">xj</span> <span class="o">==</span> <span class="s1">&#39;I&#39;</span>
+    <span class="c1"># Прелаз на следећу неинсерцију</span>
+    <span class="k">elif</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span> <span class="o">==</span> <span class="n">j</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">xj</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span> <span class="ow">or</span> <span class="n">xj</span> <span class="o">==</span> <span class="s1">&#39;D&#39;</span>
+    <span class="c1"># Све преостало није дозвољено</span>
+    <span class="k">else</span><span class="p">:</span> <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[249]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Коначна верзија модела са псеудовредностима</span>
+<span class="k">class</span> <span class="nc">ProfHMM</span><span class="p">:</span>
+    <span class="c1"># Конструкција према поравнању</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># Дохватање одговарајућих путева</span>
+        <span class="n">puts</span> <span class="o">=</span> <span class="n">putevi</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+        
+        <span class="c1"># Одређивање параметара модела</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">parametri</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">puts</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        
+        <span class="c1"># Читање броја колона</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">//</span> <span class="mi">3</span> <span class="o">-</span> <span class="mi">1</span>
+        
+        <span class="c1"># Додавање псеудовредности</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span> <span class="o">+</span> <span class="n">sigma</span> <span class="k">if</span> <span class="n">ok</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
+                      <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">a</span><span class="p">}</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">yj</span><span class="p">:</span> <span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">yj</span><span class="p">]</span> <span class="o">+</span> <span class="n">sigma</span> <span class="k">if</span> <span class="n">xi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">)</span>
+                      <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">yj</span> <span class="ow">in</span> <span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">]}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">b</span><span class="p">}</span>
+        
+        <span class="c1"># Нормализација вероватноћа</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">if</span>
+                  <span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">a</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">yj</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">yj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">if</span>
+                  <span class="nb">sum</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">yj</span> <span class="ow">in</span> <span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">]}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">b</span><span class="p">}</span>
+        
+        <span class="c1"># Скривена стања</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">]</span>
+        
+        <span class="c1"># Читање азбуке</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span>
+        
+        <span class="c1"># Читање величине азбуке</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[250]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Уобичајена псеудовредност</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">.01</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[251]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Прављење коначног HMM-а</span>
+<span class="n">profhmm</span> <span class="o">=</span> <span class="n">ProfHMM</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[252]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Леп приказ модела</span>
+<span class="n">prikazi</span><span class="p">(</span><span class="n">profhmm</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноће прелаза:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>S</th>
+      <th>I0</th>
+      <th>M1</th>
+      <th>D1</th>
+      <th>I1</th>
+      <th>M2</th>
+      <th>D2</th>
+      <th>I2</th>
+      <th>M3</th>
+      <th>D3</th>
+      <th>I3</th>
+      <th>M4</th>
+      <th>D4</th>
+      <th>I4</th>
+      <th>M5</th>
+      <th>D5</th>
+      <th>I5</th>
+      <th>M6</th>
+      <th>D6</th>
+      <th>I6</th>
+      <th>M7</th>
+      <th>D7</th>
+      <th>I7</th>
+      <th>M8</th>
+      <th>D8</th>
+      <th>I8</th>
+      <th>E</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>S</th>
+      <td>0.0</td>
+      <td>0.010</td>
+      <td>0.981</td>
+      <td>0.010</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I0</th>
+      <td>0.0</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M1</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.010</td>
+      <td>0.786</td>
+      <td>0.204</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>D1</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I1</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M2</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.010</td>
+      <td>0.981</td>
+      <td>0.010</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>D2</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.010</td>
+      <td>0.010</td>
+      <td>0.981</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I2</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M3</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.010</td>
+      <td>0.981</td>
+      <td>0.010</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>D3</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.010</td>
+      <td>0.981</td>
+      <td>0.010</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I3</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M4</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.010</td>
+      <td>0.786</td>
+      <td>0.204</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>D4</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I4</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M5</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.738</td>
+      <td>0.252</td>
+      <td>0.01</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>D5</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.010</td>
+      <td>0.981</td>
+      <td>0.01</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I5</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.398</td>
+      <td>0.592</td>
+      <td>0.01</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M6</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.010</td>
+      <td>0.786</td>
+      <td>0.204</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>D6</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I6</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M7</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.010</td>
+      <td>0.981</td>
+      <td>0.010</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>D7</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.010</td>
+      <td>0.981</td>
+      <td>0.010</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I7</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M8</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.01</td>
+      <td>0.99</td>
+    </tr>
+    <tr>
+      <th>D8</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.50</td>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>I8</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.50</td>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>E</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноће емисија:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>C</th>
+      <th>D</th>
+      <th>E</th>
+      <th>F</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>S</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I0</th>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+    </tr>
+    <tr>
+      <th>M1</th>
+      <td>0.962</td>
+      <td>0.010</td>
+      <td>0.010</td>
+      <td>0.010</td>
+      <td>0.010</td>
+    </tr>
+    <tr>
+      <th>D1</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I1</th>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+    </tr>
+    <tr>
+      <th>M2</th>
+      <td>0.010</td>
+      <td>0.486</td>
+      <td>0.248</td>
+      <td>0.010</td>
+      <td>0.248</td>
+    </tr>
+    <tr>
+      <th>D2</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I2</th>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+    </tr>
+    <tr>
+      <th>M3</th>
+      <td>0.248</td>
+      <td>0.010</td>
+      <td>0.724</td>
+      <td>0.010</td>
+      <td>0.010</td>
+    </tr>
+    <tr>
+      <th>D3</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I3</th>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+    </tr>
+    <tr>
+      <th>M4</th>
+      <td>0.200</td>
+      <td>0.010</td>
+      <td>0.010</td>
+      <td>0.771</td>
+      <td>0.010</td>
+    </tr>
+    <tr>
+      <th>D4</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I4</th>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+    </tr>
+    <tr>
+      <th>M5</th>
+      <td>0.010</td>
+      <td>0.010</td>
+      <td>0.010</td>
+      <td>0.010</td>
+      <td>0.962</td>
+    </tr>
+    <tr>
+      <th>D5</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I5</th>
+      <td>0.581</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.010</td>
+      <td>0.010</td>
+    </tr>
+    <tr>
+      <th>M6</th>
+      <td>0.581</td>
+      <td>0.200</td>
+      <td>0.010</td>
+      <td>0.010</td>
+      <td>0.200</td>
+    </tr>
+    <tr>
+      <th>D6</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I6</th>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+    </tr>
+    <tr>
+      <th>M7</th>
+      <td>0.010</td>
+      <td>0.248</td>
+      <td>0.724</td>
+      <td>0.010</td>
+      <td>0.010</td>
+    </tr>
+    <tr>
+      <th>D7</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I7</th>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+    </tr>
+    <tr>
+      <th>M8</th>
+      <td>0.010</td>
+      <td>0.390</td>
+      <td>0.010</td>
+      <td>0.010</td>
+      <td>0.581</td>
+    </tr>
+    <tr>
+      <th>D8</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I8</th>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+    </tr>
+    <tr>
+      <th>E</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[253]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Основни пример параметара са ROSALIND</span>
+<span class="n">theta_r</span> <span class="o">=</span> <span class="mf">.358</span>
+<span class="n">y_r</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">]</span>
+<span class="n">P_r</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ADA&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;ADA&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;AAA&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;ADC&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;-DA&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;D-A&#39;</span><span class="p">]</span>
+
+<span class="c1"># Модел према изложеном примеру</span>
+<span class="n">rosalind</span> <span class="o">=</span> <span class="n">ProfHMM</span><span class="p">(</span><span class="n">P_r</span><span class="p">,</span> <span class="n">theta_r</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">y_r</span><span class="p">)</span>
+
+<span class="c1"># Леп приказ модела</span>
+<span class="n">prikazi</span><span class="p">(</span><span class="n">rosalind</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноће прелаза:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>S</th>
+      <th>I0</th>
+      <th>M1</th>
+      <th>D1</th>
+      <th>I1</th>
+      <th>M2</th>
+      <th>D2</th>
+      <th>I2</th>
+      <th>M3</th>
+      <th>D3</th>
+      <th>I3</th>
+      <th>E</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>S</th>
+      <td>0.0</td>
+      <td>0.010</td>
+      <td>0.818</td>
+      <td>0.172</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I0</th>
+      <td>0.0</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M1</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.010</td>
+      <td>0.786</td>
+      <td>0.204</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>D1</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.010</td>
+      <td>0.981</td>
+      <td>0.010</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I1</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M2</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.010</td>
+      <td>0.981</td>
+      <td>0.010</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>D2</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.010</td>
+      <td>0.981</td>
+      <td>0.010</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I2</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M3</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.01</td>
+      <td>0.99</td>
+    </tr>
+    <tr>
+      <th>D3</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.50</td>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>I3</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.50</td>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>E</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноће емисија:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+      <th>E</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>S</th>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I0</th>
+      <td>0.200</td>
+      <td>0.20</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>M1</th>
+      <td>0.771</td>
+      <td>0.01</td>
+      <td>0.010</td>
+      <td>0.200</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <th>D1</th>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I1</th>
+      <td>0.200</td>
+      <td>0.20</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>M2</th>
+      <td>0.200</td>
+      <td>0.01</td>
+      <td>0.010</td>
+      <td>0.771</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <th>D2</th>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I2</th>
+      <td>0.200</td>
+      <td>0.20</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>M3</th>
+      <td>0.803</td>
+      <td>0.01</td>
+      <td>0.169</td>
+      <td>0.010</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <th>D3</th>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I3</th>
+      <td>0.200</td>
+      <td>0.20</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.20</td>
+    </tr>
+    <tr>
+      <th>E</th>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[254]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Додатни пример параметара са ROSALIND</span>
+<span class="n">theta_r</span> <span class="o">=</span> <span class="mf">.399</span>
+<span class="n">y_r</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">]</span>
+<span class="n">P_r</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ED-BCBDAC&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;-D-ABBDAC&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;ED--EBD-C&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;-C-BCB-D-&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;AD-BC-CA-&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;-DDB-BA-C&#39;</span><span class="p">]</span>
+
+<span class="c1"># Модел према изложеном примеру</span>
+<span class="n">rosalind</span> <span class="o">=</span> <span class="n">ProfHMM</span><span class="p">(</span><span class="n">P_r</span><span class="p">,</span> <span class="n">theta_r</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">y_r</span><span class="p">)</span>
+
+<span class="c1"># Леп приказ модела</span>
+<span class="n">prikazi</span><span class="p">(</span><span class="n">rosalind</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноће прелаза:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>S</th>
+      <th>I0</th>
+      <th>M1</th>
+      <th>D1</th>
+      <th>I1</th>
+      <th>M2</th>
+      <th>D2</th>
+      <th>I2</th>
+      <th>M3</th>
+      <th>D3</th>
+      <th>I3</th>
+      <th>M4</th>
+      <th>D4</th>
+      <th>I4</th>
+      <th>M5</th>
+      <th>D5</th>
+      <th>I5</th>
+      <th>M6</th>
+      <th>D6</th>
+      <th>I6</th>
+      <th>M7</th>
+      <th>D7</th>
+      <th>I7</th>
+      <th>E</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>S</th>
+      <td>0.0</td>
+      <td>0.495</td>
+      <td>0.495</td>
+      <td>0.01</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I0</th>
+      <td>0.0</td>
+      <td>0.010</td>
+      <td>0.981</td>
+      <td>0.01</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M1</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.172</td>
+      <td>0.657</td>
+      <td>0.172</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>D1</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I1</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.010</td>
+      <td>0.981</td>
+      <td>0.010</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M2</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.010</td>
+      <td>0.786</td>
+      <td>0.204</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>D2</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.010</td>
+      <td>0.981</td>
+      <td>0.010</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I2</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M3</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.010</td>
+      <td>0.786</td>
+      <td>0.204</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>D3</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.010</td>
+      <td>0.981</td>
+      <td>0.010</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I3</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M4</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.010</td>
+      <td>0.786</td>
+      <td>0.204</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>D4</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.010</td>
+      <td>0.981</td>
+      <td>0.010</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I4</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M5</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.010</td>
+      <td>0.592</td>
+      <td>0.398</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>D5</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.010</td>
+      <td>0.981</td>
+      <td>0.010</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I5</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M6</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.010</td>
+      <td>0.495</td>
+      <td>0.495</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>D6</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.010</td>
+      <td>0.981</td>
+      <td>0.010</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>I6</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>M7</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.01</td>
+      <td>0.99</td>
+    </tr>
+    <tr>
+      <th>D7</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.01</td>
+      <td>0.99</td>
+    </tr>
+    <tr>
+      <th>I7</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.50</td>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>E</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноће емисија:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+      <th>E</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>S</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I0</th>
+      <td>0.327</td>
+      <td>0.010</td>
+      <td>0.010</td>
+      <td>0.010</td>
+      <td>0.645</td>
+    </tr>
+    <tr>
+      <th>M1</th>
+      <td>0.010</td>
+      <td>0.010</td>
+      <td>0.169</td>
+      <td>0.803</td>
+      <td>0.010</td>
+    </tr>
+    <tr>
+      <th>D1</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I1</th>
+      <td>0.010</td>
+      <td>0.010</td>
+      <td>0.010</td>
+      <td>0.962</td>
+      <td>0.010</td>
+    </tr>
+    <tr>
+      <th>M2</th>
+      <td>0.200</td>
+      <td>0.771</td>
+      <td>0.010</td>
+      <td>0.010</td>
+      <td>0.010</td>
+    </tr>
+    <tr>
+      <th>D2</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I2</th>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+    </tr>
+    <tr>
+      <th>M3</th>
+      <td>0.010</td>
+      <td>0.200</td>
+      <td>0.581</td>
+      <td>0.010</td>
+      <td>0.200</td>
+    </tr>
+    <tr>
+      <th>D3</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I3</th>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+    </tr>
+    <tr>
+      <th>M4</th>
+      <td>0.010</td>
+      <td>0.962</td>
+      <td>0.010</td>
+      <td>0.010</td>
+      <td>0.010</td>
+    </tr>
+    <tr>
+      <th>D4</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I4</th>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+    </tr>
+    <tr>
+      <th>M5</th>
+      <td>0.200</td>
+      <td>0.010</td>
+      <td>0.200</td>
+      <td>0.581</td>
+      <td>0.010</td>
+    </tr>
+    <tr>
+      <th>D5</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I5</th>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+    </tr>
+    <tr>
+      <th>M6</th>
+      <td>0.724</td>
+      <td>0.010</td>
+      <td>0.010</td>
+      <td>0.248</td>
+      <td>0.010</td>
+    </tr>
+    <tr>
+      <th>D6</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I6</th>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+    </tr>
+    <tr>
+      <th>M7</th>
+      <td>0.010</td>
+      <td>0.010</td>
+      <td>0.962</td>
+      <td>0.010</td>
+      <td>0.010</td>
+    </tr>
+    <tr>
+      <th>D7</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>I7</th>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+      <td>0.200</td>
+    </tr>
+    <tr>
+      <th>E</th>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -24469,6 +29627,19 @@ ADDEFADF
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -24657,6 +29828,19 @@ ADDEFADF
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -24668,7 +29852,28 @@ ADDEFADF
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Као и досад, аналогно се формирају логаритамске верзије формула, које множење мењају сабирањем, чиме се смањује грешка у рачуну, а проблем додатно приближава Менхетн графу. Идентична је и општа верзија формула са произвољним тежинама $\tau$. Поред декодирања као проблема <a href="#prob:poravnanje">14</a>, једнако се приступа и осталим задацима заснованим на Витербијевом графу – табела <a href="#tab:hmm">3.1</a>. Решење је такође у одабиру одговарајућих оператора уместо максимума.</p>
+<p>Као и досад, аналогно се формирају логаритамске верзије формула, које множење мењају сабирањем, чиме се смањује грешка у рачуну, а проблем додатно приближава Менхетн графу.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Идентична је и општа верзија формула са произвољним тежинама $\tau$. Поред декодирања као проблема <a href="#prob:poravnanje">14</a>, једнако се приступа и осталим задацима заснованим на Витербијевом графу – табела <a href="#tab:hmm">3.1</a>. Решење је такође у одабиру одговарајућих оператора уместо максимума.</p>
 
 </div>
 </div>
