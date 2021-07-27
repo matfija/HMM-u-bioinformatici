@@ -21801,10 +21801,10 @@ ADDEFADF
         <span class="n">pi</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">xi</span> <span class="o">==</span> <span class="s1">&#39;M1&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
         
         <span class="c1"># Обавезни прелази Mi -&gt; Mi+1</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
         
         <span class="c1"># Мапа емисија према профилу</span>
-        <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">yi</span><span class="p">:</span> <span class="n">prof</span><span class="p">[</span><span class="n">yi</span><span class="p">][</span><span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">yi</span> <span class="ow">in</span> <span class="n">y</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">yi</span><span class="p">:</span> <span class="n">prof</span><span class="p">[</span><span class="n">yi</span><span class="p">][</span><span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">yi</span> <span class="ow">in</span> <span class="n">y</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
         
         <span class="c1"># Конструкција наткласе</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
@@ -22570,8 +22570,8 @@ ADDEFADF
         
         <span class="c1"># Обавезни прелази Mi -&gt; Mi+1, Ii -&gt; Ii, Ii -&gt; Mi;</span>
         <span class="c1"># већа је вероватноћа поклапања него инсерције</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="mf">.9</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span>
-                  <span class="k">else</span> <span class="mf">.1</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="ow">and</span> <span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;I&#39;</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="mf">.9</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">+</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span>
+                  <span class="k">else</span> <span class="mf">.1</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="ow">and</span> <span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;I&#39;</span>
                   <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
         
         <span class="c1"># Нормализација мапе прелаза</span>
@@ -22579,7 +22579,7 @@ ADDEFADF
         
         <span class="c1"># Мапа емисија према профилу или</span>
         <span class="c1"># равномерна у стањима инсерције</span>
-        <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">yi</span><span class="p">:</span> <span class="n">prof</span><span class="p">[</span><span class="n">yi</span><span class="p">][</span><span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">xi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span> <span class="k">else</span> <span class="mi">1</span><span class="o">/</span><span class="n">m</span> <span class="k">for</span> <span class="n">yi</span> <span class="ow">in</span> <span class="n">y</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">yi</span><span class="p">:</span> <span class="n">prof</span><span class="p">[</span><span class="n">yi</span><span class="p">][</span><span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">xi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span> <span class="k">else</span> <span class="mi">1</span><span class="o">/</span><span class="n">m</span> <span class="k">for</span> <span class="n">yi</span> <span class="ow">in</span> <span class="n">y</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
         
         <span class="c1"># Конструкција наткласе</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
@@ -23399,9 +23399,9 @@ ADDEFADF
         
         <span class="c1"># Могућ велики број прелаза; већа је</span>
         <span class="c1"># вероватноћа поклапања него инсерције</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="mf">.9</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span>
-                  <span class="k">else</span> <span class="mf">.1</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="ow">and</span> <span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;I&#39;</span>
-                  <span class="k">else</span> <span class="mf">.1</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">&lt;</span> <span class="nb">int</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="ow">and</span>  <span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="mf">.9</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">+</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span>
+                  <span class="k">else</span> <span class="mf">.1</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="ow">and</span> <span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;I&#39;</span>
+                  <span class="k">else</span> <span class="mf">.1</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">&lt;</span> <span class="nb">int</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="ow">and</span>  <span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span>
                   <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
         
         <span class="c1"># Нормализација мапе прелаза</span>
@@ -23409,7 +23409,7 @@ ADDEFADF
         
         <span class="c1"># Мапа емисија према профилу или</span>
         <span class="c1"># равномерна у стањима инсерције</span>
-        <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">yi</span><span class="p">:</span> <span class="n">prof</span><span class="p">[</span><span class="n">yi</span><span class="p">][</span><span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">xi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span> <span class="k">else</span> <span class="mi">1</span><span class="o">/</span><span class="n">m</span> <span class="k">for</span> <span class="n">yi</span> <span class="ow">in</span> <span class="n">y</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">yi</span><span class="p">:</span> <span class="n">prof</span><span class="p">[</span><span class="n">yi</span><span class="p">][</span><span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">xi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span> <span class="k">else</span> <span class="mi">1</span><span class="o">/</span><span class="n">m</span> <span class="k">for</span> <span class="n">yi</span> <span class="ow">in</span> <span class="n">y</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
         
         <span class="c1"># Конструкција наткласе</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
@@ -24432,7 +24432,7 @@ ADDEFADF
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Одређивање параметара модела</span>
 <span class="k">def</span> <span class="nf">parametri</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">putevi</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="c1"># Читање броја колона</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">putevi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">2</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">putevi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">:])</span>
     
     <span class="c1"># Читање азбуке емисија из профила</span>
     <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -26847,7 +26847,7 @@ ADDEFADF
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Наравно, приликом додавања псеудовредности не треба заборавити на нормализацију, како би збир вероватноћа стварно био један. Примера ради, за $\sigma = 1/100$, ред $\{.75, .25, 0\}$ не постаје $\{.75, .25, .01\}$, већ $\{.738, .252, .01\}$. Исто тако, сасвим непознати ред $\{0, 0, 0\}$ за свако $\sigma$ постаје $\{1/3, 1/3, 1/3\}$, уместо $\{1/100, 1/100, 1/100\}$ у конкретном случају. Такође, не треба заборавити да се псеудовредности додају искључиво дозвољеним прелазима, док недозвољени остају строго нулте вероватноће. Одређивање овако дорађеног профилног модела $HMM(P, \theta, \sigma)$ формално се представља кроз проблем <a href="#prob:prof_sigma">13</a>.</p>
+<p>Наравно, приликом додавања псеудовредности не треба заборавити на нормализацију, како би збир вероватноћа стварно био један. Примера ради, за $\sigma = 1/100$, ред $\{.75, .25, 0\}$ не постаје $\{.76, .26, .01\}$, већ $\{.738, .252, .01\}$. Исто тако, сасвим непознати ред $\{0, 0, 0\}$ за свако $\sigma$ постаје $\{1/3, 1/3, 1/3\}$, уместо $\{1/100, 1/100, 1/100\}$ у конкретном случају. Такође, не треба заборавити да се псеудовредности додају искључиво дозвољеним прелазима, док недозвољени остају строго нулте вероватноће. Одређивање овако дорађеног профилног модела $HMM(P, \theta, \sigma)$ формално се представља кроз проблем <a href="#prob:prof_sigma">13</a>.</p>
 
 </div>
 </div>
@@ -26884,8 +26884,8 @@ ADDEFADF
         <span class="k">return</span> <span class="kc">False</span>
     
     <span class="c1"># Издвајање индекса прелаза</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">j</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
     
     <span class="c1"># Издвајање типа прелаза</span>
     <span class="n">xi</span> <span class="o">=</span> <span class="n">xi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -29630,13 +29630,104 @@ ADDEFADF
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[255]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Библиотека за бојење текста</span>
+<span class="kn">from</span> <span class="nn">termcolor</span> <span class="kn">import</span> <span class="n">colored</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[256]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Поравнање ниске према путу</span>
+<span class="k">def</span> <span class="nf">poravnanje</span><span class="p">(</span><span class="n">ops</span><span class="p">,</span> <span class="n">put</span><span class="p">):</span>
+    <span class="c1"># Иницијализација бројача</span>
+    <span class="n">i</span><span class="p">,</span> <span class="n">por</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;&#39;</span>
+    
+    <span class="c1"># Анализа сваког стања на путу</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">put</span><span class="p">:</span>
+        <span class="c1"># Поклапање даје црни симбол</span>
+        <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span><span class="p">:</span>
+            <span class="n">por</span> <span class="o">=</span> <span class="n">por</span> <span class="o">+</span> <span class="n">ops</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            
+            <span class="c1"># Померање бројача</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="c1"># Инсерција даје црвени симбол</span>
+        <span class="k">elif</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;I&#39;</span><span class="p">:</span>
+            <span class="n">por</span> <span class="o">=</span> <span class="n">por</span> <span class="o">+</span> <span class="n">colored</span><span class="p">(</span><span class="n">ops</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span>
+            
+            <span class="c1"># Померање бројача</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="c1"># Делеција даје симбол празнине</span>
+        <span class="k">elif</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span>
+            <span class="n">por</span> <span class="o">=</span> <span class="n">por</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span>
+    
+    <span class="c1"># Враћање поравнања</span>
+    <span class="k">return</span> <span class="n">por</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[257]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Ниска (опажање) из уџбеника</span>
+<span class="n">ops</span> <span class="o">=</span> <span class="s1">&#39;ACAFDEAF&#39;</span>
+
+<span class="c1"># Оптимални пут из уџбеника</span>
+<span class="n">put</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;M1&#39;</span><span class="p">,</span> <span class="s1">&#39;M2&#39;</span><span class="p">,</span> <span class="s1">&#39;I2&#39;</span><span class="p">,</span> <span class="s1">&#39;I2&#39;</span><span class="p">,</span> <span class="s1">&#39;M3&#39;</span><span class="p">,</span> <span class="s1">&#39;M4&#39;</span><span class="p">,</span> <span class="s1">&#39;D5&#39;</span><span class="p">,</span> <span class="s1">&#39;M6&#39;</span><span class="p">,</span> <span class="s1">&#39;D7&#39;</span><span class="p">,</span> <span class="s1">&#39;M8&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[258]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Извештавање о поравнању</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Опажање&#39;</span><span class="p">,</span> <span class="n">ops</span><span class="p">,</span> <span class="s1">&#39;на путу&#39;</span><span class="p">,</span> <span class="n">put</span><span class="p">[:</span><span class="mi">6</span><span class="p">],</span> <span class="s1">&#39;+</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+      <span class="n">put</span><span class="p">[</span><span class="mi">6</span><span class="p">:],</span> <span class="s1">&#39;поравнава се као&#39;</span><span class="p">,</span> <span class="n">poravnanje</span><span class="p">(</span><span class="n">ops</span><span class="p">,</span> <span class="n">put</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Опажање ACAFDEAF на путу [&#39;S&#39;, &#39;M1&#39;, &#39;M2&#39;, &#39;I2&#39;, &#39;I2&#39;, &#39;M3&#39;] +
+ [&#39;M4&#39;, &#39;D5&#39;, &#39;M6&#39;, &#39;D7&#39;, &#39;M8&#39;, &#39;E&#39;] поравнава се као AC<span class="ansi-red-fg">A</span><span class="ansi-red-fg">F</span>DE-A-F
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -29830,13 +29921,279 @@ ADDEFADF
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[259]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Декодирање код профилних модела</span>
+<span class="k">def</span> <span class="nf">viterbi_prof</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+    <span class="c1"># Одређивање дужине пута</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+    
+    <span class="c1"># Проширење опажања због индекса</span>
+    <span class="n">o</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">o</span>
+    
+    <span class="c1"># Издвајање осталих вредности</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">hmm</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">hmm</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">hmm</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="n">hmm</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b</span>
+    
+    <span class="c1"># Иницијализација свих скорова</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+    
+    <span class="c1"># Иницијализација путоказа</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[[</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="n">xi</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="n">xi</span><span class="p">]]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+    
+    <span class="c1"># Иницијализација нулте колоне</span>
+    <span class="n">s</span><span class="p">[</span><span class="s1">&#39;D1&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">][</span><span class="s1">&#39;D1&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># Пролазак тихом нултом колоном</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># Одређивање вероватноћа</span>
+        <span class="n">s</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;D</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;D</span><span class="si">{</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">a</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;D</span><span class="si">{</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][</span><span class="sa">f</span><span class="s1">&#39;D</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span>
+        
+        <span class="c1"># Одређивање путоказа пута делеције</span>
+        <span class="n">p</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;D</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;D</span><span class="si">{</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;D</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># Пут делеције ако је опажање празно</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">s</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;D</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">a</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;D</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][</span><span class="s1">&#39;E&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;D</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># Пролаз кроз време</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># Пролаз кроз индексе</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="c1"># Пролаз кроз тип стања</span>
+            <span class="k">for</span> <span class="n">Y</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">):</span>       
+                <span class="c1"># Издвајање текућег стања</span>
+                <span class="n">Y</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">Y</span><span class="si">}{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span>
+                
+                <span class="c1"># Посебна обрада прве колоне</span>
+                <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="c1"># Вероватноћа почетног стања I0</span>
+                    <span class="k">if</span> <span class="n">Y</span> <span class="o">==</span> <span class="s1">&#39;I0&#39;</span><span class="p">:</span>
+                        <span class="n">s</span><span class="p">[</span><span class="s1">&#39;I0&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">][</span><span class="s1">&#39;I0&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="s1">&#39;I0&#39;</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="n">t</span><span class="p">]])</span>
+                    
+                    <span class="c1"># Вероватноћа почетног стања M1</span>
+                    <span class="k">if</span> <span class="n">Y</span> <span class="o">==</span> <span class="s1">&#39;M1&#39;</span><span class="p">:</span>
+                        <span class="n">s</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">][</span><span class="s1">&#39;M1&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="n">t</span><span class="p">]])</span>
+                
+                <span class="c1"># Одустајање ако је лоше стање:</span>
+                <span class="c1"># не постоји или је већ обрађено</span>
+                <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">Y</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;I0&#39;</span><span class="p">,</span> <span class="s1">&#39;M1&#39;</span><span class="p">)</span> \
+                   <span class="ow">or</span> <span class="n">Y</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span> <span class="k">continue</span>
+                
+                <span class="c1"># Одабир лажног оптималног стања</span>
+                <span class="n">Xopt</span><span class="p">,</span> <span class="n">sXopt</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">0</span>
+                
+                <span class="c1"># Пролаз кроз остала стања</span>
+                <span class="k">for</span> <span class="n">X</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">):</span>
+                    <span class="c1"># Исти индекс ако је инсерција</span>
+                    <span class="k">if</span> <span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;I&#39;</span><span class="p">:</span>
+                        <span class="n">X</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">X</span><span class="si">}{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span>
+                    <span class="c1"># Мањи индекс у супротном</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">X</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">X</span><span class="si">}{</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span>
+                    
+                    <span class="c1"># Одустајање ако је непостојеће стање;</span>
+                    <span class="c1"># лош индекс или временски тренутак</span>
+                    <span class="k">if</span> <span class="n">X</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">s</span> <span class="ow">or</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;D&#39;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">s</span><span class="p">[</span><span class="n">Y</span><span class="p">][</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                        <span class="k">continue</span>
+                    
+                    <span class="c1"># Рачунање новог скора ако је делеција</span>
+                    <span class="k">if</span> <span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span>
+                        <span class="n">sX</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">X</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="o">*</span> <span class="n">a</span><span class="p">[</span><span class="n">X</span><span class="p">][</span><span class="n">Y</span><span class="p">]</span>
+                    <span class="c1"># Рачунање новог скора ако није делеција</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">sX</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">X</span><span class="p">][</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">a</span><span class="p">[</span><span class="n">X</span><span class="p">][</span><span class="n">Y</span><span class="p">]</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="n">Y</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="n">t</span><span class="p">]]</span>
+                    
+                    <span class="c1"># Одабир новог оптималног стања</span>
+                    <span class="k">if</span> <span class="n">sX</span> <span class="o">&gt;</span> <span class="n">sXopt</span><span class="p">:</span>
+                        <span class="n">sXopt</span> <span class="o">=</span> <span class="n">sX</span>
+                        <span class="n">Xopt</span> <span class="o">=</span> <span class="n">X</span>
+                
+                <span class="c1"># Додавање оптималног скора</span>
+                <span class="n">s</span><span class="p">[</span><span class="n">Y</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sXopt</span><span class="p">)</span>
+                
+                <span class="c1"># Додавање одговарајућег путоказа; баш</span>
+                <span class="c1"># текућег ако је делеција, старог иначе</span>
+                <span class="k">if</span> <span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span>
+                    <span class="n">p</span><span class="p">[</span><span class="n">Y</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">Xopt</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">Y</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">p</span><span class="p">[</span><span class="n">Y</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">Xopt</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">Y</span><span class="p">]</span>
+        
+        <span class="c1"># Ажурирање свих путоказа</span>
+        <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+            <span class="n">p</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="c1"># Терминација алгоритма; опет</span>
+    <span class="c1"># одабир лажног оптималног стања</span>
+    <span class="n">Xopt</span><span class="p">,</span> <span class="n">sXopt</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">0</span>
+    
+    <span class="c1"># Пролаз кроз завршна стања</span>
+    <span class="k">for</span> <span class="n">X</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">):</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">X</span><span class="si">}{</span><span class="n">n</span><span class="si">}</span><span class="s1">&#39;</span>
+        
+        <span class="c1"># Одређивање скора текућег стања</span>
+        <span class="n">sX</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">X</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">a</span><span class="p">[</span><span class="n">X</span><span class="p">][</span><span class="s1">&#39;E&#39;</span><span class="p">]</span>
+        
+        <span class="c1"># Одабир новог оптималног стања</span>
+        <span class="k">if</span> <span class="n">sX</span> <span class="o">&gt;</span> <span class="n">sXopt</span><span class="p">:</span>
+            <span class="n">sXopt</span> <span class="o">=</span> <span class="n">sX</span>
+            <span class="n">Xopt</span> <span class="o">=</span> <span class="n">X</span>
+    
+    <span class="c1"># Враћање оптималног пута</span>
+    <span class="k">return</span> <span class="n">sXopt</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="n">Xopt</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">]</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[260]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Сва опажања из уџбеника</span>
+<span class="n">opss</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="n">o_dugo</span><span class="p">,</span> <span class="n">o_kratko</span><span class="p">,</span> <span class="n">ops</span><span class="p">,</span> <span class="s1">&#39;AEFDFDC&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[261]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Највероватнији пут примера из уџбеника;</span>
+<span class="c1"># баш сваки се поклапа са претпоставкама</span>
+<span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">opss</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Исход&#39;</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="s1">&#39;декодиран:&#39;</span><span class="p">,</span> <span class="n">viterbi_prof</span><span class="p">(</span><span class="n">profhmm</span><span class="p">,</span> <span class="n">op</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Исход  декодиран: (1.8112221148500004e-10, [&#39;S&#39;, &#39;D1&#39;, &#39;D2&#39;, &#39;D3&#39;, &#39;D4&#39;, &#39;D5&#39;, &#39;D6&#39;, &#39;D7&#39;, &#39;D8&#39;, &#39;E&#39;])
+Исход ADDAFFDF декодиран: (0.0003136855288747913, [&#39;S&#39;, &#39;M1&#39;, &#39;M2&#39;, &#39;M3&#39;, &#39;M4&#39;, &#39;M5&#39;, &#39;M6&#39;, &#39;M7&#39;, &#39;M8&#39;, &#39;E&#39;])
+Исход AFDDAFFDF декодиран: (2.657946084358918e-07, [&#39;S&#39;, &#39;M1&#39;, &#39;I1&#39;, &#39;M2&#39;, &#39;M3&#39;, &#39;M4&#39;, &#39;M5&#39;, &#39;M6&#39;, &#39;M7&#39;, &#39;M8&#39;, &#39;E&#39;])
+Исход AAFFDF декодиран: (0.0004534316785450957, [&#39;S&#39;, &#39;M1&#39;, &#39;D2&#39;, &#39;D3&#39;, &#39;M4&#39;, &#39;M5&#39;, &#39;M6&#39;, &#39;M7&#39;, &#39;M8&#39;, &#39;E&#39;])
+Исход ACAFDEAF декодиран: (1.1719230969622383e-07, [&#39;S&#39;, &#39;M1&#39;, &#39;M2&#39;, &#39;I2&#39;, &#39;I2&#39;, &#39;M3&#39;, &#39;M4&#39;, &#39;D5&#39;, &#39;M6&#39;, &#39;D7&#39;, &#39;M8&#39;, &#39;E&#39;])
+Исход AEFDFDC декодиран: (0.00040684805005509046, [&#39;S&#39;, &#39;M1&#39;, &#39;D2&#39;, &#39;D3&#39;, &#39;M4&#39;, &#39;M5&#39;, &#39;I5&#39;, &#39;M6&#39;, &#39;M7&#39;, &#39;M8&#39;, &#39;E&#39;])
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[262]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Основни пример параметара са ROSALIND</span>
+<span class="n">theta_r</span> <span class="o">=</span> <span class="mf">.4</span>
+<span class="n">y_r</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">]</span>
+<span class="n">P_r</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ACDEFACADF&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;AFDA---CCF&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;A--EFD-FDC&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;ACAEF--A-C&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;ADDEFAAADF&#39;</span><span class="p">]</span>
+
+<span class="c1"># Основни пример опажања са ROSALIND</span>
+<span class="n">o_r</span> <span class="o">=</span> <span class="s1">&#39;AEFDFDC&#39;</span>
+
+<span class="c1"># Модел према изложеном примеру</span>
+<span class="n">rosalind</span> <span class="o">=</span> <span class="n">ProfHMM</span><span class="p">(</span><span class="n">P_r</span><span class="p">,</span> <span class="n">theta_r</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">y_r</span><span class="p">)</span>
+
+<span class="c1"># Вероватноћа пута из примера</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Исход&#39;</span><span class="p">,</span> <span class="n">o_r</span><span class="p">,</span> <span class="s1">&#39;декодиран:&#39;</span><span class="p">,</span> <span class="n">viterbi_prof</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">o_r</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Исход AEFDFDC декодиран: [&#39;S&#39;, &#39;M1&#39;, &#39;D2&#39;, &#39;D3&#39;, &#39;M4&#39;, &#39;M5&#39;, &#39;I5&#39;, &#39;M6&#39;, &#39;M7&#39;, &#39;M8&#39;, &#39;E&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[263]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Додатни пример параметара са ROSALIND</span>
+<span class="n">theta_r</span> <span class="o">=</span> <span class="mf">.359</span>
+<span class="n">y_r</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">]</span>
+<span class="n">P_r</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;EEBBA--C-DBAA-AECD--BDB---CC-DDCBBCEDE-EBB-DAEE-C&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;EEEEABBCEABBCDEE-DAEBDBAEDC-BDBCB--C-B-BCA-DAEECA&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;--CEB-ACCDEACEEEEDBEED-ADBCCDAC--BC--BDBCAEDAEECC&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;A--AABDCE-A-CD-ECD-EBBA-EDC-DACCBBCCD-D-BA-DAAEBC&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;EECEAB--EDDACCE-CD-E--B-EDCCD-CCBBCCD-DBBA--AE-CA&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;E-CDA-DCECAAECB-CDCEB-B-BDCCD---B--CD-DBCDBDAEB-C&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;EBCEAEDC-DABC--A-DCEDDBAED-CD-CCBBCCEBDB--BEA-EEC&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;AC-E-BDCEDAADDEECDEEB-CAEDC-DD-CBBCCD-DBCABDAEECC&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;EECBABDCEDEAEC-DCDC-BDBDEDA-D-AD-A-EABEB--BDA-ECC&#39;</span><span class="p">]</span>
+
+<span class="c1"># Додатни пример опажања са ROSALIND</span>
+<span class="n">o_r</span> <span class="o">=</span> <span class="s1">&#39;EEBEABDCEEABCCCEEBDEDCADEDACCDCBBEECDBDACABDADCBE&#39;</span>
+
+<span class="c1"># Модел према изложеном примеру</span>
+<span class="n">rosalind</span> <span class="o">=</span> <span class="n">ProfHMM</span><span class="p">(</span><span class="n">P_r</span><span class="p">,</span> <span class="n">theta_r</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">y_r</span><span class="p">)</span>
+
+<span class="c1"># Вероватноћа пута из примера</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Исход&#39;</span><span class="p">,</span> <span class="n">o_r</span><span class="p">,</span> <span class="s1">&#39;декодиран:&#39;</span><span class="p">,</span> <span class="n">viterbi_prof</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">o_r</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Исход EEBEABDCEEABCCCEEBDEDCADEDACCDCBBEECDBDACABDADCBE декодиран: [&#39;S&#39;, &#39;M1&#39;, &#39;M2&#39;, &#39;M3&#39;, &#39;M4&#39;, &#39;M5&#39;, &#39;M6&#39;, &#39;M7&#39;, &#39;M8&#39;, &#39;M9&#39;, &#39;D10&#39;, &#39;M11&#39;, &#39;M12&#39;, &#39;I12&#39;, &#39;I12&#39;, &#39;M13&#39;, &#39;M14&#39;, &#39;M15&#39;, &#39;M16&#39;, &#39;M17&#39;, &#39;M18&#39;, &#39;D19&#39;, &#39;M20&#39;, &#39;M21&#39;, &#39;M22&#39;, &#39;M23&#39;, &#39;I23&#39;, &#39;M24&#39;, &#39;M25&#39;, &#39;M26&#39;, &#39;I26&#39;, &#39;I26&#39;, &#39;M27&#39;, &#39;D28&#39;, &#39;M29&#39;, &#39;M30&#39;, &#39;M31&#39;, &#39;I31&#39;, &#39;I31&#39;, &#39;D32&#39;, &#39;M33&#39;, &#39;M34&#39;, &#39;I34&#39;, &#39;M35&#39;, &#39;M36&#39;, &#39;M37&#39;, &#39;M38&#39;, &#39;I38&#39;, &#39;M39&#39;, &#39;M40&#39;, &#39;M41&#39;, &#39;M42&#39;, &#39;M43&#39;, &#39;M44&#39;, &#39;E&#39;]
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -29852,17 +30209,96 @@ ADDEFADF
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Као и досад, аналогно се формирају логаритамске верзије формула, које множење мењају сабирањем, чиме се смањује грешка у рачуну, а проблем додатно приближава Менхетн графу.</p>
+<p>Као и досад, аналогно се формирају логаритамске верзије формула, које множење мењају сабирањем, чиме се смањује грешка у рачуну, а проблем додатно приближава Менхетн графу. Идентична је и општа верзија формула са произвољним тежинама $\tau$. Поред декодирања као проблема <a href="#prob:poravnanje">14</a>, једнако се приступа и осталим задацима заснованим на Витербијевом графу – табела <a href="#tab:hmm">3.1</a>. Решење је такође у одабиру одговарајућих оператора уместо максимума. У наставку је дат пример како се заменом максимума сумом добија вероватноћа опажања.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[264]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа опажања код профилних модела</span>
+<span class="k">def</span> <span class="nf">forward_prof</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+    <span class="c1"># Одређивање дужине пута</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+    
+    <span class="c1"># Проширење опажања због индекса</span>
+    <span class="n">o</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">o</span>
+    
+    <span class="c1"># Издвајање осталих вредности</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">hmm</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">hmm</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">hmm</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="n">hmm</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b</span>
+    
+    <span class="c1"># Иницијализација свих скорова</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+    
+    <span class="c1"># Иницијализација нулте колоне</span>
+    <span class="n">s</span><span class="p">[</span><span class="s1">&#39;D1&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">][</span><span class="s1">&#39;D1&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># Пролазак тихом нултом колоном</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># Одређивање вероватноћа</span>
+        <span class="n">s</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;D</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;D</span><span class="si">{</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">a</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;D</span><span class="si">{</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][</span><span class="sa">f</span><span class="s1">&#39;D</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># Пут делеције ако је опажање празно</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">s</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;D</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">a</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;D</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][</span><span class="s1">&#39;E&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># Пролаз кроз време</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># Пролаз кроз индексе</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="c1"># Пролаз кроз тип стања</span>
+            <span class="k">for</span> <span class="n">Y</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">):</span>       
+                <span class="c1"># Издвајање текућег стања</span>
+                <span class="n">Y</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">Y</span><span class="si">}{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span>
+                
+                <span class="c1"># Посебна обрада прве колоне</span>
+                <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="c1"># Вероватноћа почетног стања I0</span>
+                    <span class="k">if</span> <span class="n">Y</span> <span class="o">==</span> <span class="s1">&#39;I0&#39;</span><span class="p">:</span>
+                        <span class="n">s</span><span class="p">[</span><span class="s1">&#39;I0&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">][</span><span class="s1">&#39;I0&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="s1">&#39;I0&#39;</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="n">t</span><span class="p">]])</span>
+                    
+                    <span class="c1"># Вероватноћа почетног стања M1</span>
+                    <span class="k">if</span> <span class="n">Y</span> <span class="o">==</span> <span class="s1">&#39;M1&#39;</span><span class="p">:</span>
+                        <span class="n">s</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">][</span><span class="s1">&#39;M1&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="s1">&#39;M1&#39;</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="n">t</span><span class="p">]])</span>
+                
+                <span class="c1"># Одустајање ако је лоше стање:</span>
+                <span class="c1"># не постоји или је већ обрађено</span>
+                <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">Y</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;I0&#39;</span><span class="p">,</span> <span class="s1">&#39;M1&#39;</span><span class="p">)</span> \
+                   <span class="ow">or</span> <span class="n">Y</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span> <span class="k">continue</span>
+                
+                <span class="c1"># Иницијализација нулте суме</span>
+                <span class="n">sXopt</span> <span class="o">=</span> <span class="mi">0</span>
+                
+                <span class="c1"># Пролаз кроз остала стања</span>
+                <span class="k">for</span> <span class="n">X</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">):</span>
+                    <span class="c1"># Исти индекс ако је инсерција</span>
+                    <span class="k">if</span> <span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;I&#39;</span><span class="p">:</span>
+                        <span class="n">X</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">X</span><span class="si">}{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span>
+                    <span class="c1"># Мањи индекс у супротном</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">X</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">X</span><span class="si">}{</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span>
+                    
+                    <span class="c1"># Одустајање ако је непостојеће стање;</span>
+                    <span class="c1"># лош индекс или временски тренутак</span>
+                    <span class="k">if</span> <span class="n">X</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">s</span> <span class="ow">or</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;D&#39;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">s</span><span class="p">[</span><span class="n">Y</span><span class="p">][</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                        <span class="k">continue</span>
+                    
+                    <span class="c1"># Додавање новог скора ако је делеција</span>
+                    <span class="k">if</span> <span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span>
+                        <span class="n">sXopt</span> <span class="o">+=</span> <span class="n">s</span><span class="p">[</span><span class="n">X</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="o">*</span> <span class="n">a</span><span class="p">[</span><span class="n">X</span><span class="p">][</span><span class="n">Y</span><span class="p">]</span>
+                    <span class="c1"># Додавање новог скора ако није делеција</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">sXopt</span> <span class="o">+=</span> <span class="n">s</span><span class="p">[</span><span class="n">X</span><span class="p">][</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">a</span><span class="p">[</span><span class="n">X</span><span class="p">][</span><span class="n">Y</span><span class="p">]</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="n">Y</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="n">t</span><span class="p">]]</span>
+                
+                <span class="c1"># Додавање збирног скора</span>
+                <span class="n">s</span><span class="p">[</span><span class="n">Y</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sXopt</span><span class="p">)</span>
+    
+    <span class="c1"># Терминација алгоритма; опет</span>
+    <span class="c1"># сумирање завршних вероватноћа</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">X</span><span class="si">}{</span><span class="n">n</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">a</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">X</span><span class="si">}{</span><span class="n">n</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][</span><span class="s1">&#39;E&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">X</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -29870,13 +30306,43 @@ ADDEFADF
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Идентична је и општа верзија формула са произвољним тежинама $\tau$. Поред декодирања као проблема <a href="#prob:poravnanje">14</a>, једнако се приступа и осталим задацима заснованим на Витербијевом графу – табела <a href="#tab:hmm">3.1</a>. Решење је такође у одабиру одговарајућих оператора уместо максимума.</p>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[265]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа свих опажања из уџбеника</span>
+<span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">opss</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа опажања&#39;</span><span class="p">,</span>
+<span class="n">op</span><span class="p">,</span> <span class="s1">&#39;је:&#39;</span><span class="p">,</span> <span class="n">forward_prof</span><span class="p">(</span><span class="n">profhmm</span><span class="p">,</span> <span class="n">op</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа опажања  је: 1.8112221148500004e-10
+Вероватноћа опажања ADDAFFDF је: 0.0003206344030053308
+Вероватноћа опажања AFDDAFFDF је: 9.299796039928844e-07
+Вероватноћа опажања AAFFDF је: 0.0004635929997163145
+Вероватноћа опажања ACAFDEAF је: 3.8271760539035966e-07
+Вероватноћа опажања AEFDFDC је: 0.00041213747232828377
+</pre>
+</div>
+</div>
 
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
