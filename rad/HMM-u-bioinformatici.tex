@@ -159,12 +159,12 @@
 \begin{table}[h!]
   \centering
   \caption{\dvareda{Удео динуклеотида у једном ланцу људског \textit{X} хромозома\\-- лево у регионима \textit{CG} острва, а десно ван њих\cite{compeau2015};\\ разлика у уделу \textit{CG} наглашена је црвеном бојом}}
-  \begin{tabular}{c | c c c c | c c c c}
+  \begin{tabular}{| c | c c c c | c c c c |} \hline
    & A & C & G & T & A & C & G & T \\ \hline
   A & 0,053 & 0,079 & 0,127 & 0,036 & 0,087 & 0,058 & 0,084 & 0,061 \\
   C & 0,037 & 0,058 & \textcolor{red}{0,058} & 0,041 & 0,067 & 0,063 & \textcolor{red}{0,017} & 0,063 \\
   G & 0,035 & 0,075 & 0,081 & 0,026 & 0,053 & 0,053 & 0,063 & 0,042 \\
-  T & 0,024 & 0,105 & 0,115 & 0,050 & 0,051 & 0,070 & 0,084 & 0,084
+  T & 0,024 & 0,105 & 0,115 & 0,050 & 0,051 & 0,070 & 0,084 & 0,084 \\ \hline
   \end{tabular}
   \label{tab:cg}
 \end{table}
@@ -517,8 +517,8 @@
 \begin{table}[h!]
   \centering
   \caption{Могућности скривених Марковљевих модела}
-  \begin{tabular}{c c c c | c c}
-  \multicolumn{4}{c}{Проблем -- алгоритам} & \multicolumn{2}{c}{Сложеност} \\
+  \begin{tabular}{| c c c c | c c |} \hline
+  \multicolumn{4}{| c |}{Проблем -- алгоритам} & \multicolumn{2}{ c |}{Сложеност} \\
   Број & Улаз & Циљ & Вредност & Наивни & Напредни \\ \hline
   \ref{prob:dekod}      & $o_k$             & $\operatorname*{(arg)max}_p$ & $P\{p, o\}$  & $O(n^k k)$  & $O(n^2 k)$  \\
   \ref{prob:putishod}  & $p_k$, $o_k$  & --                                               & $P\{p, o\}$  & $O(k)$         & -- \\
@@ -530,7 +530,7 @@
   \ref{prob:maxops}    & $k$               & $\operatorname*{(arg)max}_o$  & $P\{o\}$       & \dvareda{$O(n^k m^k k)$ \\ $O(n^2 m^k k)$} & $O(n^2 m k)$ \\
   \ref{prob:maxpo}      & $k$               & $\operatorname*{(arg)max}_{p, o} $ & $P\{p, o\}$ & \dvareda{$O(n^k m^k k)$ \\ $O(n^2 m^k k)$} & $O(n^2 m k)$ \\
   \ref{prob:putpri}       & $p_k$, $o_k$  & --                                              & $P\{p | o\}$ & $O(n^k k)$ & $O(n^2 k)$ \\
-  \ref{prob:maxputpri} & $o_k$            & $\operatorname*{(arg)max}_p$ & $P\{p | o\}$ & \dvareda{$O(n^{2k} k)$ \\ $O(n^k k)$} & $O(n^2 k)$
+  \ref{prob:maxputpri} & $o_k$            & $\operatorname*{(arg)max}_p$ & $P\{p | o\}$ & \dvareda{$O(n^{2k} k)$ \\ $O(n^k k)$} & $O(n^2 k)$ \\ \hline
   \end{tabular}
   \label{tab:hmm}
 \end{table}
@@ -617,12 +617,12 @@
 \begin{table}[h!]
   \centering
   \caption{\dvareda{Вероватноћа прелаза између нуклеотида једне секвенце\\-- лево у регионима \textit{CG} острва, а десно ван њих\cite{shamir2009}}}
-  \begin{tabular}{c | c c c c | c c c c}
+  \begin{tabular}{| c | c c c c | c c c c |} \hline
    & A & C & G & T & A & C & G & T \\ \hline
   A & 0,180 & 0,274 & 0,426 & 0,120 & 0,300 & 0,205 & 0,285 & 0,210 \\
   C & 0,171 & 0,367 & 0,274 & 0,188 & 0,322 & 0,298 & 0,078 & 0,302 \\
   G & 0,161 & 0,339 & 0,375 & 0,125 & 0,248 & 0,246 & 0,298 & 0,208 \\
-  T & 0,079 & 0,355 & 0,384 & 0,182 & 0,177 & 0,239 & 0,292 & 0,292
+  T & 0,079 & 0,355 & 0,384 & 0,182 & 0,177 & 0,239 & 0,292 & 0,292 \\ \hline
   \end{tabular}
   \label{tab:cg_lanac}
 \end{table}
@@ -643,7 +643,7 @@
 \begin{table}[h!]
   \centering
   \caption{Вероватноћа прелаза унутар \textit{CG} острва}
-  \begin{tabular}{c | c c c c}
+  \begin{tabular}{| c | c c c c |} \hline
    & $A^+$ & $C^+$ & $G^+$ & $T^+$ \\ \hline
   $A^+$ & 0,180p & 0,274p & 0,426p & 0,120p \\
   $C^+$ & 0,171p & 0,367p & 0,274p & 0,188p \\
@@ -653,7 +653,7 @@
   $A^+$ & 0,180(1-p) & 0,274(1-p) & 0,426(1-p) & 0,120(1-p) \\
   $C^+$ & 0,171(1-p) & 0,367(1-p) & 0,274(1-p) & 0,188(1-p) \\
   $G^+$ & 0,161(1-p) & 0,339(1-p) & 0,375(1-p) & 0,125(1-p) \\
-  $T^+$ & 0,079(1-p) & 0,355(1-p) & 0,384(1-p) & 0,182(1-p)
+  $T^+$ & 0,079(1-p) & 0,355(1-p) & 0,384(1-p) & 0,182(1-p) \\ \hline
   \end{tabular}
   \label{tab:cg_hmm1}
 \end{table}
@@ -663,7 +663,7 @@
 \begin{table}[h!]
   \centering
   \caption{Вероватноћа прелаза ван \textit{CG} острва}
-  \begin{tabular}{c | c c c c}
+  \begin{tabular}{| c | c c c c |} \hline
    & $A^-$ & $C^-$ & $G^-$ & $T^-$ \\ \hline
   $A^-$ & 0,300q & 0,205q & 0,285q & 0,210q \\
   $C^-$ & 0,322q & 0,298q & 0,078q & 0,302q \\
@@ -673,7 +673,7 @@
   $A^-$ & (1-q)/4 & (1-q)/4 & (1-q)/4 & (1-q)/4 \\
   $C^-$ & (1-q)/4 & (1-q)/4 & (1-q)/4 & (1-q)/4 \\
   $G^-$ & (1-q)/4 & (1-q)/4 & (1-q)/4 & (1-q)/4 \\
-  $T^-$ & (1-q)/4 & (1-q)/4 & (1-q)/4 & (1-q)/4
+  $T^-$ & (1-q)/4 & (1-q)/4 & (1-q)/4 & (1-q)/4 \\ \hline
   \end{tabular}
   \label{tab:cg_hmm2}
 \end{table}
