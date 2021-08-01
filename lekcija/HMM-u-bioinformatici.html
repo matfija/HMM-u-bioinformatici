@@ -30354,7 +30354,115 @@ ADDEFADF
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Досад је приказана употреба скривених Марковљевих модела у решавању биолошких проблема који се могу схватити како као задаци надгледаног (класификација протеина), тако и ненадгледаног машинског учења (означавање <em>CG</em> острва). У последњој глави, излагање се допуњује још једном важном особином <em>HMM</em> која је у вези са машинским учењем – способност учења поткрепљивањем. Претходно је било речи о готовим моделима, али прави потенцијал <em>HMM</em> показују тек када се сви параметри модела науче, уместо да се хардкодирају. Ова глава, дакле, покрива последњу петину обрађеног поглавља <em>Chapter 10: Why Have Biologists Still Not Developed an HIV Vaccine? – Hidden Markov Models</em>, и то тачно следеће поднаслове: <em>Learning the Parameters of an HMM</em>, <em>Soft Decisions in Parameter Estimation</em> и <em>Baum-Welch Learning</em>.</p>
+<p>Досад је приказана употреба скривених Марковљевих модела у решавању биолошких проблема који се могу схватити како као задаци надгледаног (класификација протеина), тако и ненадгледаног машинског учења (означавање <em>CG</em> острва). У последњој глави, излагање се допуњује још једном важном особином <em>HMM</em> која је у вези са машинским учењем – способност учења поткрепљивањем. Претходно је било речи о готовим моделима, али прави потенцијал <em>HMM</em> показују тек када се сви параметри модела науче, уместо да се хардкодирају. Успут је предочен и један нов и кориснији поглед на већ познати проблем декодирања. Ова глава, дакле, покрива последњу петину обрађеног поглавља <em>Chapter 10: Why Have Biologists Still Not Developed an HIV Vaccine? – Hidden Markov Models</em>, и то тачно следеће поднаслове: <em>Learning the Parameters of an HMM</em>, <em>Soft Decisions in Parameter Estimation</em> и <em>Baum-Welch Learning</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>У оквиру одређивања профилних <em>HMM</em> на основу улазног вишеструког поравнања, представљена је хеуристика за процену њихових параметара – мапа вероватноћа прелаза и емисија. Подсећања ради, идеја се састоји из следећих корака: свака ниска из поравнања сматра се једним опажањем (све ниске чине узорак), на основу поравнања непосредно и једнозначно се одређује позадински скривени пут, прелази и емисије симбола пребројавају се проласком кроз претходно одређене путеве, а на крају се број појављивања нормализује у удео, који је управо претпостављена вероватноћа према улазном узорку.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Поставља се питање да ли је овај једноставни приступ могуће уопштити на произвољан <em>HMM</em>. Одговор је у општем случају одричан, пошто није могуће на основу опажања непосредно одредити скривени пут на коме је оно настало. Могуће је одредити највероватнији такав пут, али једино ако су параметри већ познати, што код овог проблема није случај. Одговор је, међутим, потврдан уколико је уз опажање познат позадински пут. Тада је довољно приступити пребројавању и одређивању удела, као код <em>HMM</em> профила. Овакво надгледано учење параметара модела формално се представља проблемом <a href="#prob:params">15</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote id="prob:params">
+
+<b>Проблем 15</b>: <a href="http://rosalind.info/problems/ba10h/">Надгледано одређивање параметара</a><br>
+<i>Наћи оптималне параметре HMM-а према обележеном узорку.</i><br>
+<b>Улаз</b>: скривени пут $p = p_1...p_k$ кроз <i>HMM</i> са непознатим параметрима и ниска $o = o_1...o_k$ емитована на том путу.<br>
+<b>Излаз</b>: оптимални параметри, који максимизују $P\{p, o\}$.
+
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Мада се испоставља да учење из обележеног узорка даје глобално оптималне параметре – такве да максимизују заједничку вероватноћу улазног исхода и пута на ком је настао, овај приступ често није применљив. Скривена стања су по правилу стварно скривена, те нису доступни парови опажања и путева, већ само опсервације. Стога је следећи задатак нешто амбициознији – одредити параметре само на основу опажања, према проблему <a href="#prob:vituch">16</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote id="prob:vituch">
+
+<b>Проблем 16</b>: <a href="http://rosalind.info/problems/ba10i/">Витербијево (ненадгледано) учење</a><br>
+<i>Наћи оптималне параметре HMM-а према узорку опажања.</i><br>
+<b>Улаз</b>: ниска $o = o_1...o_k$ и <i>HMM</i> са непознатим параметрима који ју је емитовао проласком кроз такође непознати пут $p = p_1...p_k$.<br>
+<b>Излаз</b>: оптимални параметри, који максимизују $P\{p, o\}$.
+
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>На мотивационом примеру непоштеног казина, проблем <a href="#prob:params">15</a> односио се на одређивање пристрасности (вероватноће главе) непоштеног новчића ако је јаван податак када га крупије баца. Како крупије то вешто крије, сада је решењем општијег проблема <a href="#prob:vituch">16</a> циљ доћи до тог податка само на основу увек познатог низа исхода – у ком бацању је пала глава, а у ком писмо.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[266]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Пример опажања из уџбеника</span>
+<span class="n">o_knjiga</span> <span class="o">=</span> <span class="s1">&#39;HHTHHHTHHHTTTTHTTTTH&#39;</span>
+
+<span class="c1"># Пример скривеног пута из уџбеника</span>
+<span class="n">p_knjiga</span> <span class="o">=</span> <span class="s1">&#39;BFFBFFFBBFFBFFBBBBFF&#39;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Добре резултате могуће је добити итеративном хеуристиком попут оне која је основа Лојдовог алгоритма. Реч је о алгоритму који решава проблем кластеровања $k$-средина, а који је представљен у осмом поглављу уџбеника (<em>Chapter 8: How Did Yeast Become a Winemaker? – Clustering Algorithms</em>). У случају скривених Марковљевих модела, параметри $P$ случајно се иницијализују, чиме се за почетак добијају насумичне вероватноће. Затим се улазна ниска $o$ декодира (проблем <a href="#prob:dekod">1</a>), чиме се добија скривени пут $p$ по принципу $(o, ?, P) \mapsto p$. Потом се израчунавају нови параметри (проблем <a href="#prob:params">15</a>), по принципу $(o, p, ?) \mapsto P$, и тако наизменично. У питању је уобичајени алгоритам максимизације очекивања (<em>EM[A]</em>, према <em>expectation-maximization [algorithm]</em>), који се илуструје дијаграмом са слике <a href="#fig:ema">5.1</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<figure><img src="../slike/ema.png" width="40%" id="fig:ema" /><figcaption style="text-align: center;"><b>Слика 5.1</b>: Максимизација очекивања код <i>HMM</i></figcaption></figure>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Овакав ненадгледани приступ учењу параметара модела назива се Витербијевим учењем, пошто му је у основи Витербијев алгоритам за декодирање. Тај део алгоритма представља корак очекивања (<em>E</em> корак), док је надгледано одређивање параметара које следи корак максимизације (<em>M</em> корак). Дубљом анализом, испоставља се да је ненадгледана оптимизација параметара <em>HMM</em>-а тежак проблем, тако да је Витербијево учење сасвим задовољавајућа хеуристика. Најважнија особина му је то што је вредност $\max_p P\{p, o\}$ за улазно опажање $o$ због природе <em>EM</em> алгоритма током оптимизације монотоно неопадајућа. То значи да су сваком итерацијом параметри ближи најбољим.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Наравно, како је и иначе случај код хеуристичких приступа, није необично заглављивање алгоритма у локалном максимуму, тако да резултат умногоме зависи од почетних вредности параметара. Како су оне случајне, уобичајена тактика за добијање бољих резултата јесте покретање учења већи број пута, а затим узимање најбољих параметара из свих покретања. Што се тиче критеријума заустављања, најчешћа су два: унапред одређени број итерација или граница минималног повећања вероватноће која се максимизује.</p>
 
 </div>
 </div>
