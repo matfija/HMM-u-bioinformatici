@@ -30408,7 +30408,7 @@ ADDEFADF
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Надгледано одређивање параметара</span>
-<span class="k">def</span> <span class="nf">params</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">nadgledani_params</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="c1"># Одређивање скривених стања</span>
     <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">x</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">({</span><span class="o">*</span><span class="n">p</span><span class="p">})</span>
     
@@ -30463,7 +30463,7 @@ ADDEFADF
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Надгледано одређивање модела</span>
 <span class="k">def</span> <span class="nf">nadgledani_model</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pi</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="c1"># Надгледано одређивање параметара</span>
-    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">params</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">nadgledani_params</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
     
     <span class="c1"># Конструкција модела према параметрима</span>
     <span class="k">return</span> <span class="n">HMM</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
@@ -30925,7 +30925,7 @@ ADDEFADF
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>На мотивационом примеру непоштеног казина, проблем <a href="#prob:params">15</a> односио се на одређивање пристрасности (вероватноће главе) непоштеног новчића ако је јаван податак када га крупије баца. Како крупије то вешто крије, сада је решењем општијег проблема <a href="#prob:vituch">16</a> циљ доћи до тог податка само на основу увек познатог низа исхода – у ком бацању је пала глава, а у ком писмо.</p>
+<p>На мотивационом примеру непоштеног казина, проблем <a href="#prob:params">15</a> односио се на одређивање пристрасности (вероватноће главе) непоштеног новчића ако је јаван податак када га крупије баца.</p>
 
 </div>
 </div>
@@ -30954,19 +30954,8 @@ ADDEFADF
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Нова коцкарница према примеру</span>
 <span class="n">kockarnica2</span> <span class="o">=</span> <span class="n">nadgledani_model</span><span class="p">(</span><span class="n">p_knjiga</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">)</span>
-</pre></div>
 
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[272]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Леп приказ модела</span>
+<span class="c1"># Леп приказ модела</span>
 <span class="n">prikazi</span><span class="p">(</span><span class="n">kockarnica2</span><span class="p">)</span>
 </pre></div>
 
@@ -31148,6 +31137,14 @@ ADDEFADF
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>Како крупије то вешто крије, сада је решењем општијег проблема <a href="#prob:vituch">16</a> циљ доћи до тог податка само на основу увек познатог низа исхода – у ком бацању је пала глава, а у ком писмо.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Добри резултати могу се добити итеративном хеуристиком попут оне која је основа Лојдовог алгоритма. Реч је о алгоритму који решава проблем кластеровања $k$-средина, а који је представљен у осмом поглављу уџбеника (<em>Chapter 8: How Did Yeast Become a Winemaker? – Clustering Algorithms</em>). У случају скривених Марковљевих модела, параметри $P$ случајно се иницијализују, чиме се за почетак добијају насумичне вероватноће. Затим се улазна ниска $o$ декодира (проблем <a href="#prob:dekod">1</a>), чиме се добија скривени пут $p$ по принципу $(o, ?, P) \mapsto p$. Потом се израчунавају нови параметри (проблем <a href="#prob:params">15</a>), по принципу $(o, p, ?) \mapsto P$, и тако наизменично. То је уобичајени алгоритам максимизације очекивања (<em>EM[A]</em>, према енгл. <em>expectation-maximization [algorithm]</em>), који се илуструје дијаграмом са слике <a href="#fig:ema">5.1</a>.</p>
 
 </div>
@@ -31172,6 +31169,659 @@ ADDEFADF
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Наравно, како је и иначе случај код хеуристичких приступа, није необично заглављивање алгоритма у локалном максимуму, тако да резултат умногоме зависи од почетних вредности параметара. Како су оне случајне, уобичајена тактика за добијање бољих резултата јесте покретање учења већи број пута, а затим узимање најбољих параметара из свих покретања. Што се тиче критеријума заустављања, најчешћа су два: унапред одређени број итерација или граница минималног повећања вероватноће која се максимизује.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Поред случајне иницијализације параметара на почетку алгоритма, могуће је кренути од неких унапред одређених, односно познатих параметара. У том случају циљ није (само) ненадгледано их научити, већ профинити претходне. Тада је Витербијево учење прави пример учења поткрепљивањем, јер се параметри прилагођавају новим околностима на основу нових опажања.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[272]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Витербијево учење поткрепљивањем;</span>
+<span class="c1"># почетни параметри су из модела</span>
+<span class="k">def</span> <span class="nf">viterbi_potkrepljivanje</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="n">it</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="c1"># Извршавање одређеног броја итерација</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">it</span><span class="p">):</span>
+        <span class="c1"># Декодирање ниске (&#39;E&#39; корак)</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">viterbi_dekodiranje</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
+        
+        <span class="c1"># Надгледано учење (&#39;M&#39; корак)</span>
+        <span class="n">hmm</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">nadgledani_params</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">hmm</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[274]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Основни пример параметара са ROSALIND</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.582</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">.418</span><span class="p">},</span>
+     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.272</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">.728</span><span class="p">}}</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">.129</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">.35</span> <span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">.52</span> <span class="p">},</span>
+     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">.422</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">.151</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">.426</span><span class="p">}}</span>
+
+<span class="c1"># Основни пример опажања са ROSALIND</span>
+<span class="n">o</span> <span class="o">=</span> <span class="s1">&#39;xxxzyzzxxzxyzxzxyxxzyzyzyyyyzzxxxzzxzyzzzxyxzzzxyzzxxxxzzzxyyxzzzzzyzzzxxzzxxxyxyzzyxzxxxyxzyxxyzyxz&#39;</span>
+
+<span class="c1"># Модел према изложеном примеру</span>
+<span class="n">rosalind</span> <span class="o">=</span> <span class="n">HMM</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="c1"># Поткрепљивање према изложеном примеру</span>
+<span class="n">viterbi_potkrepljivanje</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
+
+<span class="c1"># Леп приказ модела</span>
+<span class="n">prikazi</span><span class="p">(</span><span class="n">rosalind</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Полазне вероватноће:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>π</th>
+      <td>0.5</td>
+      <td>0.5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноће прелаза:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>A</th>
+      <td>0.875</td>
+      <td>0.125</td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td>0.011</td>
+      <td>0.989</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноће емисија:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>x</th>
+      <th>y</th>
+      <th>z</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>A</th>
+      <td>0.000</td>
+      <td>0.750</td>
+      <td>0.250</td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td>0.402</td>
+      <td>0.174</td>
+      <td>0.424</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[275]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Додатни пример параметара са ROSALIND</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.436</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">.564</span><span class="p">},</span>
+     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.953</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">.047</span><span class="p">}}</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">.367</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">.248</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">.385</span><span class="p">},</span>
+     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">.401</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">.361</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">.238</span><span class="p">}}</span>
+
+<span class="c1"># Додатни пример опажања са ROSALIND</span>
+<span class="n">o</span> <span class="o">=</span> <span class="s1">&#39;zzzyyxyzzzxyxzxxzzyxxzzzzzzyzxyzxxxzxxxzyzzxzxzzzxyzyyyxxxxzxyyyyyxzzzyxyzzxxzxxzxyxyxyzxzxzxzyxyzzz&#39;</span>
+
+<span class="c1"># Модел према изложеном примеру</span>
+<span class="n">rosalind</span> <span class="o">=</span> <span class="n">HMM</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="c1"># Поткрепљивање према изложеном примеру</span>
+<span class="n">viterbi_potkrepljivanje</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
+
+<span class="c1"># Леп приказ модела</span>
+<span class="n">prikazi</span><span class="p">(</span><span class="n">rosalind</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Полазне вероватноће:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>π</th>
+      <td>0.5</td>
+      <td>0.5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноће прелаза:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>A</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноће емисија:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>x</th>
+      <th>y</th>
+      <th>z</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>A</th>
+      <td>0.36</td>
+      <td>0.14</td>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td>0.34</td>
+      <td>0.34</td>
+      <td>0.32</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Уколико је критеријум број итерација, у овој верзији их је обично мање, јер у супротном долази до добијања екстремних вредности, што се може протумачити као преприлагођавање модела. На примеру непоштене коцкарнице, већи број итерација код поткрепљивања доводи до закључка да је веороватноћа пада главе код пристрасног новичића јединична, а писма нулта.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[273]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Нова коцкарница према примеру</span>
+<span class="n">viterbi_potkrepljivanje</span><span class="p">(</span><span class="n">kockarnica2</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">)</span>
+
+<span class="c1"># Леп приказ модела</span>
+<span class="n">prikazi</span><span class="p">(</span><span class="n">kockarnica2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Полазне вероватноће:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>B</th>
+      <th>F</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>π</th>
+      <td>0.5</td>
+      <td>0.5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноће прелаза:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>B</th>
+      <th>F</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>B</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>F</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноће емисија:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>H</th>
+      <th>T</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>B</th>
+      <td>1.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>F</th>
+      <td>0.474</td>
+      <td>0.526</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Овакво понашање, с друге стране, може бити пожељно баш због способности откривања екстремних вредности. У случају коцкарнице, након поткрепљивања нема сумње да је пристрасни новчић управо онај са јединичном вероватноћом главе, иако је пристрасност на почетку можда била релативно мала.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Познату примену <em>HMM</em> овог типа у лингвистици осмислили су 1980. године <a href="http://www.cs.sjsu.edu/~stamp/RUA/CaveNeuwirth/cave-neuwirth.pdf">Кејв и Нојвирт</a>, док су је други аутори касније <a href="http://www.cs.sjsu.edu/~stamp/RUA/HMM.pdf">проширили</a>. Илустративна претпоставка је да научник Марсовац жели да сазна нешто о писаном језику Земљана. За те потребе набавио је велику количину текста, на пример корпус енглеског језика. Пало му је на памет да покуша да слова језика подели на статистички значајно различите скупове, што моделује управо помоћу скривених Марковљевих модела, за које је стручњак. Како је реч о енглеском језику, могућих симбола је двадесетак, за свако слово по један (код осталих језика би их било више или мање), а Марсовац је одабрао да постоје само два скривена стања, како би модел остао једноставан. Параметре модела је случајно (скоро равномерно) иницијализовао, а затим је покренуо ненадгледано поткрепљивање, користећи текст корпуса као улазно опажање.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Резултујућа матрица емисија прилично је занимљива – испоставља се да је сваки самогласник скоро сигурно опажен у једном стању, а сугласник у другом. Овиме је, дакле, Марсовац добио практично савршену поделу (груписање – кластеровање) симбола о којима ништа не зна на вокале и консонантне, што без проблема може да закључи на основу добијених екстремних вероватноћа емисија. На сличан начин функционише и решавање других проблема ненадгледаног учења помоћу <em>HMM</em>, мада се чешће уместо Витербијевог користи моћније Баум-Велчово учење, о коме ће бити речи у наставку.</p>
 
 </div>
 </div>
