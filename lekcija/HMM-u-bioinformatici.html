@@ -13134,7 +13134,9 @@ div#notebook {
 4.2 <a href="#par:gen3">Гени – више стања</a><br>
 4.3 <a href="#par:prof1">Профилни модели</a><br>
 4.4 <a href="#par:prof2">Рад са профилима</a></li>
-<li><a href="#par:uch">Учење модела</a></li>
+<li><a href="#par:uch">Учење модела</a><br>
+5.1 <a href="#par:vituch">Витербијево учење</a><br>
+5.2 <a href="#par:bwuch">Баум-Велчово учење</a></li>
 <li><a href="#par:zak">Закључак</a></li>
 </ol>
 
@@ -30362,6 +30364,13 @@ ADDEFADF
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="5.1-%D0%92%D0%B8%D1%82%D0%B5%D1%80%D0%B1%D0%B8%D1%98%D0%B5%D0%B2%D0%BE-%D1%83%D1%87%D0%B5%D1%9A%D0%B5-%E2%AE%AD">5.1 &#1042;&#1080;&#1090;&#1077;&#1088;&#1073;&#1080;&#1112;&#1077;&#1074;&#1086; &#1091;&#1095;&#1077;&#1114;&#1077; <a href="#par:uch">&#11181;</a><a id="par:vituch" /><a class="anchor-link" href="#5.1-%D0%92%D0%B8%D1%82%D0%B5%D1%80%D0%B1%D0%B8%D1%98%D0%B5%D0%B2%D0%BE-%D1%83%D1%87%D0%B5%D1%9A%D0%B5-%E2%AE%AD">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>У оквиру одређивања профилних <em>HMM</em> на основу улазног вишеструког поравнања, представљена је хеуристика за процену њихових параметара – мапа вероватноћа прелаза и емисија. Подсећања ради, идеја се састоји из следећих корака: свака ниска из поравнања сматра се једним опажањем (све ниске чине узорак), на основу поравнања непосредно и једнозначно се одређује позадински скривени пут, прелази и емисије симбола пребројавају се проласком кроз претходно одређене путеве, а на крају се број појављивања нормализује у удео, који је управо претпостављена вероватноћа према улазном узорку.</p>
 
 </div>
@@ -30463,6 +30472,21 @@ ADDEFADF
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Наравно, како је и иначе случај код хеуристичких приступа, није необично заглављивање алгоритма у локалном максимуму, тако да резултат умногоме зависи од почетних вредности параметара. Како су оне случајне, уобичајена тактика за добијање бољих резултата јесте покретање учења већи број пута, а затим узимање најбољих параметара из свих покретања. Што се тиче критеријума заустављања, најчешћа су два: унапред одређени број итерација или граница минималног повећања вероватноће која се максимизује.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="5.2-%D0%91%D0%B0%D1%83%D0%BC-%D0%92%D0%B5%D0%BB%D1%87%D0%BE%D0%B2%D0%BE-%D1%83%D1%87%D0%B5%D1%9A%D0%B5-%E2%AE%AD">5.2 &#1041;&#1072;&#1091;&#1084;-&#1042;&#1077;&#1083;&#1095;&#1086;&#1074;&#1086; &#1091;&#1095;&#1077;&#1114;&#1077; <a href="#par:uch">&#11181;</a><a id="par:bwuch" /><a class="anchor-link" href="#5.2-%D0%91%D0%B0%D1%83%D0%BC-%D0%92%D0%B5%D0%BB%D1%87%D0%BE%D0%B2%D0%BE-%D1%83%D1%87%D0%B5%D1%9A%D0%B5-%E2%AE%AD">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>...</p>
 
 </div>
 </div>
