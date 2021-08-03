@@ -1,6 +1,5 @@
 rad
 *.log
 !rad/HMM*
-literatura
 *.synctex.*
 *.ipynb_checkpoints

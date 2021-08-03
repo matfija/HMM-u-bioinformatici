@@ -18148,7 +18148,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
     <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
     
     <span class="c1"># Специјалан празан пут</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="p">:</span> <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="p">:</span> <span class="k">return</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">None</span>
     
     <span class="c1"># Иницијализација (π)</span>
     <span class="n">f</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span> <span class="o">*</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
@@ -18159,7 +18159,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
             <span class="n">f</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">hmm</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">xi</span><span class="p">]</span> <span class="o">*</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="n">t</span><span class="p">]]</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">))</span>
     
     <span class="c1"># Терминација (сума)</span>
-    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="n">f</span>
 </pre></div>
 
     </div>
@@ -18173,7 +18173,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа опсервација из уџбеника</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Вероватноћа исхода </span><span class="si">{</span><span class="n">o_knjiga</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span> <span class="n">forward</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Вероватноћа исхода </span><span class="si">{</span><span class="n">o_knjiga</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span> <span class="n">forward</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -18218,7 +18218,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <span class="n">rosalind</span> <span class="o">=</span> <span class="n">HMM</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
 
 <span class="c1"># Вероватноћа опсервација из примера</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Вероватноћа исхода </span><span class="si">{</span><span class="n">o</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span> <span class="n">forward</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Вероватноћа исхода </span><span class="si">{</span><span class="n">o</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span> <span class="n">forward</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">o</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 
 <span class="c1"># Проба и наивног алгоритма</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Вероватноћа исхода </span><span class="si">{</span><span class="n">o</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span> <span class="n">naivni_p_ops</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
@@ -18268,7 +18268,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 
 <span class="c1"># Вероватноћа опсервација из примера</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа исхода&#39;</span><span class="p">,</span> <span class="n">o</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">o</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
-      <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">o</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">o</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">:]</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span> <span class="n">forward</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
+      <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">o</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">o</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">:]</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span> <span class="n">forward</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">o</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -18314,7 +18314,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
     <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
     
     <span class="c1"># Специјалан празан пут</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span>
     
     <span class="c1"># Иницијализација (π)</span>
     <span class="n">f_log</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi_log</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span> <span class="o">+</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b_log</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
@@ -18322,10 +18322,11 @@ y       = [&#39;H&#39;, &#39;T&#39;]
     <span class="c1"># Итерација (суме)</span>
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">:</span>
-            <span class="n">f_log</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lse</span><span class="p">([</span><span class="n">f_log</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">hmm</span><span class="o">.</span><span class="n">a_log</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">xi</span><span class="p">]</span> <span class="o">+</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b_log</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="n">t</span><span class="p">]]</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">]))</span>
+            <span class="n">f_log</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lse</span><span class="p">([</span><span class="n">f_log</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">hmm</span><span class="o">.</span><span class="n">a_log</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">xi</span><span class="p">]</span> <span class="o">+</span>
+                                  <span class="n">hmm</span><span class="o">.</span><span class="n">b_log</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="n">t</span><span class="p">]]</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">]))</span>
     
     <span class="c1"># Терминација (сума)</span>
-    <span class="k">return</span> <span class="n">lse</span><span class="p">([</span><span class="n">f_log</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">lse</span><span class="p">([</span><span class="n">f_log</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">]),</span> <span class="n">f_log</span>
 </pre></div>
 
     </div>
@@ -18339,7 +18340,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Лог-вероватноћа опсервација из уџбеника</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Лог-вероватноћа исхода </span><span class="si">{</span><span class="n">o_knjiga</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span> <span class="n">log_forward</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Лог-вероватноћа исхода </span><span class="si">{</span><span class="n">o_knjiga</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">,</span> <span class="n">log_forward</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -18468,8 +18469,8 @@ y       = [&#39;H&#39;, &#39;T&#39;]
     
     <span class="c1"># Рачунање вероватноће сваке емисије</span>
     <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">sve_ops</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-        <span class="n">p_o</span> <span class="o">=</span> <span class="n">log_forward</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span> <span class="k">if</span>\
-        <span class="n">logg</span> <span class="k">else</span> <span class="n">forward</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
+        <span class="n">p_o</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">log_forward</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span> <span class="k">if</span>\
+           <span class="n">logg</span> <span class="k">else</span> <span class="n">forward</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
         
         <span class="c1"># Ажурирање оптималне ако треба</span>
         <span class="k">if</span> <span class="n">p_o</span> <span class="o">&gt;</span> <span class="n">p_opt</span><span class="p">:</span>
@@ -18849,7 +18850,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
     <span class="n">p_po</span> <span class="o">=</span> <span class="n">p_puta_i_ops</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
     
     <span class="c1"># Вероватноћа опажања кроз сваки пут</span>
-    <span class="n">p_o</span> <span class="o">=</span> <span class="n">forward</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
+    <span class="n">p_o</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">forward</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
     
     <span class="c1"># Условна вероватноћа као резултат дељења</span>
     <span class="k">return</span> <span class="n">p_po</span> <span class="o">/</span> <span class="n">p_o</span>
@@ -18926,7 +18927,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
     <span class="n">p_po</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">viterbi_dekodiranje</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
     
     <span class="c1"># Вероватноћа опажања кроз сваки пут</span>
-    <span class="n">p_o</span> <span class="o">=</span> <span class="n">forward</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
+    <span class="n">p_o</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">forward</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
     
     <span class="c1"># Условна вероватноћа као резултат дељења</span>
     <span class="k">return</span> <span class="n">p_po</span> <span class="o">/</span> <span class="n">p_o</span><span class="p">,</span> <span class="n">p</span>
@@ -19456,7 +19457,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Примена и алгоритма „напред”</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа опажања&#39;</span><span class="p">,</span> <span class="n">dnk</span><span class="p">,</span> <span class="s1">&#39;је:&#39;</span><span class="p">,</span> <span class="n">log_forward</span><span class="p">(</span><span class="n">cg_hmm2</span><span class="p">,</span> <span class="n">dnk</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа опажања&#39;</span><span class="p">,</span> <span class="n">dnk</span><span class="p">,</span> <span class="s1">&#39;је:&#39;</span><span class="p">,</span> <span class="n">log_forward</span><span class="p">(</span><span class="n">cg_hmm2</span><span class="p">,</span> <span class="n">dnk</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -22256,7 +22257,7 @@ ADDEFADF
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Примена алгоритма „напред”</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа опажања&#39;</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="s1">&#39;је:&#39;</span><span class="p">,</span> <span class="n">forward</span><span class="p">(</span><span class="n">profhmm</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа опажања&#39;</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="s1">&#39;је:&#39;</span><span class="p">,</span> <span class="n">forward</span><span class="p">(</span><span class="n">profhmm</span><span class="p">,</span> <span class="n">o</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -22454,7 +22455,7 @@ ADDEFADF
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа опажања дужине 9 = k &gt; n = 8</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа опажања&#39;</span><span class="p">,</span> <span class="n">o_dugo</span><span class="p">,</span> <span class="s1">&#39;је:&#39;</span><span class="p">,</span> <span class="n">forward</span><span class="p">(</span><span class="n">profhmm</span><span class="p">,</span> <span class="n">o_dugo</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа опажања&#39;</span><span class="p">,</span> <span class="n">o_dugo</span><span class="p">,</span> <span class="s1">&#39;је:&#39;</span><span class="p">,</span> <span class="n">forward</span><span class="p">(</span><span class="n">profhmm</span><span class="p">,</span> <span class="n">o_dugo</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -22500,7 +22501,7 @@ ADDEFADF
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа опажања дужине 6 = k &lt; n = 8</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа опажања&#39;</span><span class="p">,</span> <span class="n">o_kratko</span><span class="p">,</span> <span class="s1">&#39;је:&#39;</span><span class="p">,</span> <span class="n">forward</span><span class="p">(</span><span class="n">profhmm</span><span class="p">,</span> <span class="n">o_kratko</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа опажања&#39;</span><span class="p">,</span> <span class="n">o_kratko</span><span class="p">,</span> <span class="s1">&#39;је:&#39;</span><span class="p">,</span> <span class="n">forward</span><span class="p">(</span><span class="n">profhmm</span><span class="p">,</span> <span class="n">o_kratko</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -22537,7 +22538,7 @@ ADDEFADF
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Прво, могуће је суочити се са проблемом опажања дужине $k &gt; n$. Једноставно решење јесте додавање нових стања, која би дозволила додатне приказе. Прецизније, најбоље је додати $n+1$ стање инсерције $I_i$, за индекс $i \in \{0, ..., n\}$. Замисао је да посета стању $I_i$ дозволи емитовање додатних симбола између колона $i$ и $i+1$ поравнања. Стога се додају гране од $M_i$ ка $I_i$, као и од $I_i$ ка $M_{i+1}$. Наравно, како би било могуће емитовати више додатних симбола, додаје се и петља – грана од $I_i$ ка самом себи. Специјално, стање $I_0$ моделује инсерције пре првог карактера поравнања, док $I_n$ дозвољава уметања након последњег слова. Слика <a href="#fig:insercije">4.8</a> приказује употребу нових стања у одређивању пута кроз дорађени ланац са слике <a href="#fig:profil">4.6</a> за досад необјашњиво опажање $A$<i style="color: red">$F$</i>$DDAFFDF$. Ово је, дакле, опажање $ADDAFFDF$ са слике <a href="#fig:prof_ishod">4.7</a>, али уз уметнутно $F$ на другом месту. Оптимални пут је подебљан.</p>
+<p>Прво, могуће је суочити се са проблемом опажања дужине $k &gt; n$. Једноставно решење јесте додавање нових стања, која би дозволила додатне приказе. Прецизније, најбоље је додати $n+1$ стање инсерције $I_i$, за индекс $i \in \{0, ..., n\}$. Замисао је да посета стању $I_i$ дозволи емитовање додатних симбола између колона $i$ и $i+1$ поравнања. Стога се додају гране од $M_i$ ка $I_i$, као и од $I_i$ ка $M_{i+1}$. Наравно, како би било могуће емитовати више додатних симбола, додаје се и петља – грана од $I_i$ ка самом себи. Специјално, стање $I_0$ моделује инсерције пре првог карактера поравнања, док $I_n$ дозвољава уметања након последњег слова. Слика <a href="#fig:insercije">4.8</a> приказује употребу нових стања у одређивању пута кроз дорађени ланац са слике <a href="#fig:profil">4.6</a> за досад необјашњиво опажање $A$<span style="color: red">$F$</span>$DDAFFDF$. Ово је, дакле, опажање $ADDAFFDF$ са слике <a href="#fig:prof_ishod">4.7</a>, али уз уметнутно $F$ на другом месту. Оптимални пут је подебљан.</p>
 
 </div>
 </div>
@@ -23304,7 +23305,7 @@ ADDEFADF
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа опажања дужине 9 = k &gt; n = 8</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа опажања&#39;</span><span class="p">,</span> <span class="n">o_dugo</span><span class="p">,</span> <span class="s1">&#39;је:&#39;</span><span class="p">,</span> <span class="n">forward</span><span class="p">(</span><span class="n">profhmm</span><span class="p">,</span> <span class="n">o_dugo</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа опажања&#39;</span><span class="p">,</span> <span class="n">o_dugo</span><span class="p">,</span> <span class="s1">&#39;је:&#39;</span><span class="p">,</span> <span class="n">forward</span><span class="p">(</span><span class="n">profhmm</span><span class="p">,</span> <span class="n">o_dugo</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -24134,7 +24135,7 @@ ADDEFADF
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа опажања дужине 6 = k &lt; n = 8</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа опажања&#39;</span><span class="p">,</span> <span class="n">o_kratko</span><span class="p">,</span> <span class="s1">&#39;је:&#39;</span><span class="p">,</span> <span class="n">forward</span><span class="p">(</span><span class="n">profhmm</span><span class="p">,</span> <span class="n">o_kratko</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноћа опажања&#39;</span><span class="p">,</span> <span class="n">o_kratko</span><span class="p">,</span> <span class="s1">&#39;је:&#39;</span><span class="p">,</span> <span class="n">forward</span><span class="p">(</span><span class="n">profhmm</span><span class="p">,</span> <span class="n">o_kratko</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -30935,11 +30936,11 @@ ADDEFADF
 <div class="prompt input_prompt">In&nbsp;[270]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Пример опажања из уџбеника</span>
-<span class="n">o_knjiga</span> <span class="o">=</span> <span class="s1">&#39;HHTHHHTHHHTTTTHTTTTH&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Пример опажања са презентације</span>
+<span class="n">o_prez</span> <span class="o">=</span> <span class="s1">&#39;HHTHHHTHHHTTTTHTTTTH&#39;</span>
 
-<span class="c1"># Пример скривеног пута из уџбеника</span>
-<span class="n">p_knjiga</span> <span class="o">=</span> <span class="s1">&#39;BFFBFFFBBFFBFFBBBBFF&#39;</span>
+<span class="c1"># Пример скривеног пута са презентације</span>
+<span class="n">p_prez</span> <span class="o">=</span> <span class="s1">&#39;BFFBFFFBBFFBFFBBBBFF&#39;</span>
 </pre></div>
 
     </div>
@@ -30953,7 +30954,7 @@ ADDEFADF
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Нова коцкарница према примеру</span>
-<span class="n">kockarnica2</span> <span class="o">=</span> <span class="n">nadgledani_model</span><span class="p">(</span><span class="n">p_knjiga</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">)</span>
+<span class="n">kockarnica2</span> <span class="o">=</span> <span class="n">nadgledani_model</span><span class="p">(</span><span class="n">p_prez</span><span class="p">,</span> <span class="n">o_prez</span><span class="p">)</span>
 
 <span class="c1"># Леп приказ модела</span>
 <span class="n">prikazi</span><span class="p">(</span><span class="n">kockarnica2</span><span class="p">)</span>
@@ -31160,7 +31161,7 @@ ADDEFADF
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Овакав ненадгледани приступ учењу параметара модела назива се Витербијевим учењем, пошто му је у основи Витербијев алгоритам за декодирање. Тај део алгоритма представља корак очекивања (<em>E</em> корак), док је надгледано одређивање параметара које следи корак максимизације (<em>M</em> корак). Дубљом анализом, испоставља се да је ненадгледана оптимизација параметара <em>HMM</em>-а тежак проблем, тако да је Витербијево учење сасвим задовољавајућа хеуристика. Најважнија особина му је то што је вредност $\max_p P\{p, o\}$ за улазно опажање $o$ због природе <em>EM</em> алгоритма током оптимизације монотоно неопадајућа. То значи да су сваком итерацијом параметри ближи најбољим.</p>
+<p>Овакав ненадгледани приступ учењу параметара модела назива се Витербијевим учењем, пошто му је у основи Витербијев алгоритам за декодирање. Тај део алгоритма представља корак очекивања (<i style="color: green">E</i> корак), док је надгледано одређивање параметара које следи корак максимизације (<i style="color: purple">M</i> корак). Дубљом анализом, испоставља се да је ненадгледана оптимизација параметара <em>HMM</em>-а тежак проблем, тако да је Витербијево учење сасвим задовољавајућа хеуристика. Најважнија особина му је то што је вредност $\max_p P\{p, o\}$ за улазно опажање $o$ због природе <em>EM</em> алгоритма током оптимизације монотоно неопадајућа. То значи да су сваком итерацијом параметри ближи најбољим.</p>
 
 </div>
 </div>
@@ -31621,7 +31622,7 @@ ADDEFADF
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Нова коцкарница према примеру</span>
-<span class="n">viterbi_potkrepljivanje</span><span class="p">(</span><span class="n">kockarnica2</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">)</span>
+<span class="n">viterbi_potkrepljivanje</span><span class="p">(</span><span class="n">kockarnica2</span><span class="p">,</span> <span class="n">o_prez</span><span class="p">)</span>
 
 <span class="c1"># Леп приказ модела</span>
 <span class="n">prikazi</span><span class="p">(</span><span class="n">kockarnica2</span><span class="p">)</span>
@@ -31836,7 +31837,15 @@ ADDEFADF
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>...</p>
+<p>У тексту посвећеном општем опису скривених Марковљевих модела, било је речи о одређивању вероватноће опажања дужине $k$, кроз проблем <a href="#prob:ops">7</a>. Као решење, изложен је алгоритам „напред”, заснован на мапи $f$ (од енгл. <em>forward</em>), чији елемент $f_{x_i, t}$ складишти вероватноћу префикса опажања дужине $t$ (подниз $o_1...o_t$), насталог на скривеном путу који завршава стањем $x_i$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Аналогно се формира обрнута мапа $w$ (од енгл. <em>backward</em>), чији елемент $w_{x_i, t}$ складишти вероватноћу суфикса опажања дужине $k-t+1$ (подниз $o_t...o_k$), насталог на скривеном путу који започиње стањем $x_i$. Мапа такође садржи вероватноћу целог опажања, а попуњава се на исти начин као претходна, праћењем Витербијевог графа, само обрнутим редоследом. Овакав приступ назива се алгоритам „назад” и код њега важе следеће рекурентне формуле: $$w_{x_i, k} = 1,$$ $$w_{x_i, t} = \sum_j  a_{x_i, x_j} \cdot b_{x_j, o_{t+1}} \cdot w_{x_j, t+1},$$ $$P\{o\} = \sum_j \pi_{x_j} \cdot b_{x_j, o_1} \cdot w_{x_j, 1}.$$</p>
 
 </div>
 </div>
@@ -31846,8 +31855,24 @@ ADDEFADF
 <div class="prompt input_prompt">In&nbsp;[276]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Први пример опажања из уџбеника</span>
-<span class="n">o</span> <span class="o">=</span> <span class="s1">&#39;THTHHHTHTTH&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа опсервација Витербијем</span>
+<span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+    <span class="c1"># Одређивање дужине пута</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+    
+    <span class="c1"># Специјалан празан пут</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="p">:</span> <span class="k">return</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">None</span>
+    
+    <span class="c1"># Иницијализација (ω)</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="n">k</span><span class="o">*</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
+    
+    <span class="c1"># Итерација (суме)</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">:</span>
+            <span class="n">w</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">hmm</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span> <span class="o">*</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span> <span class="o">*</span> <span class="n">w</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+    
+    <span class="c1"># Терминација (сума)</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi</span><span class="p">[</span><span class="n">xj</span><span class="p">]</span> <span class="o">*</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">*</span> <span class="n">w</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="n">w</span>
 </pre></div>
 
     </div>
@@ -31860,11 +31885,915 @@ ADDEFADF
 <div class="prompt input_prompt">In&nbsp;[277]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Други пример опажања из уџбеника</span>
-<span class="n">o</span> <span class="o">=</span> <span class="s1">&#39;HHHHHHHHHHH&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа опсервација из уџбеника</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Вероватноћа исхода </span><span class="si">{</span><span class="n">o_knjiga</span><span class="si">}</span><span class="s1"> алгоритмом „напред”:&#39;</span><span class="p">,</span>  <span class="n">forward</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Вероватноћа исхода </span><span class="si">{</span><span class="n">o_knjiga</span><span class="si">}</span><span class="s1"> алгоритмом „назад”: &#39;</span><span class="p">,</span> <span class="n">backward</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Вероватноћа исхода THTHHHTHTTH алгоритмом „напред”: 0.0003457701035365463
+Вероватноћа исхода THTHHHTHTTH алгоритмом „назад”:  0.0003457701035365464
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Још једном, аналогно се изводе логаритамске верзије претходних формула.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[278]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Лог-вероватноћа опсервација Витербијем</span>
+<span class="k">def</span> <span class="nf">log_backward</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+    <span class="c1"># Одређивање дужине пута</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+    
+    <span class="c1"># Специјалан празан пут</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span>
+    
+    <span class="c1"># Иницијализација (ω)</span>
+    <span class="n">w_log</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="n">k</span><span class="o">*</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
+    
+    <span class="c1"># Итерација (суме)</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">:</span>
+            <span class="n">w_log</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">lse</span><span class="p">([</span><span class="n">hmm</span><span class="o">.</span><span class="n">a_log</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span> <span class="o">+</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b_log</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span>
+                                <span class="n">w_log</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">])</span>
+    
+    <span class="c1"># Терминација (сума)</span>
+    <span class="k">return</span> <span class="n">lse</span><span class="p">([</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi_log</span><span class="p">[</span><span class="n">xj</span><span class="p">]</span> <span class="o">+</span> <span class="n">hmm</span><span class="o">.</span><span class="n">b_log</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="n">o</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span> <span class="n">w_log</span><span class="p">[</span><span class="n">xj</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">]),</span> <span class="n">w_log</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[279]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Лог-вероватноћа опсервација из уџбеника</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Лог-вероватноћа исхода </span><span class="si">{</span><span class="n">o_knjiga</span><span class="si">}</span><span class="s1"> алгоритмом „напред”:&#39;</span><span class="p">,</span>  <span class="n">log_forward</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Лог-вероватноћа исхода </span><span class="si">{</span><span class="n">o_knjiga</span><span class="si">}</span><span class="s1"> алгоритмом „назад”: &#39;</span><span class="p">,</span> <span class="n">log_backward</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Лог-вероватноћа исхода THTHHHTHTTH алгоритмом „напред”: -7.969736444390883
+Лог-вероватноћа исхода THTHHHTHTTH алгоритмом „назад”:  -7.969736444390882
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Спајањем алгоритма „напред” и „назад”, добија се нов и кориснији поглед на проблем декодирања. Наиме, сваки пут кроз Витербијев граф може се пресећи у неком чвору и тако поделити на два дела. Како то изгледа на примеру пута $FFF$ у непоштеној коцкарници, пресеченог у средњем чвору, дато је на слици <a href="#fig:tripod">5.2</a>. Префикс је наглашен црвеном, а суфикс плавом бојом.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<figure><img src="../slike/tri_podela.png" width="55%" id="fig:tripod" /><figcaption style="text-align: center;"><b>Слика 5.2</b>: Подела пута кроз граф са три бацања</figcaption></figure>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Вероватноћа црвеног префикса дужине $t$ са пресеком у стању $x_i$ може се израчунати алгоритмом „напред” као вредност <span style="color: red">$f_{x_i, t}$</span> из мапе, док се вероватноћа одговарајућег плавог суфикса израчунава као <span style="color: blue">$w_{x_i, t}$</span> из алгоритма „назад”. Како вредност из мапе $f$ покрива све могуће префиксе, а вредност из $w$ све суфиксе, они заједно покривају све могуће путеве који у тренутку $t$ пролазе кроз стање $x_i$. Стога је њихов производ заправо заједничка вероватноћа да је <em>HMM</em> емитовао ниску $o$, при чему је у тренутку $t$ био баш у стању $x_i$: $$\require{color} P\{p_t = x_i, o\} = \textcolor{red}{f_{x_i, t}} \cdot \textcolor{blue}{w_{x_i, t}}.$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Оваква комбинација назива се алгоритам „напред-назад” и њен значај огледа се управо у томе што даје вероватносни резултат за све тренутке и сва стања. Претходно је моделована заједничка вероватноћа $P\{p, o\}$, чијом се максимизацијом Витербијевим алгоритмом добија један конкретан цео највероватнији пут. Добија се, дакле, „чврсто” решење проблема декодирања, према коме је <em>HMM</em> у неком тренутку био у тачно одређеном стању.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Нови приступ, с друге стране, даје нов поглед на проблем утолико што сваком стању додељује по вероватноћу у сваком тренутку. Ово је аналогно „меком” кластеровању, које је надградња Лојдовог алгоритма, па се назива и „меким” декодирањем. Задатак се формално представља проблемом <a href="#prob:meko">17</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote id="prob:meko">
+
+<b>Проблем 17</b>: <a href="http://rosalind.info/problems/ba10j/">„Меко” декодирање приказа</a><br>
+<i>Одредити вероватноћу да је HMM у неком тренутку био у неком скривеном стању, ако је познато опажање.</i><br>
+<b>Улаз</b>: ниска $o = o_1...o_k$ и <i>HMM</i>$\{a, b, \pi\}$ који ју је емитовао.<br>
+<b>Излаз</b>: условна вероватноћа стања у тренутку $P\{p_t = x_i | o\}$.
+
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Резултат оваквог декодирања није пут дужине $k$, већ низ $k$ расподела стања. Расподеле се нормализују, како би се добила условна вероватноћа: $$\require{color} P\{p_t = x_i | o\} = \frac{P\{p_t = x_i, o\}}{P\{o\}} = \frac{\textcolor{red}{f_{x_i, t}} \cdot \textcolor{blue}{w_{x_i, t}}}{\textcolor{red}{\sum_j f_{x_j, k}}} = \frac{\textcolor{red}{f_{x_i, t}} \cdot \textcolor{blue}{w_{x_i, t}}}{\textcolor{blue}{\sum_j \pi_{x_j} \cdot b_{x_j, o_1} \cdot w_{x_j, 1}}}.$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[280]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># „Меко” декодирање приказа</span>
+<span class="k">def</span> <span class="nf">fwd_bwd</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+    <span class="c1"># Одређивање дужине приказа</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+    
+    <span class="c1"># Алгоритам „напред”</span>
+    <span class="n">p</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="n">forward</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
+    
+    <span class="c1"># Алгоритам „назад”</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">backward</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
+    
+    <span class="c1"># Одређивање условне расподеле</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">[</span><span class="n">f</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="o">*</span> <span class="n">w</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="o">/</span> <span class="n">p</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[281]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Леп приказ „меког” декодирања</span>
+<span class="k">def</span> <span class="nf">prikazi_meko</span><span class="p">(</span><span class="n">meko</span><span class="p">):</span>
+    <span class="c1"># Одређивање скривених стања</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">meko</span><span class="p">]</span>
+    
+    <span class="c1"># Одређивање дужине опажања</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">meko</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    
+    <span class="c1"># Лепо табелирање података</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">([[</span><span class="nb">round</span><span class="p">(</span><span class="n">meko</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">t</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span>
+                     <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)],</span> <span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+    
+    <span class="c1"># Приказ табелираних података</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[282]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># „Меко” декодирање примера из уџбеника</span>
+<span class="n">prikazi_meko</span><span class="p">(</span><span class="n">fwd_bwd</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>F</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0.6357</td>
+      <td>0.3643</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.5929</td>
+      <td>0.4071</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.6005</td>
+      <td>0.3995</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.5325</td>
+      <td>0.4675</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.5151</td>
+      <td>0.4849</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.5444</td>
+      <td>0.4556</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.6269</td>
+      <td>0.3731</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.6332</td>
+      <td>0.3668</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.6924</td>
+      <td>0.3076</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0.6857</td>
+      <td>0.3143</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>0.6094</td>
+      <td>0.3906</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[283]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Други пример опажања из уџбеника</span>
+<span class="n">o</span> <span class="o">=</span> <span class="s1">&#39;HHHHHHHHHHH&#39;</span>
+
+<span class="c1"># „Меко” декодирање примера</span>
+<span class="n">prikazi_meko</span><span class="p">(</span><span class="n">fwd_bwd</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>F</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0.1747</td>
+      <td>0.8253</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.1342</td>
+      <td>0.8658</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.1093</td>
+      <td>0.8907</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0946</td>
+      <td>0.9054</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.0869</td>
+      <td>0.9131</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.0845</td>
+      <td>0.9155</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.0869</td>
+      <td>0.9131</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.0946</td>
+      <td>0.9054</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.1093</td>
+      <td>0.8907</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0.1342</td>
+      <td>0.8658</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>0.1747</td>
+      <td>0.8253</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[284]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Основни пример параметара са ROSALIND</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.911</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">.089</span><span class="p">},</span>
+     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.228</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">.772</span><span class="p">}}</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">.356</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">.191</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">.453</span><span class="p">},</span>
+     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">.04</span> <span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">.467</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">.493</span><span class="p">}}</span>
+
+<span class="c1"># Основни пример опажања са ROSALIND</span>
+<span class="n">o</span> <span class="o">=</span> <span class="s1">&#39;zyxxxxyxzz&#39;</span>
+
+<span class="c1"># Модел према изложеном примеру</span>
+<span class="n">rosalind</span> <span class="o">=</span> <span class="n">HMM</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="c1"># „Меко” декодирање опажања из примера</span>
+<span class="n">prikazi_meko</span><span class="p">(</span><span class="n">fwd_bwd</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0.5438</td>
+      <td>0.4562</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.6492</td>
+      <td>0.3508</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.9647</td>
+      <td>0.0353</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.9936</td>
+      <td>0.0064</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.9957</td>
+      <td>0.0043</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.9891</td>
+      <td>0.0109</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.9154</td>
+      <td>0.0846</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.9640</td>
+      <td>0.0360</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.8737</td>
+      <td>0.1263</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0.8167</td>
+      <td>0.1833</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[285]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Додатни пример параметара са ROSALIND</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.401</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">.009</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mf">.195</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="mf">.396</span><span class="p">},</span>
+     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.375</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">.237</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mf">.269</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="mf">.119</span><span class="p">},</span>
+     <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.283</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">.25</span> <span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mf">.259</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="mf">.207</span><span class="p">},</span>
+     <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">.108</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">.529</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mf">.107</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="mf">.256</span><span class="p">}}</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">.414</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">.335</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">.251</span><span class="p">},</span>
+     <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">.233</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">.172</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">.596</span><span class="p">},</span>
+     <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">.284</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">.355</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">.361</span><span class="p">},</span>
+     <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">.028</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">.638</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">.334</span><span class="p">}}</span>
+
+<span class="c1"># Додатни пример опажања са ROSALIND</span>
+<span class="n">o</span> <span class="o">=</span> <span class="s1">&#39;xyyzxzyxyy&#39;</span>
+
+<span class="c1"># Модел према изложеном примеру</span>
+<span class="n">rosalind</span> <span class="o">=</span> <span class="n">HMM</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="c1"># „Меко” декодирање опажања из примера</span>
+<span class="n">prikazi_meko</span><span class="p">(</span><span class="n">fwd_bwd</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0.5003</td>
+      <td>0.2114</td>
+      <td>0.2662</td>
+      <td>0.0222</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.3648</td>
+      <td>0.0530</td>
+      <td>0.1909</td>
+      <td>0.3913</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.1511</td>
+      <td>0.1251</td>
+      <td>0.1553</td>
+      <td>0.5685</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.1297</td>
+      <td>0.5359</td>
+      <td>0.1542</td>
+      <td>0.1802</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.4414</td>
+      <td>0.2628</td>
+      <td>0.2673</td>
+      <td>0.0285</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.3031</td>
+      <td>0.2213</td>
+      <td>0.2339</td>
+      <td>0.2417</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.2789</td>
+      <td>0.1536</td>
+      <td>0.2139</td>
+      <td>0.3537</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.5088</td>
+      <td>0.2690</td>
+      <td>0.1975</td>
+      <td>0.0247</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.3695</td>
+      <td>0.0578</td>
+      <td>0.1978</td>
+      <td>0.3748</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0.2231</td>
+      <td>0.1356</td>
+      <td>0.1658</td>
+      <td>0.4755</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Посебно је занимљиво истаћи да стање $p_t$ добијено Витербијевим алгоритмом није нужно једнако стању $p_t$ максималне вероватноће према алгоритму „напред-назад”. Стога постоји и „чврста” верзија „меког” декодирања, која у сваком тренутку одабира највероватније $p_t$. Она се назива апостериорним (<em>MAP</em>, према енгл. <em>maximum a posteriori</em>) декодирањем и може дати боље резултате од Витербија.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[286]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Апостериорно декодирање приказа</span>
+<span class="k">def</span> <span class="nf">map_dekodiranje</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+    <span class="c1"># „Меко” декодирање приказа</span>
+    <span class="n">meko</span> <span class="o">=</span> <span class="n">fwd_bwd</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
+    
+    <span class="c1"># Одређивање скривених стања</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">meko</span><span class="p">]</span>
+    
+    <span class="c1"># Одређивање дужине опажања</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">meko</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    
+    <span class="c1"># Иницијализација празног пута</span>
+    <span class="n">p</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">1</span>
+    
+    <span class="c1"># Пролазак кроз време</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+        <span class="c1"># Иницијализација највероватнијег</span>
+        <span class="n">pt</span><span class="p">,</span> <span class="n">vt</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">0</span>
+        
+        <span class="c1"># Пролазак кроз сва стања</span>
+        <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+            <span class="c1"># Ажурирање највероватнијег</span>
+            <span class="k">if</span> <span class="n">meko</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">vt</span><span class="p">:</span>
+                <span class="n">pt</span> <span class="o">=</span> <span class="n">xi</span>
+                <span class="n">vt</span> <span class="o">=</span> <span class="n">meko</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">t</span><span class="p">]</span>
+        
+        <span class="c1"># Ажурирање оптималног пута</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="n">pt</span>
+        <span class="n">v</span> <span class="o">*=</span> <span class="n">vt</span>
+    
+    <span class="c1"># Враћање готовог пута</span>
+    <span class="k">return</span> <span class="n">v</span><span class="p">,</span> <span class="n">p</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[287]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Највероватнији пут изложеног примера</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Исход&#39;</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="s1">&#39;декодиран Витербијем: &#39;</span><span class="p">,</span>
+      <span class="n">viterbi_dekodiranje</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
+
+<span class="c1"># Највероватнији пут изложеног примера</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Исход&#39;</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="s1">&#39;декодиран апостериорно:&#39;</span><span class="p">,</span>
+      <span class="n">map_dekodiranje</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Исход xyyzxzyxyy декодиран Витербијем:  (2.0796386985324622e-08, &#39;ADDBAADBAD&#39;)
+Исход xyyzxzyxyy декодиран апостериорно: (0.0002559433940972587, &#39;ADDBAADADD&#39;)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Поређење приступа на примеру <em>HMM</em> за проналажење <em>CG</em> острва дато је у наставку, при чему су наглашене разлике.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[288]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Скривена стања CG острва</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[289]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Сакупљање досадашњих модела острва</span>
+<span class="n">cg_hmm</span> <span class="o">=</span> <span class="p">[</span><span class="n">cg_hmm1</span><span class="p">,</span> <span class="n">cg_hmm2</span><span class="p">,</span> <span class="n">cg_hmm3</span><span class="p">,</span> <span class="n">cg_hmm5</span><span class="p">,</span> <span class="n">cg_hmm6</span><span class="p">]</span>
+
+<span class="c1"># Сакупљање досадашњих декодирања острва</span>
+<span class="n">vit_hmm</span> <span class="o">=</span> <span class="p">[</span><span class="n">rez_hmm1</span><span class="p">,</span> <span class="n">rez_hmm2</span><span class="p">,</span> <span class="n">rez_hmm3</span><span class="p">,</span> <span class="n">rez_hmm5</span><span class="p">,</span> <span class="n">rez_hmm6</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[290]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Апостериорно декодирање ДНК секвенце</span>
+<span class="k">def</span> <span class="nf">cg_map</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">dnk</span><span class="p">):</span>
+    <span class="n">rez</span> <span class="o">=</span> <span class="n">map_dekodiranje</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">dnk</span><span class="p">)</span>
+    
+    <span class="c1"># Филтрирање ознака острва</span>
+    <span class="n">rez</span> <span class="o">=</span> <span class="n">rez</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">x</span><span class="p">,</span> <span class="n">rez</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    
+    <span class="c1"># Враћање резултата</span>
+    <span class="k">return</span> <span class="n">rez</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[291]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Приказ сваког модела</span>
+<span class="k">for</span> <span class="n">hmm</span><span class="p">,</span> <span class="n">rez</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">cg_hmm</span><span class="p">,</span> <span class="n">vit_hmm</span><span class="p">):</span>  
+    <span class="c1"># Приказ познатог места острва</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Познато:&#39;</span><span class="p">,</span> <span class="n">cg</span><span class="p">)</span>
+    
+    <span class="c1"># Приказ Витербијевог декодирања</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Витерби:&#39;</span><span class="p">,</span> <span class="n">rez</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="n">exp</span><span class="p">(</span><span class="n">rez</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Апостериорно декодирање ниске</span>
+    <span class="n">rez</span> <span class="o">=</span> <span class="n">cg_map</span>  <span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">dnk</span><span class="p">)</span>
+    
+    <span class="c1"># Приказ апостериордног декодирања</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;MAP    :&#39;</span><span class="p">,</span> <span class="n">rez</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="n">rez</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">)</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Познато: -------++++++++++------------------------
+Витерби: ----------------------------------------- (2.0140097782052078e-25)
+MAP    : ----------------------------------------- (0.006018587473374883)
+
+Познато: -------++++++++++------------------------
+Витерби: ----------------------------------------- (1.528307475696357e-27)
+MAP    : ----------------------------------------- (0.0027962820253027007)
+
+Познато: -------++++++++++------------------------
+Витерби: ----+--+-++-++-+++------+--++------+----- (7.72991828113061e-35)
+MAP    : ----+--+-++-++-+++------+--++------+----- (2.0175451965867418e-07)
+
+Познато: -------++++++++++------------------------
+Витерби: ------+++++++++++------------------------ (4.437829628386176e-33)
+MAP    : ---+--+-+++++++++------+--++------------- (2.040853076984798e-08)
+
+Познато: -------++++++++++------------------------
+Витерби: ------+++++++++++++---------------------- (3.6650688579524964e-33)
+MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
+
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
