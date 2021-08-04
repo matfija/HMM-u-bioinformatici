@@ -13101,7 +13101,31 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>... (резиме)</p>
+<p><strong>Резиме</strong>: Скривени Марковљеви модели (<em>HMM</em>) могу се врло упрошћено схватити као стохастички коначни аутомати са приватним (скривеним) стањима и јавним (опсервабилним) емисијама. Промене стања, које граде скривене путеве, као и приказ симбола, који чине опажања, заправо су два повезана статистичка процеса, чији се однос моделује. Примене ових модела су разнородне, како у решавању проблема надгледаног, тако и ненадгледаног машинског учења над секвенцијалним подацима, попут класификације протеина и проналажења гена у биоинформатици.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Управо су ова два важна биолошка проблема описана у уводном делу рада, а објашњен је и додатни мотивациони проблем непоштене коцкарнице. У наставку су на уведеном примеру казина детаљно описане могућности скривених Марковљевих модела, попут декодирања (одређивања највероватнијег скривеног пута на основу опаженог исхода) и израчунавања вероватноће опажања.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Након тога, приказано је како се дефинисани модел може искористити за решавање изложених проблема, конкретно проналажењем <em>CG</em> острва (<em>CpG</em> места) и употребом профилних <em>HMM</em> (<em>HMM</em> профила), који су такође дефинисани у тексту. Напослетку је описана и могућност учења параметара модела на основу опажања.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>У оквиру рада на теми, направљена је електронска лекција, као суштински најзначајнији допринос. Лекција је реализована у виду <em>Jupyter</em> свеске са <em>Python</em> кодовима, која је јавно доступна на <em>GitHub</em>-у. У свесци су имплементирани сви изложени алгоритми, а направљена је и <em>HTML</em> верзија материјала исте садржине, како би лекцију могао да погледа свако са прегледачем веба.</p>
 
 </div>
 </div>
@@ -19388,7 +19412,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>То се може учинити тако што се, за почетак, вероватноће промене стања поставе на нешто већу једну десетину. Ако је \textit{HMM} у некодирајућем стању, може се претпоставити да је расподела нуклеотида равномерна – сваки се емитује са могућношћу једне четвртине. У супротном, сматра се да се цитозин и гуанин приказују четири пута чешће. Резултујуће вероватноће сада су:</p>
+<p>То се може учинити тако што се, за почетак, вероватноће промене стања поставе на нешто већу једну десетину. Ако је <em>HMM</em> у некодирајућем стању, може се претпоставити да је расподела нуклеотида равномерна – сваки се емитује са могућношћу једне четвртине. У супротном, сматра се да се цитозин и гуанин приказују четири пута чешће. Резултујуће вероватноће сада су:</p>
 <ul>
 <li>прелази $a = \begin{matrix} &amp; \begin{matrix} + &amp; - \end{matrix} \\ \begin{matrix} + \\ - \end{matrix} &amp; \left(\begin{matrix} 0,9 &amp; 0,1 \\ 0,1 &amp; 0,9 \end{matrix}\right) \end{matrix}$ – већа могућност промене,</li>
 <li>емисије $b = \begin{matrix} &amp; \begin{matrix} A &amp; C &amp; G &amp; T \end{matrix} \\ \begin{matrix} + \\ - \end{matrix} &amp; \left(\begin{matrix} 0,1 &amp; 0,4 &amp; 0,4 &amp; 0,1 \\ 0,25 &amp; 0,25 &amp; 0,25 &amp; 0,25 \end{matrix}\right) \end{matrix}$ – поправљено.</li>
