@@ -19278,7 +19278,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа нуклеотида према динуклеотидима</span>
-<span class="k">def</span> <span class="nf">p_nuk</span><span class="p">(</span><span class="n">p_dinuk</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">p_nuk</span><span class="p">(</span><span class="n">p_dinuk</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
     <span class="c1"># Иницијализација нултих вероватноћа</span>
     <span class="n">p</span> <span class="o">=</span> <span class="p">{</span><span class="n">yi</span><span class="p">:</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">yi</span> <span class="ow">in</span> <span class="n">y</span><span class="p">}</span>
     
@@ -19293,7 +19293,7 @@ y       = [&#39;H&#39;, &#39;T&#39;]
         <span class="n">p</span><span class="p">[</span><span class="n">n2</span><span class="p">]</span> <span class="o">+=</span> <span class="n">p_12</span> <span class="o">/</span> <span class="mi">2</span>
     
     <span class="c1"># Враћање заокруженог резултата</span>
-    <span class="k">return</span> <span class="p">{</span><span class="n">yi</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">yi</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">yi</span> <span class="ow">in</span> <span class="n">y</span><span class="p">}</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">yi</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">yi</span><span class="p">],</span> <span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">yi</span> <span class="ow">in</span> <span class="n">y</span><span class="p">}</span>
 </pre></div>
 
     </div>
@@ -20386,8 +20386,11 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
     <span class="c1"># Уласци у острва</span>
     <span class="n">a5</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">-&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s1">+&#39;</span><span class="p">:</span> <span class="n">a_nekod</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">m</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">q</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">y</span><span class="p">})</span>
 
+<span class="c1"># Прецизност заокруживања из примера</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mi">4</span>
+
 <span class="c1"># Заоктруживање резултата за крај</span>
-<span class="n">a5</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="p">{</span><span class="n">y</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">a5</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">a5</span><span class="p">[</span><span class="n">x</span><span class="p">]}</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a5</span><span class="p">}</span>
+<span class="n">a5</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="p">{</span><span class="n">y</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">a5</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">],</span> <span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">a5</span><span class="p">[</span><span class="n">x</span><span class="p">]}</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a5</span><span class="p">}</span>
 </pre></div>
 
     </div>
@@ -20564,7 +20567,7 @@ ATTTCTTCTCGTCGACGCTAATTTCTTGGAAATATCATTAT
     <span class="n">a6</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">-&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s1">+&#39;</span><span class="p">:</span>     <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">q</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span>     <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">y</span><span class="p">})</span>
 
 <span class="c1"># Заоктруживање резултата за крај</span>
-<span class="n">a6</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="p">{</span><span class="n">y</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">a6</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">a6</span><span class="p">[</span><span class="n">x</span><span class="p">]}</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a6</span><span class="p">}</span>
+<span class="n">a6</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="p">{</span><span class="n">y</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">a6</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">],</span> <span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">a6</span><span class="p">[</span><span class="n">x</span><span class="p">]}</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a6</span><span class="p">}</span>
 </pre></div>
 
     </div>
@@ -21294,10 +21297,10 @@ ADDEFADF
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Леп приказ модела</span>
-<span class="k">def</span> <span class="nf">prikazi</span><span class="p">(</span><span class="n">hmm</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">prikazi</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
     <span class="c1"># Издвајање пролазних вероватноћа</span>
     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">hmm</span><span class="p">,</span> <span class="s1">&#39;pi&#39;</span><span class="p">):</span>
-        <span class="n">pi</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">([[</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">]],</span>
+        <span class="n">pi</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">([[</span><span class="nb">round</span><span class="p">(</span><span class="n">hmm</span><span class="o">.</span><span class="n">pi</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">]],</span>
                        <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;π&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
 
         <span class="c1"># Приказ полазних вероватноћа</span>
@@ -21305,16 +21308,16 @@ ADDEFADF
         <span class="n">display</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
     
     <span class="c1"># Издвајање вероватноћа прелаза</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">([[</span><span class="n">hmm</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">],</span>
-                  <span class="n">index</span><span class="o">=</span><span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">([[</span><span class="nb">round</span><span class="p">(</span><span class="n">hmm</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">]</span>
+                   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
     
     <span class="c1"># Приказ вероватноћа прелаза</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноће прелаза:&#39;</span><span class="p">)</span>
     <span class="n">display</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
     
     <span class="c1"># Издвајање излазних вероватноћа</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">([[</span><span class="n">hmm</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">y</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">],</span>
-                  <span class="n">index</span><span class="o">=</span><span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">hmm</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">([[</span><span class="nb">round</span><span class="p">(</span><span class="n">hmm</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">y</span><span class="p">]</span>
+                   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">hmm</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
     
     <span class="c1"># Приказ излазних вероватноћа</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Вероватноће емисија:&#39;</span><span class="p">)</span>
@@ -22016,7 +22019,7 @@ ADDEFADF
                   <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
         
         <span class="c1"># Нормализација мапе прелаза</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
         
         <span class="c1"># Мапа емисија према профилу или</span>
         <span class="c1"># равномерна у стањима инсерције</span>
@@ -22846,7 +22849,7 @@ ADDEFADF
                   <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
         
         <span class="c1"># Нормализација мапе прелаза</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
         
         <span class="c1"># Мапа емисија према профилу или</span>
         <span class="c1"># равномерна у стањима инсерције</span>
@@ -23586,7 +23589,7 @@ ADDEFADF
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Вероватноћа опажања AAFFDF је: 0.0006437827026840483
+<pre>Вероватноћа опажања AAFFDF је: 0.0006499111851128069
 </pre>
 </div>
 </div>
@@ -23619,7 +23622,7 @@ ADDEFADF
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Декодирањем опажања AAFFDF добија се: (0.00038376898632, &#39;M1M4M5M6M7M8&#39;)
+<pre>Декодирањем опажања AAFFDF добија се: (0.00038712194055944037, &#39;M1M4M5M6M7M8&#39;)
 </pre>
 </div>
 </div>
@@ -23911,11 +23914,11 @@ ADDEFADF
                 <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
     
     <span class="c1"># Нормализација мапе прелаза</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">if</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="k">if</span>
          <span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
     
     <span class="c1"># Нормализација мапе емисија</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">yj</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">yj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">if</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">yj</span><span class="p">:</span> <span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">yj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="k">if</span>
          <span class="nb">sum</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">yj</span> <span class="ow">in</span> <span class="n">y</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
     
     <span class="c1"># Враћање одређених параметара</span>
@@ -26372,10 +26375,10 @@ ADDEFADF
                       <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">yj</span> <span class="ow">in</span> <span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">]}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">b</span><span class="p">}</span>
         
         <span class="c1"># Нормализација вероватноћа</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">if</span>
-                  <span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">a</span><span class="p">}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">yj</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">yj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">if</span>
-                  <span class="nb">sum</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">yj</span> <span class="ow">in</span> <span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">]}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">b</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span>\
+                    <span class="n">values</span><span class="p">())</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">a</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">yj</span><span class="p">:</span> <span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">yj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span>\
+                    <span class="n">values</span><span class="p">())</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">yj</span> <span class="ow">in</span> <span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">]}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">b</span><span class="p">}</span>
         
         <span class="c1"># Скривена стања</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">]</span>
@@ -27671,7 +27674,7 @@ ADDEFADF
       <th>S</th>
       <td>0.0</td>
       <td>0.010</td>
-      <td>0.818</td>
+      <td>0.819</td>
       <td>0.172</td>
       <td>0.000</td>
       <td>0.000</td>
@@ -27964,7 +27967,7 @@ ADDEFADF
       <th>M3</th>
       <td>0.803</td>
       <td>0.01</td>
-      <td>0.169</td>
+      <td>0.168</td>
       <td>0.010</td>
       <td>0.01</td>
     </tr>
@@ -28805,13 +28808,13 @@ ADDEFADF
       <td>0.010</td>
       <td>0.010</td>
       <td>0.010</td>
-      <td>0.645</td>
+      <td>0.644</td>
     </tr>
     <tr>
       <th>M1</th>
       <td>0.010</td>
       <td>0.010</td>
-      <td>0.169</td>
+      <td>0.168</td>
       <td>0.803</td>
       <td>0.010</td>
     </tr>
@@ -29535,12 +29538,12 @@ ADDEFADF
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Исход  декодиран: (1.8112221148500004e-10, [&#39;S&#39;, &#39;D1&#39;, &#39;D2&#39;, &#39;D3&#39;, &#39;D4&#39;, &#39;D5&#39;, &#39;D6&#39;, &#39;D7&#39;, &#39;D8&#39;, &#39;E&#39;])
-Исход ADDAFFDF декодиран: (0.0003136855288747913, [&#39;S&#39;, &#39;M1&#39;, &#39;M2&#39;, &#39;M3&#39;, &#39;M4&#39;, &#39;M5&#39;, &#39;M6&#39;, &#39;M7&#39;, &#39;M8&#39;, &#39;E&#39;])
-Исход AFDDAFFDF декодиран: (2.657946084358918e-07, [&#39;S&#39;, &#39;M1&#39;, &#39;I1&#39;, &#39;M2&#39;, &#39;M3&#39;, &#39;M4&#39;, &#39;M5&#39;, &#39;M6&#39;, &#39;M7&#39;, &#39;M8&#39;, &#39;E&#39;])
-Исход AAFFDF декодиран: (0.0004534316785450957, [&#39;S&#39;, &#39;M1&#39;, &#39;D2&#39;, &#39;D3&#39;, &#39;M4&#39;, &#39;M5&#39;, &#39;M6&#39;, &#39;M7&#39;, &#39;M8&#39;, &#39;E&#39;])
-Исход ACAFDEAF декодиран: (1.1719230969622383e-07, [&#39;S&#39;, &#39;M1&#39;, &#39;M2&#39;, &#39;I2&#39;, &#39;I2&#39;, &#39;M3&#39;, &#39;M4&#39;, &#39;D5&#39;, &#39;M6&#39;, &#39;D7&#39;, &#39;M8&#39;, &#39;E&#39;])
-Исход AEFDFDC декодиран: (0.00040684805005509046, [&#39;S&#39;, &#39;M1&#39;, &#39;D2&#39;, &#39;D3&#39;, &#39;M4&#39;, &#39;M5&#39;, &#39;I5&#39;, &#39;M6&#39;, &#39;M7&#39;, &#39;M8&#39;, &#39;E&#39;])
+<pre>Исход  декодиран: (1.6133979115333436e-10, [&#39;S&#39;, &#39;D1&#39;, &#39;D2&#39;, &#39;D3&#39;, &#39;D4&#39;, &#39;D5&#39;, &#39;D6&#39;, &#39;D7&#39;, &#39;D8&#39;, &#39;E&#39;])
+Исход ADDAFFDF декодиран: (0.0003134978856539285, [&#39;S&#39;, &#39;M1&#39;, &#39;M2&#39;, &#39;M3&#39;, &#39;M4&#39;, &#39;M5&#39;, &#39;M6&#39;, &#39;M7&#39;, &#39;M8&#39;, &#39;E&#39;])
+Исход AFDDAFFDF декодиран: (2.580229511554967e-07, [&#39;S&#39;, &#39;M1&#39;, &#39;I1&#39;, &#39;M2&#39;, &#39;M3&#39;, &#39;M4&#39;, &#39;M5&#39;, &#39;M6&#39;, &#39;M7&#39;, &#39;M8&#39;, &#39;E&#39;])
+Исход AAFFDF декодиран: (0.00045348251846869734, [&#39;S&#39;, &#39;M1&#39;, &#39;D2&#39;, &#39;D3&#39;, &#39;M4&#39;, &#39;M5&#39;, &#39;M6&#39;, &#39;M7&#39;, &#39;M8&#39;, &#39;E&#39;])
+Исход ACAFDEAF декодиран: (1.1370093247066312e-07, [&#39;S&#39;, &#39;M1&#39;, &#39;M2&#39;, &#39;I2&#39;, &#39;I2&#39;, &#39;M3&#39;, &#39;M4&#39;, &#39;D5&#39;, &#39;M6&#39;, &#39;D7&#39;, &#39;M8&#39;, &#39;E&#39;])
+Исход AEFDFDC декодиран: (0.00040704567634491034, [&#39;S&#39;, &#39;M1&#39;, &#39;D2&#39;, &#39;D3&#39;, &#39;M4&#39;, &#39;M5&#39;, &#39;I5&#39;, &#39;M6&#39;, &#39;M7&#39;, &#39;M8&#39;, &#39;E&#39;])
 </pre>
 </div>
 </div>
@@ -29779,12 +29782,12 @@ ADDEFADF
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Вероватноћа опажања  је: 1.8112221148500004e-10
-Вероватноћа опажања ADDAFFDF је: 0.0003206344030053308
-Вероватноћа опажања AFDDAFFDF је: 9.299796039928844e-07
-Вероватноћа опажања AAFFDF је: 0.0004635929997163145
-Вероватноћа опажања ACAFDEAF је: 3.8271760539035966e-07
-Вероватноћа опажања AEFDFDC је: 0.00041213747232828377
+<pre>Вероватноћа опажања  је: 1.6133979115333436e-10
+Вероватноћа опажања ADDAFFDF је: 0.0003202174626714007
+Вероватноћа опажања AFDDAFFDF је: 9.013162457204055e-07
+Вероватноћа опажања AAFFDF је: 0.0004633009268396256
+Вероватноћа опажања ACAFDEAF је: 3.688532523313795e-07
+Вероватноћа опажања AEFDFDC је: 0.0004121764662165723
 </pre>
 </div>
 </div>
@@ -29875,8 +29878,8 @@ ADDEFADF
         <span class="n">a</span><span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]][</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
         
     <span class="c1"># Нормализација мапе прелаза</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span>\
-            <span class="n">values</span><span class="p">())</span> <span class="k">else</span> <span class="nb">round</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span>\
+            <span class="n">values</span><span class="p">())</span> <span class="k">else</span> <span class="mi">1</span><span class="o">/</span><span class="n">n</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
     
     <span class="c1"># Празна мапа емисија</span>
     <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">yi</span><span class="p">:</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">yi</span> <span class="ow">in</span> <span class="n">y</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
@@ -29886,8 +29889,8 @@ ADDEFADF
         <span class="n">b</span><span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="n">o</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
     
     <span class="c1"># Нормализација мапе емисија</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">yj</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">yj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="mi">3</span><span class="p">)</span> <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span>\
-            <span class="n">values</span><span class="p">())</span> <span class="k">else</span> <span class="nb">round</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">yj</span> <span class="ow">in</span> <span class="n">y</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">yj</span><span class="p">:</span> <span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">yj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span>\
+            <span class="n">values</span><span class="p">())</span> <span class="k">else</span> <span class="mi">1</span><span class="o">/</span><span class="n">m</span> <span class="k">for</span> <span class="n">yj</span> <span class="ow">in</span> <span class="n">y</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
     
     <span class="c1"># Враћање одређених параметара</span>
     <span class="k">return</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
@@ -29988,9 +29991,9 @@ ADDEFADF
   <tbody>
     <tr>
       <th>π</th>
-      <td>0.333333</td>
-      <td>0.333333</td>
-      <td>0.333333</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.333</td>
     </tr>
   </tbody>
 </table>
@@ -30199,9 +30202,9 @@ ADDEFADF
   <tbody>
     <tr>
       <th>π</th>
-      <td>0.333333</td>
-      <td>0.333333</td>
-      <td>0.333333</td>
+      <td>0.333</td>
+      <td>0.333</td>
+      <td>0.333</td>
     </tr>
   </tbody>
 </table>
@@ -31521,7 +31524,7 @@ ADDEFADF
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Леп приказ „меког” декодирања</span>
-<span class="k">def</span> <span class="nf">prikazi_meko</span><span class="p">(</span><span class="n">meko</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">prikazi_meko</span><span class="p">(</span><span class="n">meko</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
     <span class="c1"># Одређивање скривених стања</span>
     <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">meko</span><span class="p">]</span>
     
@@ -31529,7 +31532,7 @@ ADDEFADF
     <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">meko</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
     
     <span class="c1"># Лепо табелирање података</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">([[</span><span class="nb">round</span><span class="p">(</span><span class="n">meko</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">t</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">([[</span><span class="nb">round</span><span class="p">(</span><span class="n">meko</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">t</span><span class="p">],</span> <span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span>
                      <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)],</span> <span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
     
     <span class="c1"># Приказ табелираних података</span>
@@ -31546,108 +31549,11 @@ ADDEFADF
 <div class="prompt input_prompt">In&nbsp;[254]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># „Меко” декодирање примера из уџбеника</span>
-<span class="n">prikazi_meko</span><span class="p">(</span><span class="n">fwd_bwd</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Прецизност заокруживања из уџбеника</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mi">3</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea "><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>F</th>
-      <th>B</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>0.6357</td>
-      <td>0.3643</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.5929</td>
-      <td>0.4071</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.6005</td>
-      <td>0.3995</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.5325</td>
-      <td>0.4675</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>0.5151</td>
-      <td>0.4849</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0.5444</td>
-      <td>0.4556</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>0.6269</td>
-      <td>0.3731</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>0.6332</td>
-      <td>0.3668</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>0.6924</td>
-      <td>0.3076</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>0.6857</td>
-      <td>0.3143</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>0.6094</td>
-      <td>0.3906</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
-
-</div>
-
 </div>
 </div>
 
@@ -31657,13 +31563,8 @@ ADDEFADF
 <div class="prompt input_prompt">In&nbsp;[255]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Други пример опажања из уџбеника</span>
-<span class="n">o</span> <span class="o">=</span> <span class="s1">&#39;HHHHHHHHHHH&#39;</span>
-
-<span class="c1"># „Меко” декодирање новог примера; све пале главе повећавају</span>
-<span class="c1"># сигурност у то да се све време баца отежани новчић, а посебно у</span>
-<span class="c1"># средини, где је утицајнија широка околина испуњена само главама</span>
-<span class="n">prikazi_meko</span><span class="p">(</span><span class="n">fwd_bwd</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># „Меко” декодирање примера из уџбеника</span>
+<span class="n">prikazi_meko</span><span class="p">(</span><span class="n">fwd_bwd</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">),</span> <span class="n">r</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -31705,58 +31606,58 @@ ADDEFADF
   <tbody>
     <tr>
       <th>1</th>
-      <td>0.1747</td>
-      <td>0.8253</td>
+      <td>0.636</td>
+      <td>0.364</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.1342</td>
-      <td>0.8658</td>
+      <td>0.593</td>
+      <td>0.407</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.1093</td>
-      <td>0.8907</td>
+      <td>0.600</td>
+      <td>0.400</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.0946</td>
-      <td>0.9054</td>
+      <td>0.533</td>
+      <td>0.467</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.0869</td>
-      <td>0.9131</td>
+      <td>0.515</td>
+      <td>0.485</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.0845</td>
-      <td>0.9155</td>
+      <td>0.544</td>
+      <td>0.456</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.0869</td>
-      <td>0.9131</td>
+      <td>0.627</td>
+      <td>0.373</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.0946</td>
-      <td>0.9054</td>
+      <td>0.633</td>
+      <td>0.367</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.1093</td>
-      <td>0.8907</td>
+      <td>0.692</td>
+      <td>0.308</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>0.1342</td>
-      <td>0.8658</td>
+      <td>0.686</td>
+      <td>0.314</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>0.1747</td>
-      <td>0.8253</td>
+      <td>0.609</td>
+      <td>0.391</td>
     </tr>
   </tbody>
 </table>
@@ -31771,6 +31672,122 @@ ADDEFADF
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[256]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Други пример опажања из уџбеника</span>
+<span class="n">o</span> <span class="o">=</span> <span class="s1">&#39;HHHHHHHHHHH&#39;</span>
+
+<span class="c1"># „Меко” декодирање новог примера; све пале главе повећавају</span>
+<span class="c1"># сигурност у то да се све време баца отежани новчић, а посебно у</span>
+<span class="c1"># средини, где је утицајнија широка околина испуњена само главама</span>
+<span class="n">prikazi_meko</span><span class="p">(</span><span class="n">fwd_bwd</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">o</span><span class="p">),</span> <span class="n">r</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea "><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>F</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0.175</td>
+      <td>0.825</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.134</td>
+      <td>0.866</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.109</td>
+      <td>0.891</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.095</td>
+      <td>0.905</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.087</td>
+      <td>0.913</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.085</td>
+      <td>0.915</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.087</td>
+      <td>0.913</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.095</td>
+      <td>0.905</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.109</td>
+      <td>0.891</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0.134</td>
+      <td>0.866</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>0.175</td>
+      <td>0.825</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[257]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Основни пример параметара са ROSALIND</span>
@@ -31888,7 +31905,7 @@ ADDEFADF
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[257]:</div>
+<div class="prompt input_prompt">In&nbsp;[258]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Додатни пример параметара са ROSALIND</span>
@@ -32040,7 +32057,7 @@ ADDEFADF
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[258]:</div>
+<div class="prompt input_prompt">In&nbsp;[259]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Апостериорно декодирање приказа</span>
@@ -32084,7 +32101,7 @@ ADDEFADF
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[259]:</div>
+<div class="prompt input_prompt">In&nbsp;[260]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Највероватнији пут изложеног примера</span>
@@ -32130,7 +32147,7 @@ ADDEFADF
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[260]:</div>
+<div class="prompt input_prompt">In&nbsp;[261]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Скривена стања CG острва</span>
@@ -32147,7 +32164,7 @@ ADDEFADF
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[261]:</div>
+<div class="prompt input_prompt">In&nbsp;[262]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Сакупљање досадашњих модела острва</span>
@@ -32164,7 +32181,7 @@ ADDEFADF
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[262]:</div>
+<div class="prompt input_prompt">In&nbsp;[263]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Апостериорно декодирање ДНК секвенце</span>
@@ -32185,7 +32202,7 @@ ADDEFADF
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[263]:</div>
+<div class="prompt input_prompt">In&nbsp;[264]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Приказ сваког модела</span>
@@ -32263,7 +32280,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[264]:</div>
+<div class="prompt input_prompt">In&nbsp;[265]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноћа пролаза кроз грану</span>
@@ -32289,11 +32306,11 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[265]:</div>
+<div class="prompt input_prompt">In&nbsp;[266]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Леп приказ фиксиране гране</span>
-<span class="k">def</span> <span class="nf">prikazi_meko2</span><span class="p">(</span><span class="n">meko</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">prikazi_meko2</span><span class="p">(</span><span class="n">meko</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
     <span class="c1"># Одређивање скривених стања</span>
     <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">meko</span><span class="p">]</span>
     
@@ -32301,7 +32318,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
     <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">meko</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
     
     <span class="c1"># Лепо табелирање података</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">([[</span><span class="nb">round</span><span class="p">(</span><span class="n">meko</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">][</span><span class="n">t</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">([[</span><span class="nb">round</span><span class="p">(</span><span class="n">meko</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">][</span><span class="n">t</span><span class="p">],</span> <span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span>
                      <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)],</span> <span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">map</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">,</span> <span class="n">product</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)))</span>
     
     <span class="c1"># Приказ табелираних података</span>
@@ -32315,11 +32332,11 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[266]:</div>
+<div class="prompt input_prompt">In&nbsp;[267]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Фиксиране гране примера из уџбеника</span>
-<span class="n">prikazi_meko2</span><span class="p">(</span><span class="n">fwd_bwd2</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">))</span>
+<span class="n">prikazi_meko2</span><span class="p">(</span><span class="n">fwd_bwd2</span><span class="p">(</span><span class="n">kockarnica</span><span class="p">,</span> <span class="n">o_knjiga</span><span class="p">),</span> <span class="n">r</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -32363,73 +32380,73 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
   <tbody>
     <tr>
       <th>1</th>
-      <td>0.5617</td>
-      <td>0.0740</td>
-      <td>0.0312</td>
-      <td>0.3331</td>
+      <td>0.562</td>
+      <td>0.074</td>
+      <td>0.031</td>
+      <td>0.333</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.5476</td>
-      <td>0.0453</td>
-      <td>0.0528</td>
-      <td>0.3542</td>
+      <td>0.548</td>
+      <td>0.045</td>
+      <td>0.053</td>
+      <td>0.354</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.5073</td>
-      <td>0.0931</td>
-      <td>0.0252</td>
-      <td>0.3744</td>
+      <td>0.507</td>
+      <td>0.093</td>
+      <td>0.025</td>
+      <td>0.374</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.4732</td>
-      <td>0.0593</td>
-      <td>0.0419</td>
-      <td>0.4256</td>
+      <td>0.473</td>
+      <td>0.059</td>
+      <td>0.042</td>
+      <td>0.426</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.4779</td>
-      <td>0.0372</td>
-      <td>0.0665</td>
-      <td>0.4184</td>
+      <td>0.478</td>
+      <td>0.037</td>
+      <td>0.066</td>
+      <td>0.418</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.5226</td>
-      <td>0.0218</td>
-      <td>0.1042</td>
-      <td>0.3514</td>
+      <td>0.523</td>
+      <td>0.022</td>
+      <td>0.104</td>
+      <td>0.351</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.5818</td>
-      <td>0.0450</td>
-      <td>0.0514</td>
-      <td>0.3218</td>
+      <td>0.582</td>
+      <td>0.045</td>
+      <td>0.051</td>
+      <td>0.322</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.6080</td>
-      <td>0.0251</td>
-      <td>0.0843</td>
-      <td>0.2825</td>
+      <td>0.608</td>
+      <td>0.025</td>
+      <td>0.084</td>
+      <td>0.282</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.6430</td>
-      <td>0.0493</td>
-      <td>0.0426</td>
-      <td>0.2650</td>
+      <td>0.643</td>
+      <td>0.049</td>
+      <td>0.043</td>
+      <td>0.265</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>0.5877</td>
-      <td>0.0980</td>
-      <td>0.0217</td>
-      <td>0.2926</td>
+      <td>0.588</td>
+      <td>0.098</td>
+      <td>0.022</td>
+      <td>0.293</td>
     </tr>
   </tbody>
 </table>
@@ -32467,7 +32484,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[267]:</div>
+<div class="prompt input_prompt">In&nbsp;[268]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># „Меки” корак очекивања</span>
@@ -32531,7 +32548,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[268]:</div>
+<div class="prompt input_prompt">In&nbsp;[269]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># „Меки” корак максимизације</span>
@@ -32543,15 +32560,15 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
     <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">Pzz</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
     
     <span class="c1"># Нормализација мапе прелаза</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="mi">4</span><span class="p">)</span> <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span>\
-         <span class="n">values</span><span class="p">())</span> <span class="k">else</span> <span class="nb">round</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">hmm</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">xj</span><span class="p">:</span> <span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">xj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span>\
+         <span class="n">values</span><span class="p">())</span> <span class="k">else</span> <span class="mi">1</span><span class="o">/</span><span class="n">hmm</span><span class="o">.</span><span class="n">n</span> <span class="k">for</span> <span class="n">xj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
 
     <span class="c1"># Одређивање мапе емисија</span>
     <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">yj</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">o</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">==</span> <span class="n">yj</span> <span class="ow">and</span> <span class="n">Pz</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">))</span> <span class="k">for</span> <span class="n">yj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">y</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
     
     <span class="c1"># Нормализација мапе емисија</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">yj</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">yj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="mi">4</span><span class="p">)</span> <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span>\
-         <span class="n">values</span><span class="p">())</span> <span class="k">else</span> <span class="nb">round</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">hmm</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">yj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">y</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="n">xi</span><span class="p">:</span> <span class="p">{</span><span class="n">yj</span><span class="p">:</span> <span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">][</span><span class="n">yj</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">xi</span><span class="p">]</span><span class="o">.</span>\
+         <span class="n">values</span><span class="p">())</span> <span class="k">else</span> <span class="mi">1</span><span class="o">/</span><span class="n">hmm</span><span class="o">.</span><span class="n">m</span> <span class="k">for</span> <span class="n">yj</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">y</span><span class="p">}</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">hmm</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
     
     <span class="c1"># Враћање резултата</span>
     <span class="k">return</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
@@ -32572,7 +32589,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[269]:</div>
+<div class="prompt input_prompt">In&nbsp;[270]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Баум-Велчово учење поткрепљивањем;</span>
@@ -32594,7 +32611,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[270]:</div>
+<div class="prompt input_prompt">In&nbsp;[271]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Основни пример параметара са ROSALIND</span>
@@ -32610,7 +32627,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 <span class="n">rosalind</span> <span class="o">=</span> <span class="n">HMM</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 
 <span class="c1"># Поткрепљивање према изложеном примеру</span>
-<span class="n">viterbi_potkrepljivanje</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
+<span class="n">baum_welch</span><span class="p">(</span><span class="n">rosalind</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
 
 <span class="c1"># Леп приказ модела</span>
 <span class="n">prikazi</span><span class="p">(</span><span class="n">rosalind</span><span class="p">)</span>
@@ -32717,13 +32734,13 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
   <tbody>
     <tr>
       <th>A</th>
-      <td>0.0</td>
-      <td>1.0</td>
+      <td>0.000</td>
+      <td>1.000</td>
     </tr>
     <tr>
       <th>B</th>
-      <td>0.8</td>
-      <td>0.2</td>
+      <td>0.786</td>
+      <td>0.214</td>
     </tr>
   </tbody>
 </table>
@@ -32774,15 +32791,15 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
   <tbody>
     <tr>
       <th>A</th>
-      <td>0.250</td>
+      <td>0.242</td>
       <td>0.000</td>
-      <td>0.75</td>
+      <td>0.758</td>
     </tr>
     <tr>
       <th>B</th>
-      <td>0.167</td>
-      <td>0.833</td>
-      <td>0.00</td>
+      <td>0.172</td>
+      <td>0.828</td>
+      <td>0.000</td>
     </tr>
   </tbody>
 </table>
@@ -32796,7 +32813,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[271]:</div>
+<div class="prompt input_prompt">In&nbsp;[272]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Додатни пример параметара са ROSALIND</span>
@@ -32929,31 +32946,31 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
   <tbody>
     <tr>
       <th>A</th>
-      <td>0.0010</td>
-      <td>0.3838</td>
-      <td>0.1857</td>
-      <td>0.4296</td>
+      <td>0.000</td>
+      <td>0.384</td>
+      <td>0.186</td>
+      <td>0.430</td>
     </tr>
     <tr>
       <th>B</th>
-      <td>0.9880</td>
-      <td>0.0003</td>
-      <td>0.0002</td>
-      <td>0.0116</td>
+      <td>0.989</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.011</td>
     </tr>
     <tr>
       <th>C</th>
-      <td>0.0002</td>
-      <td>0.0001</td>
-      <td>0.5959</td>
-      <td>0.4039</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.596</td>
+      <td>0.404</td>
     </tr>
     <tr>
       <th>D</th>
-      <td>0.4034</td>
-      <td>0.5961</td>
-      <td>0.0000</td>
-      <td>0.0005</td>
+      <td>0.403</td>
+      <td>0.596</td>
+      <td>0.000</td>
+      <td>0.001</td>
     </tr>
   </tbody>
 </table>
@@ -33004,27 +33021,27 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
   <tbody>
     <tr>
       <th>A</th>
-      <td>0.4473</td>
-      <td>0.0001</td>
-      <td>0.5526</td>
+      <td>0.447</td>
+      <td>0.000</td>
+      <td>0.553</td>
     </tr>
     <tr>
       <th>B</th>
-      <td>0.0316</td>
-      <td>0.6477</td>
-      <td>0.3208</td>
+      <td>0.032</td>
+      <td>0.648</td>
+      <td>0.321</td>
     </tr>
     <tr>
       <th>C</th>
-      <td>0.0001</td>
-      <td>0.9999</td>
-      <td>0.0001</td>
+      <td>0.000</td>
+      <td>1.000</td>
+      <td>0.000</td>
     </tr>
     <tr>
       <th>D</th>
-      <td>0.7147</td>
-      <td>0.0003</td>
-      <td>0.2850</td>
+      <td>0.714</td>
+      <td>0.000</td>
+      <td>0.286</td>
     </tr>
   </tbody>
 </table>
@@ -33124,7 +33141,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[272]:</div>
+<div class="prompt input_prompt">In&nbsp;[273]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Библиотека за рад са HMM</span>
@@ -33138,7 +33155,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[273]:</div>
+<div class="prompt input_prompt">In&nbsp;[274]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Прављење празног HMM за итеративно моделовање</span>
@@ -33152,7 +33169,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[274]:</div>
+<div class="prompt input_prompt">In&nbsp;[275]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Расподела емисија у CpG местима</span>
@@ -33169,7 +33186,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[275]:</div>
+<div class="prompt input_prompt">In&nbsp;[276]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Стање које представља CG острва</span>
@@ -33186,7 +33203,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[276]:</div>
+<div class="prompt input_prompt">In&nbsp;[277]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Додавање направљених стања у модел</span>
@@ -33200,7 +33217,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[277]:</div>
+<div class="prompt input_prompt">In&nbsp;[278]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Полазне вероватноће стања</span>
@@ -33215,7 +33232,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[278]:</div>
+<div class="prompt input_prompt">In&nbsp;[279]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Вероватноће преласка</span>
@@ -33232,7 +33249,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[279]:</div>
+<div class="prompt input_prompt">In&nbsp;[280]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Финализација топологије модела</span>
@@ -33246,7 +33263,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[280]:</div>
+<div class="prompt input_prompt">In&nbsp;[281]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Дохватање пута на основу резултата</span>
@@ -33261,7 +33278,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[281]:</div>
+<div class="prompt input_prompt">In&nbsp;[282]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Декодирање улазне ДНК секвенце</span>
@@ -33287,7 +33304,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[282]:</div>
+<div class="prompt input_prompt">In&nbsp;[283]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Декодирање улазне ДНК секвенце</span>
@@ -33320,7 +33337,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[283]:</div>
+<div class="prompt input_prompt">In&nbsp;[284]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Примена и алгоритма „напред”; напомена: pomegranate</span>
@@ -33362,7 +33379,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[284]:</div>
+<div class="prompt input_prompt">In&nbsp;[285]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Библиотека за рад са HMM</span>
@@ -33376,7 +33393,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[285]:</div>
+<div class="prompt input_prompt">In&nbsp;[286]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Модел са два скривена стања</span>
@@ -33390,7 +33407,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[286]:</div>
+<div class="prompt input_prompt">In&nbsp;[287]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Полазне вероватноће стања</span>
@@ -33404,7 +33421,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[287]:</div>
+<div class="prompt input_prompt">In&nbsp;[288]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Матрица преласка између стања</span>
@@ -33418,7 +33435,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[288]:</div>
+<div class="prompt input_prompt">In&nbsp;[289]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Матрица вероватноћа опсервација</span>
@@ -33432,7 +33449,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[289]:</div>
+<div class="prompt input_prompt">In&nbsp;[290]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Дохватање пута на основу резултата</span>
@@ -33447,7 +33464,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[290]:</div>
+<div class="prompt input_prompt">In&nbsp;[291]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Декодирање улазне ДНК секвенце</span>
@@ -33471,7 +33488,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[291]:</div>
+<div class="prompt input_prompt">In&nbsp;[292]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Декодирање улазне ДНК секвенце</span>
@@ -33504,7 +33521,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[292]:</div>
+<div class="prompt input_prompt">In&nbsp;[293]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Примена и алгоритма „напред”</span>
@@ -33545,7 +33562,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[293]:</div>
+<div class="prompt input_prompt">In&nbsp;[294]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Дужина пута у узорку</span>
@@ -33559,7 +33576,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[294]:</div>
+<div class="prompt input_prompt">In&nbsp;[295]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Библиотека за рад са упозорењима</span>
@@ -33573,7 +33590,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[295]:</div>
+<div class="prompt input_prompt">In&nbsp;[296]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Дохватање пута на основу резултата</span>
@@ -33588,7 +33605,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[296]:</div>
+<div class="prompt input_prompt">In&nbsp;[297]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Узорковање на основу модела</span>
@@ -33621,7 +33638,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[297]:</div>
+<div class="prompt input_prompt">In&nbsp;[298]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Узорковање на основу модела</span>
@@ -33653,7 +33670,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[298]:</div>
+<div class="prompt input_prompt">In&nbsp;[299]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Дохватање исхода на основу резултата</span>
@@ -33668,7 +33685,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[299]:</div>
+<div class="prompt input_prompt">In&nbsp;[300]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Узорковање на основу модела</span>
@@ -33697,7 +33714,7 @@ MAP    : -------+++++++++++---------+------------- (1.8446815533724205e-09)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[300]:</div>
+<div class="prompt input_prompt">In&nbsp;[301]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Узорковање на основу модела</span>
